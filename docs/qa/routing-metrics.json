@@ -1,0 +1,30 @@
+{
+  "browser": "150.0.7871.125",
+  "metrics": [
+    {
+      "title": "Lampa i łącznik",
+      "checked": 7,
+      "intrusions": [],
+      "detached": []
+    },
+    {
+      "title": "Mała rozdzielnica",
+      "checked": 10,
+      "intrusions": [],
+      "detached": []
+    },
+    {
+      "title": "Trzy fazy i termik",
+      "checked": 22,
+      "intrusions": [],
+      "detached": []
+    },
+    {
+      "title": "Sterowanie 24 V DC",
+      "checked": 19,
+      "intrusions": [],
+      "detached": []
+    }
+  ],
+  "errors": []
+}

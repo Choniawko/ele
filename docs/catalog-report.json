@@ -1,0 +1,1935 @@
+{
+  "generatedAt": "2026-10-03T09:18:53.682Z",
+  "errors": [],
+  "products": [
+    {
+      "id": "hager-mbn110e",
+      "partNumber": "MBN110E",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [],
+      "sources": [
+        {
+          "id": "hager-mbn110e",
+          "title": "Hager MBN110E",
+          "url": "https://hager.com/pl/katalog/produkt/mbn110e-mcb-6ka-1p-b-10a"
+        }
+      ]
+    },
+    {
+      "id": "hager-mbn116e",
+      "partNumber": "MBN116E",
+      "educational": false,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 17.5,
+          "height": 83,
+          "depth": 70
+        },
+        "evidence": [
+          {
+            "sourceId": "hager-mbn116e",
+            "locator": "Specyfikacja i fotografia MCN1XXE-MBN1XXE; front; wejście od góry / wyjście od dołu",
+            "verification": "manufacturer",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "high"
+      },
+      "blockers": [],
+      "limitations": [
+        "Do not replace with MBN116. Connection ranges do not prove arbitrary multiple conductors fit a terminal.",
+        "Profil dydaktyczny B: magnetyczne 4×In, akumulacja cieplna. Nie jest pełną krzywą czasowo-prądową SKU. Punkty przyłączeniowe w nakładce zaciskowej; śruba nie jest otworem przewodu."
+      ],
+      "sources": [
+        {
+          "id": "hager-mbn116e",
+          "title": "Hager MBN116E",
+          "url": "https://hager.com/pl/katalog/produkt/mbn116e-mcb-6ka-1p-b-16a"
+        }
+      ]
+    },
+    {
+      "id": "hager-mcn316e",
+      "partNumber": "MCN316E",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [],
+      "sources": [
+        {
+          "id": "hager-mcn316e",
+          "title": "Hager MCN316E",
+          "url": "https://hager.com/pl/katalog/produkt/mcn316e-mcb-6ka-3p-c-16a"
+        }
+      ]
+    },
+    {
+      "id": "hager-cda240j",
+      "partNumber": "CDA240J",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "40 A is a nominal current rating; this is not an overload trip setting. Do not equate with CDA240D."
+      ],
+      "sources": [
+        {
+          "id": "hager-cda240j",
+          "title": "Hager CDA240J",
+          "url": "https://hager.com/pl/katalog/produkt/cda240j-rccb-2p-40a-30ma-typ-a"
+        }
+      ]
+    },
+    {
+      "id": "hager-cdc440j",
+      "partNumber": "CDC440J",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Map manufacturer 3P+N topology; do not infer neutral terminal position."
+      ],
+      "sources": [
+        {
+          "id": "hager-cdc440j",
+          "title": "Hager CDC440J",
+          "url": "https://hager.com/pl/katalog/produkt/cdc440j-rccb-4p-40a-30ma-typ-ac"
+        }
+      ]
+    },
+    {
+      "id": "hager-ada916d",
+      "partNumber": "ADA916D",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [],
+      "sources": [
+        {
+          "id": "hager-ada916d",
+          "title": "Hager ADA916D",
+          "url": "https://hager.com/pl/katalog/produkt/ada916d-rcbo-1p-n-6ka-b-16a-30ma-typ-a"
+        }
+      ]
+    },
+    {
+      "id": "hager-sbn240",
+      "partNumber": "SBN240",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [],
+      "sources": [
+        {
+          "id": "hager-sbn240",
+          "title": "Hager SBN240",
+          "url": "https://hager.com/pl/katalog/produkt/sbn240-modulowy-rozlacznik-izolacyjny-2p-40a"
+        }
+      ]
+    },
+    {
+      "id": "hager-esc225",
+      "partNumber": "ESC225",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Current depends on utilization category; does not have a manual override switch according to the reviewed product page."
+      ],
+      "sources": [
+        {
+          "id": "hager-esc225",
+          "title": "Hager ESC225",
+          "url": "https://hager.com/pl/katalog/produkt/esc225-stycznik-230vac-2no-25a"
+        }
+      ]
+    },
+    {
+      "id": "schneider-a9f03116",
+      "partNumber": "A9F03116",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [],
+      "sources": [
+        {
+          "id": "schneider-a9f03116",
+          "title": "Schneider Electric A9F03116",
+          "url": "https://www.se.com/pl/pl/product/A9F03116/wy%C5%82%C4%85cznik-nadpr%C4%85dowy-acti9-ic60nb161-b-16a-1biegunowy/"
+        }
+      ]
+    },
+    {
+      "id": "schneider-lc1d09p7",
+      "partNumber": "LC1D09P7",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Exact main/auxiliary terminal map and coil pickup/dropout thresholds must be verified; AC-3 current is not every other utilization rating."
+      ],
+      "sources": [
+        {
+          "id": "schneider-lc1d09p7",
+          "title": "Schneider Electric LC1D09P7",
+          "url": "https://www.se.com/pl/pl/product/LC1D09P7/stycznik-mocy-tesys-d-ac3-9a-3p-1no-1nc-cewka-230vac-zaciski-skrzynkowe/"
+        }
+      ]
+    },
+    {
+      "id": "schneider-lc1d09bd",
+      "partNumber": "LC1D09BD",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "DC polarity/suppressor behavior requires exact variant documentation."
+      ],
+      "sources": [
+        {
+          "id": "schneider-lc1d09bd",
+          "title": "Schneider Electric LC1D09BD",
+          "url": "https://www.se.com/pl/pl/product/LC1D09BD/stycznik-mocy-tesys-d-ac3-9a-3p-1no-1nc-cewka-24vdc-zaciski-%C5%9Brubowe/"
+        }
+      ]
+    },
+    {
+      "id": "schneider-lrd12",
+      "partNumber": "LRD12",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Reviewed datasheet is dated 2019. Verify current version and contact numbering. Do not model automatic opening of power conductors by the overload relay."
+      ],
+      "sources": [
+        {
+          "id": "schneider-lrd12",
+          "title": "Schneider Electric LRD12, official datasheet",
+          "url": "https://iportal.se.com/Contents/docs/SQD-LRD12_DATA%20SHEET.PDF"
+        }
+      ]
+    },
+    {
+      "id": "schneider-xb5aa31",
+      "partNumber": "XB5AA31",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [],
+      "sources": [
+        {
+          "id": "schneider-xb5aa31",
+          "title": "Schneider Electric XB5AA31",
+          "url": "https://www.se.com/in/en/product/XB5AA31/push-button-plastic-flush-green-%C3%B822-spring-return-unmarked-1-no/"
+        }
+      ]
+    },
+    {
+      "id": "schneider-xb5aa42",
+      "partNumber": "XB5AA42",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Several official locales identify 1NC. An official UK title incorrectly says 1NO; resolve from authoritative contact block diagram before publication."
+      ],
+      "sources": [
+        {
+          "id": "schneider-xb5aa42",
+          "title": "Schneider Electric XB5AA42",
+          "url": "https://www.se.com/us/en/product/XB5AA42/push-button-harmony-xb5-plastic-flush-red-22mm-spring-return-unmarked-1nc/"
+        }
+      ]
+    },
+    {
+      "id": "schneider-xb5avm3",
+      "partNumber": "XB5AVM3",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [],
+      "sources": [
+        {
+          "id": "schneider-xb5avm3",
+          "title": "Schneider Electric XB5AVM3",
+          "url": "https://www.se.com/pl/pl/product/XB5AVM3/harmony-xb5-lampka-sygnalizacyjna-zielona-led-230-240v/"
+        }
+      ]
+    },
+    {
+      "id": "fif-bis411-230",
+      "partNumber": "BIS-411",
+      "educational": false,
+      "readiness": "topology-verified",
+      "published": false,
+      "gates": {
+        "topology": true,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Korekta seed: COM 11, NC 10, NO 12; w wariancie impulsu L: N 1, L 3. Instrukcja E240129 i schemat producenta.",
+        "Obudowa i współrzędne profilu dydaktycznego nie są dowodem geometrii rzeczywistego SKU. Produkt pozostaje zablokowany.",
+        "BIS-411M has different power-loss memory. Do not transfer its behavior into this base variant."
+      ],
+      "sources": [
+        {
+          "id": "fif-bis411",
+          "title": "F&F BIS-411 230 V",
+          "url": "https://www.fif.com.pl/pl/przekazniki-bistabilne/42-przekaznik-bistabilny-bis-411-230-v.html"
+        },
+        {
+          "id": "fif-bis411-manual",
+          "title": "F&F BIS-411 230 V — instrukcja",
+          "url": "https://www.fif.com.pl/pl/index.php?controller=attachment&id_attachment=74"
+        },
+        {
+          "id": "fif-bis411-230-reviewed",
+          "title": "Instrukcja zweryfikowana 2026-10-03",
+          "url": "https://www.fif.com.pl/pl/index.php?controller=attachment&id_attachment=74"
+        }
+      ]
+    },
+    {
+      "id": "fif-as212",
+      "partNumber": "AS-212",
+      "educational": false,
+      "readiness": "topology-verified",
+      "published": false,
+      "gates": {
+        "topology": true,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Instrukcja E240306: N 1, L 3, sterowanie 6, wyjście 5; wyjście nie jest odizolowane.",
+        "Obudowa i współrzędne profilu dydaktycznego nie są dowodem geometrii rzeczywistego SKU. Produkt pozostaje zablokowany.",
+        "Trigger hold/retrigger semantics must be implemented from the manual, not from an assumed generic timer."
+      ],
+      "sources": [
+        {
+          "id": "fif-as212",
+          "title": "F&F AS-212",
+          "url": "https://www.fif.com.pl/pl/automaty-schodowe/30-automat-schodowy-as-212.html"
+        },
+        {
+          "id": "fif-as212-manual",
+          "title": "F&F AS-212 — instrukcja",
+          "url": "https://www.fif.com.pl/pl/index.php?controller=attachment&id_attachment=56"
+        },
+        {
+          "id": "fif-as212-reviewed",
+          "title": "Instrukcja zweryfikowana 2026-10-03",
+          "url": "https://fif.com.pl/pliki/0/746/AS-212-instructions-for-use-pl-1.pdf"
+        }
+      ]
+    },
+    {
+      "id": "fif-pcu510duo",
+      "partNumber": "PCU-510DUO",
+      "educational": false,
+      "readiness": "topology-verified",
+      "published": false,
+      "gates": {
+        "topology": true,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Korekta seed według E231117: 230 V 1–3; alternatywne 24 V 4–3; C start ON, D start OFF; COM 8 i 11.",
+        "Obudowa i współrzędne profilu dydaktycznego nie są dowodem geometrii rzeczywistego SKU. Produkt pozostaje zablokowany.",
+        "Display name PCU-510 DUO; manufacturer index PCU-510DUO. Full AC 24 V supply arrangement must be reviewed from the manual; only AC 230 V and DC polarity map are seeded here. Modes A/B/C/D start from supply application; do not implement A as an ordinary falling-edge TOF."
+      ],
+      "sources": [
+        {
+          "id": "fif-pcu510duo",
+          "title": "F&F PCU-510 DUO",
+          "url": "https://www.fif.com.pl/pl/przekazniki-czasowe/779-przekaznik-czasowy-pcu-510-duo.html"
+        },
+        {
+          "id": "fif-pcu510duo-manual",
+          "title": "F&F PCU-510 DUO — instrukcja",
+          "url": "https://www.fif.com.pl/pl/index.php?controller=attachment&id_attachment=361"
+        },
+        {
+          "id": "fif-pcu510duo-reviewed",
+          "title": "Instrukcja zweryfikowana 2026-10-03",
+          "url": "https://www.fif.com.pl/pl/index.php?controller=attachment&id_attachment=361"
+        }
+      ]
+    },
+    {
+      "id": "wago-221-412",
+      "partNumber": "221-412",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Wire places belong to a common splice, not independent L/N/PE channels. Physical labels on product must be checked; app endpoint IDs must not pretend to be printed terminal numbers."
+      ],
+      "sources": [
+        {
+          "id": "wago-221412",
+          "title": "WAGO 221-412",
+          "url": "https://www.wago.com/pl/assortment-221/z%C5%82%C4%85czka-instalacyjna-z%C2%A0d%C5%BAwigni%C4%85/p/221-412"
+        },
+        {
+          "id": "wago-221-family",
+          "title": "WAGO 221 — Polish family information",
+          "url": "https://www.wago.com/pl/produkty/technika-laczeniowa/zlaczki_instalacyjne-221"
+        }
+      ]
+    },
+    {
+      "id": "wago-221-413",
+      "partNumber": "221-413",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Wire places belong to a common splice, not independent L/N/PE channels. Physical labels on product must be checked; app endpoint IDs must not pretend to be printed terminal numbers."
+      ],
+      "sources": [
+        {
+          "id": "wago-221413",
+          "title": "WAGO 221-413",
+          "url": "https://www.wago.com/pl/z%C5%82%C4%85czki-instalacyjne/z%C5%82%C4%85czka-instalacyjna-z%C2%A0d%C5%BAwigni%C4%85/p/221-413"
+        },
+        {
+          "id": "wago-221-family",
+          "title": "WAGO 221 — Polish family information",
+          "url": "https://www.wago.com/pl/produkty/technika-laczeniowa/zlaczki_instalacyjne-221"
+        }
+      ]
+    },
+    {
+      "id": "wago-221-415",
+      "partNumber": "221-415",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Wire places belong to a common splice, not independent L/N/PE channels. Physical labels on product must be checked; app endpoint IDs must not pretend to be printed terminal numbers."
+      ],
+      "sources": [
+        {
+          "id": "wago-221415",
+          "title": "WAGO 221-415",
+          "url": "https://www.wago.com/pl/z%C5%82%C4%85czki-instalacyjne/z%C5%82%C4%85czka-instalacyjna-z%C2%A0d%C5%BAwigni%C4%85/p/221-415"
+        },
+        {
+          "id": "wago-221-family",
+          "title": "WAGO 221 — Polish family information",
+          "url": "https://www.wago.com/pl/produkty/technika-laczeniowa/zlaczki_instalacyjne-221"
+        }
+      ]
+    },
+    {
+      "id": "wago-2002-1201",
+      "partNumber": "2002-1201",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Nominal cross-section is not automatically the full permitted range. Grey body does not automatically identify L."
+      ],
+      "sources": [
+        {
+          "id": "wago-20021201",
+          "title": "WAGO 2002-1201",
+          "url": "https://www.wago.com/pl/z%C5%82%C4%85czki-listwowe/z%C5%82%C4%85czka-przelotowa-2-przewodowa/p/2002-1201"
+        }
+      ]
+    },
+    {
+      "id": "wago-2002-1207",
+      "partNumber": "2002-1207",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Verify rail bonding from manufacturer diagram before adding a conductive mechanical coupling."
+      ],
+      "sources": [
+        {
+          "id": "wago-20021207",
+          "title": "WAGO 2002-1207",
+          "url": "https://www.wago.com/gb/rail-mount-terminal-blocks/2-conductor-ground-terminal-block/p/2002-1207"
+        }
+      ]
+    },
+    {
+      "id": "simon-cw1c-11",
+      "partNumber": "CW1C.01/11",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Use C variant; do not silently replace with older screw-terminal CW1.01. Verify rear view and clamp grouping."
+      ],
+      "sources": [
+        {
+          "id": "simon-cw1c",
+          "title": "Kontakt-Simon CW1C.01/11",
+          "url": "https://www.kontakt-simon.com.pl/pl/Katalog/1035/27/17226,CW1C.01_11.html"
+        }
+      ]
+    },
+    {
+      "id": "simon-cw6c-11",
+      "partNumber": "CW6C.01/11",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [],
+      "sources": [
+        {
+          "id": "simon-cw6c",
+          "title": "Kontakt-Simon CW6C.01/11",
+          "url": "https://www.kontakt-simon.com.pl/pl/Katalog/1035/2371/17137%2CCW6C.01_11.html"
+        }
+      ]
+    },
+    {
+      "id": "simon-cw7x-11",
+      "partNumber": "CW7.01/X/11",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "This is the exact X variant referenced in the official page; do not infer a CW7C.01/11 SKU."
+      ],
+      "sources": [
+        {
+          "id": "simon-cw7",
+          "title": "Kontakt-Simon CW7.01/X/11",
+          "url": "https://www.kontakt-simon.com.pl/pl/Katalog/1035/2370/11875%2CCW7.01_X_11.html"
+        }
+      ]
+    },
+    {
+      "id": "simon-cs1c-11",
+      "partNumber": "CS1C.01/11",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [],
+      "sources": [
+        {
+          "id": "simon-cs1c",
+          "title": "Kontakt-Simon CS1C.01/11",
+          "url": "https://www.kontakt-simon.com.pl/pl/Katalog/1035/2367/17145%2CCS1C.01_11.html"
+        }
+      ]
+    },
+    {
+      "id": "simon-cgz1c-11",
+      "partNumber": "CGZ1C.01/11",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Separate accessible outlet test points from mounting terminals and correctly label front/rear views."
+      ],
+      "sources": [
+        {
+          "id": "simon-cgz1c",
+          "title": "Kontakt-Simon CGZ1C.01/11",
+          "url": "https://www.kontakt-simon.com.pl/pl/Katalog/1036/284/9036%2CCGZ1C.01_11.html"
+        }
+      ]
+    },
+    {
+      "id": "finder-4052-24dc",
+      "partNumber": "40.52.9.024.0000",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Exact SKU follows manufacturer order-code table. Publish in assembly with a verified compatible socket; do not add screw terminals directly to the relay."
+      ],
+      "sources": [
+        {
+          "id": "finder-s40",
+          "title": "Finder — seria 40, catalogue VI-2026",
+          "url": "https://cdn.findernet.com/app/uploads/S40PL.pdf"
+        }
+      ]
+    },
+    {
+      "id": "finder-9505",
+      "partNumber": "95.05",
+      "educational": false,
+      "readiness": "research-seed",
+      "published": false,
+      "gates": {
+        "topology": false,
+        "visual": false,
+        "simulation": false
+      },
+      "dimensions": {
+        "value": null,
+        "evidence": [],
+        "confidence": "unknown"
+      },
+      "blockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "limitations": [
+        "Relay insertion creates internal pin-to-terminal mapping. Removing relay retains external wires on the socket; verify exact orientation."
+      ],
+      "sources": [
+        {
+          "id": "finder-s40",
+          "title": "Finder — seria 40, catalogue VI-2026",
+          "url": "https://cdn.findernet.com/app/uploads/S40PL.pdf"
+        }
+      ]
+    },
+    {
+      "id": "meanwell-hdr60-24",
+      "partNumber": "HDR-60-24",
+      "educational": false,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 52.5,
+          "height": 90,
+          "depth": 54.5
+        },
+        "evidence": [
+          {
+            "sourceId": "meanwell-hdr60",
+            "locator": "Karta HDR-60-SPEC 2026-04-03, str. 4: obrys i przypisanie TB1/TB2",
+            "verification": "manufacturer",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "high"
+      },
+      "blockers": [],
+      "limitations": [
+        "Model isolated DC output; no hidden minus-to-neutral or minus-to-PE connection. Full transient/hiccup reproduction not established by this seed.",
+        "Izolowany DC, zastępczy pobór mocy, sprawność 90%, uproszczone ograniczenie wyjścia. Bez modelu hiccup, udaru i tętnień. Jeden przewód na zacisk to konserwatywne ograniczenie profilu. Położenia skalowane z rysunku, bez wymiarowania producenta."
+      ],
+      "sources": [
+        {
+          "id": "meanwell-hdr60",
+          "title": "Mean Well HDR-60 series datasheet",
+          "url": "https://www.meanwell.com/Upload/PDF/HDR-60/HDR-60-SPEC.PDF"
+        }
+      ]
+    },
+    {
+      "id": "edu-source-ac",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 72,
+          "height": 72,
+          "depth": 40
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-source-dc",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 72,
+          "height": 72,
+          "depth": 40
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-source-3ph",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 116,
+          "height": 80,
+          "depth": 40
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-lamp",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 96,
+          "height": 80,
+          "depth": 40
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-heater",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 96,
+          "height": 80,
+          "depth": 40
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-fan",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 96,
+          "height": 80,
+          "depth": 40
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Model dydaktyczny z rezystancyjnym odpowiednikiem poboru mocy; nie odwzorowuje konkretnego produktu.",
+        "Obroty pokazują stan pracy, nie obliczoną prędkość ani rozruch silnika."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-switch",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 40,
+          "height": 72,
+          "depth": 40
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-changeover",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 64,
+          "height": 72,
+          "depth": 40
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-crossover",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 64,
+          "height": 72,
+          "depth": 40
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-start",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 64,
+          "height": 72,
+          "depth": 40
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-stop",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 64,
+          "height": 72,
+          "depth": 40
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-rcd",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 48,
+          "height": 83,
+          "depth": 70
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-rcbo",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 48,
+          "height": 83,
+          "depth": 70
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-mcb3",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 54,
+          "height": 83,
+          "depth": 70
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-isolator",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 48,
+          "height": 83,
+          "depth": 70
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-contactor-ac",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 104,
+          "height": 83,
+          "depth": 70
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-contactor-dc",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 104,
+          "height": 83,
+          "depth": 70
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-relay",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 64,
+          "height": 92,
+          "depth": 60
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-bistable",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 18,
+          "height": 90,
+          "depth": 65
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-staircase",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 18,
+          "height": 90,
+          "depth": 65
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-timer",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 18,
+          "height": 90,
+          "depth": 65
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-thermal",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 88,
+          "height": 74,
+          "depth": 70
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-motor",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 104,
+          "height": 90,
+          "depth": 80
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-bus-n",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 80,
+          "height": 32,
+          "depth": 25
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-bus-pe",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 80,
+          "height": 32,
+          "depth": 25
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    },
+    {
+      "id": "edu-socket",
+      "partNumber": "",
+      "educational": true,
+      "readiness": "published",
+      "published": true,
+      "gates": {
+        "topology": true,
+        "visual": true,
+        "simulation": true
+      },
+      "dimensions": {
+        "value": {
+          "width": 96,
+          "height": 80,
+          "depth": 40
+        },
+        "evidence": [
+          {
+            "sourceId": "didactic-v1",
+            "locator": "Jawny profil dydaktyczny v1",
+            "verification": "assumed",
+            "retrievedAt": "2026-10-02"
+          }
+        ],
+        "confidence": "low"
+      },
+      "blockers": [],
+      "limitations": [
+        "Jawny model dydaktyczny; nie odwzorowuje konkretnego produktu."
+      ],
+      "sources": []
+    }
+  ]
+}

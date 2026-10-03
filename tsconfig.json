@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true,
+    "types": ["vite/client", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["apps/web/src/*"],
+      "@model/*": ["packages/circuit-model/*"],
+      "@catalog/*": ["packages/device-catalog/*"],
+      "@simulation/*": ["packages/simulation/*"],
+      "@measurements/*": ["packages/measurements/*"],
+      "@renderers/*": ["packages/renderers/*"],
+      "@editor/*": ["packages/editor/*"],
+      "@training/*": ["packages/training/*"],
+      "@tutor/*": ["packages/tutor-contracts/*"]
+    }
+  },
+  "include": ["apps", "packages", "scripts", "tests", "*.ts"]
+}

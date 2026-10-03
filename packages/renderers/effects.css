@@ -1,0 +1,53 @@
+.lamp-glass.lit {
+  filter: drop-shadow(0 0 8px #ffd04bd9);
+}
+.heater-active {
+  filter: drop-shadow(0 0 4px #ff762bb3);
+}
+.motor-rotor {
+  transform-box: view-box;
+  transform-origin: 0 0;
+}
+.motor-rotor.running {
+  animation: motor-turn 1.2s linear infinite;
+}
+.motor-rotor.running.reverse {
+  animation-direction: reverse;
+}
+.fan-airflow {
+  animation: fan-airflow 1.4s ease-out infinite;
+}
+.heat-plume {
+  animation: heat-rise 2s ease-in-out infinite;
+}
+@keyframes motor-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes fan-airflow {
+  from {
+    transform: translateX(-3px);
+    opacity: 0.15;
+  }
+  40% {
+    opacity: 0.8;
+  }
+  to {
+    transform: translateX(4px);
+    opacity: 0;
+  }
+}
+@keyframes heat-rise {
+  50% {
+    transform: translateY(-3px);
+    opacity: 0.25;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motor-rotor.running,
+  .fan-airflow,
+  .heat-plume {
+    animation: none;
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "date": "2026-10-03",
+  "browser": "150.0.7871.125",
+  "baseline1366": {
+    "width": 824,
+    "height": 403
+  },
+  "metrics": [
+    {
+      "width": 1366,
+      "height": 768,
+      "board": {
+        "x": 220,
+        "y": 130,
+        "width": 1146,
+        "height": 555
+      },
+      "areaShare": 0.606,
+      "zoom": "72%",
+      "overflow": false
+    },
+    {
+      "width": 1366,
+      "height": 768,
+      "focus": true,
+      "board": {
+        "x": 0,
+        "y": 44,
+        "width": 1366,
+        "height": 724
+      },
+      "areaShare": 0.943
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "board": {
+        "x": 220,
+        "y": 130,
+        "width": 1700,
+        "height": 867
+      },
+      "areaShare": 0.711,
+      "zoom": "110%",
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "height": 768,
+      "board": {
+        "x": 0,
+        "y": 130,
+        "width": 1024,
+        "height": 555
+      },
+      "areaShare": 0.723,
+      "zoom": "72%",
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "board": {
+        "x": 0,
+        "y": 120,
+        "width": 390,
+        "height": 663
+      },
+      "areaShare": 0.786,
+      "zoom": "65%",
+      "overflow": false
+    },
+    {
+      "width": 844,
+      "height": 390,
+      "board": {
+        "x": 0,
+        "y": 116,
+        "width": 844,
+        "height": 211
+      },
+      "areaShare": 0.541,
+      "zoom": "50%",
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,3679 @@
+{
+  "$comment": "Research seed, not a production catalog schema. Facts listed here were checked from primary sources; missing terminal geometry and device models must be completed before publication.",
+  "seedSchemaVersion": "1.0.0",
+  "createdAt": "2026-10-02",
+  "language": "pl-PL",
+  "productCount": 31,
+  "intendedUse": "Input to the Codex implementation and catalog validation workflow",
+  "publicationPolicy": "All seed products are unpublished. Identity/selected ratings are established; exact terminal topology, geometry, behavior and limits require review and tests.",
+  "sources": [
+    {
+      "id": "hager-mbn110e",
+      "title": "Hager MBN110E",
+      "url": "https://hager.com/pl/katalog/produkt/mbn110e-mcb-6ka-1p-b-10a",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "hager-mbn116e",
+      "title": "Hager MBN116E",
+      "url": "https://hager.com/pl/katalog/produkt/mbn116e-mcb-6ka-1p-b-16a",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "hager-mcn316e",
+      "title": "Hager MCN316E",
+      "url": "https://hager.com/pl/katalog/produkt/mcn316e-mcb-6ka-3p-c-16a",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "hager-cda240j",
+      "title": "Hager CDA240J",
+      "url": "https://hager.com/pl/katalog/produkt/cda240j-rccb-2p-40a-30ma-typ-a",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "hager-cdc440j",
+      "title": "Hager CDC440J",
+      "url": "https://hager.com/pl/katalog/produkt/cdc440j-rccb-4p-40a-30ma-typ-ac",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "hager-ada916d",
+      "title": "Hager ADA916D",
+      "url": "https://hager.com/pl/katalog/produkt/ada916d-rcbo-1p-n-6ka-b-16a-30ma-typ-a",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "hager-sbn240",
+      "title": "Hager SBN240",
+      "url": "https://hager.com/pl/katalog/produkt/sbn240-modulowy-rozlacznik-izolacyjny-2p-40a",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "hager-esc225",
+      "title": "Hager ESC225",
+      "url": "https://hager.com/pl/katalog/produkt/esc225-stycznik-230vac-2no-25a",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "schneider-a9f03116",
+      "title": "Schneider Electric A9F03116",
+      "url": "https://www.se.com/pl/pl/product/A9F03116/wy%C5%82%C4%85cznik-nadpr%C4%85dowy-acti9-ic60nb161-b-16a-1biegunowy/",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "schneider-lc1d09p7",
+      "title": "Schneider Electric LC1D09P7",
+      "url": "https://www.se.com/pl/pl/product/LC1D09P7/stycznik-mocy-tesys-d-ac3-9a-3p-1no-1nc-cewka-230vac-zaciski-skrzynkowe/",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "schneider-lc1d09bd",
+      "title": "Schneider Electric LC1D09BD",
+      "url": "https://www.se.com/pl/pl/product/LC1D09BD/stycznik-mocy-tesys-d-ac3-9a-3p-1no-1nc-cewka-24vdc-zaciski-%C5%9Brubowe/",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "schneider-lrd12",
+      "title": "Schneider Electric LRD12, official datasheet",
+      "url": "https://iportal.se.com/Contents/docs/SQD-LRD12_DATA%20SHEET.PDF",
+      "type": "manufacturer-datasheet",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Identity, range 5.5–8 A, class 10A and LC1D09 compatibility; older dated datasheet, current geometry must be reviewed",
+      "locator": "pp. 1–2; sheet date 2019-04-26",
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "schneider-xb5aa31",
+      "title": "Schneider Electric XB5AA31",
+      "url": "https://www.se.com/in/en/product/XB5AA31/push-button-plastic-flush-green-%C3%B822-spring-return-unmarked-1-no/",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "schneider-xb5aa42",
+      "title": "Schneider Electric XB5AA42",
+      "url": "https://www.se.com/us/en/product/XB5AA42/push-button-harmony-xb5-plastic-flush-red-22mm-spring-return-unmarked-1nc/",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity, red momentary button and 1NC; conflicting UK page title exists, topology must be confirmed from a contact block diagram",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "schneider-xb5avm3",
+      "title": "Schneider Electric XB5AVM3",
+      "url": "https://www.se.com/pl/pl/product/XB5AVM3/harmony-xb5-lampka-sygnalizacyjna-zielona-led-230-240v/",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "fif-bis411",
+      "title": "F&F BIS-411 230 V",
+      "url": "https://www.fif.com.pl/pl/przekazniki-bistabilne/42-przekaznik-bistabilny-bis-411-230-v.html",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "fif-bis411-manual",
+      "title": "F&F BIS-411 230 V — instrukcja",
+      "url": "https://www.fif.com.pl/pl/index.php?controller=attachment&id_attachment=74",
+      "type": "manufacturer-manual",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Functional terminal mapping inspected visually; manufacturer version E240129; exact physical port coordinates not measured",
+      "locator": "PDF p. 4: connection diagram; instruction E240129",
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "fif-as212",
+      "title": "F&F AS-212",
+      "url": "https://www.fif.com.pl/pl/automaty-schodowe/30-automat-schodowy-as-212.html",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "fif-as212-manual",
+      "title": "F&F AS-212 — instrukcja",
+      "url": "https://www.fif.com.pl/pl/index.php?controller=attachment&id_attachment=56",
+      "type": "manufacturer-manual",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Functional terminal mapping inspected visually; non-isolated switched phase output; exact physical port coordinates not measured",
+      "locator": "PDF p. 3: connection diagram; instruction E240306",
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "fif-pcu510duo",
+      "title": "F&F PCU-510 DUO",
+      "url": "https://www.fif.com.pl/pl/przekazniki-czasowe/779-przekaznik-czasowy-pcu-510-duo.html",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "fif-pcu510duo-manual",
+      "title": "F&F PCU-510 DUO — instrukcja",
+      "url": "https://www.fif.com.pl/pl/index.php?controller=attachment&id_attachment=361",
+      "type": "manufacturer-manual",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "AC/DC supply and relay contact mappings inspected visually; manufacturer functions reviewed; physical port coordinates not measured",
+      "locator": "PDF pp. 4–6; instruction E231117",
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "wago-221412",
+      "title": "WAGO 221-412",
+      "url": "https://www.wago.com/pl/assortment-221/z%C5%82%C4%85czka-instalacyjna-z%C2%A0d%C5%BAwigni%C4%85/p/221-412",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "wago-221413",
+      "title": "WAGO 221-413",
+      "url": "https://www.wago.com/pl/z%C5%82%C4%85czki-instalacyjne/z%C5%82%C4%85czka-instalacyjna-z%C2%A0d%C5%BAwigni%C4%85/p/221-413",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "wago-221415",
+      "title": "WAGO 221-415",
+      "url": "https://www.wago.com/pl/z%C5%82%C4%85czki-instalacyjne/z%C5%82%C4%85czka-instalacyjna-z%C2%A0d%C5%BAwigni%C4%85/p/221-415",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "wago-221-family",
+      "title": "WAGO 221 — Polish family information",
+      "url": "https://www.wago.com/pl/produkty/technika-laczeniowa/zlaczki_instalacyjne-221",
+      "type": "manufacturer-family-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Conductor types and ranges, 2/3/5-wire variants",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "wago-20021201",
+      "title": "WAGO 2002-1201",
+      "url": "https://www.wago.com/pl/z%C5%82%C4%85czki-listwowe/z%C5%82%C4%85czka-przelotowa-2-przewodowa/p/2002-1201",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "wago-20021207",
+      "title": "WAGO 2002-1207",
+      "url": "https://www.wago.com/gb/rail-mount-terminal-blocks/2-conductor-ground-terminal-block/p/2002-1207",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Identity as PE ground terminal; mechanical rail bonding and geometry must be checked from full diagram",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "simon-cw1c",
+      "title": "Kontakt-Simon CW1C.01/11",
+      "url": "https://www.kontakt-simon.com.pl/pl/Katalog/1035/27/17226,CW1C.01_11.html",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "simon-cw6c",
+      "title": "Kontakt-Simon CW6C.01/11",
+      "url": "https://www.kontakt-simon.com.pl/pl/Katalog/1035/2371/17137%2CCW6C.01_11.html",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "simon-cw7",
+      "title": "Kontakt-Simon CW7.01/X/11",
+      "url": "https://www.kontakt-simon.com.pl/pl/Katalog/1035/2370/11875%2CCW7.01_X_11.html",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "simon-cs1c",
+      "title": "Kontakt-Simon CS1C.01/11",
+      "url": "https://www.kontakt-simon.com.pl/pl/Katalog/1035/2367/17145%2CCS1C.01_11.html",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "simon-cgz1c",
+      "title": "Kontakt-Simon CGZ1C.01/11",
+      "url": "https://www.kontakt-simon.com.pl/pl/Katalog/1036/284/9036%2CCGZ1C.01_11.html",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Product identity and facts listed in the seed; full terminal geometry still requires implementation review",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "finder-s40",
+      "title": "Finder — seria 40, catalogue VI-2026",
+      "url": "https://cdn.findernet.com/app/uploads/S40PL.pdf",
+      "type": "manufacturer-catalogue",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "40.52 ratings, order code decoding, coil data; 95.05 socket and compatibility",
+      "locator": "PDF pp. 3, 5, 11, 14; VI-2026",
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "meanwell-hdr60",
+      "title": "Mean Well HDR-60 series datasheet",
+      "url": "https://www.meanwell.com/Upload/PDF/HDR-60/HDR-60-SPEC.PDF",
+      "type": "manufacturer-datasheet",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "HDR-60-24 ratings and overall dimensions, isolated class II family",
+      "locator": "PDF pp. 1–4; revision 2026-04-03",
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "jointjs-react",
+      "title": "JointJS for React — documentation",
+      "url": "https://docs.jointjs.com/react/",
+      "type": "official-software-documentation",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "React integration and API; consult current peer dependencies",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "jointjs-custom",
+      "title": "JointJS React — custom elements",
+      "url": "https://docs.jointjs.com/react/getting-started/custom-elements/",
+      "type": "official-software-documentation",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Custom SVG/JSX and ports",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "jointjs-connect",
+      "title": "JointJS React — connecting elements",
+      "url": "https://docs.jointjs.com/react/getting-started/connecting-elements/",
+      "type": "official-software-documentation",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Declarative ports and connection mapping",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "jointjs-license",
+      "title": "JointJS licensing",
+      "url": "https://www.jointjs.com/license",
+      "type": "official-license-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Community/Plus distinction; React versions also described in official introduction",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "jointjs-react-intro",
+      "title": "JointJS React — official introduction",
+      "url": "https://www.jointjs.com/blog/introducing-jointjs-for-react",
+      "type": "official-software-documentation",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Open React core and commercial Plus feature distinction",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "etim",
+      "title": "ETIM classification",
+      "url": "https://www.etim-international.com/classification/",
+      "type": "official-classification-documentation",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Classification model, not a ready product database or simulation model",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "men-electrician",
+      "title": "MEN — technik elektryk",
+      "url": "https://infozawodowe.men.gov.pl/zawody/technik-elektryk",
+      "type": "official-education-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Qualification names and core curriculum entry point",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "men-core",
+      "title": "MEN — curriculum PDF linked from profession page",
+      "url": "https://infozawodowe.men.gov.pl/image/professionCoreCurriculum/technik-elektryk_3b7e9eb0755edb97718ea6d976c20ab9.pdf",
+      "type": "official-core-curriculum",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Training areas: installation assembly/commissioning, measurements, assessment, faults; this is the linked curriculum, not proof of every later amendment",
+      "locator": "PDF pp. 4–7 and 12–15",
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "sonel-mpi507",
+      "title": "Sonel MPI-507 — product and functions",
+      "url": "https://sonel.pl/pl/produkt/wielofunkcyjny-miernik-parametrow-instalacji-elektrycznej-sonel-mpi-507",
+      "type": "manufacturer-product-page",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Instrument functions and measurement settings; not proof of normative acceptance thresholds",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "sonel-manual",
+      "title": "Sonel MPI-502F/506/507 — instrukcja v2.14 PL",
+      "url": "https://cdn.sonel.com/Erp/MPI-502F_506_507%20insobs%20v2.14%20PL.pdf",
+      "type": "manufacturer-manual",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Official manual retrieved; use specific measurement chapters during implementation",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "hager-curves",
+      "title": "Hager — circuit protection FAQ",
+      "url": "https://hager.com/nz/support/faq/modular-circuit-protection",
+      "type": "manufacturer-technical-guidance",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "General magnetic B/C/D ranges; not the full time-current curve of an exact Polish SKU",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "pkn-checking",
+      "title": "PKN — PN-HD 60364-6:2016-07, Polish",
+      "url": "https://sklep.pkn.pl/pn-hd-60364-6-2016-07p.html",
+      "type": "standards-catalogue",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Standard identity and public scope only; full normative clauses not inspected",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    },
+    {
+      "id": "iec-symbols",
+      "title": "IEC 60617 database",
+      "url": "https://webstore.iec.ch/en/publication/2723",
+      "type": "standards-catalogue",
+      "checkedAt": "2026-10-02",
+      "verificationScope": "Symbol reference database identity; no redistribution rights assumed",
+      "locator": null,
+      "redistributionPermission": "not-established; retain links and original factual records"
+    }
+  ],
+  "products": [
+    {
+      "id": "hager-mbn110e",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Hager",
+      "manufacturerPartNumber": "MBN110E",
+      "displayNamePl": "Wyłącznik nadprądowy B10, 1P, 6 kA",
+      "category": "mcb",
+      "family": "Hager MBN E",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.ratedCurrent",
+          "value": 10,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-mbn110e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.poleCount",
+          "value": 1,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-mbn110e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.tripCurve",
+          "value": "B",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-mbn110e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.shortCircuitBreakingCapacityIcn",
+          "value": 6000,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-mbn110e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "hager-mbn110e"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": []
+    },
+    {
+      "id": "hager-mbn116e",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Hager",
+      "manufacturerPartNumber": "MBN116E",
+      "displayNamePl": "Wyłącznik nadprądowy B16, 1P, 6 kA",
+      "category": "mcb",
+      "family": "Hager MBN E",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.ratedCurrent",
+          "value": 16,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-mbn116e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.poleCount",
+          "value": 1,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-mbn116e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.tripCurve",
+          "value": "B",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-mbn116e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.shortCircuitBreakingCapacityIcn",
+          "value": 6000,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-mbn116e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "dimensions.width",
+          "value": 17.5,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "hager-mbn116e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "dimensions.height",
+          "value": 83,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "hager-mbn116e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "dimensions.depth",
+          "value": 70,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "hager-mbn116e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.nominalTighteningTorque",
+          "value": 2.8,
+          "unit": "N.m",
+          "evidence": [
+            {
+              "sourceId": "hager-mbn116e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.solidConductorRange",
+          "value": [
+            1,
+            35
+          ],
+          "unit": "mm2",
+          "evidence": [
+            {
+              "sourceId": "hager-mbn116e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.flexibleConductorRange",
+          "value": [
+            1,
+            25
+          ],
+          "unit": "mm2",
+          "evidence": [
+            {
+              "sourceId": "hager-mbn116e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "hager-mbn116e"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Do not replace with MBN116. Connection ranges do not prove arbitrary multiple conductors fit a terminal."
+      ]
+    },
+    {
+      "id": "hager-mcn316e",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Hager",
+      "manufacturerPartNumber": "MCN316E",
+      "displayNamePl": "Wyłącznik nadprądowy C16, 3P, 6 kA",
+      "category": "mcb",
+      "family": "Hager MCN E",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.ratedCurrent",
+          "value": 16,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-mcn316e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.poleCount",
+          "value": 3,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-mcn316e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.tripCurve",
+          "value": "C",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-mcn316e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.shortCircuitBreakingCapacityIcn",
+          "value": 6000,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-mcn316e",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "hager-mcn316e"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": []
+    },
+    {
+      "id": "hager-cda240j",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Hager",
+      "manufacturerPartNumber": "CDA240J",
+      "displayNamePl": "Wyłącznik różnicowoprądowy 40 A / 30 mA, 2P, typ A",
+      "category": "rccb",
+      "family": "Hager CDA",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.ratedCurrent",
+          "value": 40,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-cda240j",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.poleCount",
+          "value": 2,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-cda240j",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.residualCurrent",
+          "value": 0.03,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-cda240j",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.residualCurrentType",
+          "value": "A",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-cda240j",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "hager-cda240j"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "40 A is a nominal current rating; this is not an overload trip setting. Do not equate with CDA240D."
+      ]
+    },
+    {
+      "id": "hager-cdc440j",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Hager",
+      "manufacturerPartNumber": "CDC440J",
+      "displayNamePl": "Wyłącznik różnicowoprądowy 40 A / 30 mA, 4P, typ AC",
+      "category": "rccb",
+      "family": "Hager CDC",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.ratedCurrent",
+          "value": 40,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-cdc440j",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.poleCount",
+          "value": 4,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-cdc440j",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.residualCurrent",
+          "value": 0.03,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-cdc440j",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.residualCurrentType",
+          "value": "AC",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-cdc440j",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "hager-cdc440j"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Map manufacturer 3P+N topology; do not infer neutral terminal position."
+      ]
+    },
+    {
+      "id": "hager-ada916d",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Hager",
+      "manufacturerPartNumber": "ADA916D",
+      "displayNamePl": "Wyłącznik różnicowo-nadprądowy B16 / 30 mA, 1P+N, typ A",
+      "category": "rcbo",
+      "family": "Hager ADA",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.ratedCurrent",
+          "value": 16,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-ada916d",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.poleArrangement",
+          "value": "1P+N",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-ada916d",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.tripCurve",
+          "value": "B",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-ada916d",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.residualCurrent",
+          "value": 0.03,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-ada916d",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.residualCurrentType",
+          "value": "A",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-ada916d",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.shortCircuitBreakingCapacityIcn",
+          "value": 6000,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-ada916d",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "hager-ada916d"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": []
+    },
+    {
+      "id": "hager-sbn240",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Hager",
+      "manufacturerPartNumber": "SBN240",
+      "displayNamePl": "Rozłącznik izolacyjny 2P, 40 A",
+      "category": "isolator",
+      "family": "Hager SBN",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.ratedCurrent",
+          "value": 40,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-sbn240",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.poleCount",
+          "value": 2,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-sbn240",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "hager-sbn240"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": []
+    },
+    {
+      "id": "hager-esc225",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Hager",
+      "manufacturerPartNumber": "ESC225",
+      "displayNamePl": "Stycznik modułowy 2NO, 25 A, cewka 230 V AC",
+      "category": "contactor",
+      "family": "Hager ESC",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.contactConfiguration",
+          "value": "2NO",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-esc225",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.ratedCurrent",
+          "value": 25,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-esc225",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.coilVoltage",
+          "value": 230,
+          "unit": "V",
+          "evidence": [
+            {
+              "sourceId": "hager-esc225",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.coilVoltageType",
+          "value": "AC",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-esc225",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.AC1Current",
+          "value": 25,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-esc225",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.AC3Current",
+          "value": 8.5,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "hager-esc225",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.utilizationCategories",
+          "value": [
+            "AC-7a",
+            "AC-7b"
+          ],
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-esc225",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "dimensions.width",
+          "value": 17.85,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "hager-esc225",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "dimensions.height",
+          "value": 83,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "hager-esc225",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "dimensions.depth",
+          "value": 60,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "hager-esc225",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "mounting.moduleCount",
+          "value": 1,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "hager-esc225",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.nominalTighteningTorque",
+          "value": 1.2,
+          "unit": "N.m",
+          "evidence": [
+            {
+              "sourceId": "hager-esc225",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "hager-esc225"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Current depends on utilization category; does not have a manual override switch according to the reviewed product page."
+      ]
+    },
+    {
+      "id": "schneider-a9f03116",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Schneider Electric",
+      "manufacturerPartNumber": "A9F03116",
+      "displayNamePl": "Acti9 iC60N, B16, 1P",
+      "category": "mcb",
+      "family": "Schneider Acti9 iC60N",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.ratedCurrent",
+          "value": 16,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "schneider-a9f03116",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.poleCount",
+          "value": 1,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-a9f03116",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.tripCurve",
+          "value": "B",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-a9f03116",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "schneider-a9f03116"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": []
+    },
+    {
+      "id": "schneider-lc1d09p7",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Schneider Electric",
+      "manufacturerPartNumber": "LC1D09P7",
+      "displayNamePl": "Stycznik TeSys D, AC-3 9 A, cewka 230 V AC",
+      "category": "contactor",
+      "family": "Schneider TeSys D",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.AC3Current",
+          "value": 9,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "schneider-lc1d09p7",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.mainPoleCount",
+          "value": 3,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-lc1d09p7",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.auxiliaryContacts",
+          "value": "1NO+1NC",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-lc1d09p7",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.coilVoltage",
+          "value": 230,
+          "unit": "V",
+          "evidence": [
+            {
+              "sourceId": "schneider-lc1d09p7",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.coilVoltageType",
+          "value": "AC",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-lc1d09p7",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "schneider-lc1d09p7"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Exact main/auxiliary terminal map and coil pickup/dropout thresholds must be verified; AC-3 current is not every other utilization rating."
+      ]
+    },
+    {
+      "id": "schneider-lc1d09bd",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Schneider Electric",
+      "manufacturerPartNumber": "LC1D09BD",
+      "displayNamePl": "Stycznik TeSys D, AC-3 9 A, cewka 24 V DC",
+      "category": "contactor",
+      "family": "Schneider TeSys D",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.AC3Current",
+          "value": 9,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "schneider-lc1d09bd",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.mainPoleCount",
+          "value": 3,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-lc1d09bd",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.auxiliaryContacts",
+          "value": "1NO+1NC",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-lc1d09bd",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.coilVoltage",
+          "value": 24,
+          "unit": "V",
+          "evidence": [
+            {
+              "sourceId": "schneider-lc1d09bd",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.coilVoltageType",
+          "value": "DC",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-lc1d09bd",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "schneider-lc1d09bd"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "DC polarity/suppressor behavior requires exact variant documentation."
+      ]
+    },
+    {
+      "id": "schneider-lrd12",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Schneider Electric",
+      "manufacturerPartNumber": "LRD12",
+      "displayNamePl": "Przekaźnik termiczny TeSys, zakres 5,5–8 A",
+      "category": "thermal-overload",
+      "family": "Schneider TeSys LRD",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "settings.overloadAdjustmentRange",
+          "value": [
+            5.5,
+            8
+          ],
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "schneider-lrd12",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.tripClass",
+          "value": "10A",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-lrd12",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "dimensions.width",
+          "value": 45,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "schneider-lrd12",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "compatibility.contactorFamilies",
+          "value": [
+            "LC1D09",
+            "LC1D12",
+            "LC1D18",
+            "LC1D25",
+            "LC1D32",
+            "LC1D38"
+          ],
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-lrd12",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "schneider-lrd12"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Reviewed datasheet is dated 2019. Verify current version and contact numbering. Do not model automatic opening of power conductors by the overload relay."
+      ]
+    },
+    {
+      "id": "schneider-xb5aa31",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Schneider Electric",
+      "manufacturerPartNumber": "XB5AA31",
+      "displayNamePl": "Harmony XB5, przycisk zielony chwilowy, 1NO",
+      "category": "push-button",
+      "family": "Schneider Harmony XB5",
+      "sourceMarket": "IN; same SKU, PL documentation preferred for publication",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "operator.color",
+          "value": "green",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-xb5aa31",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "operator.action",
+          "value": "spring-return",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-xb5aa31",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.contactConfiguration",
+          "value": "1NO",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-xb5aa31",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "mounting.nominalDiameter",
+          "value": 22,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "schneider-xb5aa31",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "schneider-xb5aa31"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": []
+    },
+    {
+      "id": "schneider-xb5aa42",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Schneider Electric",
+      "manufacturerPartNumber": "XB5AA42",
+      "displayNamePl": "Harmony XB5, przycisk czerwony chwilowy, 1NC",
+      "category": "push-button",
+      "family": "Schneider Harmony XB5",
+      "sourceMarket": "US; resolve exact contact diagram",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "operator.color",
+          "value": "red",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-xb5aa42",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "operator.action",
+          "value": "spring-return",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-xb5aa42",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.contactConfiguration",
+          "value": "1NC",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-xb5aa42",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "mounting.nominalDiameter",
+          "value": 22,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "schneider-xb5aa42",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "schneider-xb5aa42"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Several official locales identify 1NC. An official UK title incorrectly says 1NO; resolve from authoritative contact block diagram before publication."
+      ]
+    },
+    {
+      "id": "schneider-xb5avm3",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Schneider Electric",
+      "manufacturerPartNumber": "XB5AVM3",
+      "displayNamePl": "Harmony XB5, lampka LED zielona, 230–240 V AC",
+      "category": "pilot-light",
+      "family": "Schneider Harmony XB5",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "operator.color",
+          "value": "green",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-xb5avm3",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.operatingVoltageRange",
+          "value": [
+            230,
+            240
+          ],
+          "unit": "V",
+          "evidence": [
+            {
+              "sourceId": "schneider-xb5avm3",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.voltageType",
+          "value": "AC",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "schneider-xb5avm3",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "schneider-xb5avm3"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": []
+    },
+    {
+      "id": "fif-bis411-230",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "F&F",
+      "manufacturerPartNumber": "BIS-411",
+      "displayNamePl": "Przekaźnik bistabilny BIS-411, 230 V",
+      "category": "bistable-relay",
+      "family": "F&F BIS",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.supplyVoltageRange",
+          "value": [
+            165,
+            265
+          ],
+          "unit": "V",
+          "evidence": [
+            {
+              "sourceId": "fif-bis411",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.supplyVoltageType",
+          "value": "AC",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "fif-bis411",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.AC1Current",
+          "value": 16,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "fif-bis411",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.contactConfiguration",
+          "value": "1NO/NC",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "fif-bis411",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "behavior.memoryAfterSupplyLoss",
+          "value": false,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "fif-bis411",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "dimensions.width",
+          "value": 18,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "fif-bis411",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.nominalTighteningTorque",
+          "value": 0.4,
+          "unit": "N.m",
+          "evidence": [
+            {
+              "sourceId": "fif-bis411",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "fif-bis411",
+        "fif-bis411-manual"
+      ],
+      "logicalTopologySeed": {
+        "sourceId": "fif-bis411-manual",
+        "verification": "manual-diagram",
+        "locator": "PDF p. 4",
+        "terminals": [
+          {
+            "terminalId": "1",
+            "printedLabel": "1",
+            "role": "supply-L"
+          },
+          {
+            "terminalId": "3",
+            "printedLabel": "3",
+            "role": "supply-N"
+          },
+          {
+            "terminalId": "6",
+            "printedLabel": "6",
+            "role": "impulse-input"
+          },
+          {
+            "terminalId": "10",
+            "printedLabel": "10",
+            "role": "COM"
+          },
+          {
+            "terminalId": "11",
+            "printedLabel": "11",
+            "role": "NC"
+          },
+          {
+            "terminalId": "12",
+            "printedLabel": "12",
+            "role": "NO"
+          }
+        ],
+        "contacts": [
+          {
+            "common": "10",
+            "normallyClosed": "11",
+            "normallyOpen": "12"
+          }
+        ],
+        "controlInput": "Use supported L/N pulse arrangements from exact manual; review polarity arrangement before implementation",
+        "physicalCoordinates": null
+      },
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "BIS-411M has different power-loss memory. Do not transfer its behavior into this base variant."
+      ]
+    },
+    {
+      "id": "fif-as212",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "F&F",
+      "manufacturerPartNumber": "AS-212",
+      "displayNamePl": "Automat schodowy AS-212, 230 V",
+      "category": "staircase-timer",
+      "family": "F&F AS",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.supplyVoltage",
+          "value": 230,
+          "unit": "V",
+          "evidence": [
+            {
+              "sourceId": "fif-as212",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.supplyVoltageType",
+          "value": "AC",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "fif-as212",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.AC1Current",
+          "value": 16,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "fif-as212",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.isolatedOutput",
+          "value": false,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "fif-as212",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "settings.timeRange",
+          "value": [
+            30,
+            600
+          ],
+          "unit": "s",
+          "evidence": [
+            {
+              "sourceId": "fif-as212",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "dimensions.width",
+          "value": 18,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "fif-as212",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.nominalTighteningTorque",
+          "value": 0.4,
+          "unit": "N.m",
+          "evidence": [
+            {
+              "sourceId": "fif-as212",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "fif-as212",
+        "fif-as212-manual"
+      ],
+      "logicalTopologySeed": {
+        "sourceId": "fif-as212-manual",
+        "verification": "manual-diagram",
+        "locator": "PDF p. 3",
+        "terminals": [
+          {
+            "terminalId": "1",
+            "printedLabel": "1",
+            "role": "supply-N"
+          },
+          {
+            "terminalId": "3",
+            "printedLabel": "3",
+            "role": "supply-L"
+          },
+          {
+            "terminalId": "6",
+            "printedLabel": "6",
+            "role": "trigger-input"
+          },
+          {
+            "terminalId": "5",
+            "printedLabel": "5",
+            "role": "switched-L-output"
+          }
+        ],
+        "switchedConnection": {
+          "from": "3",
+          "to": "5",
+          "contactType": "NO"
+        },
+        "isolatedOutput": false,
+        "physicalCoordinates": null
+      },
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Trigger hold/retrigger semantics must be implemented from the manual, not from an assumed generic timer."
+      ]
+    },
+    {
+      "id": "fif-pcu510duo",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "F&F",
+      "manufacturerPartNumber": "PCU-510DUO",
+      "displayNamePl": "Przekaźnik czasowy PCU-510 DUO",
+      "category": "time-relay",
+      "family": "F&F PCU",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.supplyOptions",
+          "value": [
+            {
+              "voltage": 230,
+              "type": "AC"
+            },
+            {
+              "voltage": 24,
+              "type": "AC/DC"
+            }
+          ],
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "fif-pcu510duo",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.contactConfiguration",
+          "value": "2CO",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "fif-pcu510duo",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.contactRatedCurrent",
+          "value": 8,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "fif-pcu510duo",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.isolatedOutput",
+          "value": true,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "fif-pcu510duo",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "settings.timeRange",
+          "value": [
+            0.1,
+            2073600
+          ],
+          "unit": "s",
+          "evidence": [
+            {
+              "sourceId": "fif-pcu510duo",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "dimensions.width",
+          "value": 18,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "fif-pcu510duo",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.nominalTighteningTorque",
+          "value": 0.4,
+          "unit": "N.m",
+          "evidence": [
+            {
+              "sourceId": "fif-pcu510duo",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "fif-pcu510duo",
+        "fif-pcu510duo-manual"
+      ],
+      "logicalTopologySeed": {
+        "sourceId": "fif-pcu510duo-manual",
+        "verification": "manual-diagram",
+        "locator": "PDF pp. 4–6",
+        "terminals": [
+          {
+            "terminalId": "1",
+            "printedLabel": "1",
+            "role": "supply-AC-N"
+          },
+          {
+            "terminalId": "3",
+            "printedLabel": "3",
+            "role": "supply-AC-L"
+          },
+          {
+            "terminalId": "5",
+            "printedLabel": "5",
+            "role": "supply-DC-plus"
+          },
+          {
+            "terminalId": "6",
+            "printedLabel": "6",
+            "role": "supply-DC-minus"
+          },
+          {
+            "terminalId": "7",
+            "printedLabel": "7",
+            "role": "NC-1"
+          },
+          {
+            "terminalId": "8",
+            "printedLabel": "8",
+            "role": "COM-1"
+          },
+          {
+            "terminalId": "9",
+            "printedLabel": "9",
+            "role": "NO-1"
+          },
+          {
+            "terminalId": "10",
+            "printedLabel": "10",
+            "role": "NC-2"
+          },
+          {
+            "terminalId": "11",
+            "printedLabel": "11",
+            "role": "COM-2"
+          },
+          {
+            "terminalId": "12",
+            "printedLabel": "12",
+            "role": "NO-2"
+          }
+        ],
+        "contacts": [
+          {
+            "common": "8",
+            "normallyClosed": "7",
+            "normallyOpen": "9"
+          },
+          {
+            "common": "11",
+            "normallyClosed": "10",
+            "normallyOpen": "12"
+          }
+        ],
+        "supplyAlternatives": {
+          "AC": {
+            "N": "1",
+            "L": "3"
+          },
+          "DC": {
+            "plus": "5",
+            "minus": "6"
+          }
+        },
+        "physicalCoordinates": null
+      },
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Display name PCU-510 DUO; manufacturer index PCU-510DUO. Full AC 24 V supply arrangement must be reviewed from the manual; only AC 230 V and DC polarity map are seeded here. Modes A/B/C/D start from supply application; do not implement A as an ordinary falling-edge TOF."
+      ]
+    },
+    {
+      "id": "wago-221-412",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "WAGO",
+      "manufacturerPartNumber": "221-412",
+      "displayNamePl": "Złączka instalacyjna z dźwignią, 2-przewodowa",
+      "category": "splicing-connector",
+      "family": "WAGO 221",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "connection.conductorPlaces",
+          "value": 2,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "wago-221412",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.maximumCrossSection",
+          "value": 4,
+          "unit": "mm2",
+          "evidence": [
+            {
+              "sourceId": "wago-221412",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.flexibleConductorRange",
+          "value": [
+            0.14,
+            4
+          ],
+          "unit": "mm2",
+          "evidence": [
+            {
+              "sourceId": "wago-221-family",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.solidAndStrandedConductorRange",
+          "value": [
+            0.2,
+            4
+          ],
+          "unit": "mm2",
+          "evidence": [
+            {
+              "sourceId": "wago-221-family",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "wago-221412",
+        "wago-221-family"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Wire places belong to a common splice, not independent L/N/PE channels. Physical labels on product must be checked; app endpoint IDs must not pretend to be printed terminal numbers."
+      ]
+    },
+    {
+      "id": "wago-221-413",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "WAGO",
+      "manufacturerPartNumber": "221-413",
+      "displayNamePl": "Złączka instalacyjna z dźwignią, 3-przewodowa",
+      "category": "splicing-connector",
+      "family": "WAGO 221",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "connection.conductorPlaces",
+          "value": 3,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "wago-221413",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.maximumCrossSection",
+          "value": 4,
+          "unit": "mm2",
+          "evidence": [
+            {
+              "sourceId": "wago-221413",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.flexibleConductorRange",
+          "value": [
+            0.14,
+            4
+          ],
+          "unit": "mm2",
+          "evidence": [
+            {
+              "sourceId": "wago-221-family",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.solidAndStrandedConductorRange",
+          "value": [
+            0.2,
+            4
+          ],
+          "unit": "mm2",
+          "evidence": [
+            {
+              "sourceId": "wago-221-family",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "wago-221413",
+        "wago-221-family"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Wire places belong to a common splice, not independent L/N/PE channels. Physical labels on product must be checked; app endpoint IDs must not pretend to be printed terminal numbers."
+      ]
+    },
+    {
+      "id": "wago-221-415",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "WAGO",
+      "manufacturerPartNumber": "221-415",
+      "displayNamePl": "Złączka instalacyjna z dźwignią, 5-przewodowa",
+      "category": "splicing-connector",
+      "family": "WAGO 221",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "connection.conductorPlaces",
+          "value": 5,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "wago-221415",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.maximumCrossSection",
+          "value": 4,
+          "unit": "mm2",
+          "evidence": [
+            {
+              "sourceId": "wago-221415",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.flexibleConductorRange",
+          "value": [
+            0.14,
+            4
+          ],
+          "unit": "mm2",
+          "evidence": [
+            {
+              "sourceId": "wago-221-family",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.solidAndStrandedConductorRange",
+          "value": [
+            0.2,
+            4
+          ],
+          "unit": "mm2",
+          "evidence": [
+            {
+              "sourceId": "wago-221-family",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "wago-221415",
+        "wago-221-family"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Wire places belong to a common splice, not independent L/N/PE channels. Physical labels on product must be checked; app endpoint IDs must not pretend to be printed terminal numbers."
+      ]
+    },
+    {
+      "id": "wago-2002-1201",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "WAGO",
+      "manufacturerPartNumber": "2002-1201",
+      "displayNamePl": "Złączka przelotowa 2-przewodowa, 2,5 mm²",
+      "category": "din-terminal",
+      "family": "WAGO TOPJOB S 2002",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "connection.conductorPlaces",
+          "value": 2,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "wago-20021201",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "connection.nominalCrossSection",
+          "value": 2.5,
+          "unit": "mm2",
+          "evidence": [
+            {
+              "sourceId": "wago-20021201",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "operator.bodyColor",
+          "value": "grey",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "wago-20021201",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "wago-20021201"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Nominal cross-section is not automatically the full permitted range. Grey body does not automatically identify L."
+      ]
+    },
+    {
+      "id": "wago-2002-1207",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "WAGO",
+      "manufacturerPartNumber": "2002-1207",
+      "displayNamePl": "Złączka ochronna PE, 2-przewodowa",
+      "category": "pe-terminal",
+      "family": "WAGO TOPJOB S 2002",
+      "sourceMarket": "GB; prefer exact Polish datasheet when available",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "connection.conductorPlaces",
+          "value": 2,
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "wago-20021207",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "categoryFunction",
+          "value": "protective-conductor-terminal",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "wago-20021207",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "wago-20021207"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Verify rail bonding from manufacturer diagram before adding a conductive mechanical coupling."
+      ]
+    },
+    {
+      "id": "simon-cw1c-11",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Kontakt-Simon",
+      "manufacturerPartNumber": "CW1C.01/11",
+      "displayNamePl": "Simon 10, łącznik jednobiegunowy biały, 10AX",
+      "category": "wall-switch",
+      "family": "Simon 10",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.ratedCurrentAX",
+          "value": 10,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "simon-cw1c",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "operator.bodyColor",
+          "value": "white",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "simon-cw1c",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "operator.function",
+          "value": "single-pole-switch",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "simon-cw1c",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "simon-cw1c"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Use C variant; do not silently replace with older screw-terminal CW1.01. Verify rear view and clamp grouping."
+      ]
+    },
+    {
+      "id": "simon-cw6c-11",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Kontakt-Simon",
+      "manufacturerPartNumber": "CW6C.01/11",
+      "displayNamePl": "Simon 10, łącznik schodowy biały, 10AX",
+      "category": "two-way-switch",
+      "family": "Simon 10",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.ratedCurrentAX",
+          "value": 10,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "simon-cw6c",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "operator.bodyColor",
+          "value": "white",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "simon-cw6c",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "operator.function",
+          "value": "two-way-changeover",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "simon-cw6c",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "simon-cw6c"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": []
+    },
+    {
+      "id": "simon-cw7x-11",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Kontakt-Simon",
+      "manufacturerPartNumber": "CW7.01/X/11",
+      "displayNamePl": "Simon 10, łącznik krzyżowy bez piktogramu biały, 10AX",
+      "category": "intermediate-switch",
+      "family": "Simon 10",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.ratedCurrentAX",
+          "value": 10,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "simon-cw7",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "operator.bodyColor",
+          "value": "white",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "simon-cw7",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "operator.function",
+          "value": "intermediate-crossover",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "simon-cw7",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "simon-cw7"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "This is the exact X variant referenced in the official page; do not infer a CW7C.01/11 SKU."
+      ]
+    },
+    {
+      "id": "simon-cs1c-11",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Kontakt-Simon",
+      "manufacturerPartNumber": "CS1C.01/11",
+      "displayNamePl": "Simon 10, przycisk światło biały, 10AX",
+      "category": "wall-push-button",
+      "family": "Simon 10",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.ratedCurrentAX",
+          "value": 10,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "simon-cs1c",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "operator.bodyColor",
+          "value": "white",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "simon-cs1c",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "operator.function",
+          "value": "momentary-light-button",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "simon-cs1c",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "simon-cs1c"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": []
+    },
+    {
+      "id": "simon-cgz1c-11",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Kontakt-Simon",
+      "manufacturerPartNumber": "CGZ1C.01/11",
+      "displayNamePl": "Simon 10, gniazdo pojedyncze z uziemieniem białe, 16 A",
+      "category": "socket-outlet",
+      "family": "Simon 10",
+      "sourceMarket": "PL",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.ratedCurrent",
+          "value": 16,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "simon-cgz1c",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "operator.bodyColor",
+          "value": "white",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "simon-cgz1c",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "operator.function",
+          "value": "single-socket-with-earthing-pin",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "simon-cgz1c",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "simon-cgz1c"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Separate accessible outlet test points from mounting terminals and correctly label front/rear views."
+      ]
+    },
+    {
+      "id": "finder-4052-24dc",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Finder",
+      "manufacturerPartNumber": "40.52.9.024.0000",
+      "displayNamePl": "Przekaźnik Finder 40.52, 2CO, 8 A, cewka 24 V DC",
+      "category": "plug-in-relay",
+      "family": "Finder 40",
+      "sourceMarket": "PL manufacturer catalogue",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-catalogue-order-code-decoding",
+      "facts": [
+        {
+          "fieldPath": "ratings.contactConfiguration",
+          "value": "2CO",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "finder-s40",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.contactRatedCurrent",
+          "value": 8,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "finder-s40",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.coilVoltage",
+          "value": 24,
+          "unit": "V",
+          "evidence": [
+            {
+              "sourceId": "finder-s40",
+              "locator": "PDF pp. 3 and 5, catalogue VI-2026",
+              "verification": "derived",
+              "derivation": "Manufacturer order code: 9 = standard DC 0.65 W; 024 = 24 V; 40.52 = 2 changeover contacts."
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.coilVoltageType",
+          "value": "DC",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "finder-s40",
+              "locator": "PDF pp. 3 and 5, catalogue VI-2026",
+              "verification": "derived",
+              "derivation": "Manufacturer order code: 9 = standard DC 0.65 W; 024 = 24 V; 40.52 = 2 changeover contacts."
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.coilRatedPower",
+          "value": 0.65,
+          "unit": "W",
+          "evidence": [
+            {
+              "sourceId": "finder-s40",
+              "locator": "PDF pp. 3 and 5, catalogue VI-2026",
+              "verification": "derived",
+              "derivation": "Manufacturer order code: 9 = standard DC 0.65 W; 024 = 24 V; 40.52 = 2 changeover contacts."
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "finder-s40"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Exact SKU follows manufacturer order-code table. Publish in assembly with a verified compatible socket; do not add screw terminals directly to the relay."
+      ]
+    },
+    {
+      "id": "finder-9505",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Finder",
+      "manufacturerPartNumber": "95.05",
+      "displayNamePl": "Gniazdo Finder 95.05 z zaciskami śrubowymi",
+      "category": "relay-socket",
+      "family": "Finder 95",
+      "sourceMarket": "PL manufacturer catalogue",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "connection.technology",
+          "value": "screw-clamp",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "finder-s40",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "mounting.type",
+          "value": "panel-or-DIN35",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "finder-s40",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "compatibility.relayTypes",
+          "value": [
+            "40.51",
+            "40.52",
+            "40.61",
+            "40.62"
+          ],
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "finder-s40",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "finder-s40"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Relay insertion creates internal pin-to-terminal mapping. Removing relay retains external wires on the socket; verify exact orientation."
+      ]
+    },
+    {
+      "id": "meanwell-hdr60-24",
+      "seedRevision": "research-2026-10-02",
+      "manufacturer": "Mean Well",
+      "manufacturerPartNumber": "HDR-60-24",
+      "displayNamePl": "Zasilacz DIN HDR-60-24, 24 V DC / 2,5 A",
+      "category": "power-supply",
+      "family": "Mean Well HDR-60",
+      "sourceMarket": "global manufacturer datasheet",
+      "readiness": "research-seed",
+      "published": false,
+      "identityVerification": "primary-source",
+      "facts": [
+        {
+          "fieldPath": "ratings.outputVoltage",
+          "value": 24,
+          "unit": "V",
+          "evidence": [
+            {
+              "sourceId": "meanwell-hdr60",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.outputVoltageType",
+          "value": "DC",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "meanwell-hdr60",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.outputRatedCurrent",
+          "value": 2.5,
+          "unit": "A",
+          "evidence": [
+            {
+              "sourceId": "meanwell-hdr60",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.outputRatedPower",
+          "value": 60,
+          "unit": "W",
+          "evidence": [
+            {
+              "sourceId": "meanwell-hdr60",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.inputAcRange",
+          "value": [
+            85,
+            264
+          ],
+          "unit": "V",
+          "evidence": [
+            {
+              "sourceId": "meanwell-hdr60",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "dimensions.width",
+          "value": 52.5,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "meanwell-hdr60",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "dimensions.height",
+          "value": 90,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "meanwell-hdr60",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "dimensions.depth",
+          "value": 54.5,
+          "unit": "mm",
+          "evidence": [
+            {
+              "sourceId": "meanwell-hdr60",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        },
+        {
+          "fieldPath": "ratings.insulationClass",
+          "value": "II",
+          "unit": null,
+          "evidence": [
+            {
+              "sourceId": "meanwell-hdr60",
+              "locator": null,
+              "verification": "manufacturer",
+              "derivation": null
+            }
+          ],
+          "confidence": "high"
+        }
+      ],
+      "sourceIds": [
+        "meanwell-hdr60"
+      ],
+      "logicalTopologySeed": null,
+      "physicalTerminalGeometry": null,
+      "visualStrategy": "original parametric SVG; verify geometry against exact product drawings/photos",
+      "behaviorImplementation": null,
+      "releaseBlockers": [
+        "Review exact terminal labels and internal topology against authoritative diagram",
+        "Verify physical port positions, view orientation and required mounting dimensions",
+        "Define implemented behavior and explicit simulation limitations",
+        "Pass catalog consistency, behavior and visual QA checks"
+      ],
+      "notes": [
+        "Model isolated DC output; no hidden minus-to-neutral or minus-to-PE connection. Full transient/hiccup reproduction not established by this seed."
+      ]
+    }
+  ],
+  "didacticElementsPolicy": "Keep fictional teaching elements separate from manufacturer SKUs; see implementation prompt.",
+  "knownLimitations": [
+    "No claim of complete manufacturer data, market representativeness, inventory availability or certified simulation accuracy.",
+    "No physical terminal coordinates are supplied; functional F&F maps were inspected from manual diagrams.",
+    "Most product records still need terminal topology and exact dimensions review.",
+    "No current prices, supplier inventory or fabricated ETIM identifiers.",
+    "No copied manufacturer images, logos, paid standards or whole instruction PDFs included."
+  ]
+}
