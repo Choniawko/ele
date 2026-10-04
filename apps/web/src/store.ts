@@ -316,6 +316,10 @@ function transaction(
   const sessionId = topology ? newId("session") : s.sessionId;
   useApp.setState({
     project: p,
+    // A structural edit may remove the device where an unfinished wire began.
+    ...(s.wireStart && !connectionTerminal(p, s.wireStart)
+      ? { wireStart: null, waypoints: [] }
+      : {}),
     history: [
       ...s.history,
       { project: clone(s.project), label, topology },
@@ -345,6 +349,15 @@ function transaction(
   });
   if (topology) request({ type: "solve" });
   scheduleSave();
+}
+function connectionTerminal(project: ProjectDocument, ref: TerminalRef) {
+  const device = project.circuit.devices.find((d) => d.id === ref.deviceId);
+  const terminal =
+    device &&
+    catalog[device.productId]?.topology.terminals.find(
+      (t) => t.id === ref.terminalId,
+    );
+  return device && terminal ? { device, terminal } : null;
 }
 export const useApp = create<AppState>((set, get) => ({
   project: startProject,
@@ -386,7 +399,7 @@ export const useApp = create<AppState>((set, get) => ({
   setView: (view) => set({ view, wireStart: null, waypoints: [] }),
   setMode: (mode) => {
     if (mode === "build" && get().runtime.energized) get().power(false);
-    set({ mode, wireStart: null, adding: null });
+    set({ mode, wireStart: null, waypoints: [], adding: null });
   },
   select: (id, multi = false) => {
     if (!id) {
@@ -415,7 +428,7 @@ export const useApp = create<AppState>((set, get) => ({
   },
   setAdding: (adding) => {
     get().setMode("build");
-    set({ adding, wireStart: null });
+    set({ adding, wireStart: null, waypoints: [] });
   },
   addDevice: (productId, point, view = "physical") => {
     const p = catalog[productId];
@@ -593,6 +606,14 @@ export const useApp = create<AppState>((set, get) => ({
     }),
   terminalClick: (ref) => {
     const s = get();
+    const clicked = connectionTerminal(s.project, ref);
+    if (!clicked) {
+      set({
+        notice:
+          "Ten zacisk już nie istnieje. Wybierz zacisk na aktualnej tablicy.",
+      });
+      return;
+    }
     if (s.mode === "measure") {
       s.setInstrument({ [s.activeProbe]: ref });
       set({
@@ -609,20 +630,22 @@ export const useApp = create<AppState>((set, get) => ({
       });
       return;
     }
-    if (!s.wireStart) {
+    const from = s.wireStart;
+    const start = from && connectionTerminal(s.project, from);
+    if (!from || !start) {
       set({
         wireStart: ref,
+        waypoints: [],
         selection: [ref.deviceId],
         notice:
           "Wybierz drugi zacisk. Esc anuluje; kliknięcie tła dodaje punkt trasy.",
       });
       return;
     }
-    if (terminalKey(s.wireStart) === terminalKey(ref)) {
+    if (terminalKey(from) === terminalKey(ref)) {
       s.cancelWire();
       return;
     }
-    const from = s.wireStart;
     const duplicate = s.project.circuit.conductors.some(
       (w) =>
         (terminalKey(w.from) === terminalKey(from) &&
@@ -634,13 +657,10 @@ export const useApp = create<AppState>((set, get) => ({
       set({ notice: "Te zaciski są już połączone." });
       return;
     }
-    for (const target of [from, ref]) {
-      const d = s.project.circuit.devices.find(
-        (d) => d.id === target.deviceId,
-      )!;
-      const t = catalog[d.productId].topology.terminals.find(
-        (t) => t.id === target.terminalId,
-      )!;
+    for (const { target, device: d, terminal: t } of [
+      { target: from, ...start },
+      { target: ref, ...clicked },
+    ]) {
       const count = s.project.circuit.conductors.filter(
         (w) =>
           terminalKey(w.from) === terminalKey(target) ||
@@ -725,7 +745,7 @@ export const useApp = create<AppState>((set, get) => ({
         for (const id of removed) delete l.routes[id];
       }
     });
-    set({ selection: [], wireStart: null });
+    set({ selection: [], wireStart: null, waypoints: [] });
   },
   duplicateSelection: () => {
     const ids = get().selection,
@@ -814,6 +834,8 @@ export const useApp = create<AppState>((set, get) => ({
       sessionId,
       selection: [],
       wireStart: null,
+      waypoints: [],
+      adding: null,
       checks: [],
       measurement: frame.topology ? null : s.measurement,
     });
@@ -841,6 +863,9 @@ export const useApp = create<AppState>((set, get) => ({
       runtime: frame.topology ? initialRuntime(p, sessionId) : s.runtime,
       sessionId,
       selection: [],
+      wireStart: null,
+      waypoints: [],
+      adding: null,
       checks: [],
       measurement: frame.topology ? null : s.measurement,
     });
@@ -966,6 +991,7 @@ export const useApp = create<AppState>((set, get) => ({
       mode: project.training ? "training" : "build",
       selection: [],
       wireStart: null,
+      waypoints: [],
       adding: null,
       history: [],
       future: [],
