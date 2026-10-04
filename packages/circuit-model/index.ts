@@ -136,28 +136,85 @@ const id = z
   .max(120)
   .regex(/^[a-zA-Z0-9_.:/+-]+$/);
 const ref = z.object({ deviceId: id, terminalId: id }).strict();
+export const projectLimits = {
+  devices: 150,
+  conductors: 500,
+  rails: 24,
+  name: { minLength: 1, maxLength: 120 },
+  designation: { minLength: 1, maxLength: 30 },
+  marking: { maxLength: 30 },
+  electricalLengthM: { min: 0.001, max: 10000 },
+  crossSectionMm2: { min: 0.14, max: 240 },
+  coordinate: { min: -10000, max: 10000 },
+  routePoints: 100,
+  diagnosis: { maxLength: 1000 },
+} as const;
+export const numericSettingLimits = {
+  powerW: { min: 0.01, max: 100000 },
+  voltageV: { min: 0.01, max: 1000 },
+  resistanceOhm: { min: 0, max: 1e12, exclusiveMin: true },
+  timeS: { min: 0.1, max: 2073600 },
+  ratedCurrentA: { min: 0, max: 1000, exclusiveMin: true },
+  sourceResistanceOhm: { min: 0, max: 100 },
+  loadFactor: { min: 0.1, max: 5 },
+} as const;
+function settingNumber(bounds: {
+  min: number;
+  max: number;
+  exclusiveMin?: boolean;
+}) {
+  const number = z.number().finite().max(bounds.max);
+  return bounds.exclusiveMin ? number.gt(bounds.min) : number.min(bounds.min);
+}
 const point = z.object({
-  x: z.number().finite().min(-10000).max(10000),
-  y: z.number().finite().min(-10000).max(10000),
+  x: settingNumber(projectLimits.coordinate),
+  y: settingNumber(projectLimits.coordinate),
 });
+export const routeSchema = z.array(point).max(projectLimits.routePoints);
+const diagnosisSchema = z.string().max(projectLimits.diagnosis.maxLength);
+export const wireOptionsSchema = z
+  .object({
+    length: settingNumber(projectLimits.electricalLengthM).optional(),
+    section: settingNumber(projectLimits.crossSectionMm2).optional(),
+    wireColor: z
+      .string()
+      .regex(/^#[0-9a-fA-F]{6}$/)
+      .optional(),
+    role: z
+      .enum([
+        "L1",
+        "L2",
+        "L3",
+        "N",
+        "PE",
+        "CONTROL",
+        "DC_PLUS",
+        "DC_MINUS",
+        "UNSPECIFIED",
+      ])
+      .optional(),
+  })
+  .strict();
 export const settingsSchema = z
   .object({
     position: z.boolean().optional(),
-    powerW: z.number().min(0.01).max(100000).optional(),
-    voltageV: z.number().min(0.01).max(1000).optional(),
-    resistanceOhm: z.number().positive().max(1e12).optional(),
-    timeS: z.number().min(0.1).max(2073600).optional(),
+    powerW: settingNumber(numericSettingLimits.powerW).optional(),
+    voltageV: settingNumber(numericSettingLimits.voltageV).optional(),
+    resistanceOhm: settingNumber(numericSettingLimits.resistanceOhm).optional(),
+    timeS: settingNumber(numericSettingLimits.timeS).optional(),
     timerMode: z.enum(["A", "B", "C", "D"]).optional(),
-    ratedCurrentA: z.number().positive().max(1000).optional(),
-    sourceResistanceOhm: z.number().min(0).max(100).optional(),
+    ratedCurrentA: settingNumber(numericSettingLimits.ratedCurrentA).optional(),
+    sourceResistanceOhm: settingNumber(
+      numericSettingLimits.sourceResistanceOhm,
+    ).optional(),
     independentSupply: z.boolean().optional(),
     phaseOrder: z.enum(["123", "132"]).optional(),
-    loadFactor: z.number().min(0.1).max(5).optional(),
+    loadFactor: settingNumber(numericSettingLimits.loadFactor).optional(),
   })
   .strict();
 const layout = z.object({
   devices: z.record(id, point),
-  routes: z.record(id, z.array(point).max(100)),
+  routes: z.record(id, routeSchema),
   rails: z
     .array(
       z
@@ -170,7 +227,7 @@ const layout = z.object({
         .strict(),
     )
     .min(1)
-    .max(24)
+    .max(projectLimits.rails)
     .refine(
       (rails) => new Set(rails.map((rail) => rail.id)).size === rails.length,
       "Identyfikatory szyn muszą być unikalne.",
@@ -179,7 +236,10 @@ const layout = z.object({
 });
 export const projectSchema = z
   .object({
-    name: z.string().min(1).max(120),
+    name: z
+      .string()
+      .min(projectLimits.name.minLength)
+      .max(projectLimits.name.maxLength),
     circuit: z
       .object({
         schemaVersion: z.literal(1),
@@ -193,13 +253,16 @@ export const projectSchema = z
                 id,
                 productId: id,
                 productRevision: id,
-                designation: z.string().min(1).max(30),
+                designation: z
+                  .string()
+                  .min(projectLimits.designation.minLength)
+                  .max(projectLimits.designation.maxLength),
                 settings: settingsSchema,
                 assemblyId: id.optional(),
               })
               .strict(),
           )
-          .max(150),
+          .max(projectLimits.devices),
         conductors: z
           .array(
             z
@@ -219,15 +282,17 @@ export const projectSchema = z
                   "UNSPECIFIED",
                 ]),
                 insulationColor: z.string().regex(/^#[0-9a-fA-F]{6}$/),
-                crossSectionMm2: z.number().min(0.14).max(240),
-                electricalLengthM: z.number().min(0.001).max(10000),
+                crossSectionMm2: settingNumber(projectLimits.crossSectionMm2),
+                electricalLengthM: settingNumber(
+                  projectLimits.electricalLengthM,
+                ),
                 material: z.enum(["Cu", "Al"]),
-                marking: z.string().max(30),
+                marking: z.string().max(projectLimits.marking.maxLength),
                 cableId: id.optional(),
               })
               .strict(),
           )
-          .max(500),
+          .max(projectLimits.conductors),
         bridges: z.array(z.object({ id, from: ref, to: ref })).max(500),
         cables: z
           .array(
@@ -298,11 +363,23 @@ export const projectSchema = z
         hintLevel: z.number().int().min(0).max(4),
         observations: z.array(z.string().max(1000)).max(100),
         completedChecks: z.array(id).max(100),
-        diagnosis: z.string().max(1000).optional(),
+        diagnosis: diagnosisSchema.optional(),
         repaired: z.boolean(),
       })
       .optional(),
-    userMetadata: z.record(z.string().max(100), z.string().max(2000)),
+    userMetadata: z
+      .record(z.string().max(100), z.string().max(2000))
+      .superRefine((metadata, ctx) => {
+        const diagnosis = diagnosisSchema
+          .optional()
+          .safeParse(metadata.diagnosisHypothesis);
+        if (!diagnosis.success)
+          for (const issue of diagnosis.error.issues)
+            ctx.addIssue({
+              ...issue,
+              path: ["diagnosisHypothesis", ...issue.path],
+            });
+      }),
     productRevisions: z.record(id, id),
   })
   .strict();

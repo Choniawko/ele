@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:e2e:production": "playwright test --config playwright.production.config.ts",
     "catalog:validate": "tsx scripts/catalog.ts validate",
     "catalog:report": "tsx scripts/catalog.ts report",
     "benchmark": "tsx scripts/benchmark.ts"
@@ -36,6 +37,7 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
     "eslint": "^10.11.0",
+    "fake-indexeddb": "^6.2.5",
     "jsdom": "^30.1.1",
     "prettier": "^3.9.9",
     "tsx": "^4.23.15",

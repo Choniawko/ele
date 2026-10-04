@@ -52,6 +52,8 @@ pnpm catalog:validate
 pnpm catalog:report
 pnpm benchmark
 pnpm test:e2e
+# po pnpm build, osobny serwer preview na porcie 4173:
+pnpm test:e2e:production
 # przy działającym pnpm dev:
 pnpm exec tsx scripts/visual-qa.ts
 ```
@@ -59,3 +61,5 @@ pnpm exec tsx scripts/visual-qa.ts
 Playwright używa zainstalowanego Chrome (`channel: chrome`). Firefox z użytej wersji Playwright nie obsługuje macOS 12. Zrzuty, przykład eksportu i wyniki benchmarków są w [docs/qa](docs/qa/). Szczegóły i pozostałe kryteria: [stan implementacji](docs/IMPLEMENTATION_STATUS.md), [zakres symulacji](docs/SIMULATION_SCOPE.md), [raport katalogu](docs/CATALOG_REPORT.md), [kolejny etap](docs/NEXT_TASK.md).
 
 Oryginalny pakiet w `Symulator_Elektryczny_Pakiet_Codex` pozostawiono bez zmian. Korygowane dane i źródła są opisane w [polityce danych](docs/DEVICE_DATA_POLICY.md).
+
+Edycja, zapis i import stosują te same limity dokumentu. Odrzucona zmiana pokazuje komunikat i zachowuje poprzedni stan. Przy niepoprawnym istniejącym zapisie można pobrać kopię do odzyskania; oryginał pozostaje w bazie. Procedura i testy regresji: [walidacja projektów](docs/PROJECT_VALIDATION.md).
