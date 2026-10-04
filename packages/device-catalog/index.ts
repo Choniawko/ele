@@ -2,6 +2,7 @@ import seed from "../../Symulator_Elektryczny_Pakiet_Codex/catalog-research-seed
 import { z } from "zod";
 import {
   settingsSchema,
+  projectLimits,
   type DeviceSettings,
   type ProjectDocument,
 } from "@model/index";
@@ -1019,10 +1020,12 @@ export const availableProducts = products.filter((p) => p.published);
 export const seedSources = seed.sources;
 export function assertProjectCatalog(project: ProjectDocument): void {
   if (
-    project.circuit.devices.length > 150 ||
-    project.circuit.conductors.length > 500
+    project.circuit.devices.length > projectLimits.devices ||
+    project.circuit.conductors.length > projectLimits.conductors
   )
-    throw new Error("Limit projektu: 150 aparatów i 500 żył.");
+    throw new Error(
+      `Limit projektu: ${projectLimits.devices} aparatów i ${projectLimits.conductors} żył.`,
+    );
   const seen = new Set<string>(),
     designations = new Set<string>();
   for (const d of project.circuit.devices) {

@@ -705,6 +705,24 @@ h3 {
 .board-host.schematic {
   background-color: #f6f8f1;
 }
+.recovery-notice {
+  flex-wrap: wrap;
+}
+.recovery-notice > div {
+  flex: 1;
+  min-width: 220px;
+}
+.recovery-notice p {
+  margin: 0;
+}
+.recovery-notice button {
+  padding: 8px 12px;
+  background: #fff8e8;
+  border: 1px solid #b97554;
+  border-radius: 6px;
+  white-space: normal;
+}
+
 .board-background,
 .board-preview {
   position: absolute;

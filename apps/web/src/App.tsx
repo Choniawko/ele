@@ -55,7 +55,13 @@ import {
   type Product,
 } from "@catalog/index";
 import { DeviceThumbnail, DevicePhysical } from "@renderers/index";
-import { type Role, type FaultKind, type TerminalRef } from "@model/index";
+import {
+  projectLimits,
+  numericSettingLimits,
+  type Role,
+  type FaultKind,
+  type TerminalRef,
+} from "@model/index";
 import { scenarios, colors, suggestMeasurement } from "@training/index";
 import {
   formatMeasurement,
@@ -69,7 +75,7 @@ import {
   parseProject,
   importResearch,
   getResearch,
-  type SavedProject,
+  type SavedProjectSummary,
 } from "./persistence";
 import "./styles.css";
 import "@renderers/effects.css";
@@ -115,6 +121,14 @@ function IconButton({
       <Icon size={17} />
     </button>
   );
+}
+// A pattern rejects overlong input without silently truncating pasted text.
+function textConstraints(limits: { minLength?: number; maxLength: number }) {
+  return {
+    minLength: limits.minLength,
+    pattern: `.{${limits.minLength ?? 0},${limits.maxLength}}`,
+    title: `Maksymalnie ${limits.maxLength} znaków`,
+  };
 }
 function download(filename: string, text: string, type = "application/json") {
   const url = URL.createObjectURL(new Blob([text], { type })),
@@ -740,21 +754,20 @@ function Inspector() {
                 <input
                   key={`${d.id}-designation`}
                   defaultValue={d.designation}
+                  {...textConstraints(projectLimits.designation)}
                   onBlur={(e) => {
                     if (e.target.value !== d.designation)
                       useApp.getState().updateDevice(d.id, {}, e.target.value);
+                    e.currentTarget.value = useApp
+                      .getState()
+                      .project.circuit.devices.find(
+                        (device) => device.id === d.id,
+                      )!.designation;
                   }}
                   aria-label="Oznaczenie aparatu"
                 />
               </div>
-              {[
-                "powerW",
-                "voltageV",
-                "timeS",
-                "ratedCurrentA",
-                "sourceResistanceOhm",
-                "loadFactor",
-              ]
+              {Object.keys(numericSettingLimits)
                 .filter((key) => product.educational && key in d.settings)
                 .map((key) => (
                   <div className="form-field" key={`${d.id}-${key}`}>
@@ -767,6 +780,7 @@ function Inspector() {
                             timeS: "Czas [s]",
                             ratedCurrentA: "Prąd nastawy [A]",
                             sourceResistanceOhm: "Rezystancja źródła [Ω]",
+                            resistanceOhm: "Rezystancja odbiornika [Ω]",
                             loadFactor: "Współczynnik obciążenia",
                           } as Record<string, string>
                         )[key]
@@ -774,19 +788,31 @@ function Inspector() {
                     </label>
                     <input
                       type="number"
-                      min={key === "sourceResistanceOhm" ? 0 : 0.1}
-                      step="0.1"
+                      min={
+                        numericSettingLimits[
+                          key as keyof typeof numericSettingLimits
+                        ].min
+                      }
+                      max={
+                        numericSettingLimits[
+                          key as keyof typeof numericSettingLimits
+                        ].max
+                      }
+                      step="any"
                       defaultValue={
                         d.settings[key as keyof typeof d.settings] as number
                       }
                       onBlur={(e) => {
-                        const n = Number(e.target.value);
-                        if (
-                          Number.isFinite(n) &&
-                          n >= 0 &&
-                          n !== d.settings[key as keyof typeof d.settings]
-                        )
+                        const n = e.currentTarget.valueAsNumber;
+                        if (n !== d.settings[key as keyof typeof d.settings])
                           useApp.getState().updateDevice(d.id, { [key]: n });
+                        e.currentTarget.value = String(
+                          useApp
+                            .getState()
+                            .project.circuit.devices.find(
+                              (device) => device.id === d.id,
+                            )!.settings[key as keyof typeof d.settings],
+                        );
                       }}
                     />
                   </div>
@@ -969,14 +995,43 @@ function Inspector() {
             <label>Długość elektryczna [m]</label>
             <input
               key={w.id + "length"}
+              aria-label="Długość elektryczna przewodu"
               type="number"
-              min="0.001"
-              step="0.1"
+              min={projectLimits.electricalLengthM.min}
+              max={projectLimits.electricalLengthM.max}
+              step="any"
               defaultValue={w.electricalLengthM}
               onBlur={(e) => {
-                const n = Number(e.target.value);
-                if (n > 0 && n !== w.electricalLengthM)
+                const n = e.currentTarget.valueAsNumber;
+                if (n !== w.electricalLengthM)
                   useApp.getState().updateWire(w.id, { electricalLengthM: n });
+                e.currentTarget.value = String(
+                  useApp
+                    .getState()
+                    .project.circuit.conductors.find(
+                      (wire) => wire.id === w.id,
+                    )!.electricalLengthM,
+                );
+              }}
+            />
+          </div>
+          <div className="form-field">
+            <label>Opis przewodu</label>
+            <input
+              aria-label="Opis przewodu"
+              key={w.id + "marking"}
+              defaultValue={w.marking}
+              {...textConstraints(projectLimits.marking)}
+              onBlur={(e) => {
+                if (e.currentTarget.value !== w.marking)
+                  useApp
+                    .getState()
+                    .updateWire(w.id, { marking: e.currentTarget.value });
+                e.currentTarget.value = useApp
+                  .getState()
+                  .project.circuit.conductors.find(
+                    (wire) => wire.id === w.id,
+                  )!.marking;
               }}
             />
           </div>
@@ -1029,10 +1084,15 @@ function Inspector() {
                     p.userMetadata.diagnosisHypothesis ??
                     ""
                   }
-                  maxLength={1000}
-                  onBlur={(e) =>
-                    useApp.getState().recordHypothesis(e.target.value)
-                  }
+                  title={`Maksymalnie ${projectLimits.diagnosis.maxLength} znaków`}
+                  onBlur={(e) => {
+                    useApp.getState().recordHypothesis(e.target.value);
+                    const current = useApp.getState().project;
+                    e.currentTarget.value =
+                      current.training?.diagnosis ??
+                      current.userMetadata.diagnosisHypothesis ??
+                      "";
+                  }}
                 />
               </label>
               <button
@@ -1308,6 +1368,8 @@ function App() {
     mode = useApp((s) => s.mode),
     view = useApp((s) => s.view),
     saveStatus = useApp((s) => s.saveStatus),
+    saveError = useApp((s) => s.saveError),
+    recovery = useApp((s) => s.recovery),
     notice = useApp((s) => s.notice),
     paused = useApp((s) => s.paused),
     speed = useApp((s) => s.speed),
@@ -1330,7 +1392,7 @@ function App() {
     [showLog, setShowLog] = useState(() =>
       readLayoutPreference("showLog", true),
     ),
-    [saved, setSaved] = useState<SavedProject[]>([]),
+    [saved, setSaved] = useState<SavedProjectSummary[]>([]),
     [researchImport, setResearchImport] = useState("");
   const importRef = useRef<HTMLInputElement>(null),
     catalogImportRef = useRef<HTMLInputElement>(null);
@@ -1463,7 +1525,10 @@ function App() {
           <span>{project.name}</span>
           <ChevronDown size={14} />
         </button>
-        <span className={`save-state ${saveStatus === "error" ? "error" : ""}`}>
+        <span
+          title={saveError || undefined}
+          className={`save-state ${saveStatus === "error" ? "error" : ""}`}
+        >
           {saveStatus === "saved" ? (
             <Check size={13} />
           ) : saveStatus === "error" ? (
@@ -1771,14 +1836,16 @@ function App() {
                 <input
                   aria-label="Długość nowego przewodu"
                   type="number"
-                  min="0.1"
-                  step="0.1"
-                  value={wireLength}
-                  onChange={(e) => {
-                    if (Number(e.target.value) > 0)
-                      useApp
-                        .getState()
-                        .setWireOptions({ length: Number(e.target.value) });
+                  min={projectLimits.electricalLengthM.min}
+                  max={projectLimits.electricalLengthM.max}
+                  step="any"
+                  key={`wire-length-${wireLength}`}
+                  defaultValue={wireLength}
+                  onBlur={(e) => {
+                    useApp.getState().setWireOptions({
+                      length: e.currentTarget.valueAsNumber,
+                    });
+                    e.currentTarget.value = String(useApp.getState().length);
                   }}
                 />
                 m
@@ -1818,6 +1885,30 @@ function App() {
                   <X size={13} />
                 </button>
               )}
+            </div>
+          )}
+          {recovery && (
+            <div
+              className="workbench-notice error recovery-notice"
+              role="alert"
+            >
+              <AlertCircle size={18} />
+              <div>
+                <p>{recovery.message}</p>
+                {recovery.protectedAnswers && (
+                  <p>
+                    W kopii pominięto ukryte odpowiedzi ćwiczenia i jego sesję.
+                    Oryginał pozostaje w bazie.
+                  </p>
+                )}
+              </div>
+              <button
+                onClick={() =>
+                  download("projekt-do-odzyskania.json", recovery.json)
+                }
+              >
+                Pobierz kopię do odzyskania
+              </button>
             </div>
           )}
           {showLog && !focusBoard && <LogPanel />}
@@ -1924,9 +2015,16 @@ function App() {
             <label>Nazwa bieżącego projektu</label>
             <input
               defaultValue={project.name}
-              onBlur={(e) => useApp.getState().rename(e.target.value)}
+              {...textConstraints(projectLimits.name)}
+              onBlur={(e) => {
+                useApp.getState().rename(e.target.value);
+                e.currentTarget.value = useApp.getState().project.name;
+              }}
               aria-label="Nazwa projektu"
             />
+            <p className="small-help" role="status">
+              {notice}
+            </p>
           </div>
           <h3 className="modal-subheading">Zapisane lokalnie</h3>
           {saved.map((p) => (
@@ -1943,7 +2041,10 @@ function App() {
                       setModal(null);
                     }
                   })
-                  .catch((e) => useApp.getState().setNotice(String(e)));
+                  .catch((e) => {
+                    useApp.getState().reportReadError(e);
+                    setModal(null);
+                  });
               }}
             >
               <FolderOpen size={19} />
@@ -1953,7 +2054,7 @@ function App() {
                   {new Date(p.updatedAt).toLocaleString("pl-PL", {
                     timeZone: "Europe/Warsaw",
                   })}{" "}
-                  · {p.document.circuit.devices.length} aparatów
+                  · {p.deviceCount} aparatów
                 </small>
               </span>
               <ChevronRight size={17} />

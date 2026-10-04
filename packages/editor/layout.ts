@@ -1,5 +1,10 @@
 import { catalog } from "@catalog/index";
-import type { MountingRail, Point, ProjectDocument } from "@model/index";
+import {
+  projectLimits,
+  type MountingRail,
+  type Point,
+  type ProjectDocument,
+} from "@model/index";
 
 export const RAIL_OFFSET = 65;
 export const RAIL_SPACING = 295;
@@ -17,7 +22,7 @@ export function mountingRails(project: ProjectDocument): MountingRail[] {
   return Array.from(
     {
       length: Math.min(
-        24,
+        projectLimits.rails,
         Math.max(2, Math.round((bottom - 90) / RAIL_SPACING) + 1),
       ),
     },

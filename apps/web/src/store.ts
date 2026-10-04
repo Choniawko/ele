@@ -8,12 +8,19 @@ import {
   RAIL_OFFSET,
   RAIL_SPACING,
 } from "@editor/layout";
-import { catalog, assertProjectCatalog } from "@catalog/index";
+import { catalog } from "@catalog/index";
+import {
+  validateProjectDocument,
+  validationMessage,
+} from "@catalog/project-validation";
 import {
   clone,
   emptyProject,
   newId,
   terminalKey,
+  routeSchema,
+  wireOptionsSchema,
+  projectLimits,
   type ProjectDocument,
   type Point,
   type TerminalRef,
@@ -38,7 +45,13 @@ import type {
   MeasurementResult,
   MeasurementFunction,
 } from "@measurements/index";
-import { restoreProject, saveProject, safeExport } from "./persistence";
+import {
+  restoreProject,
+  saveProject,
+  safeExport,
+  ProjectReadError,
+  type ProjectRecovery,
+} from "./persistence";
 import type { WorkerRequest } from "./simulation.worker";
 export type Mode = "build" | "test" | "measure" | "diagnosis" | "training";
 export type View = "physical" | "schematic" | "split";
@@ -65,6 +78,7 @@ interface AppState {
   future: SavedFrame[];
   saveStatus: "loading" | "saved" | "saving" | "error";
   saveError: string;
+  recovery: ProjectRecovery | null;
   notice: string;
   hydrated: boolean;
   paused: boolean;
@@ -160,6 +174,7 @@ interface AppState {
   hint: () => void;
   recordHypothesis: (text: string) => void;
   setNotice: (notice: string) => void;
+  reportReadError: (error: unknown) => void;
   exported: () => ProjectDocument;
 }
 let worker: Worker | undefined,
@@ -291,9 +306,22 @@ function scheduleSave() {
         )
           useApp.setState({ saveStatus: "saved", saveError: "" });
       })
-      .catch((error) =>
-        useApp.setState({ saveStatus: "error", saveError: String(error) }),
-      );
+      .catch((error) => {
+        if (
+          generation !== saveGeneration ||
+          useApp.getState().project.circuit.projectId !==
+            savedDocument.circuit.projectId
+        )
+          return;
+        useApp.setState({
+          saveStatus: "error",
+          saveError: validationMessage(error),
+          notice: "Nie udało się zapisać projektu: " + validationMessage(error),
+          ...(error instanceof ProjectReadError
+            ? { recovery: error.recovery }
+            : {}),
+        });
+      });
   }, 350);
 }
 function transaction(
@@ -301,17 +329,18 @@ function transaction(
   mutate: (p: ProjectDocument) => void,
   topology = true,
 ) {
-  const s = useApp.getState(),
-    p = clone(s.project);
-  mutate(p);
-  if (topology) p.circuit.revision = s.project.circuit.revision + 1;
+  const s = useApp.getState();
+  let p: ProjectDocument;
   try {
-    assertProjectCatalog(p);
+    const draft = clone(s.project);
+    mutate(draft);
+    if (topology) draft.circuit.revision = s.project.circuit.revision + 1;
+    p = validateProjectDocument(draft);
   } catch (error) {
     useApp.setState({
-      notice: error instanceof Error ? error.message : "Niepoprawna operacja.",
+      notice: validationMessage(error),
     });
-    return;
+    return false;
   }
   const sessionId = topology ? newId("session") : s.sessionId;
   useApp.setState({
@@ -349,6 +378,7 @@ function transaction(
   });
   if (topology) request({ type: "solve" });
   scheduleSave();
+  return true;
 }
 function connectionTerminal(project: ProjectDocument, ref: TerminalRef) {
   const device = project.circuit.devices.find((d) => d.id === ref.deviceId);
@@ -377,6 +407,7 @@ export const useApp = create<AppState>((set, get) => ({
   future: [],
   saveStatus: "loading",
   saveError: "",
+  recovery: null,
   notice:
     "Przeciągnij aparat za korpus. Kliknij dwa zaciski, aby podłączyć przewód.",
   hydrated: false,
@@ -448,7 +479,7 @@ export const useApp = create<AppState>((set, get) => ({
       return;
     }
     const id = newId("d");
-    transaction("Dodaj aparat", (project) => {
+    const accepted = transaction("Dodaj aparat", (project) => {
       const designations = project.circuit.devices.map((d) => d.designation);
       let n = 1;
       while (designations.includes(`${p.designationPrefix}${n}`)) n++;
@@ -478,14 +509,16 @@ export const useApp = create<AppState>((set, get) => ({
           sourceId: id,
         });
     });
-    set({ selection: [id], adding: null });
+    if (accepted) set({ selection: [id], adding: null });
   },
   addRail: () => {
-    if (mountingRails(get().project).length >= 24) {
-      set({ notice: "Tablica może mieć maksymalnie 24 szyny." });
+    if (mountingRails(get().project).length >= projectLimits.rails) {
+      set({
+        notice: `Tablica może mieć maksymalnie ${projectLimits.rails} szyny.`,
+      });
       return;
     }
-    transaction(
+    const accepted = transaction(
       "Dodaj szynę DIN",
       (p) => {
         const rails = mountingRails(p);
@@ -501,10 +534,11 @@ export const useApp = create<AppState>((set, get) => ({
       },
       false,
     );
-    set({
-      notice:
-        "Dodano szynę DIN. Przeciągnij na nią aparat albo wybierz szynę w menu zaznaczenia.",
-    });
+    if (accepted)
+      set({
+        notice:
+          "Dodano szynę DIN. Przeciągnij na nią aparat albo wybierz szynę w menu zaznaczenia.",
+      });
   },
   moveSelectionToRail: (railId) => {
     const s = get(),
@@ -596,7 +630,7 @@ export const useApp = create<AppState>((set, get) => ({
       const d = p.circuit.devices.find((d) => d.id === id);
       if (d) {
         d.settings = { ...d.settings, ...settings };
-        if (designation) d.designation = designation;
+        if (designation !== undefined) d.designation = designation;
       }
     }),
   updateWire: (id, values) =>
@@ -678,7 +712,7 @@ export const useApp = create<AppState>((set, get) => ({
       }
     }
     const id = newId("w");
-    transaction("Połącz zaciski", (p) => {
+    const accepted = transaction("Połącz zaciski", (p) => {
       p.circuit.conductors.push({
         id,
         from,
@@ -695,23 +729,37 @@ export const useApp = create<AppState>((set, get) => ({
           s.waypoints,
         );
     });
-    set({
-      wireStart: null,
-      waypoints: [],
-      notice: "Przewód podłączony. Możesz rozpocząć następne połączenie.",
-    });
+    if (accepted)
+      set({
+        wireStart: null,
+        waypoints: [],
+        notice: "Przewód podłączony. Możesz rozpocząć następne połączenie.",
+      });
   },
   cancelWire: () => set({ wireStart: null, waypoints: [], adding: null }),
-  addWaypoint: (point) => set({ waypoints: [...get().waypoints, point] }),
+  addWaypoint: (point) => {
+    const parsed = routeSchema.safeParse([...get().waypoints, point]);
+    if (!parsed.success) {
+      set({ notice: validationMessage(parsed.error) });
+      return;
+    }
+    set({ waypoints: parsed.data });
+  },
   popWaypoint: () => set({ waypoints: get().waypoints.slice(0, -1) }),
-  setWireOptions: (options) =>
+  setWireOptions: (options) => {
+    const parsed = wireOptionsSchema.safeParse(options);
+    if (!parsed.success) {
+      set({ notice: validationMessage(parsed.error) });
+      return;
+    }
     set({
       ...options,
       ...(options.role ? { wireColor: colors[options.role] } : {}),
-    }),
+    });
+  },
   deleteSelection: () => {
     const ids = get().selection;
-    transaction("Usuń zaznaczenie", (p) => {
+    const accepted = transaction("Usuń zaznaczenie", (p) => {
       p.circuit.devices = p.circuit.devices.filter((d) => !ids.includes(d.id));
       const removed = p.circuit.conductors
         .filter(
@@ -745,12 +793,12 @@ export const useApp = create<AppState>((set, get) => ({
         for (const id of removed) delete l.routes[id];
       }
     });
-    set({ selection: [], wireStart: null, waypoints: [] });
+    if (accepted) set({ selection: [], wireStart: null, waypoints: [] });
   },
   duplicateSelection: () => {
     const ids = get().selection,
       newIds: string[] = [];
-    transaction("Powiel aparaty", (p) => {
+    const accepted = transaction("Powiel aparaty", (p) => {
       for (const d of p.circuit.devices.filter((d) => ids.includes(d.id))) {
         const id = newId("d"),
           product = catalog[d.productId];
@@ -775,7 +823,7 @@ export const useApp = create<AppState>((set, get) => ({
           nearestRail(p, target).y - RAIL_OFFSET < target.y - 20
         ) {
           const rails = mountingRails(p);
-          if (rails.length < 24)
+          if (rails.length < projectLimits.rails)
             p.physical.rails = [
               ...rails,
               {
@@ -800,7 +848,7 @@ export const useApp = create<AppState>((set, get) => ({
         newIds.push(id);
       }
     });
-    set({ selection: newIds });
+    if (accepted) set({ selection: newIds });
   },
   alignSelection: () => {
     const s = get(),
@@ -816,9 +864,17 @@ export const useApp = create<AppState>((set, get) => ({
     const s = get(),
       frame = s.history.at(-1);
     if (!frame) return;
-    const p = clone(frame.project),
-      sessionId = frame.topology ? newId("session") : s.sessionId;
-    p.circuit.revision = s.project.circuit.revision + (frame.topology ? 1 : 0);
+    let p: ProjectDocument;
+    try {
+      const draft = clone(frame.project);
+      draft.circuit.revision =
+        s.project.circuit.revision + (frame.topology ? 1 : 0);
+      p = validateProjectDocument(draft);
+    } catch (error) {
+      set({ notice: validationMessage(error) });
+      return;
+    }
+    const sessionId = frame.topology ? newId("session") : s.sessionId;
     set({
       project: p,
       history: s.history.slice(0, -1),
@@ -846,9 +902,17 @@ export const useApp = create<AppState>((set, get) => ({
     const s = get(),
       frame = s.future.at(-1);
     if (!frame) return;
-    const p = clone(frame.project),
-      sessionId = frame.topology ? newId("session") : s.sessionId;
-    p.circuit.revision = s.project.circuit.revision + (frame.topology ? 1 : 0);
+    let p: ProjectDocument;
+    try {
+      const draft = clone(frame.project);
+      draft.circuit.revision =
+        s.project.circuit.revision + (frame.topology ? 1 : 0);
+      p = validateProjectDocument(draft);
+    } catch (error) {
+      set({ notice: validationMessage(error) });
+      return;
+    }
+    const sessionId = frame.topology ? newId("session") : s.sessionId;
     set({
       project: p,
       future: s.future.slice(0, -1),
@@ -933,7 +997,7 @@ export const useApp = create<AppState>((set, get) => ({
       set({ notice: "Zaznacz przewód lub aparat, który chcesz naprawić." });
       return;
     }
-    transaction("Napraw zaznaczony element", (p) => {
+    const accepted = transaction("Napraw zaznaczony element", (p) => {
       p.faults = p.faults.filter((f) => !ids.includes(f.targetId));
       if (p.training) {
         p.training.repaired = p.faults.length === 0;
@@ -950,10 +1014,11 @@ export const useApp = create<AppState>((set, get) => ({
         );
       }
     });
-    set({
-      notice:
-        "Wykonano naprawę zaznaczonego elementu. Powtórz pomiar i próbę działania.",
-    });
+    if (accepted)
+      set({
+        notice:
+          "Wykonano naprawę zaznaczonego elementu. Powtórz pomiar i próbę działania.",
+      });
   },
   revealFaults: () => {
     transaction(
@@ -967,9 +1032,9 @@ export const useApp = create<AppState>((set, get) => ({
   },
   load: (project, records = [], events = []) => {
     try {
-      assertProjectCatalog(project);
+      project = validateProjectDocument(project);
     } catch (error) {
-      set({ notice: String(error) });
+      set({ notice: validationMessage(error) });
       return;
     }
     const sessionId = newId("session");
@@ -982,7 +1047,13 @@ export const useApp = create<AppState>((set, get) => ({
         [...previous.archivedEvents, ...previous.runtime.events],
         false,
       ).catch((error) =>
-        set({ notice: "Błąd zapisu poprzedniego projektu: " + String(error) }),
+        set({
+          notice:
+            "Błąd zapisu poprzedniego projektu: " + validationMessage(error),
+          ...(error instanceof ProjectReadError
+            ? { recovery: error.recovery }
+            : {}),
+        }),
       );
     set({
       project: clone(project),
@@ -1020,7 +1091,7 @@ export const useApp = create<AppState>((set, get) => ({
     transaction(
       "Zmień nazwę",
       (p) => {
-        p.name = name.trim() || "Moja instalacja";
+        p.name = name;
       },
       false,
     ),
@@ -1035,11 +1106,7 @@ export const useApp = create<AppState>((set, get) => ({
         scheduleSave();
       }
     } catch (error) {
-      set({
-        saveStatus: "error",
-        saveError: String(error),
-        notice: "Nie udało się odczytać zapisu. Dane w bazie zachowano.",
-      });
+      get().reportReadError(error);
       request({ type: "solve" });
     }
   },
@@ -1072,12 +1139,25 @@ export const useApp = create<AppState>((set, get) => ({
     transaction(
       "Zapisz hipotezę",
       (p) => {
-        if (p.training) p.training.diagnosis = text.slice(0, 1000);
-        else p.userMetadata.diagnosisHypothesis = text.slice(0, 1000);
+        if (p.training) p.training.diagnosis = text;
+        else p.userMetadata.diagnosisHypothesis = text;
       },
       false,
     ),
   setNotice: (notice) => set({ notice }),
+  reportReadError: (error) =>
+    set({
+      saveStatus: "error",
+      saveError: validationMessage(error),
+      notice:
+        error instanceof ProjectReadError
+          ? error.message
+          : "Nie udało się odczytać zapisu. Dane w bazie zachowano: " +
+            validationMessage(error),
+      ...(error instanceof ProjectReadError
+        ? { recovery: error.recovery }
+        : {}),
+    }),
   exported: () => safeExport(get().project),
 }));
 export function measurementSelect(functionName: MeasurementFunction) {
