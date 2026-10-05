@@ -29,7 +29,9 @@ Przed deploymentem zapisuje GitHub Release z archiwum `ele-vX.Y.Z.tar.gz`, sumą
 
 Jeśli archiwum zostało zapisane, a deployment zawiódł, użyj workflow rollbacku na tym tagu. Ponowne tworzenie wydania pod tą samą nazwą zostanie odrzucone.
 
-Uprawnienia są ograniczone do jobów: CI/weryfikacja `contents: read`; publikacja `contents: write` dla archiwum Release, `pages: write` i `id-token: write`; rollback zapisuje wyłącznie Pages i używa odczytu repozytorium. Nie potrzeba PAT. PR nie otrzymuje joba wdrożenia ani tokena z zapisem. Akcje przypięto do sprawdzonych pełnych SHA; nie użyto `pull_request_target` ani uprzywilejowanego uruchamiania kodu z PR.
+Uprawnienia są ograniczone do jobów: CI/weryfikacja `contents: read`; publikacja `contents: write` dla archiwum Release, `pages: write` i `id-token: write`; rollback zapisuje wyłącznie Pages i używa odczytu repozytorium. Nie potrzeba PAT. PR nie otrzymuje joba wdrożenia ani tokena zapisującego kod lub Pages. Akcje przypięto do sprawdzonych pełnych SHA; nie użyto `pull_request_target` ani uprzywilejowanego uruchamiania kodu z PR.
+
+Osobny job `Describe PR 2` realizuje zleconą poprawkę tytułu/opisu: tylko PR #2 z `feat/exam-practice-stage-one` w tym repozytorium, wyłącznie po zielonym `Verify ELE`. Ma `contents: read` i `pull-requests: write`, nie robi checkoutu, nie uruchamia kodu projektu, nie tworzy/akceptuje/łączy PR. Pobiera tekst `PR_2_DESCRIPTION.md` jako dane dla aktualnego SHA i dopisuje URL wykonanej weryfikacji. To jawny wyjątek dla metadanych tego PR; pozostałe PR-y i push do main mają tylko job kontroli.
 
 ## Ustawienia ręczne przed pierwszym tagiem
 
