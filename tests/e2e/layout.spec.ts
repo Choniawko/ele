@@ -35,7 +35,7 @@ test.beforeEach(async ({ page }) => {
   page.on("pageerror", (error) => {
     throw error;
   });
-  await page.goto("/");
+  await page.goto("./");
   await expect(board(page).locator('[data-device="G1"]')).toBeVisible();
 });
 

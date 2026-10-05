@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && tsx scripts/build-metadata.ts",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint --deny-warnings && eslint .",
@@ -14,7 +14,12 @@
     "test:e2e:production": "playwright test --config playwright.production.config.ts",
     "catalog:validate": "tsx scripts/catalog.ts validate",
     "catalog:report": "tsx scripts/catalog.ts report",
-    "benchmark": "tsx scripts/benchmark.ts"
+    "benchmark": "tsx scripts/benchmark.ts",
+    "preview:dist": "tsx scripts/serve-dist.ts",
+    "release:check": "tsx scripts/release-ref.ts",
+    "release:pack": "tsx scripts/release-archive.ts pack",
+    "release:restore": "tsx scripts/release-archive.ts restore",
+    "dist:validate": "tsx scripts/validate-dist.ts"
   },
   "packageManager": "pnpm@11.19.0",
   "dependencies": {

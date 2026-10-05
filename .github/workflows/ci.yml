@@ -1,0 +1,14 @@
+name: ELE CI
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    uses: ./.github/workflows/verify.yml

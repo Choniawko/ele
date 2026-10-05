@@ -55,7 +55,7 @@ test.beforeEach(async ({ page }) => {
   page.on("pageerror", (e) => {
     throw e;
   });
-  await page.goto("/");
+  await page.goto("./");
   await expect(
     page.getByText("Zapisano lokalnie", { exact: true }),
   ).toBeVisible();

@@ -2,7 +2,8 @@ import { defineConfig } from "vitest/config";
 import react from "@vitejs/plugin-react";
 import { fileURLToPath } from "node:url";
 const dir = (path: string) => fileURLToPath(new URL(path, import.meta.url));
-export default defineConfig({
+export default defineConfig(({ command, isPreview }) => ({
+  base: command === "build" || isPreview ? "/ele/" : "/",
   plugins: [react()],
   resolve: {
     alias: {
@@ -18,4 +19,4 @@ export default defineConfig({
     },
   },
   test: { include: ["tests/**/*.test.{ts,tsx}"], environment: "node" },
-});
+}));

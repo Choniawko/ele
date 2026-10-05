@@ -11,7 +11,7 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Otwórz http://127.0.0.1:5173. W tym środowisku serwer został już uruchomiony. Do wersji produkcyjnej: `pnpm build`, następnie `pnpm preview`. Działanie projektu nie wymaga konta ani klucza API. Linki do dokumentacji producentów wymagają internetu. Nie ma jeszcze service workera/PWA.
+Otwórz http://127.0.0.1:5173. Do wersji produkcyjnej: `pnpm build`, następnie `pnpm preview:dist` i http://127.0.0.1:4173/ele/. Build jest przygotowany dla https://choniawko.github.io/ele/. Działanie projektu nie wymaga konta ani klucza API. Linki do dokumentacji producentów wymagają internetu. Nie ma jeszcze service workera/PWA.
 
 ## Pierwsza próba
 
@@ -69,3 +69,7 @@ Edycja, zapis i import stosują te same limity dokumentu. Odrzucona zmiana pokaz
 W menu **Ćwiczenia** wybierz tryb nowych zestawów: Wzorzec, Montaż lub Diagnoza, a potem oświetlenie bistabilne, START/STOP albo prawo/lewo. Rozwiń „Wymagania i instrukcja montażu”. W inspektorze przypisz blok pomocniczy do stycznika, wybierz rzeczywiste mostki Y/Δ silnika i osobną blokadę mechaniczną. Montaż otwiera tryb Budowa, a Diagnoza tryb diagnostyczny. Po zmianie połączeń wykonaj pomiary ponownie — ocena wymaga bieżącej rewizji.
 
 W diagnostyce zapisz pomiar właściwego uszkodzonego toru, hipotezę i napraw zaznaczony element. Dla sklejonego NC badaj spadek napięcia na styku podczas załączenia mechanizmu; ciągłość NC w spoczynku sama nie dowodzi usterki. Po naprawie sprawdź PE i działanie. Ukryta przyczyna nie jest eksportowana. Instrukcja odczytu nadruków i ograniczenia rezystancji cewek znajdują się w danych produktu.
+
+## CI i pierwsze wydanie
+
+PR-y i push do main uruchamiają `ELE CI`: frozen lockfile, typecheck, Oxlint/ESLint, testy, katalog, pełne E2E developerskie, build i E2E gotowego dist pod `/ele/`. Zestawy przeglądarkowe działają kolejno. Publikacja następuje wyłącznie dla zweryfikowanego tagu wersji, przez environment `github-pages`, z archiwum do rollbacku i `version.json`. Konieczne ustawienia ochrony main/tagów/środowiska i procedura: [RELEASING.md](docs/RELEASING.md). Dodanie workflowów nie jest potwierdzeniem deploymentu.

@@ -1,0 +1,81 @@
+name: Verify ELE
+on:
+  workflow_call:
+    inputs:
+      release_tag:
+        type: string
+        default: ""
+permissions:
+  contents: read
+jobs:
+  checks:
+    name: Verify ELE
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CI: "true"
+      ELE_RELEASE_TAG: ${{ inputs.release_tag }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: "24"
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4; packageManager pins pnpm
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Validate release tag and main ancestry
+        if: inputs.release_tag != ''
+        run: pnpm release:check
+      - name: Install the configured Chrome channel
+        run: pnpm exec playwright install --with-deps chrome
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Oxlint and ESLint
+        run: pnpm lint
+      - name: Unit and regression tests
+        run: pnpm test
+      - name: Validate catalog and scenario documents
+        run: pnpm catalog:validate
+      - name: Full development E2E
+        id: development
+        run: pnpm test:e2e
+      - name: Preserve development browser results before the next suite
+        if: always() && steps.development.outcome != 'skipped'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: playwright-development-${{ github.sha }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+      - name: Build once for /ele/ and write provenance
+        run: pnpm build
+      - name: Production E2E against that dist at /ele/
+        id: production
+        run: pnpm test:e2e:production
+      - name: Preserve production browser results
+        if: always() && steps.production.outcome != 'skipped'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: playwright-production-${{ github.sha }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+      - name: Verify and archive the tested files without rebuilding
+        run: pnpm release:pack
+      - name: Retain the verified archive
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: ele-release-${{ github.sha }}
+          path: release/
+          if-no-files-found: error
+          retention-days: 90
+      - name: Upload only the tested dist for the tag deployment
+        if: inputs.release_tag != ''
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: dist

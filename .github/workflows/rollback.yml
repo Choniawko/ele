@@ -1,0 +1,67 @@
+name: ELE Rollback
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+jobs:
+  restore:
+    if: github.repository == 'Choniawko/ele'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      CI: "true"
+      ELE_RELEASE_TAG: ${{ github.ref_name }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Require dispatch on an existing version tag
+        env:
+          REF_TYPE: ${{ github.ref_type }}
+        run: test "$REF_TYPE" = tag
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: "24"
+      - uses: pnpm/action-setup@f40ffcd9367d9f12939873eb1018b921a783ffaa # v4
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm release:check
+      - name: Fetch retained release, not a new build
+        run: |
+          gh release download "$ELE_RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --dir release \
+            --pattern "ele-$ELE_RELEASE_TAG.tar.gz" --pattern "ele-$ELE_RELEASE_TAG.tar.gz.sha256"
+      - run: pnpm release:restore
+      - run: pnpm exec playwright install --with-deps chrome
+      - name: Retest restored bytes at /ele/
+        run: pnpm test:e2e:production
+      - name: Browser results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: playwright-rollback-${{ github.sha }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+      - run: pnpm dist:validate
+      - uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
+        with:
+          path: dist
+  deploy:
+    needs: restore
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

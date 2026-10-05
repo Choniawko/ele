@@ -1670,7 +1670,7 @@ function App() {
       <header className="app-header">
         <a
           className="brand"
-          href="/"
+          href={import.meta.env.BASE_URL}
           onClick={(e) => {
             e.preventDefault();
             setModal("help");
