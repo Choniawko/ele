@@ -2947,3 +2947,27 @@ h3 {
     display: none;
   }
 }
+
+.practice-instructions {
+  padding: 0.5rem 1rem;
+  color: var(--green-dark);
+  background: #f2f4e9;
+  border-bottom: 1px solid #d9ddcd;
+  font-size: 0.8rem;
+  max-height: 220px;
+  overflow: auto;
+}
+.practice-instructions summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.practice-instructions li {
+  margin: 0.4rem 0;
+  line-height: 1.5;
+}
+.check-line[data-passed="false"] > svg {
+  color: #b35e45;
+}
+.check-line[data-passed="true"] > svg {
+  color: #438265;
+}

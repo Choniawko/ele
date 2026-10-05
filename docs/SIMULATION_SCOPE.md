@@ -21,14 +21,15 @@ MNA z eliminacją Gaussa i pivotowaniem rozwiązuje napięcia węzłów oraz pr�
 | Schodowy | Odmierzanie czasu po przycisku, przedłużenie, podtrzymanie podczas trzymania, utrata stanu po zaniku |
 | Czasówka | Funkcje A/B/C/D inicjowane zasilaniem, dwa zestyki; zmiana nastaw w UI zatrzymuje próbę. Alternatywne 24 V i 230 V, kontrola podwójnego zasilania |
 | HDR-60 | 24 V izolowane, Rwy=0,04 Ω, dydaktyczne ograniczenie do 2,5 A dopasowane do R obciążenia; pobór AC z mocy wyjścia i sprawności 90%. Bez hiccup, tętnień, temperatury i czasu rozruchu |
-| Silnik | Trzy rezystancje w gwiazdę, kierunek z faz, wykrycie braku fazy; brak rzeczywistego poślizgu, rozruchu, momentu i energii mechanicznej |
-| Interlock | Konflikt obu mechanizmów zgłaszany jako błąd; brak mechanicznego modelu zapobiegającego równoczesnemu ruchowi |
+| Silnik | Starszy profil: ukryta gwiazda. Nowy `edu-motor-six`: trzy jawne uzwojenia, analiza Y/Δ z przewodów/mostków, napięć uzwojeń i faz; bez poślizgu, rozruchu, momentu i energii mechanicznej |
+| Interlock | Osobne sprzężenie mechaniczne zapobiega ruchowi drugiego mechanizmu mimo zasilonej cewki. NC krzyżowe działają przez obwód elektryczny; ocena sprawdza je bez sprzężenia mechanicznego. Przy jednoczesnym żądaniu od spoczynku pierwszeństwo ma kolejność aparatów, bez dynamiki czasów ruchu |
+| Bloki / przyciski | Wielostykowy przycisk ma jeden stan NO/NC. Osobny blok pomocniczy dziedziczy mechanizm rodzica przypisanego przez `assembly`. Wspólne styki główne i pomocnicze stycznika |
 
 Dowolna orientacja każdego toru RCD/RCBO 2P jest świadomym uproszczeniem profilu dydaktycznego. Akceptuje także zasilanie L i N z przeciwnych stron aparatu; nie odtwarza wtedy sumowania strumieni w rzeczywistym przekładniku różnicowym. Geometria przewodów pozostaje niezależna od rozwiązania elektrycznego.
 
 Obsługę TEST przy napięciu i ponownego załączenia przez OFF oparto na [instrukcji ABB F200](https://library.e.abb.com/public/6de074bdabef4a1eb0d5bc13e9c3903d/F200%20B%20PLUS_2013.pdf). To odniesienie do działania elementów sterujących, a nie deklaracja odwzorowania tego SKU. Miernik RCD akceptuje sondę na dowolnym końcu toru fazowego; prąd próbny musi przejść przez aparat, aby wywołać wyzwolenie.
 
-Usterki są nakładkami: przerwa, dodatkowa rezystancja zacisku, skończone zwarcie/upływ, osobna izolacja, sklejony NO, otwarta cewka, zablokowany mechanizm, zanik fazy i brak zadziałania RCD. Zwarcie daje prąd z rozwiązania i impedancji, nie stałą liczbę. Zanik N i PE modeluje przerwa odpowiedniej żyły. Usterka może rozpocząć się w zadanym czasie dokumentu; UI sandbox wprowadza ją od t=0.
+Usterki są nakładkami: przerwa, dodatkowa rezystancja zacisku, skończone zwarcie/upływ, osobna izolacja, sklejony wskazany NO lub NC (starsze usterki bez pary zacisków zachowują działanie na NO), otwarta cewka, zablokowany mechanizm, zanik fazy i brak zadziałania RCD. Zwarcie daje prąd z rozwiązania i impedancji, nie stałą liczbę. Zanik N i PE modeluje przerwa odpowiedniej żyły. Usterka może rozpocząć się w zadanym czasie dokumentu; UI sandbox wprowadza ją od t=0.
 
 Zegar używa czasu symulacji, pauzy, kroku 1 s i mnożników. Wyniki workera są oznaczone sesją/rewizją/sekwencją; stare odpowiedzi nie mogą nadpisać nowej instalacji. Deterministyczne akcje dają te same stany i logi. Otwarty projekt zaczyna bez energii, także dla źródeł niezależnych; po pierwszym załączeniu źródło niezależne może pozostać po głównym OFF. Edycja elektryczna zatrzymuje próbę.
 

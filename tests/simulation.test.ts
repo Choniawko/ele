@@ -749,7 +749,7 @@ describe("pomiary i katalog", () => {
     ).toBe("invalid-setup");
   });
   it("publikacja ma bramki, pending SKU nie może wejść do projektu", () => {
-    expect(realProducts).toHaveLength(31);
+    expect(realProducts).toHaveLength(32);
     expect(validateCatalog()).toEqual([]);
     const p = scenarioProject("lamp");
     p.circuit.devices[0].productId = "hager-cda240j";

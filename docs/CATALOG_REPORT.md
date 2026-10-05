@@ -1,6 +1,6 @@
 # Gotowość katalogu
 
-Wygenerowano 2026-10-03T09:18:53.682Z. Profile dydaktyczne nie zwiększają liczby ukończonych SKU.
+Wygenerowano 2026-10-05T14:34:34.624Z. Profile dydaktyczne nie zwiększają liczby ukończonych SKU.
 
 | SKU | Stan | Główna luka |
 |---|---|---|
@@ -13,7 +13,7 @@ Wygenerowano 2026-10-03T09:18:53.682Z. Profile dydaktyczne nie zwiększają licz
 | Hager SBN240 | research-seed | Review exact terminal labels and internal topology against authoritative diagram; Verify physical port positions, view orientation and required mounting dimensions; Define implemented behavior and explicit simulation limitations; Pass catalog consistency, behavior and visual QA checks |
 | Hager ESC225 | research-seed | Review exact terminal labels and internal topology against authoritative diagram; Verify physical port positions, view orientation and required mounting dimensions; Define implemented behavior and explicit simulation limitations; Pass catalog consistency, behavior and visual QA checks |
 | Schneider Electric A9F03116 | research-seed | Review exact terminal labels and internal topology against authoritative diagram; Verify physical port positions, view orientation and required mounting dimensions; Define implemented behavior and explicit simulation limitations; Pass catalog consistency, behavior and visual QA checks |
-| Schneider Electric LC1D09P7 | research-seed | Review exact terminal labels and internal topology against authoritative diagram; Verify physical port positions, view orientation and required mounting dimensions; Define implemented behavior and explicit simulation limitations; Pass catalog consistency, behavior and visual QA checks |
+| Schneider Electric LC1D09P7 | published | profil gotowy, ograniczenia w raporcie JSON |
 | Schneider Electric LC1D09BD | research-seed | Review exact terminal labels and internal topology against authoritative diagram; Verify physical port positions, view orientation and required mounting dimensions; Define implemented behavior and explicit simulation limitations; Pass catalog consistency, behavior and visual QA checks |
 | Schneider Electric LRD12 | research-seed | Review exact terminal labels and internal topology against authoritative diagram; Verify physical port positions, view orientation and required mounting dimensions; Define implemented behavior and explicit simulation limitations; Pass catalog consistency, behavior and visual QA checks |
 | Schneider Electric XB5AA31 | research-seed | Review exact terminal labels and internal topology against authoritative diagram; Verify physical port positions, view orientation and required mounting dimensions; Define implemented behavior and explicit simulation limitations; Pass catalog consistency, behavior and visual QA checks |
@@ -35,3 +35,4 @@ Wygenerowano 2026-10-03T09:18:53.682Z. Profile dydaktyczne nie zwiększają licz
 | Finder 40.52.9.024.0000 | research-seed | Review exact terminal labels and internal topology against authoritative diagram; Verify physical port positions, view orientation and required mounting dimensions; Define implemented behavior and explicit simulation limitations; Pass catalog consistency, behavior and visual QA checks |
 | Finder 95.05 | research-seed | Review exact terminal labels and internal topology against authoritative diagram; Verify physical port positions, view orientation and required mounting dimensions; Define implemented behavior and explicit simulation limitations; Pass catalog consistency, behavior and visual QA checks |
 | Mean Well HDR-60-24 | published | profil gotowy, ograniczenia w raporcie JSON |
+| Schneider Electric XB5AA35 | published | profil gotowy, ograniczenia w raporcie JSON |

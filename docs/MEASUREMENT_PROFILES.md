@@ -14,3 +14,9 @@ Wynik zawiera status, wartość nullable, jednostkę, opis i szczegóły. Brak r
 | Kolejność faz | Różnice fazorów źródła/silnika | Obwód 3-fazowy, wykrywa 123/132 i brak fazy; bez przebiegów chwilowych |
 
 Podstawą wyników są równania i parametry modelu, nie gotowe teksty scenariusza. Zakres ochrony jest dydaktyczny, a nie pełnym modelem konkretnego miernika lub metrologii. Nie określamy automatycznie „spełnia normę”; takie kryterium wymaga osobno wybranego systemu, dokumentu i warunków oceny. Wydruk jest raportem szkoleniowym z rewizją i ograniczeniami.
+
+## Cewki i diagnoza etapu 1
+
+`TopologyDefinition.coil.dcResistanceOhm: null` oznacza, że nie znamy rezystancji DC produktu. Pomiar ciągłości odrzuca każdą drogę, w której prąd testowy przechodzi przez taką sprawną cewkę; nie tylko bezpośrednie A1–A2. Przerwana cewka jest usunięta z sieci i może dać OL. VA z karty nie są przeliczane na rezystancję dla omomierza. Dydaktyczne cewki zachowują swój jawny profil rezystancyjny.
+
+Wynik pomiaru styku zapisuje stan mechanizmu i rodzaj styku z chwili pomiaru. Dzięki temu zaliczenie diagnozy sklejonego NC wymaga spadku napięcia podczas załączenia mechanizmu, zamiast poprawnej ciągłości NC w spoczynku. To dodatkowy kontekst wyniku, nie ujawnienie nakładki usterki. PE jest oceniany oddzielnie od pracy odbiornika.

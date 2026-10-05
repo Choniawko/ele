@@ -37,7 +37,7 @@ Porównanie powierzchni, zrzuty i wyniki weryfikacji są w [opisie UX/UI](docs/U
 
 ## Rzeczywisty stan
 
-To działająca wersja testowa, **nie pełny odbiór v1**. Katalog obejmuje wszystkie 31 rekordów badawczych, ale do edytora dopuszczono 2 rzeczywiste SKU: Hager MBN116E i Mean Well HDR-60-24. 29 pozostaje zablokowanych z opisem braków. Oddzielne 26 elementów dydaktycznych umożliwia sprawdzanie pozostałych zachowań. 13 scenariuszy wykorzystuje te jawne odpowiedniki; nie są ukończonymi ćwiczeniami na wszystkich markowych aparatach.
+To działająca wersja testowa, **nie pełny odbiór v1 ani pełne pokrycie kwalifikacji**. Katalog ma 32 rzeczywiste SKU (31 z oryginalnego seed i nowy XB5AA35): 4 opublikowane — Hager MBN116E, Mean Well HDR-60-24, Schneider LC1D09P7 i XB5AA35 — oraz 28 oczekujących. Osobne 29 profili dydaktycznych ma jawne ograniczenia. Do 13 wcześniejszych scenariuszy dodano trzy zestawy z wzorcem, samodzielnym montażem i trzema ukrytymi wariantami diagnozy. Szczegółowe źródła i zakres: [pokrycie arkuszy](docs/exam-coverage.md) oraz [weryfikacja aparatów](docs/device-verification-stage-one.md).
 
 Silnik jest rezystancyjny, quasi-statyczny. Ochrona, silnik, elektronika i pomiary specjalne mają jawne uproszczenia. Wyniki nie są protokołem odbioru realnej instalacji. Brak implementacji LLM jest zgodny z zakresem; dostępny jest tylko kontrakt przyszłego tutora.
 
@@ -63,3 +63,9 @@ Playwright używa zainstalowanego Chrome (`channel: chrome`). Firefox z użytej 
 Oryginalny pakiet w `Symulator_Elektryczny_Pakiet_Codex` pozostawiono bez zmian. Korygowane dane i źródła są opisane w [polityce danych](docs/DEVICE_DATA_POLICY.md).
 
 Edycja, zapis i import stosują te same limity dokumentu. Odrzucona zmiana pokazuje komunikat i zachowuje poprzedni stan. Przy niepoprawnym istniejącym zapisie można pobrać kopię do odzyskania; oryginał pozostaje w bazie. Procedura i testy regresji: [walidacja projektów](docs/PROJECT_VALIDATION.md).
+
+## Ćwiczenia praktyczne — etap 1
+
+W menu **Ćwiczenia** wybierz tryb nowych zestawów: Wzorzec, Montaż lub Diagnoza, a potem oświetlenie bistabilne, START/STOP albo prawo/lewo. Rozwiń „Wymagania i instrukcja montażu”. W inspektorze przypisz blok pomocniczy do stycznika, wybierz rzeczywiste mostki Y/Δ silnika i osobną blokadę mechaniczną. Montaż otwiera tryb Budowa, a Diagnoza tryb diagnostyczny. Po zmianie połączeń wykonaj pomiary ponownie — ocena wymaga bieżącej rewizji.
+
+W diagnostyce zapisz pomiar właściwego uszkodzonego toru, hipotezę i napraw zaznaczony element. Dla sklejonego NC badaj spadek napięcia na styku podczas załączenia mechanizmu; ciągłość NC w spoczynku sama nie dowodzi usterki. Po naprawie sprawdź PE i działanie. Ukryta przyczyna nie jest eksportowana. Instrukcja odczytu nadruków i ograniczenia rezystancji cewek znajdują się w danych produktu.

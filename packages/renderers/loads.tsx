@@ -335,10 +335,16 @@ export function LoadVisual({
             fontSize={4}
             fill="#536b4a"
           >
-            3~{" "}
+            {s?.windingConnection
+              ? `${s.windingConnection === "star" ? "Y" : s.windingConnection === "delta" ? "Δ" : "Brak mostków"} · `
+              : "3~ "}{" "}
             {on
               ? `${s?.direction === "132" ? "↺" : "↻"} ${s?.direction ?? ""}`
-              : "OFF"}
+              : s?.motorSupply === "voltage-mismatch"
+                ? "Błędne napięcie"
+                : s?.motorSupply === "phase-loss"
+                  ? "Brak faz"
+                  : "OFF"}
           </text>
         </>
       )}

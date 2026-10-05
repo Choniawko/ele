@@ -7,6 +7,7 @@ import {
 } from "@model/index";
 import {
   advance,
+  c,
   compile,
   magnitude,
   equivalentResistance,
@@ -189,6 +190,25 @@ export function measure(
       "Sonda wskazuje nieistniejący zacisk.",
     );
   const voltage = voltageBetween(rt.solution, red, black);
+  const contactDevice =
+    request.red?.deviceId === request.black?.deviceId
+      ? p.circuit.devices.find((d) => d.id === request.red?.deviceId)
+      : undefined;
+  const measuredContact =
+    contactDevice &&
+    catalog[contactDevice.productId].topology.connections.find(
+      (c) =>
+        c.kind === "contact" &&
+        [c.from, c.to].includes(request.red!.terminalId) &&
+        [c.from, c.to].includes(request.black!.terminalId),
+    );
+  const contactDetails =
+    measuredContact && contactDevice
+      ? {
+          mechanism: Number(rt.devices[contactDevice.id]?.mechanism ?? false),
+          contactCondition: measuredContact.condition ?? "",
+        }
+      : undefined;
   if (request.function === "voltage-ac" || request.function === "voltage-dc") {
     if (!voltage)
       return result(
@@ -231,6 +251,7 @@ export function measure(
       Math.abs(value) > 1000 ? null : value,
       "V",
       "Impedancja wejściowa 10 MΩ; AC 50 Hz RMS, DC ze znakiem. Profil idealnego odczytu.",
+      contactDetails,
     );
   }
   if (request.function === "continuity") {
@@ -241,7 +262,37 @@ export function measure(
         "Ω",
         "Pomiar rezystancji wymaga odłączenia wszystkich źródeł, również niezależnego DC.",
       );
+    // VA and coil operating voltage do not determine a DC ohmmeter reading.
+    // Refuse paths containing an uncharacterized intact real coil; an open-coil
+    // fault removes that branch, so its OL result still comes from the network.
     const branches = compile(project, rt, { deenergized: true });
+    const unknown = p.circuit.devices.filter(
+      (d) => catalog[d.productId].topology.coil?.dcResistanceOhm === null,
+    );
+    if (unknown.length) {
+      const test = solveNetwork([
+        ...branches,
+        {
+          id: "measurement/coil-check",
+          from: red,
+          to: black,
+          resistanceOhm: 1,
+          voltage: c(1),
+          kind: "source",
+        },
+      ]);
+      if (
+        unknown.some(
+          (d) => magnitude(test.currents[`${d.id}/coil`] ?? c()) > 1e-10,
+        )
+      )
+        return result(
+          "unsupported",
+          null,
+          "Ω",
+          "Nieznana rezystancja DC cewki w torze pomiarowym. Karta podaje VA, a nie rezystancję dla omomierza.",
+        );
+    }
     const r = equivalentResistance(branches, red, black);
     if (r === null)
       return result(
@@ -256,6 +307,7 @@ export function measure(
       r > 1e6 ? null : r + leads,
       "Ω",
       "Źródło testowe 1 V; rozwiązanie całej sieci uwzględnia równoległe drogi. Rezystancja przewodów pomiarowych: 0,2 Ω przed kompensacją.",
+      contactDetails,
     );
   }
   if (request.function === "insulation") {

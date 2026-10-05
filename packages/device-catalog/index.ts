@@ -1,3 +1,4 @@
+import { installStageOne } from "./stage-one";
 import seed from "../../Symulator_Elektryczny_Pakiet_Codex/catalog-research-seed.json";
 import { z } from "zod";
 import {
@@ -19,6 +20,8 @@ export type BehaviorId =
   | "crossover"
   | "push-no"
   | "push-nc"
+  | "push-multi"
+  | "auxiliary"
   | "contactor"
   | "relay"
   | "bistable"
@@ -32,6 +35,9 @@ export type BehaviorId =
   | "power-supply";
 export type VisualId =
   | "hager-mcb"
+  | "tesys-contactor"
+  | "harmony-button"
+  | "auxiliary"
   | "protection"
   | "switch"
   | "button"
@@ -96,7 +102,13 @@ export interface TopologyDefinition {
   revision: string;
   terminals: Terminal[];
   connections: InternalConnection[];
-  coil?: { plus: string; minus: string; voltageV: number; kind: "AC" | "DC" };
+  coil?: {
+    plus: string;
+    minus: string;
+    voltageV: number;
+    kind: "AC" | "DC";
+    dcResistanceOhm?: number | null;
+  };
   supply?: {
     plus: string;
     minus: string;
@@ -1014,6 +1026,7 @@ for (const [id, top, behaviorId, url, note] of [
   );
 }
 // Retain exact seed and reviewed data separately. No pending SKU may enter a circuit.
+installStageOne(realProducts, teachingProducts, topologies);
 export const products = [...realProducts, ...teachingProducts];
 export const catalog = Object.fromEntries(products.map((p) => [p.id, p]));
 export const availableProducts = products.filter((p) => p.published);
@@ -1102,6 +1115,31 @@ export function assertProjectCatalog(project: ProjectDocument): void {
   for (const coupling of project.circuit.mechanicalCouplings)
     if (coupling.deviceIds.some((id) => !seen.has(id)))
       throw new Error("Sprzężenie odnosi się do nieistniejącego aparatu.");
+  for (const d of project.circuit.devices.filter(
+    (d) => catalog[d.productId].behaviorId === "auxiliary",
+  )) {
+    const groups = project.circuit.mechanicalCouplings.filter(
+      (c) => c.kind === "assembly" && c.deviceIds.includes(d.id),
+    );
+    if (
+      groups.length > 1 ||
+      groups.some(
+        (c) =>
+          c.deviceIds.filter((id) => {
+            const other = project.circuit.devices.find((x) => x.id === id)!;
+            return (
+              !!catalog[other.productId].topology.coil ||
+              ["push-no", "push-nc", "push-multi"].includes(
+                catalog[other.productId].behaviorId,
+              )
+            );
+          }).length !== 1,
+      )
+    )
+      throw new Error(
+        `${d.designation}: blok pomocniczy wymaga jednego mechanizmu nadrzędnego.`,
+      );
+  }
   for (const supply of project.circuit.supplySystems)
     if (
       !project.circuit.devices.some(

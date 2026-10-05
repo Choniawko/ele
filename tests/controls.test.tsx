@@ -85,3 +85,36 @@ it("przycisk START jest chwilowy również z klawiatury i po utracie fokusu", ()
       .mechanism,
   ).toBe(true);
 });
+it("XB5AA35: jeden przycisk steruje NO/NC i wraca po puszczeniu klawisza", () => {
+  const p = scenarioProject("exam-start-stop"),
+    d = p.circuit.devices.find((d) => d.designation === "S1")!;
+  let rt = advance(p, initialRuntime(p), { type: "power", on: true });
+  const screen = render(
+    <svg>
+      <DevicePhysical
+        product={catalog[d.productId]}
+        device={d}
+        state={rt.devices[d.id]}
+        onOperate={(state) => {
+          rt = advance(p, rt, { type: "operate", deviceId: d.id, state });
+        }}
+      />
+    </svg>,
+  );
+  const button = screen.getByRole("button", { name: "Przytrzymaj S1" });
+  fireEvent.keyDown(button, { key: "Enter" });
+  expect(rt.devices[d.id].manual).toBe(true);
+  expect(
+    rt.devices[p.circuit.devices.find((d) => d.designation === "K1")!.id]
+      .mechanism,
+  ).toBe(true);
+  fireEvent.keyUp(button, { key: "Enter" });
+  expect(rt.devices[d.id].manual).toBe(false);
+  expect(
+    rt.devices[p.circuit.devices.find((d) => d.designation === "K1")!.id]
+      .mechanism,
+  ).toBe(true);
+  fireEvent.keyDown(button, { key: " " });
+  fireEvent.blur(button);
+  expect(rt.devices[d.id].manual).toBe(false);
+});

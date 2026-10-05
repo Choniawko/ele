@@ -65,15 +65,17 @@ function Physical({
     p.behaviorId === "motor" ||
     p.behaviorId === "power-supply"
       ? !!s?.powered
-      : p.topology.coil || p.topology.supply
+      : p.topology.coil || p.topology.supply || p.behaviorId === "auxiliary"
         ? !!s?.mechanism
         : !!(s?.manual ?? d.settings.position) && !s?.tripped;
   const bodyColor =
-    p.visualId === "contactor"
-      ? "#dce0dc"
-      : p.visualId === "source"
-        ? "#e6ede7"
-        : "#f4f3ed";
+    p.visualId === "tesys-contactor"
+      ? "#2d3430"
+      : p.visualId === "contactor"
+        ? "#dce0dc"
+        : p.visualId === "source"
+          ? "#e6ede7"
+          : "#f4f3ed";
   const body = (
     <>
       <rect
@@ -189,6 +191,8 @@ function Physical({
       data-device={d.designation}
       data-powered={s?.powered ? "true" : "false"}
       data-mechanism={s?.mechanism ? "true" : "false"}
+      data-direction={s?.direction}
+      data-winding-connection={s?.windingConnection}
     >
       {selected && (
         <rect
@@ -325,7 +329,7 @@ function Physical({
       )}
       {p.visualId === "protection" && (
         <>
-          {[12, w - 12].map((x, i) => (
+          {(w < 25 ? [w / 2] : [12, w - 12]).map((x, i) => (
             <g key={i}>
               <Screw x={x} y={9} />
               <Screw x={x} y={h - 9} />
@@ -345,7 +349,7 @@ function Physical({
           </text>
           <text x={5} y={40} fontSize={4} fill="#58665e">
             {p.behaviorId === "mcb"
-              ? "C16"
+              ? `${p.topology.poles?.length === 3 ? "C" : "B"}${d.settings.ratedCurrentA ?? p.defaults.ratedCurrentA ?? 16}`
               : p.behaviorId === "switch"
                 ? "2P"
                 : p.behaviorId === "rcbo"
@@ -568,6 +572,145 @@ function Physical({
             fill="#72806a"
           >
             NAKŁADKA ZACISKOWA
+          </text>
+        </>
+      )}
+      {p.visualId === "harmony-button" && (
+        <>
+          <rect
+            x={2}
+            y={2}
+            width={w - 4}
+            height={h - 4}
+            rx={2}
+            fill="#343b38"
+          />
+          <circle
+            cx={15}
+            cy={18}
+            r={13}
+            fill="#212725"
+            stroke="#758078"
+            strokeWidth={0.7}
+          />
+          <g {...buttonProps} className="device-control">
+            <circle
+              cx={15}
+              cy={s?.manual ? 19 : 18}
+              r={11}
+              fill={s?.manual ? "#28644a" : "#45876b"}
+              stroke="#183f2f"
+            />
+            <path
+              d="M7 12q8-6 16 0"
+              stroke="#a1c8af"
+              strokeWidth={0.7}
+              fill="none"
+            />
+          </g>
+          <text x={15} y={36} textAnchor="middle" fontSize={2.5} fill="#e1e7dd">
+            TYŁ · nadruk / ISO
+          </text>
+        </>
+      )}
+      {p.visualId === "tesys-contactor" && (
+        <>
+          <rect x={2} y={2} width={w - 4} height={14} fill="#252c29" />
+          <rect x={2} y={h - 16} width={w - 4} height={14} fill="#252c29" />
+          <rect x={2} y={29} width={w - 4} height={9} rx={1} fill="#087d3c" />
+          <text x={4} y={35} fontSize={3.7} fill="#eef7e8">
+            TeSys
+          </text>
+          <text
+            x={29}
+            y={33.5}
+            textAnchor="middle"
+            fontSize={2.7}
+            fill="#eef7e8"
+          >
+            Schneider
+          </text>
+          <text
+            x={29}
+            y={36.5}
+            textAnchor="middle"
+            fontSize={2.2}
+            fill="#eef7e8"
+          >
+            Electric
+          </text>
+          <text x={2} y={26} fontSize={2.4} fill="#d7e0d5">
+            LC1D09
+          </text>
+          <rect
+            x={3}
+            y={39}
+            width={w - 6}
+            height={18}
+            rx={1.5}
+            fill="#1c221f"
+            stroke="#48534a"
+            strokeWidth={0.5}
+          />
+          <rect
+            x={6}
+            y={44}
+            width={10}
+            height={6}
+            fill={on ? "#74927d" : "#35453c"}
+          />
+          <path
+            d={on ? "M7 47h8" : "M7 49l8-4"}
+            stroke="#b9cdbb"
+            strokeWidth={1}
+          />
+          <text x={29} y={47} textAnchor="middle" fontSize={2.6} fill="#c4d6c5">
+            230 V~
+          </text>
+          <text x={29} y={52} textAnchor="middle" fontSize={2.4} fill="#aebfaf">
+            {s?.mechanicallyBlocked ? "BLOKADA" : "9 A · AC-3"}
+          </text>
+          {p.topology.terminals
+            .filter((t) => t.y === 0 || t.y === h)
+            .map((t) => (
+              <Screw key={t.id} x={t.x} y={t.y === 0 ? 7 : h - 7} />
+            ))}
+        </>
+      )}
+      {p.visualId === "auxiliary" && (
+        <>
+          <rect
+            x={3}
+            y={10}
+            width={w - 6}
+            height={h - 20}
+            rx={1}
+            fill="#d6ded3"
+            stroke="#a3b09f"
+            strokeWidth={0.6}
+          />
+          <text
+            x={w / 2}
+            y={21}
+            fontSize={3.1}
+            textAnchor="middle"
+            fill="#4b624e"
+          >
+            BLOK 1NO + 1NC
+          </text>
+          <path
+            d={on ? "M9 27v13 M27 27l4 13" : "M9 27l4 13 M27 27v13"}
+            stroke="#536b54"
+            strokeWidth={1}
+          />
+          <text
+            x={w / 2}
+            y={46}
+            fontSize={2.5}
+            textAnchor="middle"
+            fill="#617b5c"
+          >
+            MECHANIZM NADRZĘDNY
           </text>
         </>
       )}
@@ -953,7 +1096,11 @@ function Physical({
                 textAnchor="middle"
                 fontSize={3.8}
                 fontWeight={500}
-                fill="#415440"
+                fill={
+                  p.visualId === "tesys-contactor" && t.y > 0 && t.y < h
+                    ? "#e1e9dc"
+                    : "#415440"
+                }
               >
                 {t.label}
               </text>

@@ -1,3 +1,6 @@
+import { motorConnection } from "@simulation/motor";
+import { mechanismOwner } from "@simulation/mechanisms";
+import type { ExerciseVariant } from "@training/index";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import {
   Activity,
@@ -169,6 +172,8 @@ const CatalogPanel = memo(function CatalogPanel({
         "staircase",
         "push-no",
         "push-nc",
+        "push-multi",
+        "auxiliary",
         "changeover",
         "crossover",
       ].includes(p.behaviorId)) ||
@@ -523,7 +528,8 @@ function Inspector() {
     ids = useApp((s) => s.selection),
     mode = useApp((s) => s.mode),
     [tab, setTab] = useState("terminals"),
-    [fault, setFault] = useState<FaultKind>("open-wire");
+    [fault, setFault] = useState<FaultKind>("open-wire"),
+    [faultContact, setFaultContact] = useState("");
   const d = p.circuit.devices.find((d) => d.id === ids[0]),
     w = p.circuit.conductors.find((w) => w.id === ids[0]),
     product = d ? catalog[d.productId] : null;
@@ -581,6 +587,23 @@ function Inspector() {
         { deviceId: d.id, terminalId: "L" },
         { deviceId: d.id, terminalId: fault === "short-circuit" ? "N" : "PE" },
       );
+    } else if (fault === "welded-contact" && d && product) {
+      const cn = product.topology.connections.find(
+        (c) =>
+          c.kind === "contact" &&
+          c.id ===
+            (faultContact ||
+              product.topology.connections.find((c) => c.kind === "contact")
+                ?.id),
+      );
+      if (cn)
+        state.addFault(
+          fault,
+          d.id,
+          undefined,
+          { deviceId: d.id, terminalId: cn.from },
+          { deviceId: d.id, terminalId: cn.to },
+        );
     } else
       state.addFault(
         fault,
@@ -687,11 +710,13 @@ function Inspector() {
             />
             {rt.devices[d.id]?.tripped
               ? "WYZWOLONY"
-              : rt.devices[d.id]?.mechanism ||
-                  rt.devices[d.id]?.powered ||
-                  rt.devices[d.id]?.manual
-                ? "ON / AKTYWNY"
-                : "OFF / SPOCZYNEK"}
+              : rt.devices[d.id]?.mechanicallyBlocked
+                ? "CEWKA ON · BLOKADA MECHANICZNA"
+                : rt.devices[d.id]?.mechanism ||
+                    rt.devices[d.id]?.powered ||
+                    rt.devices[d.id]?.manual
+                  ? "ON / AKTYWNY"
+                  : "OFF / SPOCZYNEK"}
             <small>
               {rt.devices[d.id]?.voltageV !== null &&
               rt.devices[d.id]?.voltageV !== undefined
@@ -699,6 +724,113 @@ function Inspector() {
                 : ""}
             </small>
           </div>
+          {product.behaviorId === "motor" &&
+            product.topology.terminals.some((t) => t.id === "U1") && (
+              <div className="form-field">
+                <label htmlFor="motor-links">Mostki zaciskowe silnika</label>
+                <select
+                  id="motor-links"
+                  value={
+                    motorConnection(p, d) === "invalid"
+                      ? "none"
+                      : motorConnection(p, d)
+                  }
+                  onChange={(e) =>
+                    useApp
+                      .getState()
+                      .setMotorLinks(
+                        d.id,
+                        e.target.value as "star" | "delta" | "none",
+                      )
+                  }
+                >
+                  <option value="none">
+                    Bez mostków / połączenie niepoprawne
+                  </option>
+                  <option value="star">Gwiazda Y — U2, V2, W2</option>
+                  <option value="delta">Trójkąt Δ — trzy pary</option>
+                </select>
+                <p className="small-help">
+                  To rzeczywiste mostki modelu obwodu. Narzędzie wymienia mostki
+                  tego silnika; ręcznie dodane przewody pozostają. Uzwojenie 230
+                  V: Y dla sieci 400 V, Δ dla 230 V międzyfazowo.
+                </p>
+              </div>
+            )}
+          {product.behaviorId === "auxiliary" && (
+            <div className="form-field">
+              <label htmlFor="aux-parent">Mechanizm nadrzędny</label>
+              <select
+                id="aux-parent"
+                value={mechanismOwner(p, d.id) ?? ""}
+                onChange={(e) =>
+                  useApp
+                    .getState()
+                    .attachAuxiliary(d.id, e.target.value || undefined)
+                }
+              >
+                <option value="">Nieprzypisany blok</option>
+                {p.circuit.devices
+                  .filter(
+                    (other) =>
+                      other.id !== d.id &&
+                      (catalog[other.productId].topology.coil ||
+                        ["push-no", "push-nc", "push-multi"].includes(
+                          catalog[other.productId].behaviorId,
+                        )),
+                  )
+                  .map((other) => (
+                    <option key={other.id} value={other.id}>
+                      {other.designation}
+                    </option>
+                  ))}
+              </select>
+              <p className="small-help">
+                NO i NC podążają za wspólnym mechanizmem. Samo okablowanie nie
+                przypisuje bloku.
+              </p>
+            </div>
+          )}
+          {product.behaviorId === "contactor" && (
+            <div className="form-field">
+              <label htmlFor="mechanical-interlock">
+                Blokada mechaniczna z
+              </label>
+              <select
+                id="mechanical-interlock"
+                value={
+                  p.circuit.mechanicalCouplings
+                    .find(
+                      (c) =>
+                        c.kind === "interlock" && c.deviceIds.includes(d.id),
+                    )
+                    ?.deviceIds.find((id) => id !== d.id) ?? ""
+                }
+                onChange={(e) =>
+                  useApp
+                    .getState()
+                    .setMechanicalInterlock(d.id, e.target.value || undefined)
+                }
+              >
+                <option value="">Bez blokady mechanicznej</option>
+                {p.circuit.devices
+                  .filter(
+                    (other) =>
+                      other.id !== d.id &&
+                      catalog[other.productId].behaviorId === "contactor",
+                  )
+                  .map((other) => (
+                    <option key={other.id} value={other.id}>
+                      {other.designation}
+                    </option>
+                  ))}
+              </select>
+              <p className="small-help">
+                Osobne sprzężenie fizyczne. Nadal połącz NC przeciwnego
+                stycznika w torze cewki.
+              </p>
+            </div>
+          )}
           <div className="inspector-tabs">
             {[
               ["terminals", "Zaciski"],
@@ -1136,6 +1268,30 @@ function Inspector() {
                         </option>
                       ))}
                   </select>
+                  {fault === "welded-contact" && product && (
+                    <select
+                      aria-label="Styk uszkodzenia"
+                      value={
+                        product.topology.connections.some(
+                          (c) => c.id === faultContact,
+                        )
+                          ? faultContact
+                          : product.topology.connections.find(
+                              (c) => c.kind === "contact",
+                            )?.id
+                      }
+                      onChange={(e) => setFaultContact(e.target.value)}
+                    >
+                      {product.topology.connections
+                        .filter((c) => c.kind === "contact")
+                        .map((c) => (
+                          <option value={c.id} key={c.id}>
+                            {c.from}–{c.to} (
+                            {c.condition?.includes("inverse") ? "NC" : "NO"})
+                          </option>
+                        ))}
+                    </select>
+                  )}
                   <button className="secondary-button full" onClick={addFault}>
                     <Plus size={14} />
                     Wprowadź usterkę
@@ -1300,7 +1456,12 @@ function LogPanel() {
                 Sprawdź układ
               </button>
               {checks.map((c) => (
-                <div className="check-line" key={c.id}>
+                <div
+                  className="check-line"
+                  key={c.id}
+                  data-check={c.id}
+                  data-passed={String(c.passed)}
+                >
                   {c.passed ? (
                     <CheckCircle2 size={16} />
                   ) : (
@@ -1380,6 +1541,10 @@ function App() {
     wireLength = useApp((s) => s.length),
     wireStart = useApp((s) => s.wireStart);
   const [modal, setModal] = useState<Modal>(null),
+    [exerciseVariant, setExerciseVariant] = useState<ExerciseVariant | null>(
+      null,
+    ),
+    [diagnosticCase, setDiagnosticCase] = useState(0),
     [info, setInfo] = useState<Product | null>(null),
     [hideCatalog, setHideCatalog] = useState(() =>
       readLayoutPreference("hideCatalog", window.innerWidth < 1280),
@@ -1762,7 +1927,15 @@ function App() {
                 <strong>{scenario?.description}</strong>
                 <small>{scenario?.fidelity}</small>
               </div>
-              <span>{passed}/4</span>
+              <span>
+                {passed}/
+                {useApp.getState().checks.length ||
+                  (scenario?.practice
+                    ? scenario.id === "exam-reversing"
+                      ? 8
+                      : 7
+                    : 4)}
+              </span>
               <button onClick={() => useApp.getState().runChecks()}>
                 Sprawdź
               </button>
@@ -1773,6 +1946,22 @@ function App() {
                 <Lightbulb size={16} />
               </button>
             </div>
+          )}
+          {project.training && scenario?.practice && (
+            <details className="practice-instructions">
+              <summary>Wymagania i instrukcja montażu</summary>
+              <ol>
+                {scenario.goals.map((g) => (
+                  <li key={g}>{g}</li>
+                ))}
+              </ol>
+              <p>
+                W diagnozie zapisz pomiar uszkodzonego elementu, hipotezę i
+                napraw zaznaczony element. Następnie ponów pomiary PE oraz próbę
+                działania. Model nie ocenia jakości opisu diagnozy ani wykonania
+                fizycznego.
+              </p>
+            </details>
           )}
           {project.training && project.training.hintLevel > 0 && (
             <div className="hint-strip">
@@ -2081,13 +2270,57 @@ function App() {
               ? "Sprawdź połączenia, włącz zasilanie i eksperymentuj z działającym układem."
               : "Ćwicz montaż, uruchamianie i diagnozowanie. Ocena obejmuje funkcję obwodu, tor ochronny, oznaczenia i dowód pomiarowy."}
           </p>
+          <div className="form-field">
+            <label htmlFor="practice-variant">
+              Nowe zestawy ELE.02 / ELE.05 — tryb
+            </label>
+            <select
+              id="practice-variant"
+              value={
+                exerciseVariant ??
+                (modal === "training" ? "assembly" : "reference")
+              }
+              onChange={(e) =>
+                setExerciseVariant(e.target.value as ExerciseVariant)
+              }
+            >
+              <option value="reference">Wzorzec — poprawnie zmontowany</option>
+              <option value="assembly">Montaż — samodzielne wykonanie</option>
+              <option value="diagnosis">Diagnoza — ukryta usterka</option>
+            </select>
+            {exerciseVariant === "diagnosis" && (
+              <select
+                aria-label="Wariant diagnostyczny"
+                value={diagnosticCase}
+                onChange={(e) => setDiagnosticCase(Number(e.target.value))}
+              >
+                {[0, 1, 2].map((i) => (
+                  <option value={i} key={i}>
+                    Wariant {i + 1}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
           <div className="scenario-grid">
             {scenarios.map((s) => (
               <button
                 className="scenario-card"
                 key={s.id}
+                data-scenario={s.id}
                 onClick={() => {
-                  useApp.getState().loadScenario(s.id, modal === "training");
+                  const variant = s.practice
+                    ? (exerciseVariant ??
+                      (modal === "training" ? "assembly" : "reference"))
+                    : "reference";
+                  useApp
+                    .getState()
+                    .loadScenario(
+                      s.id,
+                      modal === "training" || variant !== "reference",
+                      variant,
+                      diagnosticCase,
+                    );
                   setModal(null);
                 }}
               >
