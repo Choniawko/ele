@@ -1,3 +1,9 @@
+import {
+  enclosureFor,
+  physicalTerminalAccessible,
+  translateEnclosure,
+} from "@model/physical";
+import type { PhysicalEnclosure, PhysicalTrunk } from "@model/index";
 import { diagnosticWitness } from "@training/assessment";
 import type { ExerciseVariant } from "@training/index";
 import { create } from "zustand";
@@ -106,6 +112,20 @@ interface AppState {
     view?: "physical" | "schematic",
   ) => void;
   addRail: () => void;
+  addEnclosure: (value: Omit<PhysicalEnclosure, "id" | "deviceIds">) => void;
+  moveEnclosure: (id: string, position: Point) => void;
+  setEnclosureMembers: (
+    id: string,
+    deviceIds: string[],
+    insert: boolean,
+  ) => void;
+  toggleEnclosure: (id: string) => void;
+  deleteEnclosure: (id: string) => void;
+  addTrunk: (value: Omit<PhysicalTrunk, "id" | "conductorIds">) => void;
+  assignTrunk: (id: string, conductorIds: string[]) => void;
+  toggleTrunk: (id: string) => void;
+  deleteTrunk: (id: string) => void;
+  setPhysicalPresentation: (value: "external" | "connections") => void;
   moveSelectionToRail: (railId: string) => void;
   updateRoute: (
     id: string,
@@ -131,7 +151,7 @@ interface AppState {
       marking: string;
     }>,
   ) => void;
-  terminalClick: (ref: TerminalRef) => void;
+  terminalClick: (ref: TerminalRef, view?: "physical" | "schematic") => void;
   cancelWire: () => void;
   addWaypoint: (point: Point) => void;
   popWaypoint: () => void;
@@ -469,6 +489,168 @@ export const useApp = create<AppState>((set, get) => ({
   activeProbe: "red",
   checks: [],
   setView: (view) => set({ view, wireStart: null, waypoints: [] }),
+  addEnclosure: (value) => {
+    transaction(
+      "Dodaj obudowę",
+      (p) => {
+        (p.physical.enclosures ??= []).push({
+          ...value,
+          id: newId("case"),
+          deviceIds: [],
+        });
+      },
+      false,
+    );
+  },
+  moveEnclosure: (id, point) => {
+    transaction(
+      "Przesuń obudowę z zawartością",
+      (p) => translateEnclosure(p, id, point),
+      false,
+    );
+  },
+  setEnclosureMembers: (id, deviceIds, insert) => {
+    transaction(
+      insert ? "Włóż do obudowy" : "Wyjmij z obudowy",
+      (p) => {
+        const e = p.physical.enclosures?.find((e) => e.id === id);
+        if (!e) throw new Error("Wybierz istniejącą obudowę.");
+        for (const deviceId of deviceIds) {
+          const d = p.circuit.devices.find((d) => d.id === deviceId);
+          if (!d) continue;
+          for (const other of p.physical.enclosures ?? [])
+            other.deviceIds = other.deviceIds.filter((id) => id !== deviceId);
+          if (insert) {
+            const size = catalog[d.productId].dimensions.value!;
+            let position: Point | null = null;
+            for (
+              let y = e.position.y + 30;
+              y + size.height * 2.2 < e.position.y + e.height - 10 && !position;
+              y += 10
+            )
+              for (
+                let x = e.position.x + 10;
+                x + size.width * 2.2 < e.position.x + e.width - 10;
+                x += 10
+              )
+                if (!mountingCollision(p, d.productId, { x, y }, [deviceId])) {
+                  position = { x, y };
+                  break;
+                }
+            if (!position)
+              throw new Error(
+                `${d.designation}: brak wolnego miejsca w ${e.name}.`,
+              );
+            p.physical.devices[deviceId] = position;
+            e.deviceIds.push(deviceId);
+            e.closed = false;
+          }
+        }
+      },
+      false,
+    );
+  },
+  toggleEnclosure: (id) => {
+    if (
+      transaction(
+        "Zmień pokrywę obudowy",
+        (p) => {
+          const e = p.physical.enclosures?.find((e) => e.id === id);
+          if (e) e.closed = !e.closed;
+        },
+        false,
+      )
+    )
+      set({ wireStart: null, waypoints: [] });
+  },
+  deleteEnclosure: (id) => {
+    transaction(
+      "Usuń samą obudowę",
+      (p) => {
+        p.physical.enclosures = p.physical.enclosures?.filter(
+          (e) => e.id !== id,
+        );
+      },
+      false,
+    );
+  },
+  addTrunk: (value) => {
+    transaction(
+      "Dodaj korytko",
+      (p) => {
+        (p.physical.trunking ??= []).push({
+          ...value,
+          id: newId("trunk"),
+          conductorIds: [],
+        });
+      },
+      false,
+    );
+  },
+  assignTrunk: (id, conductorIds) => {
+    transaction(
+      "Przypisz żyły do korytka",
+      (p) => {
+        const t = p.physical.trunking?.find((t) => t.id === id);
+        if (!t) throw new Error("Wybierz istniejące korytko.");
+        for (const id of conductorIds) {
+          const w = p.circuit.conductors.find((w) => w.id === id);
+          if (!w) continue;
+          if (t.conductorIds.includes(id)) continue;
+          t.conductorIds.push(id);
+          const from = p.physical.devices[w.from.deviceId],
+            first = t.points[0],
+            last = t.points.at(-1)!;
+          const points =
+            Math.hypot(from.x - first.x, from.y - first.y) <=
+            Math.hypot(from.x - last.x, from.y - last.y)
+              ? t.points
+              : [...t.points].reverse();
+          // Append a segment to the existing route; geometry never changes electricalLengthM.
+          p.physical.routes[id] = [
+            ...(p.physical.routes[id] ?? []),
+            ...points.map((p) => ({ ...p })),
+          ];
+        }
+      },
+      false,
+    );
+  },
+  toggleTrunk: (id) => {
+    transaction(
+      "Zmień pokrywę korytka",
+      (p) => {
+        const t = p.physical.trunking?.find((t) => t.id === id);
+        if (t) t.closed = !t.closed;
+      },
+      false,
+    );
+  },
+  deleteTrunk: (id) => {
+    transaction(
+      "Usuń korytko",
+      (p) => {
+        p.physical.trunking = p.physical.trunking?.filter((t) => t.id !== id);
+      },
+      false,
+    );
+  },
+  setPhysicalPresentation: (value) => {
+    if (
+      transaction(
+        "Zmień prezentację tablicy",
+        (p) => {
+          p.physical.presentation = value;
+          for (const e of p.physical.enclosures ?? [])
+            e.closed = value === "external";
+          for (const t of p.physical.trunking ?? [])
+            t.closed = value === "external";
+        },
+        false,
+      )
+    )
+      set({ wireStart: null, waypoints: [] });
+  },
   setMode: (mode) => {
     if (mode === "build" && get().runtime.energized) get().power(false);
     set({ mode, wireStart: null, waypoints: [], adding: null });
@@ -615,7 +797,9 @@ export const useApp = create<AppState>((set, get) => ({
       if (!d) continue;
       nextPositions[id] =
         view === "physical"
-          ? snapMounting(s.project, d.productId, pos)
+          ? enclosureFor(s.project, id)
+            ? { x: Math.round(pos.x / 10) * 10, y: Math.round(pos.y / 10) * 10 }
+            : snapMounting(s.project, d.productId, pos)
           : { x: Math.round(pos.x / 10) * 10, y: Math.round(pos.y / 10) * 10 };
     }
     if (view === "physical") {
@@ -679,8 +863,18 @@ export const useApp = create<AppState>((set, get) => ({
       const w = p.circuit.conductors.find((w) => w.id === id);
       if (w) Object.assign(w, values);
     }),
-  terminalClick: (ref) => {
+  terminalClick: (ref, view) => {
     const s = get();
+    if (
+      (view ?? (s.view === "schematic" ? "schematic" : "physical")) ===
+        "physical" &&
+      !physicalTerminalAccessible(s.project, ref.deviceId)
+    ) {
+      set({
+        notice: "Otwórz pokrywę obudowy, aby podłączyć przewód lub sondę.",
+      });
+      return;
+    }
     const clicked = connectionTerminal(s.project, ref);
     if (!clicked) {
       set({
@@ -799,44 +993,68 @@ export const useApp = create<AppState>((set, get) => ({
     });
   },
   deleteSelection: () => {
-    const ids = get().selection;
-    const accepted = transaction("Usuń zaznaczenie", (p) => {
-      p.circuit.devices = p.circuit.devices.filter((d) => !ids.includes(d.id));
-      const removed = p.circuit.conductors
-        .filter(
+    const s = get(),
+      ids = s.selection;
+    const electrical = ids.some((id) =>
+      [
+        ...s.project.circuit.devices,
+        ...s.project.circuit.conductors,
+        ...s.project.circuit.bridges,
+      ].some((element) => element.id === id),
+    );
+    const accepted = transaction(
+      "Usuń zaznaczenie",
+      (p) => {
+        p.circuit.devices = p.circuit.devices.filter(
+          (d) => !ids.includes(d.id),
+        );
+        const removed = p.circuit.conductors
+          .filter(
+            (w) =>
+              ids.includes(w.id) ||
+              ids.includes(w.from.deviceId) ||
+              ids.includes(w.to.deviceId),
+          )
+          .map((w) => w.id);
+        p.circuit.conductors = p.circuit.conductors.filter(
+          (w) => !removed.includes(w.id),
+        );
+        p.circuit.bridges = p.circuit.bridges.filter(
           (w) =>
-            ids.includes(w.id) ||
-            ids.includes(w.from.deviceId) ||
-            ids.includes(w.to.deviceId),
-        )
-        .map((w) => w.id);
-      p.circuit.conductors = p.circuit.conductors.filter(
-        (w) => !removed.includes(w.id),
-      );
-      p.circuit.bridges = p.circuit.bridges.filter(
-        (w) =>
-          !ids.includes(w.id) &&
-          !ids.includes(w.from.deviceId) &&
-          !ids.includes(w.to.deviceId),
-      );
-      p.circuit.supplySystems = p.circuit.supplySystems.filter(
-        (s) => !ids.includes(s.sourceId),
-      );
-      p.circuit.mechanicalCouplings = p.circuit.mechanicalCouplings.filter(
-        (c) => c.deviceIds.every((id) => !ids.includes(id)),
-      );
-      p.faults = p.faults.filter(
-        (f) =>
-          !ids.includes(f.targetId) &&
-          !removed.includes(f.targetId) &&
-          (!f.from || !ids.includes(f.from.deviceId)) &&
-          (!f.to || !ids.includes(f.to.deviceId)),
-      );
-      for (const l of [p.physical, p.schematic]) {
-        for (const id of ids) delete l.devices[id];
-        for (const id of removed) delete l.routes[id];
-      }
-    });
+            !ids.includes(w.id) &&
+            !ids.includes(w.from.deviceId) &&
+            !ids.includes(w.to.deviceId),
+        );
+        p.circuit.supplySystems = p.circuit.supplySystems.filter(
+          (s) => !ids.includes(s.sourceId),
+        );
+        p.circuit.mechanicalCouplings = p.circuit.mechanicalCouplings.filter(
+          (c) => c.deviceIds.every((id) => !ids.includes(id)),
+        );
+        p.faults = p.faults.filter(
+          (f) =>
+            !ids.includes(f.targetId) &&
+            !removed.includes(f.targetId) &&
+            (!f.from || !ids.includes(f.from.deviceId)) &&
+            (!f.to || !ids.includes(f.to.deviceId)),
+        );
+        p.physical.enclosures = p.physical.enclosures?.filter(
+          (e) => !ids.includes(e.id),
+        );
+        p.physical.trunking = p.physical.trunking?.filter(
+          (t) => !ids.includes(t.id),
+        );
+        for (const e of p.physical.enclosures ?? [])
+          e.deviceIds = e.deviceIds.filter((id) => !ids.includes(id));
+        for (const t of p.physical.trunking ?? [])
+          t.conductorIds = t.conductorIds.filter((id) => !removed.includes(id));
+        for (const l of [p.physical, p.schematic]) {
+          for (const id of ids) delete l.devices[id];
+          for (const id of removed) delete l.routes[id];
+        }
+      },
+      electrical,
+    );
     if (accepted) set({ selection: [], wireStart: null, waypoints: [] });
   },
   duplicateSelection: () => {

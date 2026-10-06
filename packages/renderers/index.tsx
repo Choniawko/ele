@@ -219,7 +219,7 @@ function Physical({
           {d.designation}
         </text>
       )}
-      {body}
+      {p.visualId !== "bulkhead" && body}
       {p.visualId === "hager-mcb" && (
         <>
           <rect x={1} y={6} width={w - 2} height={16} fill="#e8e9e4" />
@@ -966,6 +966,157 @@ function Physical({
           </text>
         </>
       )}
+      {p.visualId === "bulkhead" && (
+        <g data-load-state={on ? "working" : "idle"}>
+          {on && (
+            <ellipse
+              cx={w / 2}
+              cy={h / 2 - 5}
+              rx={w / 2 + 5}
+              ry={h / 2}
+              fill="#ffe878"
+              opacity={0.18}
+            />
+          )}
+          <rect
+            data-device-body={d.designation}
+            x={1}
+            y={1}
+            width={w - 2}
+            height={h - 7}
+            rx={w / 2 - 1}
+            fill="#b5bbb0"
+            stroke="#8b9688"
+            strokeWidth={1}
+          />
+          <rect
+            x={5}
+            y={5}
+            width={w - 10}
+            height={h - 15}
+            rx={w / 2 - 5}
+            fill={on ? "#fff2ad" : "#d9dfd3"}
+            stroke="#f3f5e9"
+            strokeWidth={1}
+          />
+          <path
+            d={`M${w / 2} 9v${h - 25}`}
+            stroke={on ? "#ffd865" : "#b4bdae"}
+            strokeWidth={9}
+            strokeLinecap="round"
+          />
+          {[17, 31, 45, 59, 73].map((y) => (
+            <path
+              key={y}
+              d={`M5 ${y}h${w - 10}`}
+              stroke="#929e8a"
+              strokeWidth={1.7}
+            />
+          ))}
+          <path
+            d={`M14 7v${h - 19}M${w - 14} 7v${h - 19}`}
+            stroke="#8b9884"
+            strokeWidth={1.5}
+          />
+          <text
+            x={w / 2}
+            y={h - 9}
+            textAnchor="middle"
+            fontSize={3.2}
+            fill="#52634c"
+          >
+            {d.settings.powerW ?? 40} W · PE
+          </text>
+        </g>
+      )}
+      {p.visualId === "indicator" && (
+        <g data-indicator-state={on ? "lit" : "off"}>
+          <rect
+            x={3}
+            y={19}
+            width={w - 6}
+            height={43}
+            rx={1.5}
+            fill="#eceee6"
+            stroke="#c4cbc0"
+            strokeWidth={0.5}
+          />
+          {on && (
+            <circle cx={w / 2} cy={34} r={10} fill="#68ec53" opacity={0.23} />
+          )}
+          <circle
+            cx={w / 2}
+            cy={34}
+            r={5.3}
+            fill={on ? "#80fb54" : "#305c38"}
+            stroke="#536b50"
+            strokeWidth={0.8}
+          />
+          <circle
+            cx={w / 2 - 1.2}
+            cy={32.5}
+            r={1.6}
+            fill={on ? "#e8ffb0" : "#749379"}
+          />
+          <text
+            x={w / 2}
+            y={51}
+            textAnchor="middle"
+            fontSize={6}
+            fill="#526450"
+          >
+            {d.designation}
+          </text>
+          <text
+            x={w / 2}
+            y={58}
+            textAnchor="middle"
+            fontSize={2.7}
+            fill="#778573"
+          >
+            {d.settings.voltageV ?? 230} V ~
+          </text>
+          <title>
+            {d.designation}: {on ? "świeci" : "wyłączona"} · model dydaktyczny
+          </title>
+        </g>
+      )}
+      {["splice", "phase-distribution"].includes(p.visualId) && (
+        <g>
+          <rect
+            x={2}
+            y={3}
+            width={w - 4}
+            height={h - 6}
+            rx={1.3}
+            fill={p.visualId === "phase-distribution" ? "#98775a" : "#d4d7ce"}
+          />
+          {p.topology.terminals.map((t) => (
+            <rect
+              key={t.id}
+              x={t.x - 2.2}
+              y={h / 2 - 3}
+              width={4.4}
+              height={6}
+              rx={0.8}
+              fill={p.visualId === "phase-distribution" ? "#624d3e" : "#ed9954"}
+            />
+          ))}
+          <text
+            x={w / 2}
+            y={h / 2 + 1}
+            textAnchor="middle"
+            fontSize={2.6}
+            fill="#414b3b"
+          >
+            {p.visualId === "phase-distribution" ? "L" : "↔"}
+          </text>
+          <title>
+            {d.designation} · zaciski zwarte wewnętrznie, niezależne od
+            sąsiednich złączek
+          </title>
+        </g>
+      )}
       {p.visualId === "socket" && (
         <>
           <circle
@@ -1262,7 +1413,7 @@ export function DeviceSchematic({
                 strokeWidth={1.5}
               />
             ) : cn.kind === "load" ? (
-              p.visualId === "lamp" ? (
+              ["lamp", "bulkhead", "indicator"].includes(p.visualId) ? (
                 <>
                   <circle
                     cx={80}

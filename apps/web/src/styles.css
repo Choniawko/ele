@@ -3203,3 +3203,77 @@ h3 {
     flex-direction: column;
   }
 }
+
+.physical-tools {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 8;
+  max-width: calc(100% - 240px);
+}
+.physical-presentation {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.physical-presentation button {
+  background: #f5f6ee;
+  font-size: 12px;
+  padding: 6px 9px;
+  box-shadow: 0 1px 4px #30453018;
+}
+.physical-presentation button.active {
+  background: #d7e9d8;
+  border-color: #769d78;
+}
+.physical-tools-panel {
+  width: 330px;
+  max-width: 100%;
+  max-height: 65vh;
+  overflow: auto;
+  background: #f8faf2;
+  border: 1px solid #c7d2bf;
+  border-radius: 7px;
+  padding: 12px;
+  margin-top: 6px;
+  box-shadow: 0 5px 15px #253d2522;
+}
+.physical-tools-panel label {
+  display: block;
+  font-size: 12px;
+  margin: 8px 0;
+}
+.physical-tools-panel select,
+.physical-tools-panel input {
+  display: block;
+  width: 100%;
+}
+.physical-tools-panel p {
+  font-size: 12px;
+  color: #607457;
+  margin: 5px 0;
+}
+.physical-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.physical-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.physical-tools-panel button {
+  font-size: 12px;
+  padding: 5px 7px;
+}
+@media (max-width: 700px) {
+  .physical-tools {
+    max-width: calc(100% - 65px);
+    top: 50px;
+  }
+  .physical-presentation button {
+    font-size: 10px;
+    padding: 4px 6px;
+  }
+}

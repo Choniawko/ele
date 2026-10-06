@@ -1,3 +1,4 @@
+import { enclosureFor } from "@model/physical";
 import { useEffect, useState } from "react";
 import {
   Folder,
@@ -71,18 +72,32 @@ export function ProjectMiniature({
     p: project.physical.devices[d.id] ?? { x: 0, y: 0 },
     shape: catalog[d.productId]?.dimensions.value,
   }));
-  const minX = Math.min(0, ...bounds.map(({ p }) => p.x)),
-    minY = Math.min(0, ...bounds.map(({ p }) => p.y));
-  const width =
-    Math.max(
-      600,
-      ...bounds.map(({ p, shape }) => p.x + (shape?.width ?? 100) * MM + 30),
-    ) - minX;
-  const height =
-    Math.max(
-      300,
-      ...bounds.map(({ p, shape }) => p.y + (shape?.height ?? 100) * MM + 30),
-    ) - minY;
+  const frames = [
+    ...bounds.map(({ p, shape }) => ({
+      x: p.x,
+      y: p.y,
+      width: (shape?.width ?? 100) * MM + 30,
+      height: (shape?.height ?? 100) * MM + 30,
+    })),
+    ...(project.physical.enclosures ?? []).map((e) => ({
+      x: e.position.x,
+      y: e.position.y - 25,
+      width: e.width,
+      height: e.height + 25,
+    })),
+    ...(project.physical.trunking ?? []).flatMap((t) =>
+      t.points.map((p) => ({
+        x: p.x - t.width / 2,
+        y: p.y - t.width / 2,
+        width: t.width,
+        height: t.width,
+      })),
+    ),
+  ];
+  const minX = Math.min(0, ...frames.map((f) => f.x)),
+    minY = Math.min(0, ...frames.map((f) => f.y));
+  const width = Math.max(600, ...frames.map((f) => f.x + f.width)) - minX;
+  const height = Math.max(300, ...frames.map((f) => f.y + f.height)) - minY;
   const terminal = (deviceId: string, terminalId: string) => {
     const b = bounds.find(({ d }) => d.id === deviceId);
     const t =
@@ -119,29 +134,101 @@ export function ProjectMiniature({
           fill="#bcc8bc"
         />
       ))}
-      {project.circuit.conductors.map((w) => {
-        const a = terminal(w.from.deviceId, w.from.terminalId),
-          b = terminal(w.to.deviceId, w.to.terminalId);
-        const points = [
-          a,
-          ...(project.physical.routes[w.id] ?? [{ x: a.x, y: b.y }]),
-          b,
-        ];
-        return (
-          <polyline
-            key={w.id}
-            points={points.map((p) => `${p.x},${p.y}`).join(" ")}
-            fill="none"
-            stroke={w.insulationColor}
-            strokeWidth="5"
+      {project.physical.trunking?.map((t) => (
+        <polyline
+          key={t.id}
+          points={t.points.map((p) => `${p.x},${p.y}`).join(" ")}
+          fill="none"
+          stroke="#d2d9c5"
+          strokeWidth={t.width}
+        />
+      ))}
+      {project.physical.enclosures?.map((e) => (
+        <g key={e.id}>
+          <rect
+            x={e.position.x}
+            y={e.position.y}
+            width={e.width}
+            height={e.height}
+            rx={8}
+            fill="#f2f4ea"
+            stroke="#aab69e"
+            strokeWidth={2}
           />
-        );
-      })}
-      {bounds.map(({ d, p }) => (
-        <g key={d.id} transform={`translate(${p.x},${p.y})`}>
-          <DevicePhysical product={catalog[d.productId]} device={d} thumbnail />
+          <text
+            x={e.position.x + e.width / 2}
+            y={e.position.y - 10}
+            textAnchor="middle"
+            fontSize={18}
+            fill="#52694c"
+          >
+            {e.name}
+          </text>
         </g>
       ))}
+      {project.circuit.conductors
+        .filter(() => project.physical.presentation !== "external")
+        .map((w) => {
+          const a = terminal(w.from.deviceId, w.from.terminalId),
+            b = terminal(w.to.deviceId, w.to.terminalId);
+          const points = [
+            a,
+            ...(project.physical.routes[w.id] ?? [{ x: a.x, y: b.y }]),
+            b,
+          ];
+          return (
+            <polyline
+              key={w.id}
+              points={points.map((p) => `${p.x},${p.y}`).join(" ")}
+              fill="none"
+              stroke={w.insulationColor}
+              strokeWidth="5"
+            />
+          );
+        })}
+      {bounds
+        .filter(({ d }) => {
+          const e = enclosureFor(project, d.id);
+          return !e?.closed || !!e.window;
+        })
+        .map(({ d, p }) => (
+          <g key={d.id} transform={`translate(${p.x},${p.y})`}>
+            {(() => {
+              const e = enclosureFor(project, d.id);
+              return e?.closed && e.window ? (
+                <g>
+                  <defs>
+                    <clipPath id={`mini-${project.circuit.projectId}-${d.id}`}>
+                      <rect
+                        x={e.position.x + e.window.x - p.x}
+                        y={e.position.y + e.window.y - p.y}
+                        width={e.window.width}
+                        height={e.window.height}
+                      />
+                    </clipPath>
+                  </defs>
+                  <g
+                    clipPath={`url(#mini-${project.circuit.projectId}-${d.id})`}
+                  >
+                    <DevicePhysical
+                      product={catalog[d.productId]}
+                      device={d}
+                      thumbnail
+                      showTerminals={false}
+                    />
+                  </g>
+                </g>
+              ) : (
+                <DevicePhysical
+                  product={catalog[d.productId]}
+                  device={d}
+                  thumbnail
+                  showTerminals={project.physical.presentation !== "external"}
+                />
+              );
+            })()}
+          </g>
+        ))}
       {!devices.length && (
         <text x="60" y="160" fontSize="28" fill="#5e735e">
           Pusta tablica

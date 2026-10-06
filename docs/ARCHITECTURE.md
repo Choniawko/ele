@@ -27,3 +27,9 @@ Dexie v5 dodaje `folders`, indeks `projects.folderId` oraz tombstone'y `deletedP
 Zmiana nazwy/przeniesienie/usunięcie folderu aktualizują rewizję metadanych. Store przekazuje zapamiętaną rewizję do każdego autosave; niezgodność powoduje odrzucenie opóźnionego zapisu. Usunięte projekty pozostawiają tombstone, aby oczekujący zapis lub inna karta przeglądarki nie odtworzyły projektu. Zapis zachowuje bieżący folder z rekordu. Operacje interfejsu najpierw kończą zapis aktywnego projektu; otwarcie z biblioteki ładuje nową sesję bez ponownego zapisu nieaktualnej kopii poprzedniego dokumentu. Błędy odczytu nadal zachowują oryginał i udostępniają chronioną kopię do odzyskania.
 
 Kontrakt generatorów zewnętrznych i ograniczenia lokalnego przechowywania: [PROJECT_IMPORT.md](PROJECT_IMPORT.md).
+
+### Fizyczne obudowy i wspólne trasy
+
+`ProjectDocument.physical` opcjonalnie przechowuje `enclosures`, `trunking` i `presentation`. Pozycje urządzeń nadal są absolutne, identyfikatory i zaciski nie zależą od pokrywy. Obudowy i korytka nie występują w `compile()` ani w sieci solvera. Walidacja `assertPhysicalLayout` jest częścią istniejącego wspólnego punktu walidacji projektu; sprawdza referencje, unikalne członkostwo, dopasowanie korpusów i osiowe segmenty.
+
+Komendy pokryw, grupowania i geometrii przechodzą przez istniejącą transakcję edytora z `topology=false`, dzięki czemu zachowują rewizję obwodu, sesję i pomiary. Przeniesienie obudowy przenosi korpusy oraz wewnętrzne trasy/szynę, zachowując ścienne korytka. Interakcje fizycznych zacisków zamkniętej obudowy są blokowane; schemat ma odrębny kontekst interakcji w widoku dzielonym. Warstwa SVG masek zakrywa żyły pod pokrywami, a okno rozdzielnicy odsłania same fronty aparatów. Nowe profile katalogu mają nowe ID, bez zmiany historycznych rewizji.

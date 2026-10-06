@@ -1,6 +1,11 @@
 import { g, routers, type dia } from "@joint/core";
 import { catalog } from "@catalog/index";
-import type { Conductor, DeviceInstance, TerminalRef } from "@model/index";
+import type {
+  Conductor,
+  DeviceInstance,
+  TerminalRef,
+  PhysicalEnclosure,
+} from "@model/index";
 
 type Side = "top" | "bottom";
 const CLEARANCE = 14;
@@ -180,6 +185,7 @@ function gutterRoute(
 export function physicalWireRouters(
   devices: DeviceInstance[],
   wires: Conductor[],
+  enclosures: PhysicalEnclosure[] = [],
 ): Map<string, routers.Router> {
   const deviceMap = new Map(devices.map((d) => [d.id, d]));
   type End = {
@@ -240,17 +246,30 @@ export function physicalWireRouters(
           targetSide,
           targetEnd.gap,
         );
+      const clampExit = (point: g.Point, deviceId: string) => {
+        const e = enclosures.find((e) => e.deviceIds.includes(deviceId));
+        if (e)
+          point.y = Math.max(
+            e.position.y + 4,
+            Math.min(e.position.y + e.height - 4, point.y),
+          );
+      };
+      clampExit(sourceExit, wire.from.deviceId);
+      clampExit(targetExit, wire.to.deviceId);
       const waypoints = [
         sourceExit,
         ...vertices.map((p) => new g.Point(p)),
         targetExit,
       ];
-      const obstacles = (view.paper?.model.getElements() ?? []).map(
-        (element) => ({
+      const obstacles = (view.paper?.model.getElements() ?? [])
+        .filter(
+          (element) =>
+            !element.get("data")?.enclosure || !!element.get("data")?.device,
+        )
+        .map((element) => ({
           id: element.id,
           box: element.getBBox().inflate(CLEARANCE),
-        }),
-      );
+        }));
       // Reuse geometry across paint/state updates; a moved case, terminal or
       // manual point invalidates it, including changes during dragging.
       const key = [

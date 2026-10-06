@@ -1,0 +1,1770 @@
+{
+  "name": "ELE.02-101 · stanowisko montażowe",
+  "circuit": {
+    "schemaVersion": 1,
+    "projectId": "ele02-101-physical-v1",
+    "revision": 0,
+    "catalogSnapshotId": "catalog-2026-10-02",
+    "devices": [
+      {
+        "id": "PZ",
+        "productId": "edu-source-ac",
+        "productRevision": "1",
+        "designation": "PZ",
+        "settings": {
+          "voltageV": 230,
+          "sourceResistanceOhm": 0.4
+        }
+      },
+      {
+        "id": "RCD",
+        "productId": "edu-rcd",
+        "productRevision": "1",
+        "designation": "RCD",
+        "settings": {
+          "position": true
+        }
+      },
+      {
+        "id": "B10",
+        "productId": "edu-mcb-adjustable",
+        "productRevision": "1",
+        "designation": "B10",
+        "settings": {
+          "position": true,
+          "ratedCurrentA": 10
+        }
+      },
+      {
+        "id": "H1",
+        "productId": "edu-indicator-green-230",
+        "productRevision": "1",
+        "designation": "H1",
+        "settings": {
+          "powerW": 0.6,
+          "voltageV": 230
+        }
+      },
+      {
+        "id": "B6",
+        "productId": "edu-mcb-adjustable",
+        "productRevision": "1",
+        "designation": "B6",
+        "settings": {
+          "position": true,
+          "ratedCurrentA": 6
+        }
+      },
+      {
+        "id": "H2",
+        "productId": "edu-indicator-green-230",
+        "productRevision": "1",
+        "designation": "H2",
+        "settings": {
+          "powerW": 0.6,
+          "voltageV": 230
+        }
+      },
+      {
+        "id": "R.L",
+        "productId": "edu-phase-distribution",
+        "productRevision": "1",
+        "designation": "R.L",
+        "settings": {}
+      },
+      {
+        "id": "R.L10",
+        "productId": "edu-splice-3",
+        "productRevision": "1",
+        "designation": "R.L10",
+        "settings": {}
+      },
+      {
+        "id": "R.L6",
+        "productId": "edu-splice-3",
+        "productRevision": "1",
+        "designation": "R.L6",
+        "settings": {}
+      },
+      {
+        "id": "R.N",
+        "productId": "edu-bus-n",
+        "productRevision": "1",
+        "designation": "R.N",
+        "settings": {}
+      },
+      {
+        "id": "R.PE",
+        "productId": "edu-bus-pe",
+        "productRevision": "1",
+        "designation": "R.PE",
+        "settings": {}
+      },
+      {
+        "id": "OP1",
+        "productId": "edu-bulkhead-40",
+        "productRevision": "1",
+        "designation": "OP1",
+        "settings": {
+          "powerW": 40,
+          "voltageV": 230
+        }
+      },
+      {
+        "id": "OP2",
+        "productId": "edu-bulkhead-40",
+        "productRevision": "1",
+        "designation": "OP2",
+        "settings": {
+          "powerW": 40,
+          "voltageV": 230
+        }
+      },
+      {
+        "id": "Q1",
+        "productId": "edu-changeover",
+        "productRevision": "1",
+        "designation": "Q1",
+        "settings": {
+          "position": false
+        }
+      },
+      {
+        "id": "Q2",
+        "productId": "edu-changeover",
+        "productRevision": "1",
+        "designation": "Q2",
+        "settings": {
+          "position": false
+        }
+      },
+      {
+        "id": "GW",
+        "productId": "edu-socket",
+        "productRevision": "1",
+        "designation": "GW",
+        "settings": {}
+      },
+      {
+        "id": "P1.T1",
+        "productId": "edu-junction-terminal",
+        "productRevision": "1",
+        "designation": "P1.T1",
+        "settings": {}
+      },
+      {
+        "id": "P1.T2",
+        "productId": "edu-junction-terminal",
+        "productRevision": "1",
+        "designation": "P1.T2",
+        "settings": {}
+      },
+      {
+        "id": "P1.N",
+        "productId": "edu-junction-terminal",
+        "productRevision": "1",
+        "designation": "P1.N",
+        "settings": {}
+      },
+      {
+        "id": "P1.PE",
+        "productId": "edu-junction-terminal",
+        "productRevision": "1",
+        "designation": "P1.PE",
+        "settings": {}
+      },
+      {
+        "id": "P2.T1",
+        "productId": "edu-junction-terminal",
+        "productRevision": "1",
+        "designation": "P2.T1",
+        "settings": {}
+      },
+      {
+        "id": "P2.Ls",
+        "productId": "edu-junction-terminal",
+        "productRevision": "1",
+        "designation": "P2.Ls",
+        "settings": {}
+      },
+      {
+        "id": "P2.N",
+        "productId": "edu-junction-terminal",
+        "productRevision": "1",
+        "designation": "P2.N",
+        "settings": {}
+      },
+      {
+        "id": "P2.PE",
+        "productId": "edu-junction-terminal",
+        "productRevision": "1",
+        "designation": "P2.PE",
+        "settings": {}
+      }
+    ],
+    "conductors": [
+      {
+        "id": "W1",
+        "from": {
+          "deviceId": "PZ",
+          "terminalId": "L"
+        },
+        "to": {
+          "deviceId": "RCD",
+          "terminalId": "1"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.6,
+        "material": "Cu",
+        "marking": "W1"
+      },
+      {
+        "id": "W2",
+        "from": {
+          "deviceId": "PZ",
+          "terminalId": "N"
+        },
+        "to": {
+          "deviceId": "RCD",
+          "terminalId": "N-in"
+        },
+        "declaredRole": "N",
+        "insulationColor": "#3b87be",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.6,
+        "material": "Cu",
+        "marking": "W2"
+      },
+      {
+        "id": "W3",
+        "from": {
+          "deviceId": "PZ",
+          "terminalId": "PE"
+        },
+        "to": {
+          "deviceId": "R.PE",
+          "terminalId": "1"
+        },
+        "declaredRole": "PE",
+        "insulationColor": "#3b9b55",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.6,
+        "material": "Cu",
+        "marking": "W3"
+      },
+      {
+        "id": "W4",
+        "from": {
+          "deviceId": "RCD",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "R.L",
+          "terminalId": "1"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.3,
+        "material": "Cu",
+        "marking": "W4"
+      },
+      {
+        "id": "W5",
+        "from": {
+          "deviceId": "R.L",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "B10",
+          "terminalId": "1"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.3,
+        "material": "Cu",
+        "marking": "W5"
+      },
+      {
+        "id": "W6",
+        "from": {
+          "deviceId": "R.L",
+          "terminalId": "3"
+        },
+        "to": {
+          "deviceId": "B6",
+          "terminalId": "1"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.3,
+        "material": "Cu",
+        "marking": "W6"
+      },
+      {
+        "id": "W7",
+        "from": {
+          "deviceId": "RCD",
+          "terminalId": "N-out"
+        },
+        "to": {
+          "deviceId": "R.N",
+          "terminalId": "1"
+        },
+        "declaredRole": "N",
+        "insulationColor": "#3b87be",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.3,
+        "material": "Cu",
+        "marking": "W7"
+      },
+      {
+        "id": "W8",
+        "from": {
+          "deviceId": "B10",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "R.L10",
+          "terminalId": "1"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.3,
+        "material": "Cu",
+        "marking": "W8"
+      },
+      {
+        "id": "W9",
+        "from": {
+          "deviceId": "R.L10",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "H1",
+          "terminalId": "L"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.3,
+        "material": "Cu",
+        "marking": "W9"
+      },
+      {
+        "id": "W10",
+        "from": {
+          "deviceId": "R.L10",
+          "terminalId": "3"
+        },
+        "to": {
+          "deviceId": "GW",
+          "terminalId": "L"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 1.6,
+        "material": "Cu",
+        "marking": "W10"
+      },
+      {
+        "id": "W11",
+        "from": {
+          "deviceId": "B6",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "R.L6",
+          "terminalId": "1"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.3,
+        "material": "Cu",
+        "marking": "W11"
+      },
+      {
+        "id": "W12",
+        "from": {
+          "deviceId": "R.L6",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "H2",
+          "terminalId": "L"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.3,
+        "material": "Cu",
+        "marking": "W12"
+      },
+      {
+        "id": "W13",
+        "from": {
+          "deviceId": "R.L6",
+          "terminalId": "3"
+        },
+        "to": {
+          "deviceId": "Q1",
+          "terminalId": "COM"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.9,
+        "material": "Cu",
+        "marking": "W13"
+      },
+      {
+        "id": "W14",
+        "from": {
+          "deviceId": "R.N",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "H1",
+          "terminalId": "N"
+        },
+        "declaredRole": "N",
+        "insulationColor": "#3b87be",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.3,
+        "material": "Cu",
+        "marking": "W14"
+      },
+      {
+        "id": "W15",
+        "from": {
+          "deviceId": "R.N",
+          "terminalId": "3"
+        },
+        "to": {
+          "deviceId": "H2",
+          "terminalId": "N"
+        },
+        "declaredRole": "N",
+        "insulationColor": "#3b87be",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.3,
+        "material": "Cu",
+        "marking": "W15"
+      },
+      {
+        "id": "W16",
+        "from": {
+          "deviceId": "R.N",
+          "terminalId": "4"
+        },
+        "to": {
+          "deviceId": "GW",
+          "terminalId": "N"
+        },
+        "declaredRole": "N",
+        "insulationColor": "#3b87be",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 1.6,
+        "material": "Cu",
+        "marking": "W16"
+      },
+      {
+        "id": "W17",
+        "from": {
+          "deviceId": "R.N",
+          "terminalId": "5"
+        },
+        "to": {
+          "deviceId": "P1.N",
+          "terminalId": "1"
+        },
+        "declaredRole": "N",
+        "insulationColor": "#3b87be",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.7,
+        "material": "Cu",
+        "marking": "W17"
+      },
+      {
+        "id": "W18",
+        "from": {
+          "deviceId": "R.PE",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "GW",
+          "terminalId": "PE"
+        },
+        "declaredRole": "PE",
+        "insulationColor": "#3b9b55",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 1.6,
+        "material": "Cu",
+        "marking": "W18"
+      },
+      {
+        "id": "W19",
+        "from": {
+          "deviceId": "R.PE",
+          "terminalId": "3"
+        },
+        "to": {
+          "deviceId": "P1.PE",
+          "terminalId": "1"
+        },
+        "declaredRole": "PE",
+        "insulationColor": "#3b9b55",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.7,
+        "material": "Cu",
+        "marking": "W19"
+      },
+      {
+        "id": "W20",
+        "from": {
+          "deviceId": "Q1",
+          "terminalId": "1"
+        },
+        "to": {
+          "deviceId": "P1.T1",
+          "terminalId": "1"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.6,
+        "material": "Cu",
+        "marking": "W20"
+      },
+      {
+        "id": "W21",
+        "from": {
+          "deviceId": "P1.T1",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "P2.T1",
+          "terminalId": "1"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.5,
+        "material": "Cu",
+        "marking": "W21"
+      },
+      {
+        "id": "W22",
+        "from": {
+          "deviceId": "P2.T1",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "Q2",
+          "terminalId": "1"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.6,
+        "material": "Cu",
+        "marking": "W22"
+      },
+      {
+        "id": "W23",
+        "from": {
+          "deviceId": "Q1",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "P1.T2",
+          "terminalId": "1"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.6,
+        "material": "Cu",
+        "marking": "W23"
+      },
+      {
+        "id": "W24",
+        "from": {
+          "deviceId": "P1.T2",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "Q2",
+          "terminalId": "2"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.95,
+        "material": "Cu",
+        "marking": "W24"
+      },
+      {
+        "id": "W25",
+        "from": {
+          "deviceId": "Q2",
+          "terminalId": "COM"
+        },
+        "to": {
+          "deviceId": "P2.Ls",
+          "terminalId": "1"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.6,
+        "material": "Cu",
+        "marking": "W25"
+      },
+      {
+        "id": "W26",
+        "from": {
+          "deviceId": "P2.Ls",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "OP1",
+          "terminalId": "L"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.95,
+        "material": "Cu",
+        "marking": "W26"
+      },
+      {
+        "id": "W27",
+        "from": {
+          "deviceId": "P2.Ls",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "OP2",
+          "terminalId": "L"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.6,
+        "material": "Cu",
+        "marking": "W27"
+      },
+      {
+        "id": "W28",
+        "from": {
+          "deviceId": "P1.N",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "OP1",
+          "terminalId": "N"
+        },
+        "declaredRole": "N",
+        "insulationColor": "#3b87be",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.6,
+        "material": "Cu",
+        "marking": "W28"
+      },
+      {
+        "id": "W29",
+        "from": {
+          "deviceId": "P1.N",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "P2.N",
+          "terminalId": "1"
+        },
+        "declaredRole": "N",
+        "insulationColor": "#3b87be",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.5,
+        "material": "Cu",
+        "marking": "W29"
+      },
+      {
+        "id": "W30",
+        "from": {
+          "deviceId": "P2.N",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "OP2",
+          "terminalId": "N"
+        },
+        "declaredRole": "N",
+        "insulationColor": "#3b87be",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.6,
+        "material": "Cu",
+        "marking": "W30"
+      },
+      {
+        "id": "W31",
+        "from": {
+          "deviceId": "P1.PE",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "OP1",
+          "terminalId": "PE"
+        },
+        "declaredRole": "PE",
+        "insulationColor": "#3b9b55",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.6,
+        "material": "Cu",
+        "marking": "W31"
+      },
+      {
+        "id": "W32",
+        "from": {
+          "deviceId": "P1.PE",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "P2.PE",
+          "terminalId": "1"
+        },
+        "declaredRole": "PE",
+        "insulationColor": "#3b9b55",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.5,
+        "material": "Cu",
+        "marking": "W32"
+      },
+      {
+        "id": "W33",
+        "from": {
+          "deviceId": "P2.PE",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "OP2",
+          "terminalId": "PE"
+        },
+        "declaredRole": "PE",
+        "insulationColor": "#3b9b55",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.6,
+        "material": "Cu",
+        "marking": "W33"
+      }
+    ],
+    "bridges": [],
+    "cables": [],
+    "mechanicalCouplings": [],
+    "supplySystems": [
+      {
+        "id": "supply-PZ",
+        "kind": "TN-S",
+        "sourceId": "PZ"
+      }
+    ],
+    "installationConditions": {
+      "temperatureC": 20,
+      "copperResistivity": 0.0175,
+      "aluminiumResistivity": 0.0282,
+      "insulationResistanceOhm": 200000000
+    }
+  },
+  "physical": {
+    "devices": {
+      "PZ": {
+        "x": 146,
+        "y": 85
+      },
+      "RCD": {
+        "x": 115,
+        "y": 395
+      },
+      "B10": {
+        "x": 228,
+        "y": 395
+      },
+      "H1": {
+        "x": 274,
+        "y": 395
+      },
+      "B6": {
+        "x": 320,
+        "y": 395
+      },
+      "H2": {
+        "x": 366,
+        "y": 395
+      },
+      "R.L": {
+        "x": 115,
+        "y": 615
+      },
+      "R.L10": {
+        "x": 245,
+        "y": 615
+      },
+      "R.L6": {
+        "x": 365,
+        "y": 615
+      },
+      "R.N": {
+        "x": 115,
+        "y": 710
+      },
+      "R.PE": {
+        "x": 345,
+        "y": 710
+      },
+      "OP1": {
+        "x": 624,
+        "y": 55
+      },
+      "OP2": {
+        "x": 974,
+        "y": 55
+      },
+      "Q1": {
+        "x": 620,
+        "y": 790
+      },
+      "Q2": {
+        "x": 970,
+        "y": 790
+      },
+      "GW": {
+        "x": 1284,
+        "y": 790
+      },
+      "P1.T1": {
+        "x": 622,
+        "y": 422
+      },
+      "P1.T2": {
+        "x": 718,
+        "y": 422
+      },
+      "P1.N": {
+        "x": 622,
+        "y": 505
+      },
+      "P1.PE": {
+        "x": 718,
+        "y": 505
+      },
+      "P2.T1": {
+        "x": 972,
+        "y": 422
+      },
+      "P2.Ls": {
+        "x": 1068,
+        "y": 422
+      },
+      "P2.N": {
+        "x": 972,
+        "y": 505
+      },
+      "P2.PE": {
+        "x": 1068,
+        "y": 505
+      }
+    },
+    "routes": {
+      "W1": [
+        {
+          "x": 213,
+          "y": 285
+        },
+        {
+          "x": 213,
+          "y": 320
+        },
+        {
+          "x": 537,
+          "y": 466
+        },
+        {
+          "x": 537,
+          "y": 365
+        }
+      ],
+      "W2": [
+        {
+          "x": 216,
+          "y": 285
+        },
+        {
+          "x": 216,
+          "y": 320
+        },
+        {
+          "x": 537,
+          "y": 469
+        },
+        {
+          "x": 537,
+          "y": 365
+        }
+      ],
+      "W3": [
+        {
+          "x": 219,
+          "y": 285
+        },
+        {
+          "x": 219,
+          "y": 320
+        },
+        {
+          "x": 537,
+          "y": 472
+        },
+        {
+          "x": 537,
+          "y": 806
+        }
+      ],
+      "W10": [
+        {
+          "x": 537,
+          "y": 689
+        },
+        {
+          "x": 537,
+          "y": 466
+        },
+        {
+          "x": 1378,
+          "y": 466
+        },
+        {
+          "x": 1378,
+          "y": 735
+        },
+        {
+          "x": 1530,
+          "y": 735
+        },
+        {
+          "x": 1530,
+          "y": 994
+        },
+        {
+          "x": 1319.2,
+          "y": 994
+        }
+      ],
+      "W13": [
+        {
+          "x": 537,
+          "y": 689
+        },
+        {
+          "x": 537,
+          "y": 475
+        },
+        {
+          "x": 687,
+          "y": 475
+        },
+        {
+          "x": 687,
+          "y": 600
+        },
+        {
+          "x": 595,
+          "y": 600
+        },
+        {
+          "x": 595,
+          "y": 766
+        },
+        {
+          "x": 690.4,
+          "y": 766
+        }
+      ],
+      "W16": [
+        {
+          "x": 537,
+          "y": 806
+        },
+        {
+          "x": 537,
+          "y": 484
+        },
+        {
+          "x": 1396,
+          "y": 484
+        },
+        {
+          "x": 1396,
+          "y": 735
+        },
+        {
+          "x": 1530,
+          "y": 735
+        },
+        {
+          "x": 1530,
+          "y": 994
+        },
+        {
+          "x": 1389.6,
+          "y": 994
+        }
+      ],
+      "W17": [
+        {
+          "x": 537,
+          "y": 806
+        },
+        {
+          "x": 537,
+          "y": 487
+        },
+        {
+          "x": 699,
+          "y": 487
+        },
+        {
+          "x": 699,
+          "y": 527
+        }
+      ],
+      "W18": [
+        {
+          "x": 537,
+          "y": 806
+        },
+        {
+          "x": 537,
+          "y": 490
+        },
+        {
+          "x": 1402,
+          "y": 490
+        },
+        {
+          "x": 1402,
+          "y": 735
+        },
+        {
+          "x": 1530,
+          "y": 735
+        },
+        {
+          "x": 1530,
+          "y": 994
+        },
+        {
+          "x": 1460,
+          "y": 994
+        }
+      ],
+      "W19": [
+        {
+          "x": 537,
+          "y": 806
+        },
+        {
+          "x": 537,
+          "y": 466
+        },
+        {
+          "x": 678,
+          "y": 466
+        },
+        {
+          "x": 678,
+          "y": 527
+        }
+      ],
+      "W20": [
+        {
+          "x": 655.2,
+          "y": 976
+        },
+        {
+          "x": 595,
+          "y": 976
+        },
+        {
+          "x": 595,
+          "y": 600
+        },
+        {
+          "x": 681,
+          "y": 600
+        },
+        {
+          "x": 681,
+          "y": 469
+        },
+        {
+          "x": 681,
+          "y": 469
+        },
+        {
+          "x": 681,
+          "y": 444
+        }
+      ],
+      "W21": [
+        {
+          "x": 684,
+          "y": 474.8
+        },
+        {
+          "x": 684,
+          "y": 472
+        },
+        {
+          "x": 1034,
+          "y": 472
+        },
+        {
+          "x": 1034,
+          "y": 444
+        }
+      ],
+      "W22": [
+        {
+          "x": 1037,
+          "y": 474.8
+        },
+        {
+          "x": 1037,
+          "y": 475
+        },
+        {
+          "x": 1037,
+          "y": 475
+        },
+        {
+          "x": 1037,
+          "y": 600
+        },
+        {
+          "x": 945,
+          "y": 600
+        },
+        {
+          "x": 945,
+          "y": 976
+        },
+        {
+          "x": 1005.2,
+          "y": 976
+        }
+      ],
+      "W23": [
+        {
+          "x": 725.6,
+          "y": 976
+        },
+        {
+          "x": 595,
+          "y": 976
+        },
+        {
+          "x": 595,
+          "y": 600
+        },
+        {
+          "x": 690,
+          "y": 600
+        },
+        {
+          "x": 690,
+          "y": 478
+        },
+        {
+          "x": 690,
+          "y": 478
+        },
+        {
+          "x": 690,
+          "y": 444
+        }
+      ],
+      "W24": [
+        {
+          "x": 693,
+          "y": 474.8
+        },
+        {
+          "x": 693,
+          "y": 481
+        },
+        {
+          "x": 1043,
+          "y": 481
+        },
+        {
+          "x": 1043,
+          "y": 600
+        },
+        {
+          "x": 945,
+          "y": 600
+        },
+        {
+          "x": 945,
+          "y": 976
+        },
+        {
+          "x": 1075.6,
+          "y": 976
+        }
+      ],
+      "W25": [
+        {
+          "x": 1040.4,
+          "y": 766
+        },
+        {
+          "x": 945,
+          "y": 766
+        },
+        {
+          "x": 945,
+          "y": 600
+        },
+        {
+          "x": 1046,
+          "y": 600
+        },
+        {
+          "x": 1046,
+          "y": 484
+        },
+        {
+          "x": 1046,
+          "y": 484
+        },
+        {
+          "x": 1046,
+          "y": 444
+        }
+      ],
+      "W26": [
+        {
+          "x": 1049,
+          "y": 474.8
+        },
+        {
+          "x": 1049,
+          "y": 487
+        },
+        {
+          "x": 699,
+          "y": 487
+        },
+        {
+          "x": 699,
+          "y": 290
+        }
+      ],
+      "W27": [
+        {
+          "x": 1052,
+          "y": 474.8
+        },
+        {
+          "x": 1052,
+          "y": 490
+        },
+        {
+          "x": 1052,
+          "y": 490
+        },
+        {
+          "x": 1052,
+          "y": 290
+        }
+      ],
+      "W28": [
+        {
+          "x": 678,
+          "y": 557.8
+        },
+        {
+          "x": 678,
+          "y": 466
+        },
+        {
+          "x": 678,
+          "y": 466
+        },
+        {
+          "x": 678,
+          "y": 290
+        }
+      ],
+      "W29": [
+        {
+          "x": 681,
+          "y": 557.8
+        },
+        {
+          "x": 681,
+          "y": 469
+        },
+        {
+          "x": 1031,
+          "y": 469
+        },
+        {
+          "x": 1031,
+          "y": 527
+        }
+      ],
+      "W30": [
+        {
+          "x": 1034,
+          "y": 557.8
+        },
+        {
+          "x": 1034,
+          "y": 472
+        },
+        {
+          "x": 1034,
+          "y": 472
+        },
+        {
+          "x": 1034,
+          "y": 290
+        }
+      ],
+      "W31": [
+        {
+          "x": 687,
+          "y": 557.8
+        },
+        {
+          "x": 687,
+          "y": 475
+        },
+        {
+          "x": 687,
+          "y": 475
+        },
+        {
+          "x": 687,
+          "y": 290
+        }
+      ],
+      "W32": [
+        {
+          "x": 690,
+          "y": 557.8
+        },
+        {
+          "x": 690,
+          "y": 478
+        },
+        {
+          "x": 1040,
+          "y": 478
+        },
+        {
+          "x": 1040,
+          "y": 527
+        }
+      ],
+      "W33": [
+        {
+          "x": 1043,
+          "y": 557.8
+        },
+        {
+          "x": 1043,
+          "y": 481
+        },
+        {
+          "x": 1043,
+          "y": 481
+        },
+        {
+          "x": 1043,
+          "y": 290
+        }
+      ]
+    },
+    "rails": [
+      {
+        "id": "rail-R",
+        "x": 110,
+        "y": 460,
+        "width": 310
+      }
+    ],
+    "enclosures": [
+      {
+        "id": "case-PZ",
+        "name": "PZ",
+        "kind": "supply",
+        "position": {
+          "x": 130,
+          "y": 50
+        },
+        "width": 190,
+        "height": 210,
+        "deviceIds": [
+          "PZ"
+        ],
+        "closed": true
+      },
+      {
+        "id": "case-R",
+        "name": "R · 8M",
+        "kind": "distribution",
+        "position": {
+          "x": 95,
+          "y": 340
+        },
+        "width": 460,
+        "height": 470,
+        "deviceIds": [
+          "RCD",
+          "B10",
+          "H1",
+          "B6",
+          "H2",
+          "R.L",
+          "R.L10",
+          "R.L6",
+          "R.N",
+          "R.PE"
+        ],
+        "closed": true,
+        "window": {
+          "x": 15,
+          "y": 102,
+          "width": 310,
+          "height": 106
+        }
+      },
+      {
+        "id": "case-P1",
+        "name": "P1",
+        "kind": "junction",
+        "position": {
+          "x": 602,
+          "y": 390
+        },
+        "width": 176,
+        "height": 176,
+        "deviceIds": [
+          "P1.T1",
+          "P1.T2",
+          "P1.N",
+          "P1.PE"
+        ],
+        "closed": true
+      },
+      {
+        "id": "case-P2",
+        "name": "P2",
+        "kind": "junction",
+        "position": {
+          "x": 952,
+          "y": 390
+        },
+        "width": 176,
+        "height": 176,
+        "deviceIds": [
+          "P2.T1",
+          "P2.Ls",
+          "P2.N",
+          "P2.PE"
+        ],
+        "closed": true
+      }
+    ],
+    "trunking": [
+      {
+        "id": "trunk-main",
+        "name": "R–P1–P2–GW",
+        "points": [
+          {
+            "x": 555,
+            "y": 478
+          },
+          {
+            "x": 1390,
+            "y": 478
+          },
+          {
+            "x": 1390,
+            "y": 790
+          }
+        ],
+        "width": 36,
+        "conductorIds": [
+          "W10",
+          "W13",
+          "W16",
+          "W17",
+          "W18",
+          "W19",
+          "W20",
+          "W21",
+          "W22",
+          "W23",
+          "W24",
+          "W25",
+          "W26",
+          "W27",
+          "W28",
+          "W29",
+          "W30",
+          "W31",
+          "W32",
+          "W33"
+        ],
+        "closed": true
+      },
+      {
+        "id": "trunk-supply",
+        "name": "PZ–R",
+        "points": [
+          {
+            "x": 225,
+            "y": 260
+          },
+          {
+            "x": 225,
+            "y": 340
+          }
+        ],
+        "width": 36,
+        "conductorIds": [
+          "W1",
+          "W2",
+          "W3"
+        ],
+        "closed": true
+      },
+      {
+        "id": "trunk-OP1",
+        "name": "OP1–P1",
+        "points": [
+          {
+            "x": 690,
+            "y": 264
+          },
+          {
+            "x": 690,
+            "y": 390
+          }
+        ],
+        "width": 36,
+        "conductorIds": [
+          "W26",
+          "W28",
+          "W31"
+        ],
+        "closed": true
+      },
+      {
+        "id": "trunk-Q1",
+        "name": "P1–Q1",
+        "points": [
+          {
+            "x": 690,
+            "y": 566
+          },
+          {
+            "x": 690,
+            "y": 790
+          }
+        ],
+        "width": 36,
+        "conductorIds": [
+          "W13",
+          "W20",
+          "W23"
+        ],
+        "closed": true
+      },
+      {
+        "id": "trunk-OP2",
+        "name": "OP2–P2",
+        "points": [
+          {
+            "x": 1040,
+            "y": 264
+          },
+          {
+            "x": 1040,
+            "y": 390
+          }
+        ],
+        "width": 36,
+        "conductorIds": [
+          "W27",
+          "W30",
+          "W33"
+        ],
+        "closed": true
+      },
+      {
+        "id": "trunk-Q2",
+        "name": "P2–Q2",
+        "points": [
+          {
+            "x": 1040,
+            "y": 566
+          },
+          {
+            "x": 1040,
+            "y": 790
+          }
+        ],
+        "width": 36,
+        "conductorIds": [
+          "W22",
+          "W24",
+          "W25"
+        ],
+        "closed": true
+      }
+    ],
+    "presentation": "external"
+  },
+  "schematic": {
+    "devices": {
+      "PZ": {
+        "x": 80,
+        "y": 100
+      },
+      "RCD": {
+        "x": 280,
+        "y": 100
+      },
+      "B10": {
+        "x": 480,
+        "y": 100
+      },
+      "H1": {
+        "x": 680,
+        "y": 100
+      },
+      "B6": {
+        "x": 880,
+        "y": 100
+      },
+      "H2": {
+        "x": 80,
+        "y": 420
+      },
+      "R.L": {
+        "x": 280,
+        "y": 420
+      },
+      "R.L10": {
+        "x": 480,
+        "y": 420
+      },
+      "R.L6": {
+        "x": 680,
+        "y": 420
+      },
+      "R.N": {
+        "x": 880,
+        "y": 420
+      },
+      "R.PE": {
+        "x": 80,
+        "y": 740
+      },
+      "OP1": {
+        "x": 280,
+        "y": 740
+      },
+      "OP2": {
+        "x": 480,
+        "y": 740
+      },
+      "Q1": {
+        "x": 680,
+        "y": 740
+      },
+      "Q2": {
+        "x": 880,
+        "y": 740
+      },
+      "GW": {
+        "x": 80,
+        "y": 1060
+      },
+      "P1.T1": {
+        "x": 280,
+        "y": 1060
+      },
+      "P1.T2": {
+        "x": 480,
+        "y": 1060
+      },
+      "P1.N": {
+        "x": 680,
+        "y": 1060
+      },
+      "P1.PE": {
+        "x": 880,
+        "y": 1060
+      },
+      "P2.T1": {
+        "x": 80,
+        "y": 1380
+      },
+      "P2.Ls": {
+        "x": 280,
+        "y": 1380
+      },
+      "P2.N": {
+        "x": 480,
+        "y": 1380
+      },
+      "P2.PE": {
+        "x": 680,
+        "y": 1380
+      }
+    },
+    "routes": {}
+  },
+  "faults": [],
+  "userMetadata": {
+    "reference": "ele_02_101 (2).pdf: strony 1–3, 5, 7–8; zdjęcie stanowiska przekazane przez użytkownika",
+    "geometry": "Układ proporcjonalny, bez skali 1:1; obudowy i produkty dydaktyczne."
+  },
+  "productRevisions": {
+    "edu-source-ac": "1",
+    "edu-rcd": "1",
+    "edu-mcb-adjustable": "1",
+    "edu-indicator-green-230": "1",
+    "edu-phase-distribution": "1",
+    "edu-splice-3": "1",
+    "edu-bus-n": "1",
+    "edu-bus-pe": "1",
+    "edu-bulkhead-40": "1",
+    "edu-changeover": "1",
+    "edu-socket": "1",
+    "edu-junction-terminal": "1"
+  }
+}

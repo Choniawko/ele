@@ -85,3 +85,35 @@ Eksport aktywnej diagnozy pomija ukryte usterki, stan treningu i identyfikator s
 ## Ograniczenia lokalnej biblioteki
 
 IndexedDB należy do konkretnego originu i profilu przeglądarki: localhost, produkcyjne Pages i inne profile mają odrębne biblioteki. Nie ma konta, synchronizacji, wspólnej biblioteki ani kopii serwerowej. Usunięcie danych witryny, profilu lub zapis w trybie prywatnym może usunąć projekty. Eksportuj foldery jako kopie zapasowe. Import sprawdza zgodność danych, a nie autentyczność autora historycznych pomiarów. Starsza aplikacja sprzed migracji v5 nie powinna otwierać już zmigrowanej bazy; rollback aplikacji nie obniża wersji IndexedDB.
+
+## Opcjonalna warstwa instalacji fizycznej
+
+Przykład: [`ELE02_101_stanowisko.json`](../examples/physical/ELE02_101_stanowisko.json). Dokument zachowuje `circuit.schemaVersion: 1`; stare pliki bez nowych pól pozostają poprawne. Nowe pola znajdują się **wyłącznie w `physical`**, poza siecią elektryczną i metadanymi folderów:
+
+```json
+{
+  "presentation": "external",
+  "enclosures": [{
+    "id": "case-P1", "name": "P1", "kind": "junction",
+    "position": {"x": 602, "y": 390}, "width": 176, "height": 176,
+    "deviceIds": ["P1.N", "P1.PE", "P1.T1", "P1.T2"], "closed": true
+  }],
+  "trunking": [{
+    "id": "trunk-main", "name": "Trasa główna", "width": 36,
+    "points": [{"x": 525, "y": 478}, {"x": 1390, "y": 478}],
+    "conductorIds": ["W10", "W16", "W18"], "closed": true
+  }]
+}
+```
+
+To fragment `physical`, nie kompletny projekt. Nadal wymagane są `devices` i `routes`. Współrzędne i wymiary obudów/korytek to jednostki tablicy, nie metry. Pozycje aparatów pozostają absolutne, również wewnątrz obudów. Renderowane rozmiary produktu to mm × 2,2; nie skaluj aparatu, aby ukryć brak miejsca.
+
+- `kind`: `distribution`, `junction` lub `supply`; opcjonalne `window: {x,y,width,height}` tylko w rozdzielnicy, względnie do jej początku, w jej granicach.
+- Jeden aparat może należeć do jednej obudowy i musi się w niej mieścić. Usunięcie obudowy nie usuwa jej aparatów ani przewodów. Sama obudowa **nie tworzy węzła elektrycznego**.
+- Segmenty korytka są niezerowe i poziome/pionowe. `conductorIds` wskazują istniejące żyły. Kilka korytek może zawierać tę samą żyłę. Przebieg rzeczywistej żyły nadal opisuje `physical.routes[wireId]`; metadane korytka nie zastępują tej trasy ani `electricalLengthM`.
+- `presentation`: `external` lub `connections`; `closed` jest zapisanym stanem poszczególnej pokrywy. Widok schematyczny i solver używają tego samego `circuit`.
+- Limity centralne: 50 obudów, 100 korytek, 100 punktów na trasę; obudowy 60–2000 jednostek, szerokość korytka 10–100, nazwy do 30 znaków. Pozostałe limity pozostają zgodne z `projectLimits`.
+
+Nowe identyfikatory produktów (rewizja `1`): `edu-indicator-green-230` (L,N), `edu-bulkhead-40` (L,N,PE), `edu-junction-terminal` (1,2 zwarte), `edu-splice-3` oraz `edu-phase-distribution` (1,2,3 zwarte). Wszystkie są jawnie dydaktyczne; nie używaj tych ID jako identyfikatorów wyrobów producenta. Każdą rewizję wpisz zarówno do instancji, jak i `productRevisions`.
+
+Identyfikatory komórek graficznych `handle:<id-obudowy>` i `cover:<id-obudowy>` są zarezerwowane dla interfejsu. Nie nadawaj takich ID aparatom, żyłom ani innym elementom fizycznym. Nie występują jako urządzenia ani zaciski w obwodzie.
