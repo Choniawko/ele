@@ -12,15 +12,25 @@ export interface SavedProject {
   id: string;
   name: string;
   updatedAt: string;
+  folderId?: string | null;
+  libraryRevision?: number;
   document: ProjectDocument;
   measurements: MeasurementRecord[];
   events: RuntimeEvent[];
+}
+export interface ProjectFolder {
+  id: string;
+  name: string;
+  updatedAt: string;
 }
 export interface SavedProjectSummary {
   id: string;
   name: string;
   updatedAt: string;
   deviceCount: number;
+  folderId: string | null;
+  document: ProjectDocument | null;
+  readError?: string;
 }
 export interface ProjectRecovery {
   id: string;
@@ -82,6 +92,8 @@ export class ProjectReadError extends Error {
 }
 export const db = new Dexie("pracownia-elektryczna") as Dexie & {
   projects: EntityTable<SavedProject, "id">;
+  folders: EntityTable<ProjectFolder, "id">;
+  deletedProjects: EntityTable<{ id: string }, "id">;
   research: EntityTable<ResearchPackage & { id: string }, "id">;
   snapshots: EntityTable<{ id: string; product: Product }, "id">;
   settings: EntityTable<{ id: string; projectId: string }, "id">;
@@ -102,6 +114,31 @@ db.version(4).stores({
   snapshots: "id",
   settings: "id",
 });
+db.version(5)
+  .stores({
+    projects: "id, name, updatedAt, folderId",
+    folders: "id, name, updatedAt",
+    deletedProjects: "id",
+    research: "id, importedAt",
+    snapshots: "id",
+    settings: "id",
+  })
+  .upgrade(async (tx) => {
+    await tx
+      .table("projects")
+      .toCollection()
+      .modify((row) => {
+        row.folderId = null;
+        row.libraryRevision = 0;
+      });
+  });
+export class LibraryConflictError extends Error {
+  constructor() {
+    super(
+      "Projekt zmieniono lub usunięto w bibliotece. Otwórz jego aktualną wersję; opóźniony zapis został odrzucony.",
+    );
+  }
+}
 export async function importResearch(input: unknown): Promise<ResearchPackage> {
   const normalized = normalizeResearch(input);
   await db.research.put({ ...normalized, id: "imported" });
@@ -115,6 +152,7 @@ export async function saveProject(
   measurements: MeasurementRecord[],
   events: RuntimeEvent[],
   markLast = true,
+  expectedLibraryRevision?: number,
 ): Promise<void> {
   // Clone/validate before the first async boundary: callers may continue editing.
   const validated = validateProjectDocument(document);
@@ -135,9 +173,19 @@ export async function saveProject(
     db.projects,
     db.snapshots,
     db.settings,
+    db.deletedProjects,
     async () => {
       const existing = await db.projects.get(row.id);
-      if (existing) readSaved(existing, row.id); // Never overwrite an unreadable original.
+      if (await db.deletedProjects.get(row.id))
+        throw new LibraryConflictError();
+      if (
+        expectedLibraryRevision !== undefined &&
+        (existing?.libraryRevision ?? 0) !== expectedLibraryRevision
+      )
+        throw new LibraryConflictError();
+      if (existing) readSaved(existing, row.id); // Preserve unreadable originals.
+      row.folderId = existing?.folderId ?? null;
+      row.libraryRevision = existing?.libraryRevision ?? 0;
       await db.projects.put(row);
       if (snapshots.length) await db.snapshots.bulkPut(snapshots);
       if (markLast)
@@ -152,7 +200,7 @@ export async function saveProject(
       /* IndexedDB commit succeeded. */
     }
 }
-function readSaved(saved: SavedProject, key: string): SavedProject {
+export function readSaved(saved: SavedProject, key: string): SavedProject {
   try {
     const parsed = validateProjectDocument(saved.document);
     if (
@@ -183,14 +231,26 @@ export async function restoreProject(
 }
 export async function listProjects(): Promise<SavedProjectSummary[]> {
   const rows = await db.projects.orderBy("updatedAt").reverse().toArray();
-  return rows.map((row) => ({
-    id: row.id,
-    name: typeof row.name === "string" ? row.name : "Niepoprawny zapis",
-    updatedAt: row.updatedAt,
-    deviceCount: Array.isArray(object(object(row.document)?.circuit)?.devices)
-      ? (object(object(row.document)?.circuit)!.devices as unknown[]).length
-      : 0,
-  }));
+  return rows.map((row) => {
+    let document: ProjectDocument | null = null,
+      readError: string | undefined;
+    try {
+      document = readSaved(row, row.id).document;
+    } catch (e) {
+      readError = e instanceof Error ? e.message : "Nieczytelny zapis";
+    }
+    return {
+      id: row.id,
+      name: typeof row.name === "string" ? row.name : "Niepoprawny zapis",
+      updatedAt: row.updatedAt,
+      folderId: row.folderId ?? null,
+      deviceCount: Array.isArray(object(object(row.document)?.circuit)?.devices)
+        ? (object(object(row.document)?.circuit)!.devices as unknown[]).length
+        : 0,
+      document,
+      readError,
+    };
+  });
 }
 export function parseProject(text: string): ProjectDocument {
   if (new TextEncoder().encode(text).byteLength > 5 * 1024 * 1024)

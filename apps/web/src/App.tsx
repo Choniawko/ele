@@ -14,7 +14,6 @@ import {
   ClipboardCheck,
   Copy,
   Download,
-  FilePlus2,
   FolderOpen,
   Gauge,
   Lightbulb,
@@ -72,14 +71,8 @@ import {
   type MeasurementFunction,
 } from "@measurements/index";
 import { useApp, measurementSelect, type Mode, type View } from "./store";
-import {
-  listProjects,
-  restoreProject,
-  parseProject,
-  importResearch,
-  getResearch,
-  type SavedProjectSummary,
-} from "./persistence";
+import { importResearch, getResearch } from "./persistence";
+import { MyProjects } from "./MyProjects";
 import "./styles.css";
 import "@renderers/effects.css";
 
@@ -1484,7 +1477,9 @@ function ModalDialog({
   title,
   onClose,
   children,
+  wide = false,
 }: {
+  wide?: boolean;
   title: string;
   onClose: () => void;
   children: React.ReactNode;
@@ -1498,7 +1493,7 @@ function ModalDialog({
   return (
     <dialog
       ref={ref}
-      className="modal"
+      className={`modal ${wide ? "library-modal" : ""}`}
       onCancel={onClose}
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
@@ -1557,10 +1552,9 @@ function App() {
     [showLog, setShowLog] = useState(() =>
       readLayoutPreference("showLog", true),
     ),
-    [saved, setSaved] = useState<SavedProjectSummary[]>([]),
+    [libraryImport, setLibraryImport] = useState(false),
     [researchImport, setResearchImport] = useState("");
-  const importRef = useRef<HTMLInputElement>(null),
-    catalogImportRef = useRef<HTMLInputElement>(null);
+  const catalogImportRef = useRef<HTMLInputElement>(null);
   const toggleCatalog = useCallback(() => {
     setHideCatalog((value) => !value);
     if (window.innerWidth < 1280) setHideInspector(true);
@@ -1636,9 +1630,7 @@ function App() {
     return () => window.removeEventListener("keydown", listener);
   }, []);
   const openProjects = () => {
-    void listProjects()
-      .then(setSaved)
-      .catch((e) => useApp.getState().setNotice(String(e)));
+    setLibraryImport(false);
     setModal("projects");
   };
   const exportSvg = () => {
@@ -2130,31 +2122,6 @@ function App() {
         <span>Wirtualna instalacja szkoleniowa</span>
       </footer>
       <input
-        ref={importRef}
-        type="file"
-        accept=".json,application/json"
-        hidden
-        aria-label="Import projektu"
-        onChange={async (e) => {
-          const file = e.target.files?.[0];
-          if (!file) return;
-          try {
-            if (file.size > 5 * 1024 * 1024)
-              throw new Error("Plik przekracza 5 MB.");
-            const p = parseProject(await file.text());
-            useApp.getState().load(p);
-            setModal(null);
-          } catch (error) {
-            useApp
-              .getState()
-              .setNotice(
-                error instanceof Error ? error.message : "Niepoprawny import.",
-              );
-          }
-          e.target.value = "";
-        }}
-      />
-      <input
         ref={catalogImportRef}
         type="file"
         accept=".json"
@@ -2177,85 +2144,13 @@ function App() {
         }}
       />
       {modal === "projects" && (
-        <ModalDialog title="Twoje projekty" onClose={() => setModal(null)}>
-          <div className="project-start-options">
-            <button
-              onClick={() => {
-                useApp.getState().newProject();
-                setModal(null);
-              }}
-            >
-              <FilePlus2 size={24} />
-              <strong>Nowa instalacja</strong>
-              <span>Pusta tablica do własnych eksperymentów</span>
-            </button>
-            <button onClick={() => setModal("examples")}>
-              <LayoutGrid size={24} />
-              <strong>Przykłady</strong>
-              <span>Otwórz gotowy, działający układ</span>
-            </button>
-            <button onClick={() => setModal("training")}>
-              <BookOpen size={24} />
-              <strong>Ćwiczenia</strong>
-              <span>Buduj i diagnozuj krok po kroku</span>
-            </button>
-          </div>
-          <div className="project-rename">
-            <label>Nazwa bieżącego projektu</label>
-            <input
-              defaultValue={project.name}
-              {...textConstraints(projectLimits.name)}
-              onBlur={(e) => {
-                useApp.getState().rename(e.target.value);
-                e.currentTarget.value = useApp.getState().project.name;
-              }}
-              aria-label="Nazwa projektu"
-            />
-            <p className="small-help" role="status">
-              {notice}
-            </p>
-          </div>
-          <h3 className="modal-subheading">Zapisane lokalnie</h3>
-          {saved.map((p) => (
-            <button
-              className="saved-project"
-              key={p.id}
-              onClick={() => {
-                void restoreProject(p.id)
-                  .then((s) => {
-                    if (s) {
-                      useApp
-                        .getState()
-                        .load(s.document, s.measurements, s.events);
-                      setModal(null);
-                    }
-                  })
-                  .catch((e) => {
-                    useApp.getState().reportReadError(e);
-                    setModal(null);
-                  });
-              }}
-            >
-              <FolderOpen size={19} />
-              <span>
-                <strong>{p.name}</strong>
-                <small>
-                  {new Date(p.updatedAt).toLocaleString("pl-PL", {
-                    timeZone: "Europe/Warsaw",
-                  })}{" "}
-                  · {p.deviceCount} aparatów
-                </small>
-              </span>
-              <ChevronRight size={17} />
-            </button>
-          ))}
-          <button
-            className="secondary-button"
-            onClick={() => importRef.current?.click()}
-          >
-            <ArrowUpFromLine size={16} />
-            Importuj projekt JSON
-          </button>
+        <ModalDialog title="Moje projekty" wide onClose={() => setModal(null)}>
+          <MyProjects
+            initialImport={libraryImport}
+            onClose={() => setModal(null)}
+            onExamples={() => setModal("examples")}
+            onTraining={() => setModal("training")}
+          />
         </ModalDialog>
       )}
       {(modal === "examples" || modal === "training") && (
@@ -2371,7 +2266,12 @@ function App() {
               <strong>Raport / wydruk PDF</strong>
               <span>Zestawienie aparatów i połączeń</span>
             </button>
-            <button onClick={() => importRef.current?.click()}>
+            <button
+              onClick={() => {
+                setLibraryImport(true);
+                setModal("projects");
+              }}
+            >
               <ArrowUpFromLine size={22} />
               <strong>Import projektu</strong>
               <span>Otwórz i zwaliduj zapisany plik JSON</span>

@@ -5,6 +5,7 @@ export default defineConfig(base, {
     "project-validation.spec.ts",
     "exam-practice.spec.ts",
     "pages.spec.ts",
+    "my-projects.spec.ts",
   ],
   testIgnore: [],
   use: { ...base.use, baseURL: "http://127.0.0.1:4173/ele/" },

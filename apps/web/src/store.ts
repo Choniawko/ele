@@ -83,6 +83,8 @@ interface AppState {
   recovery: ProjectRecovery | null;
   notice: string;
   hydrated: boolean;
+  libraryRevision: number;
+  flushSave: () => Promise<void>;
   paused: boolean;
   speed: 1 | 5 | 20;
   sessionId: string;
@@ -167,6 +169,8 @@ interface AppState {
     project: ProjectDocument,
     records?: MeasurementRecord[],
     events?: RuntimeSnapshot["events"],
+    libraryRevision?: number,
+    skipPreviousSave?: boolean,
   ) => void;
   newProject: () => void;
   loadScenario: (
@@ -304,10 +308,13 @@ function scheduleSave() {
   saveTimer = setTimeout(() => {
     const s = useApp.getState();
     const savedDocument = s.project;
-    void saveProject(s.project, s.measurements, [
-      ...s.archivedEvents,
-      ...s.runtime.events,
-    ])
+    void saveProject(
+      s.project,
+      s.measurements,
+      [...s.archivedEvents, ...s.runtime.events],
+      true,
+      s.libraryRevision,
+    )
       .then(() => {
         const now = useApp.getState();
         if (
@@ -401,6 +408,30 @@ function connectionTerminal(project: ProjectDocument, ref: TerminalRef) {
 }
 export const useApp = create<AppState>((set, get) => ({
   project: startProject,
+  libraryRevision: 0,
+  flushSave: async () => {
+    clearTimeout(saveTimer);
+    const generation = ++saveGeneration;
+    const s = get();
+    try {
+      await saveProject(
+        s.project,
+        s.measurements,
+        [...s.archivedEvents, ...s.runtime.events],
+        true,
+        s.libraryRevision,
+      );
+      if (generation === saveGeneration)
+        set({ saveStatus: "saved", saveError: "" });
+    } catch (error) {
+      if (
+        generation === saveGeneration &&
+        get().project.circuit.projectId === s.project.circuit.projectId
+      )
+        get().reportReadError(error);
+      throw error;
+    }
+  },
   runtime: initialRuntime(startProject),
   mode: "build",
   view: "physical",
@@ -1049,7 +1080,13 @@ export const useApp = create<AppState>((set, get) => ({
       false,
     );
   },
-  load: (project, records = [], events = []) => {
+  load: (
+    project,
+    records = [],
+    events = [],
+    libraryRevision = 0,
+    skipPreviousSave = false,
+  ) => {
     try {
       project = validateProjectDocument(project);
     } catch (error) {
@@ -1059,12 +1096,16 @@ export const useApp = create<AppState>((set, get) => ({
     const sessionId = newId("session");
     const previous = get();
     clearTimeout(saveTimer);
-    if (previous.project.circuit.projectId !== project.circuit.projectId)
+    if (
+      !skipPreviousSave &&
+      previous.project.circuit.projectId !== project.circuit.projectId
+    )
       void saveProject(
         previous.project,
         previous.measurements,
         [...previous.archivedEvents, ...previous.runtime.events],
         false,
+        previous.libraryRevision,
       ).catch((error) =>
         set({
           notice:
@@ -1076,6 +1117,7 @@ export const useApp = create<AppState>((set, get) => ({
       );
     set({
       project: clone(project),
+      libraryRevision,
       runtime: initialRuntime(project, sessionId),
       sessionId,
       mode: project.training
@@ -1215,7 +1257,14 @@ export const useApp = create<AppState>((set, get) => ({
     set({ hydrated: true });
     try {
       const saved = await restoreProject();
-      if (saved) get().load(saved.document, saved.measurements, saved.events);
+      if (saved)
+        get().load(
+          saved.document,
+          saved.measurements,
+          saved.events,
+          saved.libraryRevision,
+          true,
+        );
       else {
         request({ type: "solve" });
         scheduleSave();

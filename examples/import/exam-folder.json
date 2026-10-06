@@ -1,0 +1,145 @@
+{
+  "format": "ele-folder",
+  "version": 1,
+  "folder": {
+    "name": "Projekty do egzaminu"
+  },
+  "projects": [
+    {
+      "document": {
+        "name": "Minimalny obwód lampy",
+        "circuit": {
+          "schemaVersion": 1,
+          "projectId": "example-minimal-lamp",
+          "revision": 0,
+          "catalogSnapshotId": "catalog-2026-10-02",
+          "devices": [
+            {
+              "id": "d-728c72aa-2d82-496c-bd5b-154b165de446",
+              "productId": "edu-source-ac",
+              "productRevision": "1",
+              "designation": "G1",
+              "settings": {
+                "voltageV": 230,
+                "sourceResistanceOhm": 0.4
+              }
+            },
+            {
+              "id": "d-70c2d1d4-7138-48ed-9dd6-ab8e1822128e",
+              "productId": "edu-lamp",
+              "productRevision": "1",
+              "designation": "H1",
+              "settings": {
+                "powerW": 60,
+                "voltageV": 230
+              }
+            }
+          ],
+          "conductors": [
+            {
+              "id": "w-81b829a4-8999-4f2a-9445-1f807bda1913",
+              "from": {
+                "deviceId": "d-728c72aa-2d82-496c-bd5b-154b165de446",
+                "terminalId": "L"
+              },
+              "to": {
+                "deviceId": "d-70c2d1d4-7138-48ed-9dd6-ab8e1822128e",
+                "terminalId": "L"
+              },
+              "declaredRole": "L1",
+              "insulationColor": "#755038",
+              "crossSectionMm2": 1.5,
+              "electricalLengthM": 2,
+              "material": "Cu",
+              "marking": "W1"
+            },
+            {
+              "id": "w-f109f2cb-416a-4a1b-9477-0e208ee39db2",
+              "from": {
+                "deviceId": "d-728c72aa-2d82-496c-bd5b-154b165de446",
+                "terminalId": "N"
+              },
+              "to": {
+                "deviceId": "d-70c2d1d4-7138-48ed-9dd6-ab8e1822128e",
+                "terminalId": "N"
+              },
+              "declaredRole": "N",
+              "insulationColor": "#3b87be",
+              "crossSectionMm2": 1.5,
+              "electricalLengthM": 2,
+              "material": "Cu",
+              "marking": "W2"
+            },
+            {
+              "id": "w-c584a368-7cd5-4741-96a3-a5941b83f0bf",
+              "from": {
+                "deviceId": "d-728c72aa-2d82-496c-bd5b-154b165de446",
+                "terminalId": "PE"
+              },
+              "to": {
+                "deviceId": "d-70c2d1d4-7138-48ed-9dd6-ab8e1822128e",
+                "terminalId": "PE"
+              },
+              "declaredRole": "PE",
+              "insulationColor": "#3b9b55",
+              "crossSectionMm2": 1.5,
+              "electricalLengthM": 2,
+              "material": "Cu",
+              "marking": "W3"
+            }
+          ],
+          "bridges": [],
+          "cables": [],
+          "mechanicalCouplings": [],
+          "supplySystems": [
+            {
+              "id": "supply-cb4a3f52-a90e-4607-9a12-ee1ea32027dc",
+              "kind": "TN-S",
+              "sourceId": "d-728c72aa-2d82-496c-bd5b-154b165de446"
+            }
+          ],
+          "installationConditions": {
+            "temperatureC": 20,
+            "copperResistivity": 0.0175,
+            "aluminiumResistivity": 0.0282,
+            "insulationResistanceOhm": 200000000
+          }
+        },
+        "physical": {
+          "devices": {
+            "d-728c72aa-2d82-496c-bd5b-154b165de446": {
+              "x": 80,
+              "y": 90
+            },
+            "d-70c2d1d4-7138-48ed-9dd6-ab8e1822128e": {
+              "x": 420,
+              "y": 90
+            }
+          },
+          "routes": {}
+        },
+        "schematic": {
+          "devices": {
+            "d-728c72aa-2d82-496c-bd5b-154b165de446": {
+              "x": 80,
+              "y": 80
+            },
+            "d-70c2d1d4-7138-48ed-9dd6-ab8e1822128e": {
+              "x": 270,
+              "y": 80
+            }
+          },
+          "routes": {}
+        },
+        "faults": [],
+        "userMetadata": {},
+        "productRevisions": {
+          "edu-source-ac": "1",
+          "edu-lamp": "1"
+        }
+      },
+      "measurements": [],
+      "events": []
+    }
+  ]
+}

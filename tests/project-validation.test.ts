@@ -24,6 +24,7 @@ beforeEach(() => {
   runtime.energized = true;
   useApp.setState({
     project,
+    libraryRevision: 0,
     runtime,
     sessionId: "test-session",
     history: [],
@@ -73,6 +74,30 @@ function unchanged(before: ReturnType<typeof useApp.getState>) {
   expect(saveProject).not.toHaveBeenCalled();
 }
 describe("jedna definicja poprawnego projektu", () => {
+  it("autosave przekazuje rewizję biblioteki, a błąd opóźnionego zapisu nie psuje kolejnego projektu", async () => {
+    let rejectOld!: (error: Error) => void;
+    vi.mocked(saveProject).mockImplementationOnce(
+      () =>
+        new Promise<void>((_, reject) => {
+          rejectOld = reject;
+        }),
+    );
+    useApp.setState({ libraryRevision: 7 });
+    useApp.getState().rename("Stary projekt");
+    await vi.advanceTimersByTimeAsync(350);
+    expect(vi.mocked(saveProject).mock.calls[0][4]).toBe(7);
+    useApp.getState().load(scenarioProject("lamp"), [], [], 12, true);
+    const next = useApp.getState().project;
+    rejectOld(new Error("Spóźniony błąd poprzedniego projektu"));
+    await Promise.resolve();
+    await Promise.resolve();
+    expect(useApp.getState().project).toBe(next);
+    expect(useApp.getState().libraryRevision).toBe(12);
+    expect(useApp.getState().notice).not.toContain("Spóźniony błąd");
+    await vi.advanceTimersByTimeAsync(350);
+    expect(vi.mocked(saveProject).mock.calls.at(-1)![4]).toBe(12);
+    expect(useApp.getState().saveStatus).toBe("saved");
+  });
   it("błąd zapisu poprzedniego projektu podczas przełączenia również udostępnia kopię", async () => {
     const previous = structuredClone(useApp.getState().project);
     previous.name = "N".repeat(projectLimits.name.maxLength + 1);

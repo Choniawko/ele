@@ -17,3 +17,13 @@ Etap 1 egzaminów dodaje profile w `device-catalog/stage-one.ts`, niezależne od
 `training/builder.ts` jest wspólnym konstruktorem dotychczasowych i nowych projektów. `practice.ts` opisuje trzy stanowiska, warianty montażu i ukryte nakładki diagnostyczne. `assessment.ts` ocenia funkcje i drogi obwodu na kopii projektu; nie porównuje ID ani szablonowej listy przewodów. Ocena elektrycznej blokady usuwa sprzężenie mechaniczne z kopii. Pomiary nadal oblicza pakiet pomiarów; ćwiczenie nie dostarcza gotowych odczytów. Dowód diagnozy jest wyliczany przed naprawą wybranego obiektu i nie zapisuje identyfikatora ukrytej przyczyny w publicznych metadanych.
 
 CI i wydanie korzystają ze wspólnego workflow `verify.yml`. Build pod `/ele/` ma metadane wersji i manifest SHA-256; serwer testowy udostępnia wyłącznie istniejące pliki pod tą ścieżką. Pełne E2E dev i produkcyjne działają kolejno. Job Pages wdraża artefakt powstały po tych kontrolach, bez drugiego builda; rollback weryfikuje i ponownie testuje archiwum GitHub Release. Uprawnienia i wymagane ustawienia: [RELEASING.md](RELEASING.md).
+
+## Biblioteka „Moje projekty”
+
+Dexie v5 dodaje `folders`, indeks `projects.folderId` oraz tombstone'y `deletedProjects`. Migracja dopisuje wyłącznie `folderId: null` i `libraryRevision: 0`; zachowuje dokumenty, pomiary, zdarzenia, snapshoty i wskaźnik ostatniego projektu, także w nieczytelnych rekordach. Metadane biblioteki pozostają poza `ProjectDocument`.
+
+`apps/web/src/library.ts` obsługuje CRUD, kopiowanie i wersjonowane opakowania JSON. Import waliduje całą paczkę przed pierwszą mutacją i zapisuje projekty, folder oraz snapshoty w jednej transakcji. Nowe ID zapobiegają nadpisaniu oryginału. `MyProjects.tsx` dostarcza foldery, karty, podgląd bez edycji i potwierdzenie importu/usunięcia.
+
+Zmiana nazwy/przeniesienie/usunięcie folderu aktualizują rewizję metadanych. Store przekazuje zapamiętaną rewizję do każdego autosave; niezgodność powoduje odrzucenie opóźnionego zapisu. Usunięte projekty pozostawiają tombstone, aby oczekujący zapis lub inna karta przeglądarki nie odtworzyły projektu. Zapis zachowuje bieżący folder z rekordu. Operacje interfejsu najpierw kończą zapis aktywnego projektu; otwarcie z biblioteki ładuje nową sesję bez ponownego zapisu nieaktualnej kopii poprzedniego dokumentu. Błędy odczytu nadal zachowują oryginał i udostępniają chronioną kopię do odzyskania.
+
+Kontrakt generatorów zewnętrznych i ograniczenia lokalnego przechowywania: [PROJECT_IMPORT.md](PROJECT_IMPORT.md).
