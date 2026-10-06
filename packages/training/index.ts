@@ -1,11 +1,17 @@
+import {
+  practiceScenarios,
+  practiceVariant,
+  isPractice,
+  type ExerciseVariant,
+} from "./practice";
+import { assessPractice } from "./assessment";
+export type { ExerciseVariant } from "./practice";
 import { catalog } from "@catalog/index";
 import {
-  emptyProject,
   newId,
-  type ProjectDocument,
   type Role,
+  type ProjectDocument,
   type TerminalRef,
-  type DeviceSettings,
 } from "@model/index";
 import {
   advance,
@@ -15,17 +21,8 @@ import {
   type RuntimeSnapshot,
 } from "@simulation/index";
 import type { MeasurementRecord } from "@measurements/index";
-export const colors: Record<Role, string> = {
-  L1: "#755038",
-  L2: "#35383d",
-  L3: "#8d9398",
-  N: "#3b87be",
-  PE: "#3b9b55",
-  CONTROL: "#e28148",
-  DC_PLUS: "#cc514f",
-  DC_MINUS: "#354355",
-  UNSPECIFIED: "#a486b8",
-};
+export { colors } from "./builder";
+import { Builder, colors } from "./builder";
 export interface Scenario {
   id: string;
   number: number;
@@ -37,75 +34,8 @@ export interface Scenario {
   goals: string[];
   hints: string[];
   fidelity: string;
+  practice?: boolean;
   create: () => ProjectDocument;
-}
-class Builder {
-  project: ProjectDocument;
-  constructor(name: string) {
-    this.project = emptyProject(name);
-  }
-  add(
-    productId: string,
-    designation: string,
-    x: number,
-    y: number,
-    settings: DeviceSettings = {},
-  ) {
-    const p = catalog[productId],
-      id = newId("d");
-    this.project.circuit.devices.push({
-      id,
-      productId,
-      productRevision: p.revision,
-      designation,
-      settings: { ...p.defaults, ...settings },
-    });
-    this.project.productRevisions[productId] = p.revision;
-    this.project.physical.devices[id] = { x, y };
-    const n = this.project.circuit.devices.length - 1;
-    this.project.schematic.devices[id] = {
-      x: 80 + (n % 5) * 190,
-      y: 80 + Math.floor(n / 5) * 520,
-    };
-    if (p.behaviorId.startsWith("source-"))
-      this.project.circuit.supplySystems.push({
-        id: newId("supply"),
-        kind: p.behaviorId === "source-dc" ? "isolated-DC" : "TN-S",
-        sourceId: id,
-      });
-    return id;
-  }
-  wire(a: string, ta: string, b: string, tb: string, role: Role = "L1") {
-    const id = newId("w");
-    this.project.circuit.conductors.push({
-      id,
-      from: { deviceId: a, terminalId: ta },
-      to: { deviceId: b, terminalId: tb },
-      declaredRole: role,
-      insulationColor: colors[role],
-      crossSectionMm2: 1.5,
-      electricalLengthM: 2,
-      material: "Cu",
-      marking: `W${this.project.circuit.conductors.length + 1}`,
-    });
-    return id;
-  }
-  bus(
-    source: string,
-    terminal: string,
-    role: "N" | "PE" | "L1",
-    x: number,
-    y: number,
-  ) {
-    const b = this.add(
-      role === "PE" ? "edu-bus-pe" : "edu-bus-n",
-      role === "PE" ? "XPE1" : role === "N" ? "XN1" : "XL1",
-      x,
-      y,
-    );
-    this.wire(source, terminal, b, "1", role);
-    return b;
-  }
 }
 function basic(
   kind:
@@ -407,8 +337,85 @@ const defs: [string, string, string, string, () => ProjectDocument][] = [
     () => basic("fan"),
   ],
 ];
-export const scenarios: Scenario[] = defs.map(
-  ([id, title, description, category, create], i) => ({
+function arrangeProject(project: ProjectDocument): ProjectDocument {
+  const p = project,
+    occupied: { x: number; y: number; w: number; h: number }[] = [];
+  let schematicY = 80;
+  for (let row = 0; row < p.circuit.devices.length; row += 5) {
+    const devices = p.circuit.devices.slice(row, row + 5);
+    devices.forEach((d, i) => {
+      p.schematic.devices[d.id] = { x: 80 + i * 190, y: schematicY };
+    });
+    schematicY +=
+      Math.max(
+        ...devices.map((d) => {
+          const product = catalog[d.productId];
+          const rows =
+            product.topology.connections.length +
+            (product.behaviorId.startsWith("source-")
+              ? product.behaviorId === "source-3ph"
+                ? 3
+                : 1
+              : product.behaviorId === "power-supply"
+                ? 1
+                : 0);
+          return Math.max(90, rows * 45 + 75);
+        }),
+      ) + 70;
+  }
+  for (const d of p.circuit.devices) {
+    const dimensions = catalog[d.productId].dimensions.value!,
+      original = p.physical.devices[d.id];
+    const w = dimensions.width * 2.2,
+      h = dimensions.height * 2.2;
+    let x = original.x,
+      y =
+        original.y < 300
+          ? 90
+          : isPractice(p)
+            ? 90 + Math.round((original.y - 90) / 295) * 350
+            : 385;
+    for (let attempt = 0; attempt < 100; attempt++) {
+      const collisions = occupied.filter(
+        (o) =>
+          x < o.x + o.w + 24 &&
+          x + w + 24 > o.x &&
+          y < o.y + o.h + 20 &&
+          y + h + 20 > o.y,
+      );
+      if (!collisions.length && x + w < 1120) break;
+      x = collisions.length
+        ? Math.max(...collisions.map((o) => o.x + o.w + 24))
+        : 65;
+      if (x + w >= 1120) {
+        x = 65;
+        y += isPractice(p) ? 350 : 295;
+      }
+    }
+    p.physical.devices[d.id] = { x, y };
+    occupied.push({ x, y, w, h });
+  }
+  if (isPractice(p))
+    p.physical.rails = Array.from(
+      {
+        length: Math.max(
+          2,
+          ...p.circuit.devices.map(
+            (d) => Math.round((p.physical.devices[d.id].y - 90) / 350) + 1,
+          ),
+        ),
+      },
+      (_, i) => ({
+        id: `exam-rail-${i + 1}`,
+        x: 60,
+        y: 155 + i * 350,
+        width: 970,
+      }),
+    );
+  return p;
+}
+export const scenarios: Scenario[] = [
+  ...defs.map<Scenario>(([id, title, description, category, create], i) => ({
     id,
     number: i + 1,
     title,
@@ -433,63 +440,24 @@ export const scenarios: Scenario[] = defs.map(
       ? "Wariant dydaktyczny: niezweryfikowane SKU zastąpione jawnymi elementami pracowni."
       : "Rzeczywisty MBN116E lub HDR-60-24 oraz elementy dydaktyczne.",
     create: () => {
-      const p = create(),
-        occupied: { x: number; y: number; w: number; h: number }[] = [];
-      let schematicY = 80;
-      for (let row = 0; row < p.circuit.devices.length; row += 5) {
-        const devices = p.circuit.devices.slice(row, row + 5);
-        devices.forEach((d, i) => {
-          p.schematic.devices[d.id] = { x: 80 + i * 190, y: schematicY };
-        });
-        schematicY +=
-          Math.max(
-            ...devices.map((d) => {
-              const product = catalog[d.productId];
-              const rows =
-                product.topology.connections.length +
-                (product.behaviorId.startsWith("source-")
-                  ? product.behaviorId === "source-3ph"
-                    ? 3
-                    : 1
-                  : product.behaviorId === "power-supply"
-                    ? 1
-                    : 0);
-              return Math.max(90, rows * 45 + 75);
-            }),
-          ) + 70;
-      }
-      for (const d of p.circuit.devices) {
-        const dimensions = catalog[d.productId].dimensions.value!,
-          original = p.physical.devices[d.id];
-        const w = dimensions.width * 2.2,
-          h = dimensions.height * 2.2;
-        let x = original.x,
-          y = original.y < 300 ? 90 : 385;
-        for (let attempt = 0; attempt < 100; attempt++) {
-          const collisions = occupied.filter(
-            (o) =>
-              x < o.x + o.w + 24 &&
-              x + w + 24 > o.x &&
-              y < o.y + o.h + 20 &&
-              y + h + 20 > o.y,
-          );
-          if (!collisions.length && x + w < 1120) break;
-          x = collisions.length
-            ? Math.max(...collisions.map((o) => o.x + o.w + 24))
-            : 65;
-          if (x + w >= 1120) {
-            x = 65;
-            y += 295;
-          }
-        }
-        p.physical.devices[d.id] = { x, y };
-        occupied.push({ x, y, w, h });
-      }
-      return p;
+      return arrangeProject(create());
     },
-  }),
-);
-export function scenarioProject(id: string, training = false): ProjectDocument {
+  })),
+  ...practiceScenarios.map((s) => ({
+    ...s,
+    create: () => {
+      const p = s.create();
+      p.scenarioId = s.id;
+      return arrangeProject(p);
+    },
+  })),
+];
+export function scenarioProject(
+  id: string,
+  training = false,
+  variant: ExerciseVariant = "reference",
+  diagnosticCase = 0,
+): ProjectDocument {
   const scenario = scenarios.find((s) => s.id === id) ?? scenarios[0],
     p = scenario.create();
   p.scenarioId = scenario.id;
@@ -502,7 +470,7 @@ export function scenarioProject(id: string, training = false): ProjectDocument {
       completedChecks: [],
       repaired: false,
     };
-  return p;
+  return isPractice(p) ? practiceVariant(p, variant, diagnosticCase) : p;
 }
 export interface CheckResult {
   id: string;
@@ -588,6 +556,7 @@ export function checkScenario(
   rt: RuntimeSnapshot,
   measurements: MeasurementRecord[],
 ): CheckResult[] {
+  if (isPractice(p)) return assessPractice(p, measurements);
   const inactive = { ...rt, energized: false };
   const protectionBranches = compile(p, inactive, { deenergized: true }).filter(
     (b) => b.kind === "wire" || b.kind === "bridge",

@@ -18,3 +18,7 @@
 | Diagnoza | Dowód i retest | ELE.05.3 |
 
 Każde ćwiczenie otwiera wzorzec do badania i modyfikowania. Obecna ocena obejmuje funkcję obwodu na kopii, ciągłość wszystkich PE, zgodność zadeklarowanych barw i aktualny dowód pomiarowy. Diagnoza dodatkowo wymaga hipotezy, naprawy i pomiaru PE przed/po. Scenariusze nie sprawdzają całej listy efektów kształcenia, kompletnej procedury BHP, wszystkich symboli ani normatywnego doboru zabezpieczeń. Ocena 4/4 nie oznacza zaliczenia kwalifikacji.
+
+## Zweryfikowane arkusze i nowe stanowiska
+
+Aktualną analizę konkretnych arkuszy, źródła, kryteria, zakres funkcjonalny i brakujące etapy zawiera [exam-coverage.md](exam-coverage.md). Trzy nowe zestawy mają montaż od przygotowanego stanowiska i ukrytą diagnozę. Poprzednie ogólne mapowanie nie oznacza pokrycia całych kwalifikacji.

@@ -118,6 +118,7 @@ export interface TrainingSession {
   completedChecks: string[];
   diagnosis?: string;
   repaired: boolean;
+  diagnosticEvidence?: boolean;
 }
 export interface ProjectDocument {
   name: string;
@@ -365,6 +366,7 @@ export const projectSchema = z
         completedChecks: z.array(id).max(100),
         diagnosis: diagnosisSchema.optional(),
         repaired: z.boolean(),
+        diagnosticEvidence: z.boolean().optional(),
       })
       .optional(),
     userMetadata: z

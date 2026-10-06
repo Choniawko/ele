@@ -1,0 +1,41 @@
+name: ELE CI
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    uses: ./.github/workflows/verify.yml
+  describe-pr-2:
+    name: Describe PR 2
+    needs: verify
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.repository == 'Choniawko/ele' &&
+      github.event.pull_request.number == 2 &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'feat/exam-practice-stage-one'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Update only the requested PR metadata after successful checks
+        shell: bash
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/contents/docs/PR_2_DESCRIPTION.md?ref=$GITHUB_SHA" \
+            --jq .content | base64 --decode > "$RUNNER_TEMP/pr-2-body.md"
+          printf '\nWeryfikacja CI dla merge commita `%s`: [zielony job Verify ELE](%s/%s/actions/runs/%s).\n' \
+            "$GITHUB_SHA" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" >> "$RUNNER_TEMP/pr-2-body.md"
+          gh pr edit 2 --repo "$GITHUB_REPOSITORY" \
+            --title 'Etap 1 ELE.02/ELE.05: ćwiczenia, aparaty, solver i wydawanie na Pages' \
+            --body-file "$RUNNER_TEMP/pr-2-body.md"

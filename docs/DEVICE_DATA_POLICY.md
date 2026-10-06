@@ -9,7 +9,9 @@ Stan `published` wymaga przejścia bramek topologii, wyglądu i testów. Nieopub
 - **Hager MBN116E**: [strona producenta](https://hager.com/pl/katalog/produkt/mbn116e-mcb-6ka-1p-b-16a), wymiary 17,5 × 83 × 70 mm, znamionowe B16/6 kA, zdjęcie i diagram 1–2. [Zdjęcie producenta](https://assets.hager.com/step-content/P/HA_16378145/11/std.lang.all/MCN1XXE-MBN1XXE.webp). Porty są nakładką wskazującą drogę przewodu; konserwatywnie jeden przewód na zacisk. Spadek na stykach i profil wyzwalania są dydaktyczne, nie odtworzoną krzywą produktu.
 - **Mean Well HDR-60-24**: [karta HDR-60-SPEC, rewizja 2026-04-03](https://www.meanwell.com/Upload/PDF/HDR-60/HDR-60-SPEC.PDF), str. 2 parametry i wymiary 52,5 × 90 × 54,5 mm; str. 4 rysunek i przypisanie 1/2 −V, 3/4 +V, 5 AC/L, 6 AC/N. Render autorski, pozycje skalowane z rysunku. Nazwy aplikacyjne −V1/−V2/+V1/+V2 identyfikują powtórzone wyprowadzenia. Wyjście jest odizolowane od AC/N/PE. Sprawność 90% dla wariantu 24 V; ograniczenie 2,5 A jest uproszczeniem, bez hiccup i udaru.
 
-Odczyt źródeł: 2026-10-02/03. Zdjęć producentów nie dołączono jako własnych zasobów; służyły do przeglądu autorskich wektorów.
+- **Schneider LC1D09P7 i XB5AA35**, rewizja `verified-20261005-1`: [weryfikacja etapu 1](device-verification-stage-one.md), osobne karty, zdjęcia i nakładki zacisków. Prąd i napięcie znamionowe pozostają stałe. Rezystancji DC cewki LC1D09P7 nie wyprowadzamy z mocy pozornej; brak danych oznacza `null` i jawny brak dokładnego modelu pomiaru Ω.
+
+Odczyt źródeł: 2026-10-02/03; nowe SKU etapu 1: 2026-10-05. Zdjęć producentów nie dołączono jako własnych zasobów; służyły do przeglądu autorskich wektorów.
 
 ## Korekty względem załączonego seed
 

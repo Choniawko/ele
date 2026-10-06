@@ -1,0 +1,12 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "ignorePatterns": [
+    "node_modules/**",
+    "dist/**",
+    "test-results/**",
+    "playwright-report/**",
+    "Symulator_Elektryczny_Pakiet_Codex/**",
+    "docs/qa/**"
+  ],
+  "plugins": ["typescript", "unicorn", "oxc"]
+}

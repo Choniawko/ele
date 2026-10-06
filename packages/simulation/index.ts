@@ -1,3 +1,5 @@
+import { mechanismOwner, mechanicallyBlocked } from "./mechanisms";
+import { analyzeMotor, type WindingConnection } from "./motor";
 import { catalog } from "@catalog/index";
 import {
   conductorResistance,
@@ -36,6 +38,9 @@ export interface DeviceRuntime {
   powerW: number;
   direction?: "123" | "132" | "phase-loss";
   outputPowerW: number;
+  mechanicallyBlocked?: boolean;
+  windingConnection?: WindingConnection;
+  motorSupply?: "missing-links" | "phase-loss" | "voltage-mismatch" | "ok";
 }
 export interface RuntimeEvent {
   id: string;
@@ -134,7 +139,9 @@ export function compile(
       kind: "wire",
     });
   }
-  for (const b of project.circuit.bridges)
+  for (const b of project.circuit.bridges) {
+    if (faults.some((f) => f.targetId === b.id && f.kind === "open-wire"))
+      continue;
     branches.push({
       id: b.id,
       from: terminalKey(b.from),
@@ -142,6 +149,7 @@ export function compile(
       resistanceOhm: 0.00001,
       kind: "bridge",
     });
+  }
   for (const d of project.circuit.devices) {
     const p = catalog[d.productId];
     if (!p?.published)
@@ -150,6 +158,16 @@ export function compile(
       top = p.topology,
       k = (id: string) => `${d.id}:${id}`,
       df = faults.filter((f) => f.targetId === d.id);
+    const ownerId =
+      p.behaviorId === "auxiliary" ? mechanismOwner(project, d.id) : undefined;
+    const owner = ownerId ? rt.devices[ownerId] : undefined;
+    const mechanism = owner
+      ? catalog[
+          project.circuit.devices.find((x) => x.id === ownerId)!.productId
+        ].topology.coil
+        ? owner.mechanism
+        : owner.manual
+      : state.mechanism;
     for (const cn of top.connections) {
       let closed = true;
       if (cn.kind === "contact") {
@@ -159,16 +177,23 @@ export function compile(
             : cn.condition === "manual-inverse"
               ? !state.manual
               : cn.condition === "mechanism"
-                ? state.mechanism
+                ? mechanism
                 : cn.condition === "mechanism-inverse"
-                  ? !state.mechanism
+                  ? !mechanism
                   : cn.condition === "healthy"
                     ? !state.tripped
                     : state.tripped;
         closed = value;
         if (
-          df.some((f) => f.kind === "welded-contact") &&
-          (cn.condition === "mechanism" || cn.condition === "manual")
+          df.some(
+            (f) =>
+              f.kind === "welded-contact" &&
+              (f.from && f.to
+                ? (f.from.terminalId === cn.from &&
+                    f.to.terminalId === cn.to) ||
+                  (f.from.terminalId === cn.to && f.to.terminalId === cn.from)
+                : cn.condition === "mechanism" || cn.condition === "manual"),
+          )
         )
           closed = true;
       }
@@ -341,7 +366,9 @@ function summarize(project: ProjectDocument, rt: RuntimeSnapshot) {
         0,
       );
     if (p.behaviorId === "load") state.powered = (state.voltageV ?? 0) > 0.5;
-    if (p.behaviorId === "motor") {
+    if (p.behaviorId === "motor" && top.terminals.some((t) => t.id === "U1")) {
+      Object.assign(state, analyzeMotor(project, d, rt.solution, rt.timeMs));
+    } else if (p.behaviorId === "motor") {
       const diffs = [
         ["U", "V"],
         ["V", "W"],
@@ -509,7 +536,10 @@ export function advance(
             );
           }
         }
-        const updateMechanism = (value: boolean) => {
+        const updateMechanism = (requested: boolean) => {
+          const blocked = requested && mechanicallyBlocked(project, rt, d.id);
+          s.mechanicallyBlocked = blocked;
+          const value = requested && !blocked;
           if (s.mechanism !== value) {
             s.mechanism = value;
             changed = true;
@@ -529,7 +559,14 @@ export function advance(
             u >= nom * (s.coil ? 0.3 : 0.85) &&
             u < nom * 1.2 &&
             !fault("open-coil");
+          const wasMechanism = s.mechanism;
           updateMechanism(s.coil && !fault("blocked-mechanism"));
+          // Resolve the newly opened NC before processing another coil. This
+          // models electrical mutual exclusion without inventing a mechanical tie.
+          if (s.mechanism !== wasMechanism) {
+            rt.solution = solveNetwork(compile(project, rt), nodes);
+            summarize(project, rt);
+          }
         }
         if (["bistable", "staircase", "timer"].includes(p.behaviorId)) {
           const input = top.supply!;
@@ -694,19 +731,23 @@ export function advance(
             );
         }
       }
-      for (const coupling of project.circuit.mechanicalCouplings)
-        if (coupling.kind === "interlock") {
-          const active = coupling.deviceIds.filter(
-            (id) => rt.devices[id]?.mechanism,
-          );
-          if (active.length > 1) {
-            rt.status = "solver-error";
-            rt.errors = [
-              "Jednoczesne żądanie dwóch mechanizmów z blokadą: sprawdź tor sterowania.",
-            ];
-            return rt;
-          }
+      for (const d of project.circuit.devices.filter(
+        (d) => catalog[d.productId].behaviorId === "auxiliary",
+      )) {
+        const ownerId = mechanismOwner(project, d.id),
+          owner = ownerId ? rt.devices[ownerId] : undefined;
+        const value = owner
+          ? catalog[
+              project.circuit.devices.find((x) => x.id === ownerId)!.productId
+            ].topology.coil
+            ? owner.mechanism
+            : owner.manual
+          : false;
+        if (rt.devices[d.id].mechanism !== value) {
+          rt.devices[d.id].mechanism = value;
+          changed = true;
         }
+      }
       if (!changed) break;
       if (iteration === 23) {
         rt.status = "oscillation";

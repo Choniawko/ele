@@ -11,7 +11,7 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-Otwórz http://127.0.0.1:5173. W tym środowisku serwer został już uruchomiony. Do wersji produkcyjnej: `pnpm build`, następnie `pnpm preview`. Działanie projektu nie wymaga konta ani klucza API. Linki do dokumentacji producentów wymagają internetu. Nie ma jeszcze service workera/PWA.
+Otwórz http://127.0.0.1:5173. Do wersji produkcyjnej: `pnpm build`, następnie `pnpm preview:dist` i http://127.0.0.1:4173/ele/. Build jest przygotowany dla https://choniawko.github.io/ele/. Działanie projektu nie wymaga konta ani klucza API. Linki do dokumentacji producentów wymagają internetu. Nie ma jeszcze service workera/PWA.
 
 ## Pierwsza próba
 
@@ -37,7 +37,7 @@ Porównanie powierzchni, zrzuty i wyniki weryfikacji są w [opisie UX/UI](docs/U
 
 ## Rzeczywisty stan
 
-To działająca wersja testowa, **nie pełny odbiór v1**. Katalog obejmuje wszystkie 31 rekordów badawczych, ale do edytora dopuszczono 2 rzeczywiste SKU: Hager MBN116E i Mean Well HDR-60-24. 29 pozostaje zablokowanych z opisem braków. Oddzielne 26 elementów dydaktycznych umożliwia sprawdzanie pozostałych zachowań. 13 scenariuszy wykorzystuje te jawne odpowiedniki; nie są ukończonymi ćwiczeniami na wszystkich markowych aparatach.
+To działająca wersja testowa, **nie pełny odbiór v1 ani pełne pokrycie kwalifikacji**. Katalog ma 32 rzeczywiste SKU (31 z oryginalnego seed i nowy XB5AA35): 4 opublikowane — Hager MBN116E, Mean Well HDR-60-24, Schneider LC1D09P7 i XB5AA35 — oraz 28 oczekujących. Osobne 29 profili dydaktycznych ma jawne ograniczenia. Do 13 wcześniejszych scenariuszy dodano trzy zestawy z wzorcem, samodzielnym montażem i trzema ukrytymi wariantami diagnozy. Szczegółowe źródła i zakres: [pokrycie arkuszy](docs/exam-coverage.md) oraz [weryfikacja aparatów](docs/device-verification-stage-one.md).
 
 Silnik jest rezystancyjny, quasi-statyczny. Ochrona, silnik, elektronika i pomiary specjalne mają jawne uproszczenia. Wyniki nie są protokołem odbioru realnej instalacji. Brak implementacji LLM jest zgodny z zakresem; dostępny jest tylko kontrakt przyszłego tutora.
 
@@ -63,3 +63,13 @@ Playwright używa zainstalowanego Chrome (`channel: chrome`). Firefox z użytej 
 Oryginalny pakiet w `Symulator_Elektryczny_Pakiet_Codex` pozostawiono bez zmian. Korygowane dane i źródła są opisane w [polityce danych](docs/DEVICE_DATA_POLICY.md).
 
 Edycja, zapis i import stosują te same limity dokumentu. Odrzucona zmiana pokazuje komunikat i zachowuje poprzedni stan. Przy niepoprawnym istniejącym zapisie można pobrać kopię do odzyskania; oryginał pozostaje w bazie. Procedura i testy regresji: [walidacja projektów](docs/PROJECT_VALIDATION.md).
+
+## Ćwiczenia praktyczne — etap 1
+
+W menu **Ćwiczenia** wybierz tryb nowych zestawów: Wzorzec, Montaż lub Diagnoza, a potem oświetlenie bistabilne, START/STOP albo prawo/lewo. Rozwiń „Wymagania i instrukcja montażu”. W inspektorze przypisz blok pomocniczy do stycznika, wybierz rzeczywiste mostki Y/Δ silnika i osobną blokadę mechaniczną. Montaż otwiera tryb Budowa, a Diagnoza tryb diagnostyczny. Po zmianie połączeń wykonaj pomiary ponownie — ocena wymaga bieżącej rewizji.
+
+W diagnostyce zapisz pomiar właściwego uszkodzonego toru, hipotezę i napraw zaznaczony element. Dla sklejonego NC badaj spadek napięcia na styku podczas załączenia mechanizmu; ciągłość NC w spoczynku sama nie dowodzi usterki. Po naprawie sprawdź PE i działanie. Ukryta przyczyna nie jest eksportowana. Instrukcja odczytu nadruków i ograniczenia rezystancji cewek znajdują się w danych produktu.
+
+## CI i pierwsze wydanie
+
+PR-y i push do main uruchamiają `ELE CI`: frozen lockfile, typecheck, Oxlint/ESLint, testy, katalog, pełne E2E developerskie, build i E2E gotowego dist pod `/ele/`. Zestawy przeglądarkowe działają kolejno. Publikacja następuje wyłącznie dla zweryfikowanego tagu wersji, przez environment `github-pages`, z archiwum do rollbacku i `version.json`. Konieczne ustawienia ochrony main/tagów/środowiska i procedura: [RELEASING.md](docs/RELEASING.md). Dodanie workflowów nie jest potwierdzeniem deploymentu.

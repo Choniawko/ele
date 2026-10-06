@@ -1,3 +1,5 @@
+import { diagnosticWitness } from "@training/assessment";
+import type { ExerciseVariant } from "@training/index";
 import { create } from "zustand";
 import {
   mountingRails,
@@ -167,7 +169,15 @@ interface AppState {
     events?: RuntimeSnapshot["events"],
   ) => void;
   newProject: () => void;
-  loadScenario: (id: string, training?: boolean) => void;
+  loadScenario: (
+    id: string,
+    training?: boolean,
+    variant?: ExerciseVariant,
+    diagnosticCase?: number,
+  ) => void;
+  setMotorLinks: (id: string, connection: "star" | "delta" | "none") => void;
+  attachAuxiliary: (id: string, parentId?: string) => void;
+  setMechanicalInterlock: (id: string, otherId?: string) => void;
   rename: (name: string) => void;
   hydrate: () => Promise<void>;
   runChecks: () => void;
@@ -773,7 +783,10 @@ export const useApp = create<AppState>((set, get) => ({
         (w) => !removed.includes(w.id),
       );
       p.circuit.bridges = p.circuit.bridges.filter(
-        (w) => !ids.includes(w.from.deviceId) && !ids.includes(w.to.deviceId),
+        (w) =>
+          !ids.includes(w.id) &&
+          !ids.includes(w.from.deviceId) &&
+          !ids.includes(w.to.deviceId),
       );
       p.circuit.supplySystems = p.circuit.supplySystems.filter(
         (s) => !ids.includes(s.sourceId),
@@ -998,6 +1011,12 @@ export const useApp = create<AppState>((set, get) => ({
       return;
     }
     const accepted = transaction("Napraw zaznaczony element", (p) => {
+      if (p.training)
+        p.training.diagnosticEvidence ||= diagnosticWitness(
+          p,
+          get().measurements,
+          ids,
+        );
       p.faults = p.faults.filter((f) => !ids.includes(f.targetId));
       if (p.training) {
         p.training.repaired = p.faults.length === 0;
@@ -1059,7 +1078,13 @@ export const useApp = create<AppState>((set, get) => ({
       project: clone(project),
       runtime: initialRuntime(project, sessionId),
       sessionId,
-      mode: project.training ? "training" : "build",
+      mode: project.training
+        ? project.userMetadata.exerciseVariant === "assembly"
+          ? "build"
+          : project.userMetadata.exerciseVariant === "diagnosis"
+            ? "diagnosis"
+            : "training"
+        : "build",
       selection: [],
       wireStart: null,
       waypoints: [],
@@ -1085,8 +1110,98 @@ export const useApp = create<AppState>((set, get) => ({
     scheduleSave();
   },
   newProject: () => get().load(emptyProject()),
-  loadScenario: (id, training = false) =>
-    get().load(scenarioProject(id, training)),
+  loadScenario: (
+    id,
+    training = false,
+    variant = "reference",
+    diagnosticCase = 0,
+  ) => get().load(scenarioProject(id, training, variant, diagnosticCase)),
+  setMotorLinks: (id, connection) =>
+    transaction("Zmień mostki zaciskowe silnika", (p) => {
+      const d = p.circuit.devices.find((d) => d.id === id);
+      if (
+        !d ||
+        !catalog[d.productId].topology.terminals.some((t) => t.id === "U1")
+      )
+        throw new Error("Wybierz silnik z sześcioma końcami uzwojeń.");
+      p.circuit.bridges = p.circuit.bridges.filter(
+        (b) => b.from.deviceId !== id || b.to.deviceId !== id,
+      );
+      const pairs =
+        connection === "star"
+          ? [
+              ["W2", "U2"],
+              ["U2", "V2"],
+            ]
+          : connection === "delta"
+            ? [
+                ["U1", "W2"],
+                ["V1", "U2"],
+                ["W1", "V2"],
+              ]
+            : [];
+      p.circuit.bridges.push(
+        ...pairs.map(([a, b]) => ({
+          id: newId("bridge"),
+          from: { deviceId: id, terminalId: a },
+          to: { deviceId: id, terminalId: b },
+        })),
+      );
+    }),
+  attachAuxiliary: (id, parentId) =>
+    transaction("Przypisz blok pomocniczy", (p) => {
+      const d = p.circuit.devices.find((d) => d.id === id),
+        parent = p.circuit.devices.find((d) => d.id === parentId);
+      if (!d || catalog[d.productId].behaviorId !== "auxiliary")
+        throw new Error("Wybierz blok pomocniczy.");
+      if (
+        parentId &&
+        (!parent ||
+          !(
+            catalog[parent.productId].topology.coil ||
+            ["push-no", "push-nc", "push-multi"].includes(
+              catalog[parent.productId].behaviorId,
+            )
+          ))
+      )
+        throw new Error("Blok wymaga mechanizmu stycznika lub przycisku.");
+      p.circuit.mechanicalCouplings = p.circuit.mechanicalCouplings
+        .map((c) =>
+          c.kind === "assembly"
+            ? { ...c, deviceIds: c.deviceIds.filter((x) => x !== id) }
+            : c,
+        )
+        .filter((c) => c.deviceIds.length >= 2);
+      if (parentId)
+        p.circuit.mechanicalCouplings.push({
+          id: newId("assembly"),
+          kind: "assembly",
+          deviceIds: [parentId, id],
+        });
+    }),
+  setMechanicalInterlock: (id, otherId) =>
+    transaction("Zmień blokadę mechaniczną", (p) => {
+      const ds = [id, ...(otherId ? [otherId] : [])].map((x) =>
+        p.circuit.devices.find((d) => d.id === x),
+      );
+      if (
+        ds.some((d) => !d || catalog[d.productId].behaviorId !== "contactor") ||
+        id === otherId
+      )
+        throw new Error("Blokada wymaga dwóch różnych styczników.");
+      p.circuit.mechanicalCouplings = p.circuit.mechanicalCouplings.filter(
+        (c) =>
+          c.kind !== "interlock" ||
+          (!c.deviceIds.includes(id) &&
+            (!otherId || !c.deviceIds.includes(otherId))),
+      );
+      if (otherId)
+        p.circuit.mechanicalCouplings.push({
+          id: newId("interlock"),
+          kind: "interlock",
+          deviceIds: [id, otherId],
+        });
+    }),
   rename: (name) =>
     transaction(
       "Zmień nazwę",

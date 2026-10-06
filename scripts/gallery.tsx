@@ -21,8 +21,9 @@ const content = renderToStaticMarkup(
     <body>
       <h1>Pracownia · przegląd rodzin SVG</h1>
       <p>
-        2 rzeczywiste SKU oraz oddzielne profile dydaktyczne. Porty interaktywne
-        sprawdzane w aplikacji.
+        {availableProducts.filter((p) => !p.educational).length} rzeczywiste SKU
+        oraz oddzielne profile dydaktyczne. Porty interaktywne sprawdzane w
+        aplikacji.
       </p>
       <section
         className="receivers"

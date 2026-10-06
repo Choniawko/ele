@@ -1,7 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   testDir: "tests/e2e",
+  testIgnore: "pages.spec.ts",
   fullyParallel: false,
+  forbidOnly: !!process.env.CI,
   workers: 1,
   timeout: 45000,
   expect: { timeout: 10000 },
@@ -24,6 +26,6 @@ export default defineConfig({
   webServer: {
     command: "pnpm dev",
     url: "http://127.0.0.1:5173",
-    reuseExistingServer: true,
+    reuseExistingServer: !process.env.CI,
   },
 });

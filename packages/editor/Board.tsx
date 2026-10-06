@@ -52,6 +52,7 @@ const onTerminal: DeviceProps["onTerminal"] = (ref) => {
   useApp.getState().terminalClick(ref);
 };
 interface WireData {
+  bridge?: boolean;
   protective: boolean;
   color: string;
   selected: boolean;
@@ -60,6 +61,7 @@ interface WireData {
   wireId: string;
 }
 function WireOverlay({
+  bridge,
   protective,
   color,
   selected,
@@ -72,7 +74,8 @@ function WireOverlay({
   return (
     <g
       className="wire-overlay"
-      data-wire={wireId}
+      data-wire={bridge ? undefined : wireId}
+      data-bridge={bridge ? wireId : undefined}
       opacity={dimmed ? 0.24 : 1}
       pointerEvents="none"
     >
@@ -314,7 +317,7 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
       },
       vertices: project[view].routes[w.id] ?? [],
       router: view === "physical" ? wireRouters.get(w.id) : undefined,
-      z: selection.includes(w.id) ? 4 : 1,
+      z: 1, // Terminals must remain clickable above selected wire hit areas.
       style: {
         color: "transparent",
         width: selection.includes(w.id) ? 5 : 3.2,
@@ -343,7 +346,41 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
           }
         : undefined,
     }));
-    return [...wires, ...elements];
+    const bridges: LinkRecord[] = project.circuit.bridges.map((b) => ({
+      id: b.id,
+      type: "link",
+      source: {
+        id: b.from.deviceId,
+        port: b.from.terminalId,
+        anchor: { name: "center" },
+      },
+      target: {
+        id: b.to.deviceId,
+        port: b.to.terminalId,
+        anchor: { name: "center" },
+      },
+      z: 3,
+      attrs: {
+        line: { pointerEvents: "none" },
+        wrapper: { pointerEvents: "none" },
+      },
+      style: {
+        color: "transparent",
+        width: 4,
+        targetMarker: "none",
+        sourceMarker: "none",
+      },
+      data: {
+        bridge: true,
+        protective: false,
+        color: "#b19856",
+        selected: selection.includes(b.id),
+        dimmed: false,
+        description: `Mostek ${b.from.terminalId}–${b.to.terminalId}`,
+        wireId: b.id,
+      },
+    }));
+    return [...wires, ...elements, ...bridges];
   }, [
     project,
     runtimeDevices,
