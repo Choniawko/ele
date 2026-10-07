@@ -154,7 +154,9 @@ const CatalogPanel = memo(function CatalogPanel({
   const inCategory = (p: Product) =>
     filter === "all" ||
     (filter === "protection" &&
-      ["mcb", "rccb", "rcbo", "thermal"].includes(p.behaviorId)) ||
+      ["mcb", "rccb", "rcbo", "thermal", "motor-protection"].includes(
+        p.behaviorId,
+      )) ||
     (filter === "switching" &&
       [
         "switch",
@@ -166,6 +168,7 @@ const CatalogPanel = memo(function CatalogPanel({
         "push-no",
         "push-nc",
         "push-multi",
+        "push-start-stop",
         "auxiliary",
         "changeover",
         "crossover",
@@ -774,9 +777,12 @@ function Inspector() {
                     (other) =>
                       other.id !== d.id &&
                       (catalog[other.productId].topology.coil ||
-                        ["push-no", "push-nc", "push-multi"].includes(
-                          catalog[other.productId].behaviorId,
-                        )),
+                        [
+                          "push-no",
+                          "push-nc",
+                          "push-multi",
+                          "motor-protection",
+                        ].includes(catalog[other.productId].behaviorId)),
                   )
                   .map((other) => (
                     <option key={other.id} value={other.id}>
@@ -1062,7 +1068,7 @@ function Inspector() {
               <Trash2 size={14} />
               Usuń
             </button>
-            {["mcb", "rccb", "rcbo", "thermal"].includes(
+            {["mcb", "rccb", "rcbo", "thermal", "motor-protection"].includes(
               product.behaviorId,
             ) && (
               <button

@@ -16,7 +16,8 @@ export interface DeviceProps {
   wireStart?: string;
   highlighted?: string[];
   onTerminal?: (ref: TerminalRef) => void;
-  onOperate?: (state?: boolean) => void;
+  onOperate?: (state?: boolean, actuator?: "start" | "stop") => void;
+  onSetCurrent?: (currentA: number) => void;
   onRcdTest?: () => void;
   onSelect?: () => void;
   thumbnail?: boolean;
@@ -53,6 +54,7 @@ function Physical({
   highlighted,
   onTerminal,
   onOperate,
+  onSetCurrent,
   onRcdTest,
   onSelect,
   thumbnail,
@@ -153,36 +155,47 @@ function Physical({
       }
     },
   };
-  const buttonProps = {
+  const momentaryProps = (actuator?: "start" | "stop") => ({
     onPointerDown: (e: React.PointerEvent) => {
       e.stopPropagation();
       e.currentTarget.setPointerCapture(e.pointerId);
-      onOperate?.(true);
+      onOperate?.(true, actuator);
     },
     onPointerUp: (e: React.PointerEvent) => {
       e.stopPropagation();
-      onOperate?.(false);
+      onOperate?.(false, actuator);
     },
-    onPointerCancel: () => onOperate?.(false),
-    onLostPointerCapture: () => onOperate?.(false),
-    onBlur: () => onOperate?.(false),
+    onPointerCancel: () => onOperate?.(false, actuator),
+    onLostPointerCapture: () => onOperate?.(false, actuator),
+    onBlur: () => onOperate?.(false, actuator),
     onClick: (e: React.MouseEvent) => e.stopPropagation(),
     onKeyDown: (e: React.KeyboardEvent) => {
       if ((e.key === " " || e.key === "Enter") && !e.repeat) {
         e.preventDefault();
-        onOperate?.(true);
+        onOperate?.(true, actuator);
       }
     },
     onKeyUp: (e: React.KeyboardEvent) => {
       if (e.key === " " || e.key === "Enter") {
         e.preventDefault();
-        onOperate?.(false);
+        onOperate?.(false, actuator);
       }
     },
     role: "button",
     tabIndex: onOperate ? 0 : undefined,
-    "aria-label": `Przytrzymaj ${d.designation}`,
-  };
+    "aria-label": `Przytrzymaj ${d.designation}${actuator ? ` ${actuator.toUpperCase()}` : ""}`,
+  });
+  const buttonProps = momentaryProps();
+  const adjustCurrent = (delta: number) =>
+    onSetCurrent?.(
+      Math.max(
+        0.1,
+        Math.min(
+          1000,
+          Math.round(((d.settings.ratedCurrentA ?? 4.35) + delta) * 100) / 100,
+        ),
+      ),
+    );
   return (
     <g
       className={`device-vector ${thumbnail ? "thumbnail" : ""}`}
@@ -212,7 +225,11 @@ function Physical({
           x={w / 2}
           y={-10}
           textAnchor="middle"
-          fontSize={6}
+          fontSize={
+            ["edu-rail-terminal", "edu-motor-aux-no"].includes(p.id)
+              ? Math.min(6, w / (d.designation.length * 0.6))
+              : 6
+          }
           fontWeight={600}
           fill="#314d43"
         >
@@ -324,6 +341,159 @@ function Physical({
             fontSize={2}
           >
             6000 · 3
+          </text>
+        </>
+      )}
+      {p.visualId === "motor-protection" && (
+        <>
+          <rect x={3} y={10} width={w - 6} height={63} rx={2} fill="#d9dfd8" />
+          <text
+            x={w / 2}
+            y={17}
+            fontSize={3.4}
+            textAnchor="middle"
+            fill="#345443"
+          >
+            SILNIK · EDU
+          </text>
+          <g
+            role="button"
+            tabIndex={onSetCurrent ? 0 : undefined}
+            aria-label={`Nastawa ${d.designation} [A]`}
+            className="device-control"
+            onPointerDown={stop}
+            onClick={(e) => {
+              e.stopPropagation();
+              adjustCurrent(e.shiftKey ? -0.1 : 0.1);
+            }}
+            onKeyDown={(e) => {
+              if (
+                ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(
+                  e.key,
+                )
+              ) {
+                e.preventDefault();
+                e.stopPropagation();
+                const step =
+                  e.key === "ArrowUp" || e.key === "ArrowRight" ? 0.1 : -0.1;
+                adjustCurrent(step);
+              }
+            }}
+          >
+            <title>
+              Nastawa przeciążenia: klik +0,1 A, Shift+klik −0,1 A, strzałki
+              ±0,1 A. Dokładna wartość w danych aparatu. Zmiana zatrzymuje
+              próbę.
+            </title>
+            <circle cx={w / 2} cy={29} r={8} fill="#f1eee0" stroke="#65715e" />
+            <path d={`M${w / 2} 29l4-5`} stroke="#42583d" strokeWidth={1.5} />
+            <text
+              x={w / 2}
+              y={43}
+              textAnchor="middle"
+              fontSize={4}
+              fill="#345443"
+            >
+              {d.settings.ratedCurrentA ?? 4.35} A
+            </text>
+          </g>
+          <g
+            {...leverProps}
+            className="device-control"
+            data-motor-protection={s?.tripped ? "tripped" : on ? "on" : "off"}
+          >
+            <title>
+              {s?.tripped
+                ? "TRIPPED — reset przez OFF, następnie ON"
+                : "Wspólne ON / OFF trzech torów"}
+            </title>
+            <rect
+              x={5}
+              y={47}
+              width={w - 10}
+              height={16}
+              rx={2}
+              fill={s?.tripped ? "#c77e2c" : on ? "#367651" : "#657268"}
+            />
+            <text
+              x={w / 2}
+              y={57}
+              textAnchor="middle"
+              fill="white"
+              fontSize={4.5}
+            >
+              {s?.tripped ? "RESET / OFF" : on ? "I · ON" : "O · OFF"}
+            </text>
+          </g>
+          <text
+            x={w / 2}
+            y={70}
+            textAnchor="middle"
+            fontSize={3.5}
+            fill={s?.tripped ? "#a34c32" : "#476353"}
+          >
+            {s?.tripped ? "TRIPPED" : "1–2 · 3–4 · 5–6"}
+          </text>
+        </>
+      )}
+      {p.visualId === "start-stop" && (
+        <>
+          <rect
+            x={2}
+            y={12}
+            width={w - 4}
+            height={59}
+            rx={2}
+            fill="#d7ded1"
+            stroke="#a7b59d"
+          />
+          {(p.behaviorId === "push-start-stop"
+            ? (["stop", "start"] as const)
+            : (["start"] as const)
+          ).map((actuator, i) => {
+            const pressed = actuator === "stop" ? s?.stopPressed : s?.manual;
+            const cx = p.behaviorId === "push-start-stop" ? 9 + i * 18 : w / 2;
+            return (
+              <g
+                key={actuator}
+                {...momentaryProps(
+                  p.behaviorId === "push-start-stop" ? actuator : undefined,
+                )}
+                className="device-control"
+                aria-pressed={!!pressed}
+              >
+                <circle
+                  cx={cx}
+                  cy={pressed ? 39 : 37}
+                  r={6.5}
+                  fill={actuator === "stop" ? "#b14e42" : "#397b53"}
+                  stroke="#445c43"
+                  strokeWidth={1}
+                />
+                <text
+                  x={cx}
+                  y={55}
+                  textAnchor="middle"
+                  fontSize={3.1}
+                  fill="#3e573e"
+                >
+                  {actuator === "stop"
+                    ? "STOP"
+                    : p.behaviorId === "push-start-stop"
+                      ? "START"
+                      : "NO"}
+                </text>
+              </g>
+            );
+          })}
+          <text
+            x={w / 2}
+            y={65}
+            textAnchor="middle"
+            fontSize={2.7}
+            fill="#61735b"
+          >
+            {p.mounting === "DIN" ? "TH35" : "PANEL"}
           </text>
         </>
       )}
@@ -692,14 +862,22 @@ function Physical({
           <text
             x={w / 2}
             y={21}
-            fontSize={3.1}
+            fontSize={w < 20 ? 2.8 : 3.1}
             textAnchor="middle"
             fill="#4b624e"
           >
-            BLOK 1NO + 1NC
+            {w < 20 ? "NO" : "BLOK 1NO + 1NC"}
           </text>
           <path
-            d={on ? "M9 27v13 M27 27l4 13" : "M9 27l4 13 M27 27v13"}
+            d={
+              w < 20
+                ? on
+                  ? "M6 27v13"
+                  : "M6 27l3 13"
+                : on
+                  ? "M9 27v13 M27 27l4 13"
+                  : "M9 27l4 13 M27 27v13"
+            }
             stroke="#536b54"
             strokeWidth={1}
           />
@@ -710,7 +888,7 @@ function Physical({
             textAnchor="middle"
             fill="#617b5c"
           >
-            MECHANIZM NADRZĘDNY
+            {w < 20 ? "13–14" : "MECHANIZM NADRZĘDNY"}
           </text>
         </>
       )}
@@ -1382,6 +1560,7 @@ export function DeviceSchematic({
         const nc =
           cn.condition === "mechanism-inverse" ||
           cn.condition === "manual-inverse" ||
+          cn.condition === "stop-inverse" ||
           cn.condition === "healthy";
         return (
           <g key={cn.id}>

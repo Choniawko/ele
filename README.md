@@ -30,6 +30,8 @@ Import tworzy nowe ID i wymaga zatwierdzenia podsumowania; paczka folderu jest z
 
 ## Praca na tablicy
 
+Gotowy układ **ELE.02-108**, dwa kierunki silnika z dwóch stanowisk, importujesz z [examples/physical/ELE02_108_stanowisko.json](examples/physical/ELE02_108_stanowisko.json). Katalog ma edukacyjny wyłącznik silnikowy z NO 13–14 i zespoły niezależnych START/STOP na TH35 i w obudowie. [Opis połączeń, testów i założeń](docs/ELE02_108.md) wyjaśnia nastawę Q2, kable i powrót zasilania przy trzymanym przycisku; tabliczka silnika wymaga uzupełnienia.
+
 - Tablica zajmuje większość okna; katalog i właściwości można chować przyciskami u góry albo krzyżykiem w panelu. Na ekranach poniżej 1280 px panele są wysuwane nad tablicą. Ich widoczność i widoczność dziennika są zapamiętywane.
 - **F / przycisk skupienia** chowa nagłówek i dodatkowe panele. **Esc** przywraca zwykły widok. „Przewody” otwiera parametry nowego połączenia, „Dziennik” chowa także cały pasek historii.
 - **Przeciągnij korpus aparatu**, aby go przesunąć. Działa to również podczas symulacji. Zmiana położenia nie zmienia zacisków, długości elektrycznej przewodów, rewizji obwodu ani wyników pomiarów. Aparaty DIN wskakują na najbliższą szynę; zajęty obszar jest odrzucany.
@@ -43,7 +45,7 @@ Porównanie powierzchni, zrzuty i wyniki weryfikacji są w [opisie UX/UI](docs/U
 
 ## Rzeczywisty stan
 
-To działająca wersja testowa, **nie pełny odbiór v1 ani pełne pokrycie kwalifikacji**. Katalog ma 32 rzeczywiste SKU (31 z oryginalnego seed i nowy XB5AA35): 4 opublikowane — Hager MBN116E, Mean Well HDR-60-24, Schneider LC1D09P7 i XB5AA35 — oraz 28 oczekujących. Osobne 29 profili dydaktycznych ma jawne ograniczenia. Do 13 wcześniejszych scenariuszy dodano trzy zestawy z wzorcem, samodzielnym montażem i trzema ukrytymi wariantami diagnozy. Szczegółowe źródła i zakres: [pokrycie arkuszy](docs/exam-coverage.md) oraz [weryfikacja aparatów](docs/device-verification-stage-one.md).
+To działająca wersja testowa, **nie pełny odbiór v1 ani pełne pokrycie kwalifikacji**. Katalog ma 32 rzeczywiste SKU (31 z oryginalnego seed i nowy XB5AA35): 4 opublikowane — Hager MBN116E, Mean Well HDR-60-24, Schneider LC1D09P7 i XB5AA35 — oraz 28 oczekujących. Osobne 41 profili dydaktycznych ma jawne ograniczenia. Do 13 wcześniejszych scenariuszy dodano trzy zestawy z wzorcem, samodzielnym montażem i trzema ukrytymi wariantami diagnozy. Szczegółowe źródła i zakres: [pokrycie arkuszy](docs/exam-coverage.md) oraz [weryfikacja aparatów](docs/device-verification-stage-one.md).
 
 Silnik jest rezystancyjny, quasi-statyczny. Ochrona, silnik, elektronika i pomiary specjalne mają jawne uproszczenia. Wyniki nie są protokołem odbioru realnej instalacji. Brak implementacji LLM jest zgodny z zakresem; dostępny jest tylko kontrakt przyszłego tutora.
 

@@ -258,7 +258,10 @@ function BoardDevice(
       useApp.getState().select(ref.deviceId);
       useApp.getState().terminalClick(ref, data.view);
     },
-    onOperate: (state) => useApp.getState().operate(data.device.id, state),
+    onOperate: (state, actuator) =>
+      useApp.getState().operate(data.device.id, state, undefined, actuator),
+    onSetCurrent: (ratedCurrentA) =>
+      useApp.getState().updateDevice(data.device.id, { ratedCurrentA }),
     onRcdTest: () => useApp.getState().testRcd(data.device.id),
   };
   return data.view === "physical" ? (

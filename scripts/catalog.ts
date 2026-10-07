@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, readFile } from "node:fs/promises";
 import {
   products,
   realProducts,
@@ -11,6 +11,15 @@ import { normalizeResearch } from "../packages/device-catalog/research";
 import seed from "../Symulator_Elektryczny_Pakiet_Codex/catalog-research-seed.json";
 const errors = validateCatalog();
 normalizeResearch(seed);
+try {
+  validateProjectDocument(
+    JSON.parse(
+      await readFile("examples/physical/ELE02_108_stanowisko.json", "utf8"),
+    ),
+  );
+} catch (e) {
+  errors.push(`ELE.02-108: ${String(e)}`);
+}
 let variantCount = 0;
 for (const scenario of scenarios) {
   const variants: ExerciseVariant[] = scenario.practice

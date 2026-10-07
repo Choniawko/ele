@@ -7,6 +7,7 @@ export default defineConfig(base, {
     "pages.spec.ts",
     "my-projects.spec.ts",
     "physical-installation.spec.ts",
+    "ele02-108.spec.ts",
     "distribution-builder.spec.ts",
   ],
   testIgnore: [],

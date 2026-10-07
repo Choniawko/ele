@@ -1,0 +1,1027 @@
+{
+  "name": "ELE.02-108 · dwa kierunki z dwóch stanowisk",
+  "circuit": {
+    "schemaVersion": 1,
+    "projectId": "ele02-108-physical-v1",
+    "revision": 0,
+    "catalogSnapshotId": "catalog-2026-10-02",
+    "devices": [
+      {
+        "id": "PZ",
+        "productId": "edu-source-3ph",
+        "productRevision": "1",
+        "designation": "PZ",
+        "settings": {
+          "voltageV": 230,
+          "sourceResistanceOhm": 0.4,
+          "phaseOrder": "123"
+        }
+      },
+      {
+        "id": "M",
+        "productId": "edu-motor",
+        "productRevision": "1",
+        "designation": "M",
+        "settings": {
+          "powerW": 3000,
+          "voltageV": 230,
+          "loadFactor": 1
+        }
+      },
+      {
+        "id": "ZS.PE",
+        "productId": "edu-rail-terminal",
+        "productRevision": "1",
+        "designation": "ZS.PE",
+        "settings": {}
+      },
+      {
+        "id": "ZS.N",
+        "productId": "edu-rail-terminal",
+        "productRevision": "1",
+        "designation": "ZS.N",
+        "settings": {}
+      },
+      {
+        "id": "ZS.RES1",
+        "productId": "edu-rail-terminal",
+        "productRevision": "1",
+        "designation": "ZS.RES1",
+        "settings": {}
+      },
+      {
+        "id": "Q1",
+        "productId": "edu-mcb-adjustable",
+        "productRevision": "1",
+        "designation": "Q1",
+        "settings": {
+          "position": true,
+          "ratedCurrentA": 6
+        }
+      },
+      {
+        "id": "Q2",
+        "productId": "edu-motor-protection",
+        "productRevision": "1",
+        "designation": "Q2",
+        "settings": {
+          "position": true,
+          "ratedCurrentA": 4.35
+        }
+      },
+      {
+        "id": "Q2.AUX",
+        "productId": "edu-motor-aux-no",
+        "productRevision": "1",
+        "designation": "Q2.AUX",
+        "settings": {}
+      },
+      {
+        "id": "K1",
+        "productId": "schneider-lc1d09p7",
+        "productRevision": "verified-20261005-1",
+        "designation": "K1",
+        "settings": {}
+      },
+      {
+        "id": "K2",
+        "productId": "schneider-lc1d09p7",
+        "productRevision": "verified-20261005-1",
+        "designation": "K2",
+        "settings": {}
+      },
+      {
+        "id": "S1",
+        "productId": "edu-start-stop-din",
+        "productRevision": "1",
+        "designation": "S1",
+        "settings": {}
+      },
+      {
+        "id": "S2",
+        "productId": "edu-push-no-din",
+        "productRevision": "1",
+        "designation": "S2",
+        "settings": {}
+      },
+      {
+        "id": "S3",
+        "productId": "edu-start-stop-panel",
+        "productRevision": "1",
+        "designation": "S3",
+        "settings": {}
+      },
+      {
+        "id": "S4",
+        "productId": "edu-push-no-panel",
+        "productRevision": "1",
+        "designation": "S4",
+        "settings": {}
+      },
+      {
+        "id": "ZS.RES2",
+        "productId": "edu-rail-terminal",
+        "productRevision": "1",
+        "designation": "ZS.RES2",
+        "settings": {}
+      }
+    ],
+    "conductors": [
+      {
+        "id": "W1",
+        "from": {
+          "deviceId": "PZ",
+          "terminalId": "L1"
+        },
+        "to": {
+          "deviceId": "Q2",
+          "terminalId": "1"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.SUPPLY.1",
+        "cableId": "C.SUPPLY"
+      },
+      {
+        "id": "W2",
+        "from": {
+          "deviceId": "PZ",
+          "terminalId": "L2"
+        },
+        "to": {
+          "deviceId": "Q2",
+          "terminalId": "3"
+        },
+        "declaredRole": "L2",
+        "insulationColor": "#35383d",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.SUPPLY.2",
+        "cableId": "C.SUPPLY"
+      },
+      {
+        "id": "W3",
+        "from": {
+          "deviceId": "PZ",
+          "terminalId": "L3"
+        },
+        "to": {
+          "deviceId": "Q2",
+          "terminalId": "5"
+        },
+        "declaredRole": "L3",
+        "insulationColor": "#8d9398",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.SUPPLY.3",
+        "cableId": "C.SUPPLY"
+      },
+      {
+        "id": "W4",
+        "from": {
+          "deviceId": "PZ",
+          "terminalId": "N"
+        },
+        "to": {
+          "deviceId": "ZS.N",
+          "terminalId": "1"
+        },
+        "declaredRole": "N",
+        "insulationColor": "#3b87be",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.SUPPLY.4",
+        "cableId": "C.SUPPLY"
+      },
+      {
+        "id": "W5",
+        "from": {
+          "deviceId": "PZ",
+          "terminalId": "PE"
+        },
+        "to": {
+          "deviceId": "ZS.PE",
+          "terminalId": "1"
+        },
+        "declaredRole": "PE",
+        "insulationColor": "#3b9b55",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.SUPPLY.5",
+        "cableId": "C.SUPPLY"
+      },
+      {
+        "id": "W6",
+        "from": {
+          "deviceId": "Q2",
+          "terminalId": "1"
+        },
+        "to": {
+          "deviceId": "Q1",
+          "terminalId": "1"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W6 LgY 1,5"
+      },
+      {
+        "id": "W7",
+        "from": {
+          "deviceId": "Q2",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "K1",
+          "terminalId": "1L1"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W7 LgY 2,5"
+      },
+      {
+        "id": "W8",
+        "from": {
+          "deviceId": "Q2",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "K2",
+          "terminalId": "1L1"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W8 LgY 2,5"
+      },
+      {
+        "id": "W9",
+        "from": {
+          "deviceId": "Q2",
+          "terminalId": "4"
+        },
+        "to": {
+          "deviceId": "K1",
+          "terminalId": "3L2"
+        },
+        "declaredRole": "L2",
+        "insulationColor": "#35383d",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W9 LgY 2,5"
+      },
+      {
+        "id": "W10",
+        "from": {
+          "deviceId": "Q2",
+          "terminalId": "4"
+        },
+        "to": {
+          "deviceId": "K2",
+          "terminalId": "3L2"
+        },
+        "declaredRole": "L2",
+        "insulationColor": "#35383d",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W10 LgY 2,5"
+      },
+      {
+        "id": "W11",
+        "from": {
+          "deviceId": "Q2",
+          "terminalId": "6"
+        },
+        "to": {
+          "deviceId": "K1",
+          "terminalId": "5L3"
+        },
+        "declaredRole": "L3",
+        "insulationColor": "#8d9398",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W11 LgY 2,5"
+      },
+      {
+        "id": "W12",
+        "from": {
+          "deviceId": "Q2",
+          "terminalId": "6"
+        },
+        "to": {
+          "deviceId": "K2",
+          "terminalId": "5L3"
+        },
+        "declaredRole": "L3",
+        "insulationColor": "#8d9398",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W12 LgY 2,5"
+      },
+      {
+        "id": "W13",
+        "from": {
+          "deviceId": "K2",
+          "terminalId": "2T1"
+        },
+        "to": {
+          "deviceId": "K1",
+          "terminalId": "6T3"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W13 LgY 2,5"
+      },
+      {
+        "id": "W14",
+        "from": {
+          "deviceId": "K2",
+          "terminalId": "4T2"
+        },
+        "to": {
+          "deviceId": "K1",
+          "terminalId": "4T2"
+        },
+        "declaredRole": "L2",
+        "insulationColor": "#35383d",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W14 LgY 2,5"
+      },
+      {
+        "id": "W15",
+        "from": {
+          "deviceId": "K2",
+          "terminalId": "6T3"
+        },
+        "to": {
+          "deviceId": "K1",
+          "terminalId": "2T1"
+        },
+        "declaredRole": "L3",
+        "insulationColor": "#8d9398",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W15 LgY 2,5"
+      },
+      {
+        "id": "W16",
+        "from": {
+          "deviceId": "K1",
+          "terminalId": "2T1"
+        },
+        "to": {
+          "deviceId": "M",
+          "terminalId": "U"
+        },
+        "declaredRole": "L1",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.MOTOR.1",
+        "cableId": "C.MOTOR"
+      },
+      {
+        "id": "W17",
+        "from": {
+          "deviceId": "K1",
+          "terminalId": "4T2"
+        },
+        "to": {
+          "deviceId": "M",
+          "terminalId": "V"
+        },
+        "declaredRole": "L2",
+        "insulationColor": "#35383d",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.MOTOR.2",
+        "cableId": "C.MOTOR"
+      },
+      {
+        "id": "W18",
+        "from": {
+          "deviceId": "K1",
+          "terminalId": "6T3"
+        },
+        "to": {
+          "deviceId": "M",
+          "terminalId": "W"
+        },
+        "declaredRole": "L3",
+        "insulationColor": "#8d9398",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.MOTOR.3",
+        "cableId": "C.MOTOR"
+      },
+      {
+        "id": "W19",
+        "from": {
+          "deviceId": "ZS.PE",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "M",
+          "terminalId": "PE"
+        },
+        "declaredRole": "PE",
+        "insulationColor": "#3b9b55",
+        "crossSectionMm2": 2.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.MOTOR.4",
+        "cableId": "C.MOTOR"
+      },
+      {
+        "id": "W20",
+        "from": {
+          "deviceId": "Q1",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "Q2.AUX",
+          "terminalId": "13"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W20 LgY 1,5"
+      },
+      {
+        "id": "W21",
+        "from": {
+          "deviceId": "Q2.AUX",
+          "terminalId": "14"
+        },
+        "to": {
+          "deviceId": "S1",
+          "terminalId": "1"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W21 LgY 1,5"
+      },
+      {
+        "id": "W22",
+        "from": {
+          "deviceId": "S1",
+          "terminalId": "3"
+        },
+        "to": {
+          "deviceId": "S2",
+          "terminalId": "3"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W22 LgY 1,5"
+      },
+      {
+        "id": "W23",
+        "from": {
+          "deviceId": "S2",
+          "terminalId": "3"
+        },
+        "to": {
+          "deviceId": "K1",
+          "terminalId": "13"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W23 LgY 1,5"
+      },
+      {
+        "id": "W24",
+        "from": {
+          "deviceId": "S1",
+          "terminalId": "4"
+        },
+        "to": {
+          "deviceId": "K1",
+          "terminalId": "14"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W24 LgY 1,5"
+      },
+      {
+        "id": "W25",
+        "from": {
+          "deviceId": "K1",
+          "terminalId": "14"
+        },
+        "to": {
+          "deviceId": "K2",
+          "terminalId": "21"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W25 LgY 1,5"
+      },
+      {
+        "id": "W26",
+        "from": {
+          "deviceId": "S2",
+          "terminalId": "4"
+        },
+        "to": {
+          "deviceId": "K1",
+          "terminalId": "21"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W26 LgY 1,5"
+      },
+      {
+        "id": "W27",
+        "from": {
+          "deviceId": "K2",
+          "terminalId": "22"
+        },
+        "to": {
+          "deviceId": "K1",
+          "terminalId": "A1"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W27 LgY 1,5"
+      },
+      {
+        "id": "W28",
+        "from": {
+          "deviceId": "K1",
+          "terminalId": "22"
+        },
+        "to": {
+          "deviceId": "K2",
+          "terminalId": "A1"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W28 LgY 1,5"
+      },
+      {
+        "id": "W29",
+        "from": {
+          "deviceId": "ZS.N",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "K1",
+          "terminalId": "A2"
+        },
+        "declaredRole": "N",
+        "insulationColor": "#3b87be",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W29 LgY 1,5"
+      },
+      {
+        "id": "W30",
+        "from": {
+          "deviceId": "ZS.N",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "K2",
+          "terminalId": "A2"
+        },
+        "declaredRole": "N",
+        "insulationColor": "#3b87be",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W30 LgY 1,5"
+      },
+      {
+        "id": "W31",
+        "from": {
+          "deviceId": "S3",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "S3",
+          "terminalId": "3"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W31 LgY 1,5"
+      },
+      {
+        "id": "W32",
+        "from": {
+          "deviceId": "S3",
+          "terminalId": "3"
+        },
+        "to": {
+          "deviceId": "S4",
+          "terminalId": "3"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#e28148",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 0.4,
+        "material": "Cu",
+        "marking": "W32 LgY 1,5"
+      },
+      {
+        "id": "W33",
+        "from": {
+          "deviceId": "S1",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "S3",
+          "terminalId": "1"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#755038",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.R2.1",
+        "cableId": "C.R2"
+      },
+      {
+        "id": "W34",
+        "from": {
+          "deviceId": "S3",
+          "terminalId": "2"
+        },
+        "to": {
+          "deviceId": "S1",
+          "terminalId": "3"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#35383d",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.R2.2",
+        "cableId": "C.R2"
+      },
+      {
+        "id": "W35",
+        "from": {
+          "deviceId": "S3",
+          "terminalId": "4"
+        },
+        "to": {
+          "deviceId": "K2",
+          "terminalId": "21"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#8d9398",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.R2.3",
+        "cableId": "C.R2"
+      },
+      {
+        "id": "W36",
+        "from": {
+          "deviceId": "S4",
+          "terminalId": "4"
+        },
+        "to": {
+          "deviceId": "K1",
+          "terminalId": "21"
+        },
+        "declaredRole": "CONTROL",
+        "insulationColor": "#3b87be",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.R2.4",
+        "cableId": "C.R2"
+      },
+      {
+        "id": "W37",
+        "from": {
+          "deviceId": "ZS.RES1",
+          "terminalId": "1"
+        },
+        "to": {
+          "deviceId": "ZS.RES2",
+          "terminalId": "1"
+        },
+        "declaredRole": "UNSPECIFIED",
+        "insulationColor": "#3b9b55",
+        "crossSectionMm2": 1.5,
+        "electricalLengthM": 1,
+        "material": "Cu",
+        "marking": "C.R2.5",
+        "cableId": "C.R2"
+      }
+    ],
+    "bridges": [],
+    "cables": [
+      {
+        "id": "C.SUPPLY",
+        "designation": "OWY 5×2,5 mm²",
+        "coreIds": [
+          "W1",
+          "W2",
+          "W3",
+          "W4",
+          "W5"
+        ]
+      },
+      {
+        "id": "C.MOTOR",
+        "designation": "OWY 4×2,5 mm²",
+        "coreIds": [
+          "W16",
+          "W17",
+          "W18",
+          "W19"
+        ]
+      },
+      {
+        "id": "C.R2",
+        "designation": "YLY 5×1,5 mm²",
+        "coreIds": [
+          "W33",
+          "W34",
+          "W35",
+          "W36",
+          "W37"
+        ]
+      }
+    ],
+    "mechanicalCouplings": [
+      {
+        "id": "assembly-Q2",
+        "deviceIds": [
+          "Q2",
+          "Q2.AUX"
+        ],
+        "kind": "assembly"
+      }
+    ],
+    "supplySystems": [
+      {
+        "id": "supply-PZ",
+        "kind": "TN-S",
+        "sourceId": "PZ"
+      }
+    ],
+    "installationConditions": {
+      "temperatureC": 20,
+      "copperResistivity": 0.0175,
+      "aluminiumResistivity": 0.0282,
+      "insulationResistanceOhm": 200000000
+    }
+  },
+  "physical": {
+    "devices": {
+      "PZ": {
+        "x": 90,
+        "y": 80
+      },
+      "M": {
+        "x": 450,
+        "y": 80
+      },
+      "ZS.PE": {
+        "x": 90,
+        "y": 570
+      },
+      "ZS.N": {
+        "x": 135,
+        "y": 570
+      },
+      "ZS.RES1": {
+        "x": 180,
+        "y": 570
+      },
+      "Q1": {
+        "x": 228,
+        "y": 570
+      },
+      "Q2": {
+        "x": 275,
+        "y": 570
+      },
+      "Q2.AUX": {
+        "x": 376,
+        "y": 570
+      },
+      "K1": {
+        "x": 410,
+        "y": 570
+      },
+      "K2": {
+        "x": 520,
+        "y": 570
+      },
+      "S1": {
+        "x": 635,
+        "y": 570
+      },
+      "S2": {
+        "x": 725,
+        "y": 570
+      },
+      "S3": {
+        "x": 880,
+        "y": 540
+      },
+      "S4": {
+        "x": 980,
+        "y": 540
+      },
+      "ZS.RES2": {
+        "x": 880,
+        "y": 745
+      }
+    },
+    "routes": {},
+    "rails": [
+      {
+        "id": "R1",
+        "x": 80,
+        "y": 680,
+        "width": 700
+      },
+      {
+        "id": "rail-R2",
+        "x": 870,
+        "y": 640,
+        "width": 160
+      }
+    ],
+    "enclosures": [
+      {
+        "id": "case-R2",
+        "name": "R2 · obudowa izolacyjna",
+        "kind": "distribution",
+        "position": {
+          "x": 850,
+          "y": 490
+        },
+        "width": 220,
+        "height": 330,
+        "deviceIds": [
+          "S3",
+          "S4",
+          "ZS.RES2"
+        ],
+        "closed": true,
+        "window": {
+          "x": 20,
+          "y": 80,
+          "width": 180,
+          "height": 100
+        }
+      }
+    ],
+    "presentation": "external"
+  },
+  "schematic": {
+    "devices": {
+      "PZ": {
+        "x": 80,
+        "y": 100
+      },
+      "M": {
+        "x": 320,
+        "y": 100
+      },
+      "ZS.PE": {
+        "x": 560,
+        "y": 100
+      },
+      "ZS.N": {
+        "x": 800,
+        "y": 100
+      },
+      "ZS.RES1": {
+        "x": 1040,
+        "y": 100
+      },
+      "Q1": {
+        "x": 80,
+        "y": 750
+      },
+      "Q2": {
+        "x": 320,
+        "y": 750
+      },
+      "Q2.AUX": {
+        "x": 560,
+        "y": 750
+      },
+      "K1": {
+        "x": 800,
+        "y": 750
+      },
+      "K2": {
+        "x": 1040,
+        "y": 750
+      },
+      "S1": {
+        "x": 80,
+        "y": 1400
+      },
+      "S2": {
+        "x": 320,
+        "y": 1400
+      },
+      "S3": {
+        "x": 560,
+        "y": 1400
+      },
+      "S4": {
+        "x": 800,
+        "y": 1400
+      },
+      "ZS.RES2": {
+        "x": 1040,
+        "y": 1400
+      }
+    },
+    "routes": {}
+  },
+  "faults": [],
+  "userMetadata": {
+    "reference": "Zadanie-nr-8-silnik-3-fazowy-sterowany-z-2-miejsc-ele_02_108-shhsg9e.pdf: obie strony pliku (drukowane 2–3), rysunki 1 i 2.",
+    "motorAssumption": "Brak tabliczki silnika w PDF. Przyjęto wyłącznie do symulacji rezystancyjny silnik 3000 W, uzwojenie 230 V, ukryta gwiazda, In modelu = 3000/(3×230) = 4,3478 A. Nastawa Q2 4,35 A jest ZAŁOŻENIEM wymagającym uzupełnienia według rzeczywistej tabliczki, nie danymi zadania. 6 A dotyczy wyłącznie Q1 B6.",
+    "topology": "Q1 z L1 przed Q2. Q2 NO 13–14 w osobnym bloku Q2.AUX (assembly). Oba STOP-y szeregowo. K1 z podtrzymaniem; K2 tylko podczas S2/S4. K2 zamienia L1/L3 na wyjściu. Brak blokady mechanicznej.",
+    "contactorTerminals": "Wykorzystano istniejący LC1D09P7: 1/3/5 na PDF odpowiadają 1L1/3L2/5L3, 2/4/6 odpowiadają 2T1/4T2/6T3. Cewki A1/A2 230 V AC, styki NO 13–14 i NC 21–22.",
+    "wiring": "OWY 5×2,5 mm² zasilanie; LgY 2,5 mm² mocy; OWY 4×2,5 mm² silnik; YLY 5×1,5 mm² R2; LgY 1,5 mm² sterowanie. Żyły wielodrutowe wymagają tulejek: informacja wykonawcza, bez modelu mechanicznego tulejek.",
+    "cableR2": "Rysunek 2 wymaga czterech czynnych żył R2: STOP wejście, wspólny potencjał po STOP, powrót START prawy, powrót lewy. Piąta żyła YLY (zielono-żółta) pozostaje rezerwowa, izolowana na obu końcach przez ZS.RES1/ZS.RES2; brak dodanego połączenia PE/N do izolacyjnej obudowy. Nie wolno użyć jej do sterowania. Niebieska żyła kabla wielożyłowego opisana CONTROL, bez neutralnego w tym kablu.",
+    "geometry": "Relacje rozmieszczenia według rys. 1: M nad R1, R2 po prawej. Wymiary obudowy, pozycje i długości elektryczne są założeniami dydaktycznymi, nie skalą ani pomiarem stanowiska.",
+    "powerReturn": "Ze zwolnionym START-em prawy kierunek nie wraca samoczynnie. Przy trzymanym START/S2/S4 powrót zasilania lub Q2 może uruchomić silnik zgodnie z obwodem; brak ukrytej blokady ponownego rozruchu."
+  },
+  "productRevisions": {
+    "edu-source-3ph": "1",
+    "edu-motor": "1",
+    "edu-rail-terminal": "1",
+    "edu-mcb-adjustable": "1",
+    "edu-motor-protection": "1",
+    "edu-motor-aux-no": "1",
+    "schneider-lc1d09p7": "verified-20261005-1",
+    "edu-start-stop-din": "1",
+    "edu-push-no-din": "1",
+    "edu-start-stop-panel": "1",
+    "edu-push-no-panel": "1"
+  }
+}

@@ -1,4 +1,4 @@
-import { mechanismOwner, mechanicallyBlocked } from "./mechanisms";
+import { auxiliaryMechanism, mechanicallyBlocked } from "./mechanisms";
 import { analyzeMotor, type WindingConnection } from "./motor";
 import { catalog } from "@catalog/index";
 import {
@@ -23,6 +23,7 @@ import {
 export * from "./numeric";
 export interface DeviceRuntime {
   manual: boolean;
+  stopPressed?: boolean;
   coil: boolean;
   mechanism: boolean;
   tripped: boolean;
@@ -66,7 +67,13 @@ export interface RuntimeSnapshot {
 }
 export type RuntimeAction =
   | { type: "power"; on: boolean }
-  | { type: "operate"; deviceId: string; state?: boolean; reset?: boolean }
+  | {
+      type: "operate";
+      deviceId: string;
+      state?: boolean;
+      reset?: boolean;
+      actuator?: "start" | "stop";
+    }
   | { type: "test-rcd"; deviceId: string }
   | { type: "step"; deltaMs: number }
   | { type: "solve" };
@@ -158,16 +165,10 @@ export function compile(
       top = p.topology,
       k = (id: string) => `${d.id}:${id}`,
       df = faults.filter((f) => f.targetId === d.id);
-    const ownerId =
-      p.behaviorId === "auxiliary" ? mechanismOwner(project, d.id) : undefined;
-    const owner = ownerId ? rt.devices[ownerId] : undefined;
-    const mechanism = owner
-      ? catalog[
-          project.circuit.devices.find((x) => x.id === ownerId)!.productId
-        ].topology.coil
-        ? owner.mechanism
-        : owner.manual
-      : state.mechanism;
+    const mechanism =
+      p.behaviorId === "auxiliary"
+        ? auxiliaryMechanism(project, rt, d.id)
+        : state.mechanism;
     for (const cn of top.connections) {
       let closed = true;
       if (cn.kind === "contact") {
@@ -176,13 +177,15 @@ export function compile(
             ? state.manual && !state.tripped
             : cn.condition === "manual-inverse"
               ? !state.manual
-              : cn.condition === "mechanism"
-                ? mechanism
-                : cn.condition === "mechanism-inverse"
-                  ? !mechanism
-                  : cn.condition === "healthy"
-                    ? !state.tripped
-                    : state.tripped;
+              : cn.condition === "stop-inverse"
+                ? !state.stopPressed
+                : cn.condition === "mechanism"
+                  ? mechanism
+                  : cn.condition === "mechanism-inverse"
+                    ? !mechanism
+                    : cn.condition === "healthy"
+                      ? !state.tripped
+                      : state.tripped;
         closed = value;
         if (
           df.some(
@@ -429,25 +432,37 @@ export function advance(
       const device = project.circuit.devices.find(
         (d) => d.id === action.deviceId,
       );
-      const protection =
-        device &&
-        ["mcb", "rccb", "rcbo", "thermal"].includes(
-          catalog[device.productId].behaviorId,
+      if (
+        catalog[device?.productId ?? ""]?.behaviorId === "push-start-stop" &&
+        action.actuator === "stop"
+      ) {
+        state.stopPressed = action.state ?? !state.stopPressed;
+        event(
+          rt,
+          action.deviceId,
+          `STOP: ${state.stopPressed ? "wciśnięty" : "puszczony"}.`,
         );
-      const reset = action.reset || (protection && state.tripped && !manual);
-      if (reset) {
-        state.tripped = false;
-        state.heat = 0;
-        state.tripCause = "";
-        state.manual = false;
-      } else state.manual = manual;
-      event(
-        rt,
-        action.deviceId,
-        reset
-          ? "Zresetowano zabezpieczenie."
-          : `Obsługa aparatu: ${state.manual ? "ON / wciśnięty" : "OFF / puszczony"}.`,
-      );
+      } else {
+        const protection =
+          device &&
+          ["mcb", "rccb", "rcbo", "thermal", "motor-protection"].includes(
+            catalog[device.productId].behaviorId,
+          );
+        const reset = action.reset || (protection && state.tripped && !manual);
+        if (reset) {
+          state.tripped = false;
+          state.heat = 0;
+          state.tripCause = "";
+          state.manual = false;
+        } else state.manual = manual;
+        event(
+          rt,
+          action.deviceId,
+          reset
+            ? "Zresetowano zabezpieczenie."
+            : `Obsługa aparatu: ${state.manual ? "ON / wciśnięty" : "OFF / puszczony"}.`,
+        );
+      }
     }
   }
   const faults = activeFaults(project, rt.timeMs),
@@ -676,7 +691,9 @@ export function advance(
           }
         }
         if (
-          ["mcb", "rcbo", "thermal", "rccb"].includes(p.behaviorId) &&
+          ["mcb", "rcbo", "thermal", "rccb", "motor-protection"].includes(
+            p.behaviorId,
+          ) &&
           !s.tripped
         ) {
           const poleIds = top.poles ?? [];
@@ -694,9 +711,11 @@ export function advance(
                   (peak > nominal ? ((peak / nominal) ** 2 - 1) / 30 : -0.08),
             );
           const magnetic =
-            p.behaviorId === "mcb" || p.behaviorId === "rcbo"
-              ? peak >= nominal * (p.topologyId === "mcb-3p" ? 7.5 : 4)
-              : false;
+            p.behaviorId === "motor-protection"
+              ? peak >= nominal * 12
+              : p.behaviorId === "mcb" || p.behaviorId === "rcbo"
+                ? peak >= nominal * (p.topologyId === "mcb-3p" ? 7.5 : 4)
+                : false;
           let residual = false;
           if (p.behaviorId === "rccb" || p.behaviorId === "rcbo") {
             const sum = currents.reduce(add, c());
@@ -737,15 +756,7 @@ export function advance(
       for (const d of project.circuit.devices.filter(
         (d) => catalog[d.productId].behaviorId === "auxiliary",
       )) {
-        const ownerId = mechanismOwner(project, d.id),
-          owner = ownerId ? rt.devices[ownerId] : undefined;
-        const value = owner
-          ? catalog[
-              project.circuit.devices.find((x) => x.id === ownerId)!.productId
-            ].topology.coil
-            ? owner.mechanism
-            : owner.manual
-          : false;
+        const value = auxiliaryMechanism(project, rt, d.id);
         if (rt.devices[d.id].mechanism !== value) {
           rt.devices[d.id].mechanism = value;
           changed = true;
