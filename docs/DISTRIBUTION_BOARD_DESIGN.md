@@ -1,8 +1,8 @@
 # Konstruktor rozdzielnicy — projekt i zakres wdrożenia
 
-Status: pierwszy etap wdrożony na `feat/distribution-board-builder`, 2026-10-07. Analiza bazowa dotyczyła `feat/ele02-101-physical`, commit `5652bdc`; sekcja „Co można obecnie” poniżej opisuje stan przed konstruktorem. Zakres i procedura odbioru: [DISTRIBUTION_BOARD_QA.md](DISTRIBUTION_BOARD_QA.md). Istniejąca warstwa fizyczna: [PHYSICAL_ELE02_101.md](PHYSICAL_ELE02_101.md).
+Status: pierwszy etap wdrożony na `feat/distribution-board-builder`, 2026-10-07. Analiza bazowa dotyczyła `feat/ele02-101-physical`, commit `5652bdc`; pierwsza sekcja poniżej opisuje stan przed konstruktorem. Zakres i wyniki odbioru: [DISTRIBUTION_BOARD_QA.md](DISTRIBUTION_BOARD_QA.md). Istniejąca warstwa fizyczna: [PHYSICAL_ELE02_101.md](PHYSICAL_ELE02_101.md).
 
-## Co można obecnie
+## Stan przed wdrożeniem konstruktora
 
 W panelu **Obudowy i korytka** można utworzyć rozdzielnicę, puszkę rozgałęźną lub zasilającą z własną nazwą, pozycją, szerokością i wysokością. Wymiary są w jednostkach tablicy. Zaznaczone aparaty można włożyć lub wyjąć, otworzyć pokrywę, przesunąć obudowę z zawartością i usunąć samą obudowę bez usuwania obwodu. Przewody nadal łączą te same identyfikatory zacisków.
 
@@ -67,7 +67,7 @@ Dla obwodów wychodzących przydatna jest lista „Oświetlenie / Gniazda / Siln
 
 Rozbudowa dotyczy opcjonalnych metadanych `physical`. Potrzebne są profil obudowy z wersją, własne rzędy i przypisania mechaniczne aparatów oraz stan maskownicy/drzwi. Zaciski i elektryczne ID urządzeń pozostają w obecnym `circuit`.
 
-Pozycje absolutne, porty i trasy używane przez Board pozostają wspólnym wynikiem układu. Pole modułowe jest źródłem mechanicznego rozmieszczenia; nie należy utrzymywać dwóch niesynchronizowanych pozycji. Przeniesienie obudowy, rzędu lub aparatu musi aktualizować ten wynik w jednej walidowanej transakcji. Konkretny kontrakt nowych pól JSON należy ustalić podczas implementacji i testów, zamiast przedstawiać go teraz jako format obsługiwany przez importer.
+Pozycje absolutne, porty i trasy używane przez Board pozostają wspólnym wynikiem układu. Pole modułowe jest źródłem mechanicznego rozmieszczenia; nie należy utrzymywać dwóch niesynchronizowanych pozycji. Przeniesienie obudowy, rzędu lub aparatu aktualizuje ten wynik w jednej walidowanej transakcji. Wdrożony kontrakt opcjonalnego `distribution` opisuje [PROJECT_IMPORT.md](PROJECT_IMPORT.md#rozdzielnica-modułowa-opcjonalne-metadane-fizyczne).
 
 Stare obudowy bez profilu pozostają obudowami ręcznymi. Przejście do profilu modułowego jest jawną konwersją z podglądem i undo, nie automatyczną migracją. Sama operacja mechaniczna korzysta z `topology=false`, zachowuje sesję solvera, rewizję elektryczną i historię pomiarów. Dodanie/usunięcie aparatu lub zmiana połączeń stosują obecne zasady edycji obwodu. Zachowane pozostają walidacja całego dokumentu, autosave, metadane folderu oraz ochrona danych treningowych.
 
