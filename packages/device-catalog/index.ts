@@ -2,6 +2,7 @@ import { mountingInfo } from "./mounting-profiles";
 import { assertPhysicalLayout } from "@model/physical";
 import { installPhysicalProfiles } from "./physical-profiles";
 import { installStageOne } from "./stage-one";
+import { installMotorControls } from "./motor-controls";
 import seed from "../../Symulator_Elektryczny_Pakiet_Codex/catalog-research-seed.json";
 import { z } from "zod";
 import {
@@ -16,6 +17,7 @@ export type BehaviorId =
   | "source-dc"
   | "source-3ph"
   | "mcb"
+  | "motor-protection"
   | "rccb"
   | "rcbo"
   | "switch"
@@ -24,6 +26,7 @@ export type BehaviorId =
   | "push-no"
   | "push-nc"
   | "push-multi"
+  | "push-start-stop"
   | "auxiliary"
   | "contactor"
   | "relay"
@@ -42,6 +45,8 @@ export type VisualId =
   | "harmony-button"
   | "auxiliary"
   | "protection"
+  | "motor-protection"
+  | "start-stop"
   | "switch"
   | "button"
   | "contactor"
@@ -98,6 +103,7 @@ export interface InternalConnection {
   condition?:
     | "manual"
     | "manual-inverse"
+    | "stop-inverse"
     | "mechanism"
     | "mechanism-inverse"
     | "healthy"
@@ -1035,6 +1041,7 @@ for (const [id, top, behaviorId, url, note] of [
 // Retain exact seed and reviewed data separately. No pending SKU may enter a circuit.
 installStageOne(realProducts, teachingProducts, topologies);
 installPhysicalProfiles(teachingProducts, topologies);
+installMotorControls(teachingProducts, topologies);
 export const products = [...realProducts, ...teachingProducts];
 export const catalog = Object.fromEntries(products.map((p) => [p.id, p]));
 export const availableProducts = products.filter((p) => p.published);
@@ -1138,7 +1145,7 @@ export function assertProjectCatalog(project: ProjectDocument): void {
             const other = project.circuit.devices.find((x) => x.id === id)!;
             return (
               !!catalog[other.productId].topology.coil ||
-              ["push-no", "push-nc", "push-multi"].includes(
+              ["push-no", "push-nc", "push-multi", "motor-protection"].includes(
                 catalog[other.productId].behaviorId,
               )
             );

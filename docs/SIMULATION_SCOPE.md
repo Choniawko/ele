@@ -17,6 +17,7 @@ MNA z eliminacją Gaussa i pivotowaniem rozwiązuje napięcia węzłów oraz pr�
 | RCCB | Sinusoidalny profil 30 mA; nie jest zabezpieczeniem nadprądowym. Dydaktyczne RCD/RCBO 2P liczą mniejsze z modułów I_L+I_N oraz I_L−I_N, akceptując dowolną orientację każdego toru. Upływ do PE i ominięcie N nadal wyzwalają aparat |
 | Obsługa RCD/RCBO | Dźwignia ON/OFF, po wyzwoleniu reset przez OFF przed ponownym ON. TEST przy zamkniętych stykach i napięciu AC L–N odpowiada wewnętrznemu rezystorowi 4600 Ω (około 50 mA przy 230 V); bez trwałej usterki, dodatkowego przewodu i katalogowego czasu wyzwolenia. Brak napięcia lub usterka RCD blokują TEST |
 | Termik | Stan cieplny; otwiera 95–96 i zamyka 97–98. Tory mocy pozostają ciągłe; stycznik odpada przez okablowanie cewki |
+| Wyłącznik silnikowy | `edu-motor-protection`: trzy wspólne tory 1–2/3–4/5–6, ON/OFF/TRIPPED, reset przez OFF. Przeciążenie od największego prądu fazy, zwarcie przy 12×nastawa; bez krzywej SKU. NO 13–14 w `assembly` otwiera się przy OFF/TRIPPED. [Szczegóły i dane do uzupełnienia](ELE02_108.md). |
 | Bistabilny | Jedna zmiana na zbocze; przytrzymanie nie generuje serii impulsów; 150 ms profilu; reset po zaniku |
 | Schodowy | Odmierzanie czasu po przycisku, przedłużenie, podtrzymanie podczas trzymania, utrata stanu po zaniku |
 | Czasówka | Funkcje A/B/C/D inicjowane zasilaniem, dwa zestyki; zmiana nastaw w UI zatrzymuje próbę. Alternatywne 24 V i 230 V, kontrola podwójnego zasilania |
@@ -24,6 +25,7 @@ MNA z eliminacją Gaussa i pivotowaniem rozwiązuje napięcia węzłów oraz pr�
 | Silnik | Starszy profil: ukryta gwiazda. Nowy `edu-motor-six`: trzy jawne uzwojenia, analiza Y/Δ z przewodów/mostków, napięć uzwojeń i faz; bez poślizgu, rozruchu, momentu i energii mechanicznej |
 | Interlock | Osobne sprzężenie mechaniczne zapobiega ruchowi drugiego mechanizmu mimo zasilonej cewki. NC krzyżowe działają przez obwód elektryczny; ocena sprawdza je bez sprzężenia mechanicznego. Przy jednoczesnym żądaniu od spoczynku pierwszeństwo ma kolejność aparatów, bez dynamiki czasów ruchu |
 | Bloki / przyciski | Wielostykowy przycisk ma jeden stan NO/NC. Osobny blok pomocniczy dziedziczy mechanizm rodzica przypisanego przez `assembly`. Wspólne styki główne i pomocnicze stycznika |
+| Niezależne START/STOP | `edu-start-stop-din/panel`: START (`manual`) steruje NO 3–4, STOP (`stopPressed`) osobno NC 1–2. Wynik powrotu zasilania przy trzymanym przycisku wynika z obwodu. |
 
 Dowolna orientacja każdego toru RCD/RCBO 2P jest świadomym uproszczeniem profilu dydaktycznego. Akceptuje także zasilanie L i N z przeciwnych stron aparatu; nie odtwarza wtedy sumowania strumieni w rzeczywistym przekładniku różnicowym. Geometria przewodów pozostaje niezależna od rozwiązania elektrycznego.
 

@@ -13,6 +13,8 @@ const modular = new Set([
   "edu-bistable",
   "edu-staircase",
   "edu-timer",
+  "edu-start-stop-din",
+  "edu-push-no-din",
 ]);
 const terminals = new Set([
   "edu-bus-n",

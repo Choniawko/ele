@@ -1,6 +1,6 @@
 # Weryfikacja i wydawanie ELE
 
-Adres docelowy: **https://choniawko.github.io/ele/**. Build i preview używają `/ele/`; serwer developerski pozostaje przy `/`. Nie dodano nowych rodzin urządzeń. Pierwsze wydanie obejmuje zakres [etapu ćwiczeń](exam-coverage.md), wraz z jego jawnymi ograniczeniami.
+Adres docelowy: **https://choniawko.github.io/ele/**. Build i preview używają `/ele/`; serwer developerski pozostaje przy `/`. Pierwsze wydanie obejmuje zakres [etapu ćwiczeń](exam-coverage.md), wraz z jego jawnymi ograniczeniami. Wersja 0.2.0 dodaje dotychczasowe rozszerzenia instalacji/konstruktora rozdzielnicy oraz [ELE.02-108](ELE02_108.md), w tym edukacyjny wyłącznik silnikowy i niezależne START/STOP.
 
 ## Kontrole i artefakt
 

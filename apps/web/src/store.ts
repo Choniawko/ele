@@ -209,7 +209,12 @@ interface AppState {
   undo: () => void;
   redo: () => void;
   power: (on?: boolean) => void;
-  operate: (id: string, state?: boolean, reset?: boolean) => void;
+  operate: (
+    id: string,
+    state?: boolean,
+    reset?: boolean,
+    actuator?: "start" | "stop",
+  ) => void;
   testRcd: (id: string) => void;
   step: (deltaMs?: number) => void;
   reset: () => void;
@@ -1508,14 +1513,19 @@ export const useApp = create<AppState>((set, get) => ({
     set({ paused: !next });
     request({ type: "power", on: next });
   },
-  operate: (deviceId, state, reset) => {
-    if (get().mode === "build") {
+  operate: (deviceId, state, reset, actuator) => {
+    const device = get().project.circuit.devices.find((d) => d.id === deviceId);
+    if (
+      get().mode === "build" &&
+      device &&
+      catalog[device.productId].visualId !== "start-stop"
+    ) {
       const d = get().project.circuit.devices.find((d) => d.id === deviceId);
       if (d)
         get().updateDevice(deviceId, {
           position: state ?? !d.settings.position,
         });
-    } else request({ type: "operate", deviceId, state, reset });
+    } else request({ type: "operate", deviceId, state, reset, actuator });
   },
   testRcd: (deviceId) => request({ type: "test-rcd", deviceId }),
   step: (deltaMs = 1000) => request({ type: "step", deltaMs }),
@@ -1725,12 +1735,14 @@ export const useApp = create<AppState>((set, get) => ({
         (!parent ||
           !(
             catalog[parent.productId].topology.coil ||
-            ["push-no", "push-nc", "push-multi"].includes(
+            ["push-no", "push-nc", "push-multi", "motor-protection"].includes(
               catalog[parent.productId].behaviorId,
             )
           ))
       )
-        throw new Error("Blok wymaga mechanizmu stycznika lub przycisku.");
+        throw new Error(
+          "Blok wymaga mechanizmu stycznika, przycisku lub wyłącznika silnikowego.",
+        );
       p.circuit.mechanicalCouplings = p.circuit.mechanicalCouplings
         .map((c) =>
           c.kind === "assembly"

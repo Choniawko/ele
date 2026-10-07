@@ -2,6 +2,8 @@
 
 Aplikacja przyjmuje gotowy JSON. Odczyt schematu PDF/JPG i przygotowanie JSON odbywają się poza aplikacją. Import nie odtwarza połączeń z obrazu ani nie zgaduje modeli aparatów.
 
+Przykład [ELE.02-108](ELE02_108.md): `examples/physical/ELE02_108_stanowisko.json`. Wyłącznik silnikowy i zespoły START/STOP mają nowe productId, bez zmiany `schemaVersion`. NO 13–14 łączy się z Q2 przez `mechanicalCouplings.kind: assembly`; Q2 jest właścicielem mechanizmu bez cewki. Stare produkty i rewizje są zachowane. Chwilowe wciśnięcia START/STOP są stanem sesji solvera, nie zapisem projektu.
+
 ## Obsługiwane formaty
 
 1. Dotychczasowy `ProjectDocument` — obiekt dokumentu bez opakowania. Schemat obwodu ma `circuit.schemaVersion: 1`. Nie zawiera pomiarów ani zdarzeń.

@@ -5,7 +5,101 @@ import { DevicePhysical } from "@renderers/index";
 import { catalog } from "@catalog/index";
 import { scenarioProject } from "@training/index";
 import { advance, initialRuntime } from "@simulation/index";
+import { readFileSync } from "node:fs";
+import { validateProjectDocument } from "@catalog/project-validation";
 afterEach(cleanup);
+it("zespół START/STOP: niezależne sterowanie klawiaturą, zwolnienie po blur/cancel i utracie capture", () => {
+  const p = validateProjectDocument(
+    JSON.parse(
+      readFileSync("examples/physical/ELE02_108_stanowisko.json", "utf8"),
+    ),
+  );
+  const d = p.circuit.devices.find((d) => d.id === "S1")!;
+  let rt = advance(p, initialRuntime(p), { type: "power", on: true });
+  const view = () => (
+    <svg>
+      <DevicePhysical
+        device={d}
+        product={catalog[d.productId]}
+        state={rt.devices[d.id]}
+        onOperate={(state, actuator) => {
+          rt = advance(p, rt, {
+            type: "operate",
+            deviceId: d.id,
+            state,
+            actuator,
+          });
+        }}
+      />
+    </svg>
+  );
+  const screen = render(view());
+  const start = screen.getByRole("button", { name: "Przytrzymaj S1 START" });
+  const stop = screen.getByRole("button", { name: "Przytrzymaj S1 STOP" });
+  fireEvent.keyDown(start, { key: " " });
+  expect(rt.devices.S1.manual).toBe(true);
+  expect(rt.devices.S1.stopPressed).toBeFalsy();
+  expect(rt.devices.K1.mechanism).toBe(true);
+  fireEvent.keyDown(stop, { key: "Enter" });
+  expect(rt.devices.S1.manual).toBe(true);
+  expect(rt.devices.S1.stopPressed).toBe(true);
+  expect(rt.devices.K1.mechanism).toBe(false);
+  fireEvent.blur(start);
+  expect(rt.devices.S1.manual).toBe(false);
+  expect(rt.devices.S1.stopPressed).toBe(true);
+  fireEvent.keyUp(stop, { key: "Enter" });
+  expect(rt.devices.S1.stopPressed).toBe(false);
+  fireEvent.keyDown(start, { key: "Enter" });
+  fireEvent.pointerCancel(start);
+  expect(rt.devices.S1.manual).toBe(false);
+  fireEvent.keyDown(stop, { key: " " });
+  fireEvent.lostPointerCapture(stop);
+  expect(rt.devices.S1.stopPressed).toBe(false);
+});
+it("Q2: wskazanie TRIPPED, reset przez OFF oraz edytowalne pokrętło nastawy", () => {
+  const p = validateProjectDocument(
+    JSON.parse(
+      readFileSync("examples/physical/ELE02_108_stanowisko.json", "utf8"),
+    ),
+  );
+  const d = p.circuit.devices.find((d) => d.id === "Q2")!;
+  let rt = advance(p, initialRuntime(p), { type: "power", on: true });
+  rt.devices.Q2.tripped = true;
+  let current = 0;
+  const view = () => (
+    <svg>
+      <DevicePhysical
+        device={d}
+        product={catalog[d.productId]}
+        state={rt.devices[d.id]}
+        onOperate={(state) => {
+          rt = advance(p, rt, { type: "operate", deviceId: d.id, state });
+        }}
+        onSetCurrent={(value) => {
+          current = value;
+        }}
+      />
+    </svg>
+  );
+  const screen = render(view());
+  const lever = screen.getByRole("button", { name: "Przełącz Q2" });
+  expect(lever.getAttribute("data-motor-protection")).toBe("tripped");
+  fireEvent.keyDown(lever, { key: "Enter" });
+  expect(rt.devices.Q2.tripped).toBe(false);
+  expect(rt.devices.Q2.manual).toBe(false);
+  screen.rerender(view());
+  expect(lever.getAttribute("data-motor-protection")).toBe("off");
+  fireEvent.click(lever);
+  expect(rt.devices.Q2.manual).toBe(true);
+  fireEvent.keyDown(screen.getByRole("button", { name: "Nastawa Q2 [A]" }), {
+    key: "ArrowUp",
+  });
+  expect(current).toBe(4.45);
+  fireEvent.click(screen.getByRole("button", { name: "Nastawa Q2 [A]" }), {
+    shiftKey: true,
+  });
+  expect(current).toBe(4.25);
+});
 it("RCD ma niezależny TEST i dźwignię resetującą przez OFF, również z klawiatury", () => {
   const p = scenarioProject("distribution"),
     d = p.circuit.devices.find((d) => d.designation === "FI1")!;

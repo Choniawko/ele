@@ -72,6 +72,25 @@ const event = {
   message: "Zapisane zdarzenie",
   type: "info" as const,
 };
+it("ELE.02-108: import do biblioteki, eksport i ponowny import zachowują aparaty, kable i assembly Q2", async () => {
+  const text = readFileSync(
+    "examples/physical/ELE02_108_stanowisko.json",
+    "utf8",
+  );
+  const original = parseLibraryImport(text).entries[0].document;
+  const first = await commitImport(parseLibraryImport(text), null);
+  const exported = await exportProject(first.rows[0].id);
+  const second = await commitImport(parseLibraryImport(exported), null);
+  const restored = second.rows[0].document;
+  expect(first.rows[0].id).not.toBe(second.rows[0].id);
+  expect(restored.circuit.devices).toEqual(original.circuit.devices);
+  expect(restored.circuit.conductors).toEqual(original.circuit.conductors);
+  expect(restored.circuit.cables).toEqual(original.circuit.cables);
+  expect(restored.circuit.mechanicalCouplings).toEqual(
+    original.circuit.mechanicalCouplings,
+  );
+  expect(restored.physical).toEqual(original.physical);
+});
 describe("biblioteka projektów", () => {
   it("migracja v4 przenosi poprawne i uszkodzone zapisy do Bez folderu, zachowując dokument, pomiary, zdarzenia, snapshoty i wskaźnik", async () => {
     await db.delete();
