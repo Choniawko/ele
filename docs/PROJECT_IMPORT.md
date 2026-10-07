@@ -117,3 +117,27 @@ To fragment `physical`, nie kompletny projekt. Nadal wymagane są `devices` i `r
 Nowe identyfikatory produktów (rewizja `1`): `edu-indicator-green-230` (L,N), `edu-bulkhead-40` (L,N,PE), `edu-junction-terminal` (1,2 zwarte), `edu-splice-3` oraz `edu-phase-distribution` (1,2,3 zwarte). Wszystkie są jawnie dydaktyczne; nie używaj tych ID jako identyfikatorów wyrobów producenta. Każdą rewizję wpisz zarówno do instancji, jak i `productRevisions`.
 
 Identyfikatory komórek graficznych `handle:<id-obudowy>` i `cover:<id-obudowy>` są zarezerwowane dla interfejsu. Nie nadawaj takich ID aparatom, żyłom ani innym elementom fizycznym. Nie występują jako urządzenia ani zaciski w obwodzie.
+
+## Rozdzielnica modułowa (opcjonalne metadane fizyczne)
+
+`physical.enclosures[]` może mieć `distribution`. Stare obudowy bez niego nadal są ręczne. Wersja schematu elektrycznego pozostaje `1`; nie zmieniono produktów ani ich rewizji.
+
+```json
+{
+  "profileId": "edu-modular-v1",
+  "revision": "1",
+  "rows": 2,
+  "modulesPerRow": 12,
+  "reserve": 4,
+  "placements": {
+    "device-mcb": { "zone": "modules", "row": 0, "slot": 0 },
+    "device-pe": { "zone": "terminals", "row": 0, "slot": 0 }
+  }
+}
+```
+
+To fragment obudowy, nie cały importowalny projekt. `row` i `slot` są indeksami od zera. Rzędy aparatów: 1–3; pola w rzędzie: 8 lub 12. Strefa `terminals` ma dwa osobne rzędy. `reserve` jest nieujemną całkowitą liczbą planowanych wolnych pól, najwyżej równą pojemności rzędów aparatów; nie wymusza wypełnienia ani nie oznacza wymogu normowego.
+
+Każdy członek `deviceIds` musi mieć dokładnie jedno przypisanie, do odpowiedniej strefy. Szerokość korpusu katalogowego dzielona przez 18 mm i zaokrąglona w górę określa zajętość. Pozycje `physical.devices` oraz szerokość/wysokość obudowy muszą zgadzać się z wynikiem funkcji w `packages/circuit-model/distribution.ts`; walidator odrzuca niezgodność, kolizje i nieznaną rewizję profilu. Szyny i okna frontu są wyliczane z tego samego profilu, nie dopisuj ich drugi raz do `physical.rails` ani `window` tej obudowy. Wymiary profilu są założeniem dydaktycznym; nie stanowią dokumentacji SKU ani sprawdzenia głębokości lub termiki.
+
+Paczka folderu i pojedynczy projekt przenoszą te same metadane bez zmiany formatów eksportu. Połączenia nadal wskazują oryginalne elektryczne identyfikatory aparatów i zacisków, a folder pozostaje metadanymi biblioteki.

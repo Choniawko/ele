@@ -7,6 +7,7 @@ export default defineConfig(base, {
     "pages.spec.ts",
     "my-projects.spec.ts",
     "physical-installation.spec.ts",
+    "distribution-builder.spec.ts",
   ],
   testIgnore: [],
   use: { ...base.use, baseURL: "http://127.0.0.1:4173/ele/" },

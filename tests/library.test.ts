@@ -1,4 +1,7 @@
 // @vitest-environment jsdom
+import { distributionGeometry, mountInDistribution } from "@model/distribution";
+import { catalog } from "@catalog/index";
+import { mountingInfo } from "@catalog/mounting-profiles";
 import "fake-indexeddb/auto";
 import Dexie from "dexie";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
@@ -73,14 +76,12 @@ describe("biblioteka projektów", () => {
   it("migracja v4 przenosi poprawne i uszkodzone zapisy do Bez folderu, zachowując dokument, pomiary, zdarzenia, snapshoty i wskaźnik", async () => {
     await db.delete();
     const legacy = new Dexie(db.name);
-    legacy
-      .version(4)
-      .stores({
-        projects: "id, name, updatedAt",
-        research: "id, importedAt",
-        snapshots: "id",
-        settings: "id",
-      });
+    legacy.version(4).stores({
+      projects: "id, name, updatedAt",
+      research: "id, importedAt",
+      snapshots: "id",
+      settings: "id",
+    });
     const document = scenarioProject("lamp");
     const good = {
       id: document.circuit.projectId,
@@ -336,4 +337,64 @@ describe("biblioteka projektów", () => {
         expect((await restoreProject(row.id))!.document).toEqual(row.document);
     }
   });
+});
+
+it("rozmieszczenie rozdzielnicy przechodzi zapis, odczyt, import projektu oraz całego folderu z pomiarami", async () => {
+  const p = scenarioProject("lamp");
+  const id = "modular-case";
+  (p.physical.enclosures ??= []).push({
+    id,
+    name: "R1",
+    kind: "distribution",
+    position: { x: 1400, y: 100 },
+    ...distributionGeometry(2, 12),
+    closed: false,
+    deviceIds: [],
+    distribution: {
+      profileId: "edu-modular-v1",
+      revision: "1",
+      rows: 2,
+      modulesPerRow: 12,
+      reserve: 4,
+      placements: {},
+    },
+  });
+  const d = p.circuit.devices.find(
+    (d) => catalog[d.productId].behaviorId === "mcb",
+  )!;
+  mountInDistribution(
+    p,
+    id,
+    d.id,
+    "modules",
+    1,
+    (id) => mountingInfo(catalog[id]),
+    3,
+  );
+  const folder = await createFolder("Rozdzielnice");
+  const row = await createProject("Rozdzielnica", folder.id, p);
+  const records = [record(row.document)];
+  await saveProject(row.document, records, [event]);
+  const restored = (await restoreProject(row.id))!;
+  expect(restored.document.physical).toEqual(row.document.physical);
+  expect((await db.projects.get(row.id))!.folderId).toBe(folder.id);
+  expect(restored.measurements).toEqual(records);
+  const imported = await commitImport(
+    parseLibraryImport(await exportProject(row.id)),
+    null,
+  );
+  expect(imported.rows[0].document.physical).toEqual(row.document.physical);
+  const pack = await commitImport(
+    parseLibraryImport(await exportFolder(folder.id)),
+    null,
+  );
+  expect(pack.rows[0].document.physical).toEqual(row.document.physical);
+  expect(pack.rows[0].measurements).toEqual(records);
+  const corrupted = JSON.parse(await exportFolder(folder.id));
+  corrupted.projects[0].document.physical.enclosures[0].distribution.placements[
+    d.id
+  ].slot = 12;
+  const before = await db.projects.toArray();
+  expect(() => parseLibraryImport(JSON.stringify(corrupted))).toThrow();
+  expect(await db.projects.toArray()).toEqual(before);
 });

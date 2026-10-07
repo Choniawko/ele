@@ -1,3 +1,12 @@
+import { mountingInfo } from "@catalog/mounting-profiles";
+import {
+  enclosureWindows,
+  distributionAtPoint,
+  distributionProfile,
+  placementPoint,
+  occupiedModules,
+  rowOccupancy,
+} from "@model/distribution";
 import { enclosureFor } from "@model/physical";
 import {
   EnclosureBody,
@@ -235,7 +244,11 @@ function BoardDevice(
       <EnclosureBody enclosure={data.enclosure} selected={data.selected} />
     );
   const enclosure = data.enclosure;
-  if (data.view === "physical" && enclosure?.closed && !enclosure.window)
+  if (
+    data.view === "physical" &&
+    enclosure?.closed &&
+    !enclosureWindows(enclosure).length
+  )
     return null;
   const props: DeviceProps = {
     ...data,
@@ -249,24 +262,27 @@ function BoardDevice(
     onRcdTest: () => useApp.getState().testRcd(data.device.id),
   };
   return data.view === "physical" ? (
-    enclosure?.closed && enclosure.window ? (
+    enclosure?.closed && enclosureWindows(enclosure).length ? (
       <g>
         <defs>
           <clipPath id={`front-${data.device.id}`}>
-            <rect
-              x={
-                enclosure.position.x +
-                enclosure.window.x -
-                useApp.getState().project.physical.devices[data.device.id].x
-              }
-              y={
-                enclosure.position.y +
-                enclosure.window.y -
-                useApp.getState().project.physical.devices[data.device.id].y
-              }
-              width={enclosure.window.width}
-              height={enclosure.window.height}
-            />
+            {enclosureWindows(enclosure).map((w, i) => (
+              <rect
+                key={i}
+                x={
+                  enclosure.position.x +
+                  w.x -
+                  useApp.getState().project.physical.devices[data.device.id].x
+                }
+                y={
+                  enclosure.position.y +
+                  w.y -
+                  useApp.getState().project.physical.devices[data.device.id].y
+                }
+                width={w.width}
+                height={w.height}
+              />
+            ))}
           </clipPath>
         </defs>
         <g clipPath={`url(#front-${data.device.id})`}>
@@ -300,6 +316,75 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
     [cursor, setCursor] = useState<Point | null>(null),
     [routeEditing, setRouteEditing] = useState(false),
     [mountingPreview, setMountingPreview] = useState<Point | null>(null);
+  const focusedId = useApp((s) => s.focusedEnclosureId);
+  const mountingTarget = useApp((s) => s.mountingTarget);
+  const [draggedProduct, setDraggedProduct] = useState<string | null>(null);
+  const savedCamera = useRef<typeof transform | null>(null);
+  const cameraProject = useRef(project.circuit.projectId);
+  useEffect(() => {
+    if (cameraProject.current !== project.circuit.projectId) {
+      savedCamera.current = null;
+      cameraProject.current = project.circuit.projectId;
+    }
+    if (view !== "physical") return;
+    const e = project.physical.enclosures?.find((e) => e.id === focusedId);
+    if (e) {
+      if (!savedCamera.current) savedCamera.current = transform;
+      const frame = requestAnimationFrame(() => {
+        const size = host.current?.getBoundingClientRect();
+        if (!size) return;
+        const target = useApp.getState().mountingTarget;
+        const origin =
+          target?.enclosureId === e.id && e.distribution
+            ? placementPoint(e, { ...target, slot: 0 })
+            : e.position;
+        const width = e.distribution ? e.width - 40 : e.width;
+        const height =
+          target?.enclosureId === e.id && e.distribution
+            ? target.zone === "modules"
+              ? distributionProfile.rowSpacing
+              : distributionProfile.terminalSpacing
+            : e.height;
+        const top =
+          (host.current
+            ?.querySelector(".physical-tools")
+            ?.getBoundingClientRect().height ?? 80) + 35;
+        const fittedScale = Math.min(
+          1.5,
+          (size.width - 100) / width,
+          (size.height - top - 70) / height,
+        );
+        const scale = Math.max(
+          size.height < 320 ? 0.5 : size.width < 680 ? 0.65 : 0.25,
+          fittedScale,
+        );
+        setTransform({
+          scale,
+          x: (size.width - width * scale) / 2 - (origin.x - 20) * scale,
+          y:
+            top +
+            (size.height - top - 70 - height * scale) / 2 -
+            origin.y * scale,
+        });
+      });
+      return () => cancelAnimationFrame(frame);
+    }
+    if (savedCamera.current) {
+      const camera = savedCamera.current;
+      savedCamera.current = null;
+      const frame = requestAnimationFrame(() => setTransform(camera));
+      return () => cancelAnimationFrame(frame);
+    }
+    // Camera is captured only when entering focus, not on every pan.
+  }, [
+    focusedId,
+    view,
+    project.circuit.projectId,
+    mountingTarget?.row,
+    mountingTarget?.zone,
+    project.physical.enclosures?.find((e) => e.id === focusedId)?.width,
+    project.physical.enclosures?.find((e) => e.id === focusedId)?.height,
+  ]);
   const rails = useMemo(() => mountingRails(project), [project]);
   const wireRouters = useMemo(
     () =>
@@ -384,10 +469,21 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
               ) ?? [])
             : []),
         );
+      const modular =
+        view === "physical" &&
+        currentProject.physical.enclosures?.some((e) => e.distribution);
+      const top = modular
+        ? (host.current
+            ?.querySelector(".physical-tools")
+            ?.getBoundingClientRect().bottom ?? size.top) -
+          size.top +
+          15
+        : 35;
       const scale = Math.min(
         1.1,
         (size.width - 70) / width,
-        (size.height - 70) / height,
+        (modular ? Math.max(80, size.height - top - 55) : size.height - 70) /
+          height,
       );
       if (readable && (size.width < 680 || size.height < 320)) {
         const first = ps[0] ?? { x: 80, y: 90 };
@@ -396,13 +492,17 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
         setTransform({
           scale: workingScale,
           x: 30 - first.x * workingScale,
-          y: (shortViewport ? 45 : 90) - first.y * workingScale,
+          y:
+            (modular ? top + 15 : shortViewport ? 45 : 90) -
+            first.y * workingScale,
         });
       } else
         setTransform({
           scale,
           x: (size.width - width * scale) / 2,
-          y: (size.height - height * scale) / 2,
+          y: modular
+            ? top + (size.height - top - 55 - height * scale) / 2
+            : (size.height - height * scale) / 2,
         });
     },
     [project.circuit.projectId, view],
@@ -425,7 +525,9 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
     if (host.current) observer.observe(host.current);
     return () => observer.disconnect();
   }, [fit]);
-  useEffect(() => fit(true), [fit, rails.length]);
+  useEffect(() => {
+    if (!useApp.getState().focusedEnclosureId) fit(true);
+  }, [fit, rails.length]);
   const cells = useMemo(() => {
     const elements: ElementRecord[] = project.circuit.devices.map((d) => {
       const p = catalog[d.productId],
@@ -701,6 +803,12 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
         }
       }}
       onWheel={(e) => {
+        if (
+          (e.target as Element).closest(
+            ".physical-tools,.distribution-dialog,.selection-tools,.canvas-tools",
+          )
+        )
+          return;
         e.preventDefault();
         const rect = host.current!.getBoundingClientRect();
         zoom(e.deltaY > 0 ? 0.92 : 1.08, {
@@ -736,9 +844,23 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
         deviceDrag.current = null;
         setMountingPreview(null);
       }}
-      onDragOver={(e) => e.preventDefault()}
+      onDragOver={(e) => {
+        e.preventDefault();
+        const rect = host.current!.getBoundingClientRect();
+        setDraggedProduct(useApp.getState().adding);
+        setCursor({
+          x: (e.clientX - rect.left - transform.x) / transform.scale,
+          y: (e.clientY - rect.top - transform.y) / transform.scale,
+        });
+      }}
+      onDragLeave={() => {
+        setDraggedProduct(null);
+        setCursor(null);
+      }}
       onDrop={(e) => {
         e.preventDefault();
+        setDraggedProduct(null);
+        setMountingPreview(null);
         const id = e.dataTransfer.getData("application/ele-product");
         if (catalog[id]) {
           const rect = host.current!.getBoundingClientRect();
@@ -876,32 +998,34 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
                     )}
                   </g>
                 ))}
-              {mountingPreview && (
-                <g>
-                  <rect
-                    x={60}
-                    y={nearestRail(project, mountingPreview).y - 5}
-                    width={970}
-                    height={35 * MM + 10}
-                    rx={5}
-                    fill="#45906b"
-                    opacity={0.15}
-                    stroke="#32815b"
-                    strokeWidth={3}
-                  />
-                  <text
-                    x={70}
-                    y={nearestRail(project, mountingPreview).y - 21}
-                    fill="#286c4e"
-                    fontSize={14}
-                  >
-                    Upuść na szynie{" "}
-                    {rails.findIndex(
-                      (r) => r.id === nearestRail(project, mountingPreview).id,
-                    ) + 1}
-                  </text>
-                </g>
-              )}
+              {mountingPreview &&
+                !distributionAtPoint(project, mountingPreview) && (
+                  <g>
+                    <rect
+                      x={60}
+                      y={nearestRail(project, mountingPreview).y - 5}
+                      width={970}
+                      height={35 * MM + 10}
+                      rx={5}
+                      fill="#45906b"
+                      opacity={0.15}
+                      stroke="#32815b"
+                      strokeWidth={3}
+                    />
+                    <text
+                      x={70}
+                      y={nearestRail(project, mountingPreview).y - 21}
+                      fill="#286c4e"
+                      fontSize={14}
+                    >
+                      Upuść na szynie{" "}
+                      {rails.findIndex(
+                        (r) =>
+                          r.id === nearestRail(project, mountingPreview).id,
+                      ) + 1}
+                    </text>
+                  </g>
+                )}
             </>
           ) : (
             <>
@@ -963,7 +1087,16 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
                 ".terminal-control,.device-control",
               ),
           }}
-          onElementPointerClick={({ model, event }) =>
+          onElementPointerClick={({ model, event, x, y }) => {
+            const s = useApp.getState();
+            if (
+              s.adding &&
+              model.get("data")?.enclosure &&
+              !model.get("data")?.device
+            ) {
+              s.addDevice(s.adding, { x, y }, view);
+              return;
+            }
             useApp
               .getState()
               .select(
@@ -971,8 +1104,8 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
                   ? model.get("data").enclosure.id
                   : String(model.id),
                 event.shiftKey,
-              )
-          }
+              );
+          }}
           onLinkPointerClick={({ model, event }) =>
             useApp.getState().select(String(model.id), event.shiftKey)
           }
@@ -1039,13 +1172,15 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
               view === "physical" &&
               deviceDrag.current &&
               model.get("data").device &&
-              !enclosureFor(project, String(model.id)) &&
               catalog[model.get("data").device.productId].mounting === "DIN"
-            )
+            ) {
               setMountingPreview(model.position());
+              setDraggedProduct(model.get("data").device.productId);
+            }
           }}
           onElementPointerUp={({ model }) => {
             setMountingPreview(null);
+            setDraggedProduct(null);
             if (enclosureDrag.current) {
               const old = enclosureDrag.current,
                 raw = model.position(),
@@ -1149,6 +1284,82 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
           </g>
         </svg>
       )}
+      {view === "physical" &&
+        (() => {
+          const at = mountingPreview ?? cursor,
+            productId = draggedProduct ?? adding;
+          if (!at || !productId || !catalog[productId]) return null;
+          const drop = distributionAtPoint(project, at);
+          if (!drop) return null;
+          const { enclosure: e, zone, row, slot } = drop,
+            info = mountingInfo(catalog[productId]);
+          const point = placementPoint(e, { zone, row, slot }),
+            width = occupiedModules(info);
+          const occupied = rowOccupancy(project, e, zone, row, (id) =>
+            mountingInfo(catalog[id]),
+          );
+          const moving = Object.keys(deviceDrag.current ?? {});
+          for (const id of moving) {
+            const placement = e.distribution!.placements[id];
+            if (placement?.zone === zone && placement.row === row) {
+              const d = project.circuit.devices.find((d) => d.id === id)!;
+              for (
+                let i = placement.slot;
+                i <
+                placement.slot +
+                  occupiedModules(mountingInfo(catalog[d.productId]));
+                i++
+              )
+                occupied.delete(i);
+            }
+          }
+          const valid =
+            !e.closed &&
+            info.zone === zone &&
+            slot >= 0 &&
+            slot + width <= e.distribution!.modulesPerRow &&
+            row >= 0 &&
+            row <
+              (zone === "modules"
+                ? e.distribution!.rows
+                : distributionProfile.terminalRows) &&
+            Array.from({ length: width }, (_, i) => slot + i).every(
+              (i) => !occupied.has(i),
+            );
+          return (
+            <svg
+              className="board-preview distribution-drop-preview"
+              aria-hidden="true"
+            >
+              <g style={{ transform: transformString, transformOrigin: "0 0" }}>
+                <rect
+                  data-mounting-preview={valid ? "free" : "blocked"}
+                  x={point.x}
+                  y={point.y}
+                  width={
+                    width *
+                    distributionProfile.moduleMm *
+                    distributionProfile.scale
+                  }
+                  height={info.height * distributionProfile.scale}
+                  fill={valid ? "#45906b40" : "#b4514540"}
+                  stroke={valid ? "#32815b" : "#b45145"}
+                  strokeWidth={3}
+                />
+                <text
+                  x={point.x}
+                  y={point.y - 12}
+                  fontSize={14}
+                  fill={valid ? "#32815b" : "#b45145"}
+                >
+                  {valid
+                    ? `Pole ${slot + 1} · ${width}M`
+                    : "Brak miejsca / niezgodny montaż"}
+                </text>
+              </g>
+            </svg>
+          );
+        })()}
       {adding && cursor && (
         <div
           className="placement-label"

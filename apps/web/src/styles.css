@@ -3277,3 +3277,71 @@ h3 {
     padding: 4px 6px;
   }
 }
+
+.distribution-toolbar,
+.distribution-capacity {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.distribution-toolbar button,
+.distribution-capacity button {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+.distribution-toolbar select {
+  max-width: 250px;
+}
+.distribution-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+.distribution-toolbar input {
+  width: 65px;
+}
+.distribution-capacity button[aria-pressed="true"] {
+  background: #d6e5d7;
+  border-color: #4c8567;
+}
+.distribution-capacity span,
+.distribution-mounting p {
+  font-size: 12px;
+}
+.distribution-mounting {
+  padding: 5px 0;
+}
+.distribution-mounting summary {
+  cursor: pointer;
+  font-size: 12px;
+}
+.distribution-capacity {
+  margin: 6px 0;
+}
+.distribution-dialog {
+  position: fixed;
+  inset: 5vh 0 auto;
+  width: min(720px, 94vw);
+  max-height: 90vh;
+  overflow: auto;
+  z-index: 100;
+  margin: auto;
+  box-shadow: 0 0 0 100vmax #142a2370;
+}
+.distribution-dialog p {
+  font-size: 13px;
+}
+.distribution-dialog input,
+.distribution-dialog select {
+  width: 100%;
+}
+.distribution-preview {
+  display: block;
+  height: 220px;
+  max-width: 100%;
+  margin: 12px auto;
+}
+
+.distribution-drop-preview { z-index: 2; }

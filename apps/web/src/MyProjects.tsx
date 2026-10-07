@@ -1,3 +1,4 @@
+import { enclosureWindows } from "@model/distribution";
 import { enclosureFor } from "@model/physical";
 import { useEffect, useState } from "react";
 import {
@@ -189,22 +190,25 @@ export function ProjectMiniature({
       {bounds
         .filter(({ d }) => {
           const e = enclosureFor(project, d.id);
-          return !e?.closed || !!e.window;
+          return !e?.closed || !!enclosureWindows(e).length;
         })
         .map(({ d, p }) => (
           <g key={d.id} transform={`translate(${p.x},${p.y})`}>
             {(() => {
               const e = enclosureFor(project, d.id);
-              return e?.closed && e.window ? (
+              return e?.closed && enclosureWindows(e).length ? (
                 <g>
                   <defs>
                     <clipPath id={`mini-${project.circuit.projectId}-${d.id}`}>
-                      <rect
-                        x={e.position.x + e.window.x - p.x}
-                        y={e.position.y + e.window.y - p.y}
-                        width={e.window.width}
-                        height={e.window.height}
-                      />
+                      {enclosureWindows(e).map((w, i) => (
+                        <rect
+                          key={i}
+                          x={e.position.x + w.x - p.x}
+                          y={e.position.y + w.y - p.y}
+                          width={w.width}
+                          height={w.height}
+                        />
+                      ))}
                     </clipPath>
                   </defs>
                   <g

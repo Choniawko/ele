@@ -1,3 +1,4 @@
+import { distributionRails, overlapsDistribution } from "@model/distribution";
 import { catalog } from "@catalog/index";
 import {
   projectLimits,
@@ -9,9 +10,16 @@ import {
 export const RAIL_OFFSET = 65;
 export const RAIL_SPACING = 295;
 const SCALE = 2.2;
+const sizeFor = (productId: string) => catalog[productId].dimensions.value!;
 
 // Old documents have implicit rows. Keep their mounting positions on import.
 export function mountingRails(project: ProjectDocument): MountingRail[] {
+  return [
+    ...globalMountingRails(project),
+    ...(project.physical.enclosures?.flatMap(distributionRails) ?? []),
+  ];
+}
+export function globalMountingRails(project: ProjectDocument): MountingRail[] {
   if (project.physical.rails) return project.physical.rails;
   const bottom = Math.max(
     385,
@@ -39,7 +47,7 @@ export function nearestRail(
   project: ProjectDocument,
   point: Point,
 ): MountingRail {
-  return mountingRails(project).reduce((best, rail) =>
+  return globalMountingRails(project).reduce((best, rail) =>
     Math.abs(rail.y - RAIL_OFFSET - point.y) <
     Math.abs(best.y - RAIL_OFFSET - point.y)
       ? rail
@@ -114,7 +122,11 @@ export function freeMountingPosition(
         (next.x < rail.x || next.x + width > rail.x + rail.width)
       )
         continue;
-      if (next.x < 40 || mountingCollision(project, productId, next, ignored))
+      if (
+        next.x < 40 ||
+        overlapsDistribution(project, sizeFor(productId), next) ||
+        mountingCollision(project, productId, next, ignored)
+      )
         continue;
       return next;
     }

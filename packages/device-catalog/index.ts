@@ -1,3 +1,4 @@
+import { mountingInfo } from "./mounting-profiles";
 import { assertPhysicalLayout } from "@model/physical";
 import { installPhysicalProfiles } from "./physical-profiles";
 import { installStageOne } from "./stage-one";
@@ -1039,10 +1040,7 @@ export const catalog = Object.fromEntries(products.map((p) => [p.id, p]));
 export const availableProducts = products.filter((p) => p.published);
 export const seedSources = seed.sources;
 export function assertProjectCatalog(project: ProjectDocument): void {
-  assertPhysicalLayout(
-    project,
-    (id) => catalog[id]?.dimensions.value ?? { width: 0, height: 0 },
-  );
+  assertPhysicalLayout(project, (id) => mountingInfo(catalog[id]));
   if (
     project.circuit.devices.length > projectLimits.devices ||
     project.circuit.conductors.length > projectLimits.conductors

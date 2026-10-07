@@ -1,6 +1,7 @@
+import { assertDistribution, type MountingResolver } from "./distribution";
 import type { Point, ProjectDocument } from "./index";
 
-type SizeOf = (productId: string) => { width: number; height: number };
+type SizeOf = MountingResolver;
 export const PHYSICAL_SCALE = 2.2;
 export function enclosureFor(project: ProjectDocument, deviceId: string) {
   return project.physical.enclosures?.find((e) =>
@@ -39,6 +40,7 @@ export function assertPhysicalLayout(project: ProjectDocument, sizeOf: SizeOf) {
         e.window.y + e.window.height > e.height)
     )
       throw new Error(`${e.name}: okno musi mieścić się w rozdzielnicy.`);
+    assertDistribution(project, e, sizeOf);
     for (const id of e.deviceIds) {
       const d = devices.get(id);
       if (!d || members.has(id))

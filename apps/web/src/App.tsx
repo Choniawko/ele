@@ -219,9 +219,15 @@ const CatalogPanel = memo(function CatalogPanel({
               key={p.id}
               className={`catalog-item ${adding === p.id ? "chosen" : ""} ${!p.published ? "pending" : ""}`}
               draggable={p.published}
-              onDragStart={(e) =>
-                e.dataTransfer.setData("application/ele-product", p.id)
-              }
+              onDragStart={(e) => {
+                e.dataTransfer.setData("application/ele-product", p.id);
+                useApp.setState({
+                  adding: p.id,
+                  wireStart: null,
+                  waypoints: [],
+                });
+              }}
+              onDragEnd={() => useApp.setState({ adding: null })}
             >
               <button
                 className="product-main"
@@ -1547,13 +1553,15 @@ function App() {
     [hideInspector, setHideInspector] = useState(() =>
       readLayoutPreference("hideInspector", true),
     ),
-    [focusBoard, setFocusBoard] = useState(false),
+    [manualFocusBoard, setFocusBoard] = useState(false),
     [showWireOptions, setShowWireOptions] = useState(false),
     [showLog, setShowLog] = useState(() =>
       readLayoutPreference("showLog", true),
     ),
     [libraryImport, setLibraryImport] = useState(false),
     [researchImport, setResearchImport] = useState("");
+  const cabinetFocus = useApp((s) => s.focusedEnclosureId);
+  const focusBoard = manualFocusBoard || !!cabinetFocus;
   const catalogImportRef = useRef<HTMLInputElement>(null);
   const toggleCatalog = useCallback(() => {
     setHideCatalog((value) => !value);
@@ -1603,6 +1611,7 @@ function App() {
       const s = useApp.getState();
       if (e.key === "Escape") {
         s.cancelWire();
+        if (s.focusedEnclosureId) s.focusEnclosure(null);
         setFocusBoard(false);
       }
       if (e.key.toLowerCase() === "f" && !e.ctrlKey && !e.metaKey) {
@@ -1792,7 +1801,10 @@ function App() {
           }
           aria-pressed={focusBoard}
           title="Skupienie na tablicy (F), wyjście Esc"
-          onClick={() => setFocusBoard(!focusBoard)}
+          onClick={() => {
+            if (cabinetFocus) useApp.getState().focusEnclosure(null);
+            else setFocusBoard(!manualFocusBoard);
+          }}
         >
           {focusBoard ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
         </button>

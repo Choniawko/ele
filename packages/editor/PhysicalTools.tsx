@@ -1,3 +1,4 @@
+import { DistributionBuilder } from "./DistributionBuilder";
 import { useState } from "react";
 import { useApp } from "@/store";
 import { projectLimits, type PhysicalEnclosure } from "@model/index";
@@ -53,6 +54,7 @@ export function PhysicalTools() {
         <button aria-expanded={open} onClick={() => setOpen(!open)}>
           Obudowy i korytka
         </button>
+        <DistributionBuilder />
       </div>
       {open && (
         <div className="physical-tools-panel">

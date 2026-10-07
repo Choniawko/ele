@@ -1,3 +1,11 @@
+import {
+  distributionRails,
+  enclosureWindows,
+  rowOccupancy,
+  distributionProfile,
+} from "@model/distribution";
+import { catalog } from "@catalog/index";
+import { mountingInfo } from "@catalog/mounting-profiles";
 import type {
   PhysicalEnclosure as Enclosure,
   PhysicalTrunk,
@@ -10,7 +18,8 @@ export function EnclosureBody({
   enclosure: Enclosure;
   selected: boolean;
 }) {
-  const rails = useApp((s) => s.project.physical.rails);
+  const project = useApp((s) => s.project);
+  const rails = e.distribution ? distributionRails(e) : project.physical.rails;
   return (
     <g data-enclosure={e.name} data-closed={String(e.closed)}>
       <rect
@@ -64,17 +73,57 @@ export function EnclosureBody({
               />
             </g>
           ))}
-      {e.closed && e.kind === "distribution" && e.window && (
-        <rect
-          x={e.window.x - 5}
-          y={e.window.y - 5}
-          width={e.window.width + 10}
-          height={e.window.height + 10}
-          rx={4}
-          fill="#b9c4b4"
-          stroke="#d1d8cb"
-          strokeWidth={2}
-        />
+      {e.closed &&
+        enclosureWindows(e).map((w, row) => (
+          <g key={row}>
+            <rect
+              x={w.x - 5}
+              y={w.y - 5}
+              width={w.width + 10}
+              height={w.height + 10}
+              rx={4}
+              fill={e.distribution ? "#efeee7" : "#b9c4b4"}
+              stroke="#d1d8cb"
+              strokeWidth={2}
+            />
+            {e.distribution &&
+              Array.from(
+                { length: e.distribution.modulesPerRow },
+                (_, slot) => slot,
+              )
+                .filter(
+                  (slot) =>
+                    !rowOccupancy(project, e, "modules", row, (id) =>
+                      mountingInfo(catalog[id]),
+                    ).has(slot),
+                )
+                .map((slot) => (
+                  <rect
+                    key={slot}
+                    data-blank-slot={`${row}:${slot}`}
+                    x={
+                      w.x +
+                      slot *
+                        distributionProfile.moduleMm *
+                        distributionProfile.scale +
+                      1
+                    }
+                    y={w.y + 1}
+                    width={
+                      distributionProfile.moduleMm * distributionProfile.scale -
+                      2
+                    }
+                    height={w.height - 2}
+                    fill="#efeee7"
+                    stroke="#d1d8cb"
+                  />
+                ))}
+          </g>
+        ))}
+      {!e.closed && e.distribution && (
+        <text x={40} y={e.height - 20} fontSize={12} fill="#52684d">
+          PRZYŁĄCZENIA N / PE / L · bez domyślnych mostków
+        </text>
       )}
       {e.closed && e.kind !== "distribution" && (
         <>
@@ -175,7 +224,11 @@ export function EnclosureCover({ enclosure: e }: { enclosure: Enclosure }) {
       className="device-control"
       role="button"
       tabIndex={0}
-      aria-label={`${e.closed ? "Otwórz" : "Zamknij"} pokrywę ${e.name}`}
+      aria-label={
+        e.distribution
+          ? `${e.closed ? "Zdejmij" : "Załóż"} maskownicę ${e.name}`
+          : `${e.closed ? "Otwórz" : "Zamknij"} pokrywę ${e.name}`
+      }
       onPointerDown={(ev) => ev.stopPropagation()}
       onClick={(ev) => {
         ev.stopPropagation();
@@ -204,7 +257,13 @@ export function EnclosureCover({ enclosure: e }: { enclosure: Enclosure }) {
         fontSize={11}
         fill="#52684d"
       >
-        {e.closed ? "OTWÓRZ" : "ZAMKNIJ"}
+        {e.distribution
+          ? e.closed
+            ? "ZDEJMIJ MASKOWNICĘ"
+            : "ZAŁÓŻ MASKOWNICĘ"
+          : e.closed
+            ? "OTWÓRZ"
+            : "ZAMKNIJ"}
       </text>
     </g>
   );
