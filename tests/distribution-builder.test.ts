@@ -1,4 +1,5 @@
 // @vitest-environment jsdom
+import { globalMountingRails, mountingRails } from "@editor/layout";
 import { beforeEach, afterEach, expect, it, vi } from "vitest";
 import { scenarioProject } from "@training/index";
 import { initialRuntime } from "@simulation/index";
@@ -286,4 +287,24 @@ it("undo, zmniejszenie liczby rzędów i schemat porządkują przejściowy cel m
   useApp.getState().setView("schematic");
   expect(useApp.getState().mountingTarget).toBeNull();
   expect(useApp.getState().focusedEnclosureId).toBeNull();
+});
+
+it("własne rzędy nie tworzą pustych globalnych szyn; można dodać szynę tablicy i duplikat poza skrzynką", () => {
+  useApp.setState({ project: emptyProject() });
+  create(3);
+  useApp.getState().addDevice("hager-mbn116e");
+  expect(globalMountingRails(useApp.getState().project)).toHaveLength(0);
+  expect(mountingRails(useApp.getState().project)).toHaveLength(3);
+  useApp.getState().duplicateSelection();
+  expect(useApp.getState().project.circuit.devices).toHaveLength(2);
+  expect(useApp.getState().project.physical.rails).toHaveLength(1);
+  expect(() =>
+    validateProjectDocument(useApp.getState().project),
+  ).not.toThrow();
+  useApp.getState().undo();
+  useApp.getState().addRail();
+  expect(useApp.getState().project.physical.rails).toHaveLength(1);
+  expect(() =>
+    validateProjectDocument(useApp.getState().project),
+  ).not.toThrow();
 });

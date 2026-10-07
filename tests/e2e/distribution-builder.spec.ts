@@ -98,6 +98,9 @@ test("od pustego projektu: własny rząd, obwód z odbiornikiem, pomiar, praca, 
   const initial = await current(page);
   await create(page);
   await add(page, "hager-mbn116e");
+  await expect(
+    page.getByTestId("board-physical").locator("[data-rail]"),
+  ).toHaveCount(2);
   await page.screenshot({ path: info.outputPath("distribution-interior.png") });
   await page.getByRole("button", { name: /Rząd 2 ·/ }).click();
   await page.getByLabel("Pierwsze pole").fill("4");

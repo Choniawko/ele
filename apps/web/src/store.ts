@@ -22,6 +22,7 @@ import { create } from "zustand";
 import {
   mountingRails,
   globalMountingRails,
+  nextGlobalRailGeometry,
   nearestRail,
   snapMounting,
   mountingCollision,
@@ -991,9 +992,7 @@ export const useApp = create<AppState>((set, get) => ({
           ...rails,
           {
             id: newId("rail"),
-            x: 60,
-            y: Math.max(...rails.map((rail) => rail.y)) + RAIL_SPACING,
-            width: 970,
+            ...nextGlobalRailGeometry(p),
           },
         ];
       },
@@ -1368,11 +1367,17 @@ export const useApp = create<AppState>((set, get) => ({
           )
         )
           n++;
+        const standaloneRail =
+          product.mounting === "DIN" && !globalMountingRails(p).length
+            ? nextGlobalRailGeometry(p)
+            : null;
         p.circuit.devices.push({
           ...clone(d),
           id,
           designation: `${product.designationPrefix}${n}`,
         });
+        if (standaloneRail)
+          p.physical.rails = [{ id: newId("rail"), ...standaloneRail }];
         let target = {
           x: p.physical.devices[d.id].x,
           y: p.physical.devices[d.id].y + RAIL_SPACING,

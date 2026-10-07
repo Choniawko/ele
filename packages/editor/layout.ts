@@ -21,11 +21,16 @@ export function mountingRails(project: ProjectDocument): MountingRail[] {
 }
 export function globalMountingRails(project: ProjectDocument): MountingRail[] {
   if (project.physical.rails) return project.physical.rails;
+  const cabinets =
+    project.physical.enclosures?.filter((e) => e.distribution) ?? [];
+  const members = new Set(cabinets.flatMap((e) => e.deviceIds));
+  const outside = project.circuit.devices.filter(
+    (d) => catalog[d.productId].mounting === "DIN" && !members.has(d.id),
+  );
+  if (cabinets.length && !outside.length) return [];
   const bottom = Math.max(
     385,
-    ...project.circuit.devices
-      .filter((d) => catalog[d.productId].mounting === "DIN")
-      .map((d) => project.physical.devices[d.id]?.y ?? 90),
+    ...outside.map((d) => project.physical.devices[d.id]?.y ?? 90),
   );
   return Array.from(
     {
@@ -43,11 +48,30 @@ export function globalMountingRails(project: ProjectDocument): MountingRail[] {
   );
 }
 
+export function nextGlobalRailGeometry(project: ProjectDocument) {
+  const rails = globalMountingRails(project);
+  return {
+    x: 60,
+    y: rails.length
+      ? Math.max(...rails.map((r) => r.y)) + RAIL_SPACING
+      : Math.max(
+          155,
+          ...(project.physical.enclosures?.map(
+            (e) => e.position.y + e.height + 120,
+          ) ?? []),
+        ),
+    width: 970,
+  };
+}
+
 export function nearestRail(
   project: ProjectDocument,
   point: Point,
 ): MountingRail {
-  return globalMountingRails(project).reduce((best, rail) =>
+  const rails = globalMountingRails(project);
+  return (
+    rails.length ? rails : [{ id: "rail-1", x: 60, y: 155, width: 970 }]
+  ).reduce((best, rail) =>
     Math.abs(rail.y - RAIL_OFFSET - point.y) <
     Math.abs(best.y - RAIL_OFFSET - point.y)
       ? rail

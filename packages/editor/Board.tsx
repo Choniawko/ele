@@ -527,7 +527,11 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
   }, [fit]);
   useEffect(() => {
     if (!useApp.getState().focusedEnclosureId) fit(true);
-  }, [fit, rails.length]);
+  }, [
+    fit,
+    rails.length,
+    project.physical.enclosures?.filter((e) => e.distribution).length ?? 0,
+  ]);
   const cells = useMemo(() => {
     const elements: ElementRecord[] = project.circuit.devices.map((d) => {
       const p = catalog[d.productId],
@@ -1406,7 +1410,7 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
         </button>
       </div>
       <div className="board-actions">
-        {view === "physical" && (
+        {view === "physical" && !focusedId && (
           <button
             onClick={() => useApp.getState().addRail()}
             title="Dodaj kolejną szynę TH35"
