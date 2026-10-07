@@ -12,6 +12,7 @@ const board = (page: Page) => page.getByTestId("board-physical");
 const saved = (page: Page) =>
   expect(page.locator(".save-state")).toHaveText("Zapisano lokalnie");
 async function importProject(page: Page, content: string, projectName: string) {
+  const previousId = (await current(page)).id;
   await page.locator(".project-title").click();
   await page
     .getByRole("button", { name: "Importuj JSON", exact: true })
@@ -25,17 +26,21 @@ async function importProject(page: Page, content: string, projectName: string) {
     .getByRole("button", { name: "Importuj jako nowe", exact: true })
     .click();
   await expect(page.locator(".import-summary")).toHaveCount(0);
-  await page
+  const importedCard = page
     .locator(".project-card")
     .filter({
       has: page.locator(".saved-project strong", { hasText: projectName }),
     })
-    .first()
-    .locator(".saved-project")
-    .click();
+    .first();
+  await expect(importedCard).not.toHaveAttribute("data-project-id", previousId);
+  const importedId = await importedCard.getAttribute("data-project-id");
+  expect(importedId).toBeTruthy();
+  await importedCard.locator(".saved-project").click();
   await page
     .getByRole("button", { name: "Otwórz w edytorze", exact: true })
     .click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await expect.poll(async () => (await current(page)).id).toBe(importedId);
   await saved(page);
 }
 async function current(page: Page): Promise<SavedProject> {
