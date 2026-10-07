@@ -106,10 +106,46 @@ export interface MountingRail {
   y: number;
   width: number;
 }
+export interface DistributionPlacement {
+  zone: "modules" | "terminals";
+  row: number;
+  slot: number;
+}
+export interface DistributionConfig {
+  profileId: "edu-modular-v1";
+  revision: "1";
+  rows: number;
+  modulesPerRow: 8 | 12;
+  reserve: number;
+  placements: Record<string, DistributionPlacement>;
+}
+export interface PhysicalEnclosure {
+  id: string;
+  name: string;
+  kind: "distribution" | "junction" | "supply";
+  position: Point;
+  width: number;
+  height: number;
+  deviceIds: string[];
+  closed: boolean;
+  window?: { x: number; y: number; width: number; height: number };
+  distribution?: DistributionConfig;
+}
+export interface PhysicalTrunk {
+  id: string;
+  name: string;
+  points: Point[];
+  width: number;
+  conductorIds: string[];
+  closed: boolean;
+}
 export interface Layout {
   devices: Record<string, Point>;
   routes: Record<string, Point[]>;
   rails?: MountingRail[];
+  enclosures?: PhysicalEnclosure[];
+  trunking?: PhysicalTrunk[];
+  presentation?: "external" | "connections";
 }
 export interface TrainingSession {
   scenarioId: string;
@@ -141,6 +177,10 @@ export const projectLimits = {
   devices: 150,
   conductors: 500,
   rails: 24,
+  enclosures: 50,
+  distributionRows: { min: 1, max: 3 },
+  distributionModules: [8, 12],
+  trunking: 100,
   name: { minLength: 1, maxLength: 120 },
   designation: { minLength: 1, maxLength: 30 },
   marking: { maxLength: 30 },
@@ -211,6 +251,64 @@ export const settingsSchema = z
     independentSupply: z.boolean().optional(),
     phaseOrder: z.enum(["123", "132"]).optional(),
     loadFactor: settingNumber(numericSettingLimits.loadFactor).optional(),
+  })
+  .strict();
+export const enclosureSchema = z
+  .object({
+    id,
+    name: z.string().min(1).max(projectLimits.designation.maxLength),
+    kind: z.enum(["distribution", "junction", "supply"]),
+    position: point,
+    width: z.number().finite().min(60).max(2000),
+    height: z.number().finite().min(60).max(2000),
+    deviceIds: z.array(id).max(projectLimits.devices),
+    closed: z.boolean(),
+    distribution: z
+      .object({
+        profileId: z.literal("edu-modular-v1"),
+        revision: z.literal("1"),
+        rows: z
+          .number()
+          .int()
+          .min(projectLimits.distributionRows.min)
+          .max(projectLimits.distributionRows.max),
+        modulesPerRow: z.union([
+          z.literal(projectLimits.distributionModules[0]),
+          z.literal(projectLimits.distributionModules[1]),
+        ]),
+        reserve: z.number().int().nonnegative(),
+        placements: z.record(
+          id,
+          z
+            .object({
+              zone: z.enum(["modules", "terminals"]),
+              row: z.number().int().nonnegative(),
+              slot: z.number().int().nonnegative(),
+            })
+            .strict(),
+        ),
+      })
+      .strict()
+      .optional(),
+    window: z
+      .object({
+        x: z.number().finite().nonnegative(),
+        y: z.number().finite().nonnegative(),
+        width: z.number().finite().positive(),
+        height: z.number().finite().positive(),
+      })
+      .strict()
+      .optional(),
+  })
+  .strict();
+export const trunkSchema = z
+  .object({
+    id,
+    name: z.string().min(1).max(projectLimits.designation.maxLength),
+    points: routeSchema.min(2),
+    width: z.number().finite().min(10).max(100),
+    conductorIds: z.array(id).max(projectLimits.conductors),
+    closed: z.boolean(),
   })
   .strict();
 const layout = z.object({
@@ -330,7 +428,14 @@ export const projectSchema = z
         }),
       })
       .strict(),
-    physical: layout,
+    physical: layout.extend({
+      enclosures: z
+        .array(enclosureSchema)
+        .max(projectLimits.enclosures)
+        .optional(),
+      trunking: z.array(trunkSchema).max(projectLimits.trunking).optional(),
+      presentation: z.enum(["external", "connections"]).optional(),
+    }),
     schematic: layout,
     faults: z
       .array(

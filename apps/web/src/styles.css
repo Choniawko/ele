@@ -2971,3 +2971,377 @@ h3 {
 .check-line[data-passed="true"] > svg {
   color: #438265;
 }
+
+/* Local project library: folder navigation remains available next to the cards. */
+.modal.library-modal {
+  max-width: 1200px;
+  width: calc(100vw - 40px);
+}
+.project-library {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  gap: 24px;
+}
+.library-sidebar {
+  border-right: 1px solid #dce5ce;
+  padding-right: 16px;
+}
+.library-sidebar button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-align: left;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 4px;
+  overflow-wrap: anywhere;
+}
+.library-sidebar button span {
+  margin-left: auto;
+  font-size: 12px;
+}
+.library-sidebar button.active {
+  background: #e1ebdc;
+  color: #173f32;
+  font-weight: 700;
+}
+.library-sidebar p {
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 24px 8px;
+}
+.library-sidebar h3 {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 24px 8px 10px;
+}
+.library-main {
+  min-width: 0;
+}
+.library-heading h3 {
+  margin: 0 0 14px;
+  overflow-wrap: anywhere;
+}
+.library-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+.library-actions button,
+.library-form button,
+.library-preview button {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  padding: 9px 12px;
+  border: 1px solid #dce5ce;
+  border-radius: 8px;
+  margin-right: 5px;
+}
+.library-search {
+  display: flex;
+  gap: 12px;
+  margin: 18px 0;
+}
+.library-search label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+.library-search input,
+.library-search select,
+.library-form input:not([type="checkbox"]),
+.library-form textarea,
+.library-form select,
+.project-card select {
+  min-width: 0;
+  max-width: 100%;
+  background: white;
+  border: 1px solid #cad6c4;
+  border-radius: 7px;
+  padding: 9px;
+}
+.library-search input {
+  width: 100%;
+}
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+  gap: 16px;
+}
+.project-card {
+  border: 1px solid #dce5ce;
+  background: #fffef9;
+  border-radius: 12px;
+  padding: 12px;
+  min-width: 0;
+}
+.project-card .saved-project {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  gap: 9px;
+  margin: 0;
+  text-align: left;
+}
+.project-card .saved-project strong {
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+.project-card .saved-project span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+.project-miniature {
+  display: block;
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  pointer-events: none;
+}
+.project-miniature.empty {
+  display: grid;
+  place-items: center;
+  background: #f6e9de;
+  color: #8d4528;
+  font-size: 12px;
+  padding: 15px;
+}
+.card-actions {
+  display: flex;
+  gap: 6px;
+  margin: 12px 0;
+}
+.card-actions button {
+  padding: 7px;
+  border: 1px solid #dce5ce;
+  border-radius: 6px;
+}
+.project-card select {
+  width: 100%;
+}
+.library-form {
+  background: #edf3e9;
+  border: 1px solid #d5e2cf;
+  border-radius: 12px;
+  padding: 18px;
+  margin: 15px 0;
+}
+.library-form h4 {
+  margin: 0 0 12px;
+}
+.library-form label:not(.checkbox) {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 12px;
+}
+.library-form textarea {
+  font-family: monospace;
+  resize: vertical;
+}
+.library-error {
+  background: #fff0e9;
+  color: #8f422e;
+  padding: 12px;
+  border-radius: 8px;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+.library-preview .project-miniature {
+  height: 330px;
+  margin: 16px 0;
+}
+.library-preview p,
+.import-summary p {
+  line-height: 1.6;
+}
+.library-main .project-rename {
+  margin-top: 24px;
+  border-top: 1px solid #dce5ce;
+  padding-top: 15px;
+}
+.library-main .project-rename label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.library-main .project-rename input {
+  padding: 9px;
+  border: 1px solid #cad6c4;
+  border-radius: 7px;
+}
+@media (max-width: 720px) {
+  .modal.library-modal {
+    padding: 16px;
+    width: calc(100vw - 20px);
+  }
+  .project-library {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .library-sidebar {
+    border-right: 0;
+    border-bottom: 1px solid #dce5ce;
+    padding: 0 0 10px;
+    max-height: 200px;
+    overflow: auto;
+  }
+  .library-sidebar p {
+    margin: 10px;
+  }
+  .library-search {
+    flex-direction: column;
+  }
+}
+
+.physical-tools {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 8;
+  max-width: calc(100% - 240px);
+}
+.physical-presentation {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.physical-presentation button {
+  background: #f5f6ee;
+  font-size: 12px;
+  padding: 6px 9px;
+  box-shadow: 0 1px 4px #30453018;
+}
+.physical-presentation button.active {
+  background: #d7e9d8;
+  border-color: #769d78;
+}
+.physical-tools-panel {
+  width: 330px;
+  max-width: 100%;
+  max-height: 65vh;
+  overflow: auto;
+  background: #f8faf2;
+  border: 1px solid #c7d2bf;
+  border-radius: 7px;
+  padding: 12px;
+  margin-top: 6px;
+  box-shadow: 0 5px 15px #253d2522;
+}
+.physical-tools-panel label {
+  display: block;
+  font-size: 12px;
+  margin: 8px 0;
+}
+.physical-tools-panel select,
+.physical-tools-panel input {
+  display: block;
+  width: 100%;
+}
+.physical-tools-panel p {
+  font-size: 12px;
+  color: #607457;
+  margin: 5px 0;
+}
+.physical-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.physical-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.physical-tools-panel button {
+  font-size: 12px;
+  padding: 5px 7px;
+}
+@media (max-width: 700px) {
+  .physical-tools {
+    max-width: calc(100% - 65px);
+    top: 50px;
+  }
+  .physical-presentation button {
+    font-size: 10px;
+    padding: 4px 6px;
+  }
+}
+
+.distribution-toolbar,
+.distribution-capacity {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.distribution-toolbar button,
+.distribution-capacity button {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+.distribution-toolbar select {
+  max-width: 250px;
+}
+.distribution-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+.distribution-toolbar input {
+  width: 65px;
+}
+.distribution-capacity button[aria-pressed="true"] {
+  background: #d6e5d7;
+  border-color: #4c8567;
+}
+.distribution-capacity span,
+.distribution-mounting p {
+  font-size: 12px;
+}
+.distribution-mounting {
+  padding: 5px 0;
+}
+.distribution-mounting summary {
+  cursor: pointer;
+  font-size: 12px;
+}
+.distribution-capacity {
+  margin: 6px 0;
+}
+.distribution-dialog {
+  position: fixed;
+  inset: 5vh 0 auto;
+  width: min(720px, 94vw);
+  max-height: 90vh;
+  overflow: auto;
+  z-index: 100;
+  margin: auto;
+  box-shadow: 0 0 0 100vmax #142a2370;
+}
+.distribution-dialog p {
+  font-size: 13px;
+}
+.distribution-dialog input,
+.distribution-dialog select {
+  width: 100%;
+}
+.distribution-preview {
+  display: block;
+  height: 220px;
+  max-width: 100%;
+  margin: 12px auto;
+}
+
+.distribution-drop-preview { z-index: 2; }

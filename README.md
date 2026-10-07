@@ -22,6 +22,12 @@ Otwórz http://127.0.0.1:5173. Do wersji produkcyjnej: `pnpm build`, następnie 
 
 W Budowie kliknij aparat z katalogu i miejsce na tablicy. Dwa kliknięcia zacisków tworzą przewód; kliknięcie tła między końcami dodaje punkty trasy. Esc anuluje, Backspace usuwa ostatni punkt. Shift umożliwia wielokrotne zaznaczenie; dostępne są kopiowanie, wyrównanie, Delete i historia Ctrl/Cmd+Z. Ciasne zaciski można wybrać z listy w inspektorze albo po powiększeniu widoku. Przyciski START/STOP przytrzymuje się myszą lub spacją.
 
+## Moje projekty
+
+Kliknij nazwę bieżącego projektu w nagłówku, aby otworzyć bibliotekę. Utwórz folder, wybierz go i dodaj pusty projekt, importuj plik/wklej JSON albo zapisz kopię przykładu. Karty mają podgląd, przenoszenie do folderu, zmianę nazwy, duplikowanie, eksport i usuwanie. Usunięcie folderu domyślnie zachowuje jego projekty w „Bez folderu”.
+
+Import tworzy nowe ID i wymaga zatwierdzenia podsumowania; paczka folderu jest zapisywana atomowo. [Kontrakt JSON i przykłady](docs/PROJECT_IMPORT.md) opisują format pojedynczego dokumentu oraz opakowania projektu/folderu z historią pomiarów. Dane pozostają w IndexedDB konkretnej przeglądarki i originu; nie ma synchronizacji ani kopii serwerowej. Eksportuj foldery jako kopie zapasowe, szczególnie przed usunięciem danych witryny lub zmianą profilu.
+
 ## Praca na tablicy
 
 - Tablica zajmuje większość okna; katalog i właściwości można chować przyciskami u góry albo krzyżykiem w panelu. Na ekranach poniżej 1280 px panele są wysuwane nad tablicą. Ich widoczność i widoczność dziennika są zapamiętywane.

@@ -365,7 +365,10 @@ function summarize(project: ProjectDocument, rt: RuntimeSnapshot) {
           magnitude(rt.solution.currents[b.id] ?? c()) ** 2 * b.resistanceOhm,
         0,
       );
-    if (p.behaviorId === "load") state.powered = (state.voltageV ?? 0) > 0.5;
+    if (p.behaviorId === "load")
+      state.powered =
+        (state.voltageV ?? 0) >
+        (p.visualId === "indicator" ? (d.settings.voltageV ?? 230) * 0.8 : 0.5);
     if (p.behaviorId === "motor" && top.terminals.some((t) => t.id === "U1")) {
       Object.assign(state, analyzeMotor(project, d, rt.solution, rt.timeMs));
     } else if (p.behaviorId === "motor") {

@@ -4,6 +4,9 @@ import { assertProjectCatalog, catalog } from "./index";
 
 const labels: Record<string, string> = {
   name: "Nazwa projektu",
+  width: "Szerokość elementu fizycznego",
+  height: "Wysokość obudowy",
+  points: "Punkty korytka",
   designation: "Oznaczenie aparatu",
   marking: "Opis przewodu",
   electricalLengthM: "Długość elektryczna przewodu [m]",
@@ -28,8 +31,17 @@ export function validationMessage(error: unknown): string {
       ? error.message
       : "Niepoprawny dokument projektu.";
   const issue = error.issues[0];
+  const field = String(issue.path.at(-1));
+  const physicalName =
+    field === "name" &&
+    (issue.path.includes("enclosures")
+      ? "Nazwa obudowy"
+      : issue.path.includes("trunking")
+        ? "Nazwa korytka"
+        : undefined);
   const label =
-    labels[String(issue.path.at(-1))] ??
+    physicalName ??
+    labels[field] ??
     (issue.path.includes("routes") ? "Trasa przewodu" : "Pole projektu");
   if (issue.code === "too_big")
     return `${label}: maksymalnie ${issue.maximum}${issue.origin === "string" ? " znaków" : issue.origin === "array" ? " punktów lub elementów" : ""}. Zmiana została odrzucona.`;

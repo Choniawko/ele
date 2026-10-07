@@ -183,7 +183,11 @@ test("łączenie od pustego projektu, cofnięcie, zasilanie i pomiar", async ({
   page,
 }) => {
   await page.getByRole("button", { name: "Lampa i łącznik" }).click();
-  await page.getByRole("button", { name: /Nowa instalacja/ }).click();
+  await page.getByRole("button", { name: "Nowy projekt", exact: true }).click();
+  await page
+    .getByRole("dialog")
+    .getByRole("button", { name: "Zapisz", exact: true })
+    .click();
   const board = page.getByTestId("board-physical");
   for (const [name, x, y] of [
     ["Źródło sieciowe", 100, 70],
@@ -470,14 +474,21 @@ test("ukryta diagnoza: eksport bez odpowiedzi, pomiar PE, naprawa i retest", asy
 test("odrzucony import nie zastępuje projektu; katalog badawczy jest zapisany", async ({
   page,
 }) => {
-  await page.getByLabel("Import projektu").setInputFiles({
+  await page.locator(".project-title").click();
+  await page
+    .getByRole("button", { name: "Importuj JSON", exact: true })
+    .click();
+  await page.getByLabel("Plik JSON").setInputFiles({
     name: "bad.json",
     mimeType: "application/json",
     buffer: Buffer.from('{"name":"bad"}'),
   });
-  await expect(
-    page.getByRole("heading", { name: "Lampa i łącznik", exact: true }),
-  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "Sprawdź import", exact: true })
+    .click();
+  await expect(page.getByRole("alert")).toContainText("Import odrzucony");
+  await page.getByRole("button", { name: "Zamknij", exact: true }).click();
+  await expect(page.locator(".project-title")).toContainText("Lampa i łącznik");
   await page
     .getByLabel("Import katalogu badawczego", { exact: true })
     .setInputFiles(

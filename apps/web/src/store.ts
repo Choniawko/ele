@@ -1,8 +1,28 @@
+import {
+  distributionGeometry,
+  distributionAtPoint,
+  assertMountAccess,
+  distributionRails,
+  distributionProfile,
+  detachFromEnclosures,
+  mountInDistribution,
+  resizeDistribution,
+  type MountingResolver,
+} from "@model/distribution";
+import { mountingInfo } from "@catalog/mounting-profiles";
+import {
+  enclosureFor,
+  physicalTerminalAccessible,
+  translateEnclosure,
+} from "@model/physical";
+import type { PhysicalEnclosure, PhysicalTrunk } from "@model/index";
 import { diagnosticWitness } from "@training/assessment";
 import type { ExerciseVariant } from "@training/index";
 import { create } from "zustand";
 import {
   mountingRails,
+  globalMountingRails,
+  nextGlobalRailGeometry,
   nearestRail,
   snapMounting,
   mountingCollision,
@@ -57,6 +77,12 @@ import {
 import type { WorkerRequest } from "./simulation.worker";
 export type Mode = "build" | "test" | "measure" | "diagnosis" | "training";
 export type View = "physical" | "schematic" | "split";
+const resolveMounting: MountingResolver = (id) => mountingInfo(catalog[id]);
+export type MountingTarget = {
+  enclosureId: string;
+  zone: "modules" | "terminals";
+  row: number;
+};
 type SavedFrame = {
   project: ProjectDocument;
   label: string;
@@ -71,6 +97,29 @@ interface AppState {
   wireStart: TerminalRef | null;
   waypoints: Point[];
   adding: string | null;
+  mountingTarget: MountingTarget | null;
+  focusedEnclosureId: string | null;
+  setMountingTarget: (target: MountingTarget | null) => void;
+  focusEnclosure: (id: string | null) => void;
+  createDistribution: (
+    name: string,
+    rows: number,
+    modules: 8 | 12,
+    reserve: number,
+    position: Point,
+  ) => boolean;
+  configureDistribution: (
+    id: string,
+    name: string,
+    rows: number,
+    modules: 8 | 12,
+    reserve: number,
+  ) => boolean;
+  mountDevices: (
+    target: MountingTarget,
+    ids: string[],
+    slot?: number,
+  ) => boolean;
   showTerminals: boolean;
   role: Role;
   wireColor: string;
@@ -83,6 +132,8 @@ interface AppState {
   recovery: ProjectRecovery | null;
   notice: string;
   hydrated: boolean;
+  libraryRevision: number;
+  flushSave: () => Promise<void>;
   paused: boolean;
   speed: 1 | 5 | 20;
   sessionId: string;
@@ -104,6 +155,20 @@ interface AppState {
     view?: "physical" | "schematic",
   ) => void;
   addRail: () => void;
+  addEnclosure: (value: Omit<PhysicalEnclosure, "id" | "deviceIds">) => void;
+  moveEnclosure: (id: string, position: Point) => void;
+  setEnclosureMembers: (
+    id: string,
+    deviceIds: string[],
+    insert: boolean,
+  ) => void;
+  toggleEnclosure: (id: string) => void;
+  deleteEnclosure: (id: string) => void;
+  addTrunk: (value: Omit<PhysicalTrunk, "id" | "conductorIds">) => void;
+  assignTrunk: (id: string, conductorIds: string[]) => void;
+  toggleTrunk: (id: string) => void;
+  deleteTrunk: (id: string) => void;
+  setPhysicalPresentation: (value: "external" | "connections") => void;
   moveSelectionToRail: (railId: string) => void;
   updateRoute: (
     id: string,
@@ -129,7 +194,7 @@ interface AppState {
       marking: string;
     }>,
   ) => void;
-  terminalClick: (ref: TerminalRef) => void;
+  terminalClick: (ref: TerminalRef, view?: "physical" | "schematic") => void;
   cancelWire: () => void;
   addWaypoint: (point: Point) => void;
   popWaypoint: () => void;
@@ -167,6 +232,8 @@ interface AppState {
     project: ProjectDocument,
     records?: MeasurementRecord[],
     events?: RuntimeSnapshot["events"],
+    libraryRevision?: number,
+    skipPreviousSave?: boolean,
   ) => void;
   newProject: () => void;
   loadScenario: (
@@ -304,10 +371,13 @@ function scheduleSave() {
   saveTimer = setTimeout(() => {
     const s = useApp.getState();
     const savedDocument = s.project;
-    void saveProject(s.project, s.measurements, [
-      ...s.archivedEvents,
-      ...s.runtime.events,
-    ])
+    void saveProject(
+      s.project,
+      s.measurements,
+      [...s.archivedEvents, ...s.runtime.events],
+      true,
+      s.libraryRevision,
+    )
       .then(() => {
         const now = useApp.getState();
         if (
@@ -334,6 +404,35 @@ function scheduleSave() {
       });
   }, 350);
 }
+function mechanicalUi(
+  project: ProjectDocument,
+  s: Pick<AppState, "mountingTarget" | "focusedEnclosureId">,
+) {
+  const e = project.physical.enclosures?.find(
+    (e) => e.id === s.mountingTarget?.enclosureId,
+  );
+  const mountingTarget =
+    e?.distribution && s.mountingTarget
+      ? {
+          ...s.mountingTarget,
+          row:
+            s.mountingTarget.row <
+            (s.mountingTarget.zone === "modules"
+              ? e.distribution.rows
+              : distributionProfile.terminalRows)
+              ? s.mountingTarget.row
+              : 0,
+        }
+      : null;
+  return {
+    mountingTarget,
+    focusedEnclosureId: project.physical.enclosures?.some(
+      (e) => e.id === s.focusedEnclosureId,
+    )
+      ? s.focusedEnclosureId
+      : null,
+  };
+}
 function transaction(
   label: string,
   mutate: (p: ProjectDocument) => void,
@@ -355,6 +454,7 @@ function transaction(
   const sessionId = topology ? newId("session") : s.sessionId;
   useApp.setState({
     project: p,
+    ...mechanicalUi(p, s),
     // A structural edit may remove the device where an unfinished wire began.
     ...(s.wireStart && !connectionTerminal(p, s.wireStart)
       ? { wireStart: null, waypoints: [] }
@@ -401,6 +501,30 @@ function connectionTerminal(project: ProjectDocument, ref: TerminalRef) {
 }
 export const useApp = create<AppState>((set, get) => ({
   project: startProject,
+  libraryRevision: 0,
+  flushSave: async () => {
+    clearTimeout(saveTimer);
+    const generation = ++saveGeneration;
+    const s = get();
+    try {
+      await saveProject(
+        s.project,
+        s.measurements,
+        [...s.archivedEvents, ...s.runtime.events],
+        true,
+        s.libraryRevision,
+      );
+      if (generation === saveGeneration)
+        set({ saveStatus: "saved", saveError: "" });
+    } catch (error) {
+      if (
+        generation === saveGeneration &&
+        get().project.circuit.projectId === s.project.circuit.projectId
+      )
+        get().reportReadError(error);
+      throw error;
+    }
+  },
   runtime: initialRuntime(startProject),
   mode: "build",
   view: "physical",
@@ -408,6 +532,107 @@ export const useApp = create<AppState>((set, get) => ({
   wireStart: null,
   waypoints: [],
   adding: null,
+  mountingTarget: null,
+  focusedEnclosureId: null,
+  setMountingTarget: (mountingTarget) =>
+    set({ mountingTarget, adding: null, wireStart: null, waypoints: [] }),
+  focusEnclosure: (id) => {
+    const e = get().project.physical.enclosures?.find((e) => e.id === id);
+    if (id && !e) return;
+    if (e?.closed) get().toggleEnclosure(e.id);
+    set({
+      focusedEnclosureId: id,
+      view: "physical",
+      wireStart: null,
+      waypoints: [],
+      ...(e?.distribution
+        ? {
+            mountingTarget: {
+              enclosureId: e.id,
+              zone: "modules",
+              row: 0,
+            } as MountingTarget,
+          }
+        : id === null
+          ? { mountingTarget: null }
+          : {}),
+    });
+  },
+  createDistribution: (name, rows, modulesPerRow, reserve, position) => {
+    const id = newId("case");
+    const accepted = transaction(
+      "Dodaj rozdzielnicę modułową",
+      (p) => {
+        (p.physical.enclosures ??= []).push({
+          id,
+          name,
+          kind: "distribution",
+          position,
+          ...distributionGeometry(rows, modulesPerRow),
+          deviceIds: [],
+          closed: false,
+          distribution: {
+            profileId: distributionProfile.id,
+            revision: distributionProfile.revision,
+            rows,
+            modulesPerRow,
+            reserve,
+            placements: {},
+          },
+        });
+      },
+      false,
+    );
+    if (accepted)
+      set({
+        selection: [id],
+        mountingTarget: { enclosureId: id, zone: "modules", row: 0 },
+      });
+    return accepted;
+  },
+  configureDistribution: (id, name, rows, modules, reserve) => {
+    const accepted = transaction(
+      "Zmień konfigurację rozdzielnicy",
+      (p) => resizeDistribution(p, id, rows, modules, reserve, name),
+      false,
+    );
+    if (
+      accepted &&
+      get().mountingTarget?.enclosureId === id &&
+      get().mountingTarget!.zone === "modules" &&
+      get().mountingTarget!.row >= rows
+    )
+      set({ mountingTarget: { enclosureId: id, zone: "modules", row: 0 } });
+    return accepted;
+  },
+  mountDevices: (target, ids, slot) =>
+    transaction(
+      "Zmień montaż aparatów",
+      (p) => {
+        assertMountAccess(p, ids);
+        for (const id of ids) detachFromEnclosures(p, id);
+        for (const id of ids) {
+          mountInDistribution(
+            p,
+            target.enclosureId,
+            id,
+            target.zone,
+            target.row,
+            resolveMounting,
+            slot,
+          );
+          if (slot !== undefined) {
+            const d = p.circuit.devices.find((d) => d.id === id)!;
+            slot += Math.ceil(
+              resolveMounting(d.productId).width /
+                distributionProfile.moduleMm -
+                1e-9,
+            );
+          }
+        }
+      },
+      false,
+    ),
   showTerminals: true,
   role: "L1",
   wireColor: colors.L1,
@@ -437,7 +662,205 @@ export const useApp = create<AppState>((set, get) => ({
   measurement: null,
   activeProbe: "red",
   checks: [],
-  setView: (view) => set({ view, wireStart: null, waypoints: [] }),
+  setView: (view) =>
+    set({
+      view,
+      wireStart: null,
+      waypoints: [],
+      ...(view !== "physical"
+        ? { mountingTarget: null, focusedEnclosureId: null }
+        : {}),
+    }),
+  addEnclosure: (value) => {
+    transaction(
+      "Dodaj obudowę",
+      (p) => {
+        (p.physical.enclosures ??= []).push({
+          ...value,
+          id: newId("case"),
+          deviceIds: [],
+        });
+      },
+      false,
+    );
+  },
+  moveEnclosure: (id, point) => {
+    transaction(
+      "Przesuń obudowę z zawartością",
+      (p) => translateEnclosure(p, id, point),
+      false,
+    );
+  },
+  setEnclosureMembers: (id, deviceIds, insert) => {
+    transaction(
+      insert ? "Włóż do obudowy" : "Wyjmij z obudowy",
+      (p) => {
+        const e = p.physical.enclosures?.find((e) => e.id === id);
+        if (!e) throw new Error("Wybierz istniejącą obudowę.");
+        if (e.distribution && e.closed)
+          throw new Error("Zdejmij maskownicę przed zmianą montażu.");
+        assertMountAccess(p, deviceIds);
+        for (const deviceId of deviceIds) {
+          const d = p.circuit.devices.find((d) => d.id === deviceId);
+          if (!d) continue;
+          if (insert && e.distribution) {
+            const target = get().mountingTarget;
+            mountInDistribution(
+              p,
+              e.id,
+              deviceId,
+              target?.enclosureId === e.id ? target.zone : "modules",
+              target?.enclosureId === e.id ? target.row : 0,
+              resolveMounting,
+            );
+            continue;
+          }
+          const wasModular = enclosureFor(p, deviceId)?.distribution;
+          detachFromEnclosures(p, deviceId);
+          if (!insert && wasModular) {
+            const next = freeMountingPosition(
+              p,
+              d.productId,
+              { x: e.position.x + e.width + 40, y: e.position.y + 40 },
+              [deviceId],
+            );
+            if (!next)
+              throw new Error(
+                "Brak miejsca poza obudową. Najpierw dodaj szynę na tablicy.",
+              );
+            p.physical.devices[deviceId] = next;
+          }
+          if (insert) {
+            const size = catalog[d.productId].dimensions.value!;
+            let position: Point | null = null;
+            for (
+              let y = e.position.y + 30;
+              y + size.height * 2.2 < e.position.y + e.height - 10 && !position;
+              y += 10
+            )
+              for (
+                let x = e.position.x + 10;
+                x + size.width * 2.2 < e.position.x + e.width - 10;
+                x += 10
+              )
+                if (!mountingCollision(p, d.productId, { x, y }, [deviceId])) {
+                  position = { x, y };
+                  break;
+                }
+            if (!position)
+              throw new Error(
+                `${d.designation}: brak wolnego miejsca w ${e.name}.`,
+              );
+            p.physical.devices[deviceId] = position;
+            e.deviceIds.push(deviceId);
+            e.closed = false;
+          }
+        }
+      },
+      false,
+    );
+  },
+  toggleEnclosure: (id) => {
+    if (
+      transaction(
+        "Zmień pokrywę obudowy",
+        (p) => {
+          const e = p.physical.enclosures?.find((e) => e.id === id);
+          if (e) e.closed = !e.closed;
+        },
+        false,
+      )
+    )
+      set({ wireStart: null, waypoints: [] });
+  },
+  deleteEnclosure: (id) => {
+    transaction(
+      "Usuń samą obudowę",
+      (p) => {
+        p.physical.enclosures = p.physical.enclosures?.filter(
+          (e) => e.id !== id,
+        );
+      },
+      false,
+    );
+  },
+  addTrunk: (value) => {
+    transaction(
+      "Dodaj korytko",
+      (p) => {
+        (p.physical.trunking ??= []).push({
+          ...value,
+          id: newId("trunk"),
+          conductorIds: [],
+        });
+      },
+      false,
+    );
+  },
+  assignTrunk: (id, conductorIds) => {
+    transaction(
+      "Przypisz żyły do korytka",
+      (p) => {
+        const t = p.physical.trunking?.find((t) => t.id === id);
+        if (!t) throw new Error("Wybierz istniejące korytko.");
+        for (const id of conductorIds) {
+          const w = p.circuit.conductors.find((w) => w.id === id);
+          if (!w) continue;
+          if (t.conductorIds.includes(id)) continue;
+          t.conductorIds.push(id);
+          const from = p.physical.devices[w.from.deviceId],
+            first = t.points[0],
+            last = t.points.at(-1)!;
+          const points =
+            Math.hypot(from.x - first.x, from.y - first.y) <=
+            Math.hypot(from.x - last.x, from.y - last.y)
+              ? t.points
+              : [...t.points].reverse();
+          // Append a segment to the existing route; geometry never changes electricalLengthM.
+          p.physical.routes[id] = [
+            ...(p.physical.routes[id] ?? []),
+            ...points.map((p) => ({ ...p })),
+          ];
+        }
+      },
+      false,
+    );
+  },
+  toggleTrunk: (id) => {
+    transaction(
+      "Zmień pokrywę korytka",
+      (p) => {
+        const t = p.physical.trunking?.find((t) => t.id === id);
+        if (t) t.closed = !t.closed;
+      },
+      false,
+    );
+  },
+  deleteTrunk: (id) => {
+    transaction(
+      "Usuń korytko",
+      (p) => {
+        p.physical.trunking = p.physical.trunking?.filter((t) => t.id !== id);
+      },
+      false,
+    );
+  },
+  setPhysicalPresentation: (value) => {
+    if (
+      transaction(
+        "Zmień prezentację tablicy",
+        (p) => {
+          p.physical.presentation = value;
+          for (const e of p.physical.enclosures ?? [])
+            e.closed = value === "external";
+          for (const t of p.physical.trunking ?? [])
+            t.closed = value === "external";
+        },
+        false,
+      )
+    )
+      set({ wireStart: null, waypoints: [] });
+  },
   setMode: (mode) => {
     if (mode === "build" && get().runtime.energized) get().power(false);
     set({ mode, wireStart: null, waypoints: [], adding: null });
@@ -468,6 +891,10 @@ export const useApp = create<AppState>((set, get) => ({
     }
   },
   setAdding: (adding) => {
+    if (adding && get().mountingTarget) {
+      get().addDevice(adding);
+      return;
+    }
     get().setMode("build");
     set({ adding, wireStart: null, waypoints: [] });
   },
@@ -477,11 +904,30 @@ export const useApp = create<AppState>((set, get) => ({
       set({ notice: "Produkt oczekuje na weryfikację katalogową." });
       return;
     }
-    const physicalPoint = freeMountingPosition(
-      get().project,
-      productId,
-      view === "physical" ? (point ?? { x: 80, y: 90 }) : { x: 80, y: 90 },
-    );
+    const current = get();
+    const inside =
+      view === "physical" && point
+        ? distributionAtPoint(current.project, point)
+        : null;
+    const target =
+      view === "physical"
+        ? inside
+          ? {
+              enclosureId: inside.enclosure.id,
+              zone: inside.zone,
+              row: inside.row,
+            }
+          : !point
+            ? current.mountingTarget
+            : null
+        : null;
+    const physicalPoint = target
+      ? { x: 0, y: 0 }
+      : freeMountingPosition(
+          get().project,
+          productId,
+          view === "physical" ? (point ?? { x: 80, y: 90 }) : { x: 80, y: 90 },
+        );
     if (!physicalPoint) {
       set({
         notice: "Na tej szynie zabrakło miejsca. Dodaj szynę lub wybierz inną.",
@@ -502,6 +948,16 @@ export const useApp = create<AppState>((set, get) => ({
       });
       project.productRevisions[productId] = p.revision;
       project.physical.devices[id] = physicalPoint;
+      if (target)
+        mountInDistribution(
+          project,
+          target.enclosureId,
+          id,
+          target.zone,
+          target.row,
+          resolveMounting,
+          inside?.slot,
+        );
       project.schematic.devices[id] =
         view === "schematic" && point
           ? {
@@ -522,7 +978,7 @@ export const useApp = create<AppState>((set, get) => ({
     if (accepted) set({ selection: [id], adding: null });
   },
   addRail: () => {
-    if (mountingRails(get().project).length >= projectLimits.rails) {
+    if (globalMountingRails(get().project).length >= projectLimits.rails) {
       set({
         notice: `Tablica może mieć maksymalnie ${projectLimits.rails} szyny.`,
       });
@@ -531,14 +987,12 @@ export const useApp = create<AppState>((set, get) => ({
     const accepted = transaction(
       "Dodaj szynę DIN",
       (p) => {
-        const rails = mountingRails(p);
+        const rails = globalMountingRails(p);
         p.physical.rails = [
           ...rails,
           {
             id: newId("rail"),
-            x: 60,
-            y: Math.max(...rails.map((rail) => rail.y)) + RAIL_SPACING,
-            width: 970,
+            ...nextGlobalRailGeometry(p),
           },
         ];
       },
@@ -554,6 +1008,22 @@ export const useApp = create<AppState>((set, get) => ({
     const s = get(),
       rail = mountingRails(s.project).find((rail) => rail.id === railId);
     if (!rail) return;
+    const owned = s.project.physical.enclosures?.find((e) =>
+      distributionRails(e).some((r) => r.id === railId),
+    );
+    if (owned) {
+      s.mountDevices(
+        {
+          enclosureId: owned.id,
+          zone: "modules",
+          row: distributionRails(owned).findIndex((r) => r.id === railId),
+        },
+        s.selection.filter((id) =>
+          s.project.circuit.devices.some((d) => d.id === id),
+        ),
+      );
+      return;
+    }
     const draft = clone(s.project),
       positions: Record<string, Point> = {};
     const devices = draft.circuit.devices.filter(
@@ -579,12 +1049,48 @@ export const useApp = create<AppState>((set, get) => ({
   moveDevices: (positions, view) => {
     const s = get(),
       nextPositions: Record<string, Point> = {};
+    if (
+      view === "physical" &&
+      Object.entries(positions).some(
+        ([id, pos]) =>
+          enclosureFor(s.project, id)?.distribution ||
+          s.project.physical.enclosures?.some(
+            (e) =>
+              e.distribution &&
+              pos.x >= e.position.x &&
+              pos.x <= e.position.x + e.width &&
+              pos.y >= e.position.y &&
+              pos.y <= e.position.y + e.height,
+          ),
+      )
+    ) {
+      const accepted = transaction(
+        "Przesuń aparaty na pola montażowe",
+        (p) => {
+          assertMountAccess(p, Object.keys(positions));
+          for (const id of Object.keys(positions)) detachFromEnclosures(p, id);
+          for (const [id, pos] of Object.entries(positions)) {
+            const drop = distributionAtPoint(p, pos);
+            const e = drop?.enclosure ?? enclosureFor(p, id);
+            if (!e?.distribution || !drop)
+              throw new Error("Najpierw wyjmij aparat z rozdzielnicy.");
+            const { zone, row, slot } = drop;
+            mountInDistribution(p, e.id, id, zone, row, resolveMounting, slot);
+          }
+        },
+        false,
+      );
+      if (!accepted) set({ project: clone(s.project) });
+      return;
+    }
     for (const [id, pos] of Object.entries(positions)) {
       const d = s.project.circuit.devices.find((d) => d.id === id);
       if (!d) continue;
       nextPositions[id] =
         view === "physical"
-          ? snapMounting(s.project, d.productId, pos)
+          ? enclosureFor(s.project, id)
+            ? { x: Math.round(pos.x / 10) * 10, y: Math.round(pos.y / 10) * 10 }
+            : snapMounting(s.project, d.productId, pos)
           : { x: Math.round(pos.x / 10) * 10, y: Math.round(pos.y / 10) * 10 };
     }
     if (view === "physical") {
@@ -648,8 +1154,20 @@ export const useApp = create<AppState>((set, get) => ({
       const w = p.circuit.conductors.find((w) => w.id === id);
       if (w) Object.assign(w, values);
     }),
-  terminalClick: (ref) => {
+  terminalClick: (ref, view) => {
     const s = get();
+    if (
+      (view ?? (s.view === "schematic" ? "schematic" : "physical")) ===
+        "physical" &&
+      !physicalTerminalAccessible(s.project, ref.deviceId)
+    ) {
+      set({
+        notice: enclosureFor(s.project, ref.deviceId)?.distribution
+          ? "Zdejmij maskownicę rozdzielnicy, aby podłączyć przewód lub sondę."
+          : "Otwórz pokrywę obudowy, aby podłączyć przewód lub sondę.",
+      });
+      return;
+    }
     const clicked = connectionTerminal(s.project, ref);
     if (!clicked) {
       set({
@@ -768,44 +1286,71 @@ export const useApp = create<AppState>((set, get) => ({
     });
   },
   deleteSelection: () => {
-    const ids = get().selection;
-    const accepted = transaction("Usuń zaznaczenie", (p) => {
-      p.circuit.devices = p.circuit.devices.filter((d) => !ids.includes(d.id));
-      const removed = p.circuit.conductors
-        .filter(
+    const s = get(),
+      ids = s.selection;
+    const electrical = ids.some((id) =>
+      [
+        ...s.project.circuit.devices,
+        ...s.project.circuit.conductors,
+        ...s.project.circuit.bridges,
+      ].some((element) => element.id === id),
+    );
+    const accepted = transaction(
+      "Usuń zaznaczenie",
+      (p) => {
+        p.circuit.devices = p.circuit.devices.filter(
+          (d) => !ids.includes(d.id),
+        );
+        const removed = p.circuit.conductors
+          .filter(
+            (w) =>
+              ids.includes(w.id) ||
+              ids.includes(w.from.deviceId) ||
+              ids.includes(w.to.deviceId),
+          )
+          .map((w) => w.id);
+        p.circuit.conductors = p.circuit.conductors.filter(
+          (w) => !removed.includes(w.id),
+        );
+        p.circuit.bridges = p.circuit.bridges.filter(
           (w) =>
-            ids.includes(w.id) ||
-            ids.includes(w.from.deviceId) ||
-            ids.includes(w.to.deviceId),
-        )
-        .map((w) => w.id);
-      p.circuit.conductors = p.circuit.conductors.filter(
-        (w) => !removed.includes(w.id),
-      );
-      p.circuit.bridges = p.circuit.bridges.filter(
-        (w) =>
-          !ids.includes(w.id) &&
-          !ids.includes(w.from.deviceId) &&
-          !ids.includes(w.to.deviceId),
-      );
-      p.circuit.supplySystems = p.circuit.supplySystems.filter(
-        (s) => !ids.includes(s.sourceId),
-      );
-      p.circuit.mechanicalCouplings = p.circuit.mechanicalCouplings.filter(
-        (c) => c.deviceIds.every((id) => !ids.includes(id)),
-      );
-      p.faults = p.faults.filter(
-        (f) =>
-          !ids.includes(f.targetId) &&
-          !removed.includes(f.targetId) &&
-          (!f.from || !ids.includes(f.from.deviceId)) &&
-          (!f.to || !ids.includes(f.to.deviceId)),
-      );
-      for (const l of [p.physical, p.schematic]) {
-        for (const id of ids) delete l.devices[id];
-        for (const id of removed) delete l.routes[id];
-      }
-    });
+            !ids.includes(w.id) &&
+            !ids.includes(w.from.deviceId) &&
+            !ids.includes(w.to.deviceId),
+        );
+        p.circuit.supplySystems = p.circuit.supplySystems.filter(
+          (s) => !ids.includes(s.sourceId),
+        );
+        p.circuit.mechanicalCouplings = p.circuit.mechanicalCouplings.filter(
+          (c) => c.deviceIds.every((id) => !ids.includes(id)),
+        );
+        p.faults = p.faults.filter(
+          (f) =>
+            !ids.includes(f.targetId) &&
+            !removed.includes(f.targetId) &&
+            (!f.from || !ids.includes(f.from.deviceId)) &&
+            (!f.to || !ids.includes(f.to.deviceId)),
+        );
+        p.physical.enclosures = p.physical.enclosures?.filter(
+          (e) => !ids.includes(e.id),
+        );
+        p.physical.trunking = p.physical.trunking?.filter(
+          (t) => !ids.includes(t.id),
+        );
+        for (const e of p.physical.enclosures ?? []) {
+          e.deviceIds = e.deviceIds.filter((id) => !ids.includes(id));
+          if (e.distribution)
+            for (const id of ids) delete e.distribution.placements[id];
+        }
+        for (const t of p.physical.trunking ?? [])
+          t.conductorIds = t.conductorIds.filter((id) => !removed.includes(id));
+        for (const l of [p.physical, p.schematic]) {
+          for (const id of ids) delete l.devices[id];
+          for (const id of removed) delete l.routes[id];
+        }
+      },
+      electrical,
+    );
     if (accepted) set({ selection: [], wireStart: null, waypoints: [] });
   },
   duplicateSelection: () => {
@@ -822,11 +1367,17 @@ export const useApp = create<AppState>((set, get) => ({
           )
         )
           n++;
+        const standaloneRail =
+          product.mounting === "DIN" && !globalMountingRails(p).length
+            ? nextGlobalRailGeometry(p)
+            : null;
         p.circuit.devices.push({
           ...clone(d),
           id,
           designation: `${product.designationPrefix}${n}`,
         });
+        if (standaloneRail)
+          p.physical.rails = [{ id: newId("rail"), ...standaloneRail }];
         let target = {
           x: p.physical.devices[d.id].x,
           y: p.physical.devices[d.id].y + RAIL_SPACING,
@@ -835,7 +1386,7 @@ export const useApp = create<AppState>((set, get) => ({
           product.mounting === "DIN" &&
           nearestRail(p, target).y - RAIL_OFFSET < target.y - 20
         ) {
-          const rails = mountingRails(p);
+          const rails = globalMountingRails(p);
           if (rails.length < projectLimits.rails)
             p.physical.rails = [
               ...rails,
@@ -890,6 +1441,7 @@ export const useApp = create<AppState>((set, get) => ({
     const sessionId = frame.topology ? newId("session") : s.sessionId;
     set({
       project: p,
+      ...mechanicalUi(p, s),
       history: s.history.slice(0, -1),
       future: [
         ...s.future,
@@ -928,6 +1480,7 @@ export const useApp = create<AppState>((set, get) => ({
     const sessionId = frame.topology ? newId("session") : s.sessionId;
     set({
       project: p,
+      ...mechanicalUi(p, s),
       future: s.future.slice(0, -1),
       history: [
         ...s.history,
@@ -1049,7 +1602,13 @@ export const useApp = create<AppState>((set, get) => ({
       false,
     );
   },
-  load: (project, records = [], events = []) => {
+  load: (
+    project,
+    records = [],
+    events = [],
+    libraryRevision = 0,
+    skipPreviousSave = false,
+  ) => {
     try {
       project = validateProjectDocument(project);
     } catch (error) {
@@ -1059,12 +1618,16 @@ export const useApp = create<AppState>((set, get) => ({
     const sessionId = newId("session");
     const previous = get();
     clearTimeout(saveTimer);
-    if (previous.project.circuit.projectId !== project.circuit.projectId)
+    if (
+      !skipPreviousSave &&
+      previous.project.circuit.projectId !== project.circuit.projectId
+    )
       void saveProject(
         previous.project,
         previous.measurements,
         [...previous.archivedEvents, ...previous.runtime.events],
         false,
+        previous.libraryRevision,
       ).catch((error) =>
         set({
           notice:
@@ -1076,6 +1639,7 @@ export const useApp = create<AppState>((set, get) => ({
       );
     set({
       project: clone(project),
+      libraryRevision,
       runtime: initialRuntime(project, sessionId),
       sessionId,
       mode: project.training
@@ -1089,6 +1653,8 @@ export const useApp = create<AppState>((set, get) => ({
       wireStart: null,
       waypoints: [],
       adding: null,
+      mountingTarget: null,
+      focusedEnclosureId: null,
       history: [],
       future: [],
       paused: true,
@@ -1215,7 +1781,14 @@ export const useApp = create<AppState>((set, get) => ({
     set({ hydrated: true });
     try {
       const saved = await restoreProject();
-      if (saved) get().load(saved.document, saved.measurements, saved.events);
+      if (saved)
+        get().load(
+          saved.document,
+          saved.measurements,
+          saved.events,
+          saved.libraryRevision,
+          true,
+        );
       else {
         request({ type: "solve" });
         scheduleSave();

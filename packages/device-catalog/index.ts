@@ -1,3 +1,6 @@
+import { mountingInfo } from "./mounting-profiles";
+import { assertPhysicalLayout } from "@model/physical";
+import { installPhysicalProfiles } from "./physical-profiles";
 import { installStageOne } from "./stage-one";
 import seed from "../../Symulator_Elektryczny_Pakiet_Codex/catalog-research-seed.json";
 import { z } from "zod";
@@ -48,6 +51,10 @@ export type VisualId =
   | "terminal"
   | "power-supply"
   | "source"
+  | "bulkhead"
+  | "indicator"
+  | "splice"
+  | "phase-distribution"
   | "lamp"
   | "heater"
   | "fan"
@@ -1027,11 +1034,13 @@ for (const [id, top, behaviorId, url, note] of [
 }
 // Retain exact seed and reviewed data separately. No pending SKU may enter a circuit.
 installStageOne(realProducts, teachingProducts, topologies);
+installPhysicalProfiles(teachingProducts, topologies);
 export const products = [...realProducts, ...teachingProducts];
 export const catalog = Object.fromEntries(products.map((p) => [p.id, p]));
 export const availableProducts = products.filter((p) => p.published);
 export const seedSources = seed.sources;
 export function assertProjectCatalog(project: ProjectDocument): void {
+  assertPhysicalLayout(project, (id) => mountingInfo(catalog[id]));
   if (
     project.circuit.devices.length > projectLimits.devices ||
     project.circuit.conductors.length > projectLimits.conductors
