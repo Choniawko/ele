@@ -81,6 +81,7 @@ test("folder, kopia przykładu, podgląd bez zmiany, autosave i pomiary po odśw
   await page.getByLabel("Nazwa nowego projektu").fill("Moja lampa");
   await page.getByLabel("Przykład", { exact: true }).selectOption("lamp");
   await page.getByRole("button", { name: "Zapisz", exact: true }).click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
   await saved(page);
   const original = (await rows(page)).find((r) => r.name === "Moja lampa")!;
   expect(original.folderId).toBeTruthy();
@@ -163,6 +164,7 @@ test("nowy projekt, duplikat, przenoszenie, zmiana nazwy folderu, wyszukiwanie i
   await page.getByRole("button", { name: "Nowy projekt", exact: true }).click();
   await page.getByLabel("Nazwa nowego projektu").fill("Pusta instalacja");
   await page.getByRole("button", { name: "Zapisz", exact: true }).click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
   await saved(page);
   const first = (await rows(page)).find((r) => r.name === "Pusta instalacja")!;
   expect(first.document.circuit.devices).toHaveLength(0);
@@ -207,6 +209,9 @@ test("nowy projekt, duplikat, przenoszenie, zmiana nazwy folderu, wyszukiwanie i
   await page
     .getByRole("button", { name: "Potwierdź usunięcie", exact: true })
     .click();
+  await expect(
+    page.getByRole("group", { name: "Potwierdzenie usunięcia", exact: true }),
+  ).toHaveCount(0);
   await expect(card(page, "Pusta instalacja")).toBeVisible();
   expect(
     (await rows(page)).find((r) => r.id === first.id)!.folderId,
@@ -226,6 +231,7 @@ test("nowy projekt, duplikat, przenoszenie, zmiana nazwy folderu, wyszukiwanie i
     .getByLabel("Nazwa nowego projektu")
     .fill("Kasowany razem z folderem");
   await page.getByRole("button", { name: "Zapisz", exact: true }).click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
   await saved(page);
   const deletedId = (await rows(page)).find(
     (r) => r.name === "Kasowany razem z folderem",
