@@ -227,10 +227,17 @@ test("od pustego projektu: własny rząd, obwód z odbiornikiem, pomiar, praca, 
     .getByRole("button", { name: "Importuj jako nowe", exact: true })
     .click();
   await expect(page.locator(".import-summary")).toHaveCount(0);
-  await page.locator(".project-card .saved-project").first().click();
+  const importedCard = page.locator(".project-card").first();
+  await expect(importedCard).toBeVisible();
+  const importedId = await importedCard.getAttribute("data-project-id");
+  expect(importedId).toBeTruthy();
+  expect(importedId).not.toBe(after.id);
+  await importedCard.locator(".saved-project").click();
   await page
     .getByRole("button", { name: "Otwórz w edytorze", exact: true })
     .click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await expect.poll(async () => (await current(page)).id).toBe(importedId);
   await saved(page);
   const imported = await current(page);
   expect(imported.id).not.toBe(after.id);
