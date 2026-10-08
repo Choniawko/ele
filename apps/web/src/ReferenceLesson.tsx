@@ -3,6 +3,7 @@ import { useState } from "react";
 import type { CSSProperties } from "react";
 import { catalog } from "@catalog/index";
 import { advance, initialRuntime, type RuntimeAction } from "@simulation/index";
+import { auxiliaryMechanism } from "@simulation/mechanisms";
 import { terminalKey } from "@model/index";
 import { measure } from "@measurements/index";
 import {
@@ -190,8 +191,10 @@ export function ReferenceLesson({
               ? "ON"
               : "OFF"}{" "}
           · Q2.AUX:{" "}
-          {runtime.devices["Q2.AUX"].mechanism ? "zamknięty" : "otwarty"} · K1
-          A1–A2: {voltage.value?.toFixed(1) ?? "brak odczytu"} V.
+          {auxiliaryMechanism(project, runtime, "Q2.AUX")
+            ? "zamknięty"
+            : "otwarty"}{" "}
+          · K1 A1–A2: {voltage.value?.toFixed(1) ?? "brak odczytu"} V.
         </p>
       ) : (
         <>
@@ -246,7 +249,7 @@ export function ReferenceLesson({
               project={project}
               runtime={runtime}
               scope={scope}
-              live={runtime.energized}
+              live={runtime.sequence > 0}
               highlight={highlight}
               onHighlight={setHighlight}
             />

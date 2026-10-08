@@ -24,7 +24,7 @@ export function mechanismOwner(
 }
 export function auxiliaryMechanism(
   project: ProjectDocument,
-  rt: RuntimeSnapshot,
+  rt: Pick<RuntimeSnapshot, "devices">,
   id: string,
 ): boolean {
   const ownerId = mechanismOwner(project, id);

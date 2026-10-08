@@ -8,7 +8,13 @@ Wejście „Baza wiedzy” otwiera 17 kart: 101, 103, 104, 105, 106, 107, 108, 1
 
 Solver izolowanej lekcji wykonuje przełączenia Q1/Q2, B6/B10, TEST RCD i reset. Energia oraz stan użytkownika nie są zmieniane. Otwieranie wzorca tworzy własne projectId po ukończeniu wcześniejszego zapisu, zachowuje poprzedni projekt i rozpoczyna od OFF. Publiczny przycisk wymaga poprawnego dokumentu, rejestru, rewizji, fidelity, dowodów oraz wszystkich R1–R10 w `exam-data/availability.json`.
 
-101 jest modelem dydaktycznym; geometria i długości nie są odwzorowaniem stanowiska 1:1. 108 zachowuje istniejący import, lecz jego lekcja, powiązania i pełny odbiór galerii należą do 01b. Pozostałe karty nie są gotowymi modelami. Nie ma dostarczonych arkuszy ELE.05.
+101 i 108 są modelami dydaktycznymi; geometria i długości nie są odwzorowaniem stanowiska 1:1. Galeria oferuje dwa wzorce z 17 obecnych arkuszy. Pozostałe karty nie są gotowymi modelami. Nie ma dostarczonych arkuszy ELE.05.
+
+## Wzorzec i lekcja 108
+
+`/ele/#/wiedza/uklady/ele02-108` łączy 15 aparatów, 37 żył, trzy kable i assembly Q2/Q2.AUX. Lekcja ma 11 profili, siedem torów i dwa schematy funkcjonalne: moc z zamianą L1/L3 oraz zgodę/STOP/podtrzymanie K1/chwilowy K2. Izolowane przyciski START/STOP używają tego samego solvera co pracownia. Profile pokazują mapę źródłowych oznaczeń do rzeczywistych zacisków modelu.
+
+Natywny schemat zapisuje opcjonalny `schematic.symbolFragments` v1: 23 symbole wskazują istniejące cewki, NO/NC i bieguny. Nie dodaje aparatów ani drugiego obwodu. Symbole wspólnego K1/K2 korzystają z jednego runtime. Przesuwanie symbolu jest edycją geometrii, a zwykły gest zacisku nadal rozpoczyna przewód. Stare zapisy bez sidecaru zachowują symbol całego aparatu. Trzy kwestie źródłowe 108 pozostają otwarte; 3 kW i 4,35 A są założeniami, a Ω sprawnej cewki jest unsupported.
 
 ## Pomoc i powrót
 
@@ -24,4 +30,4 @@ Dodaj następny kanoniczny ReferenceExample i jego profile/lekcję, zachowując 
 
 `pnpm knowledge:validate` sprawdza treści, referencje, bramki i sumy źródłowe. `tests/reference-examples.test.ts`, `reference-copy.test.ts`, `reference-navigation.test.tsx` i `wire-routing.test.ts` sprawdzają obwód, niezależne węzły, próby i geometrię. `tests/e2e/reference-examples.spec.ts` i `knowledge.spec.ts` sprawdzają realną przeglądarkę, także produkcyjny `/ele/`, cztery rozmiary okna i kopiowanie. Starsze obwody w `tests/fixtures/legacy-projects.json` służą wyłącznie kontroli importu istniejących zapisów; nie są pozycjami aplikacji.
 
-Bieżące wyniki i ograniczenia: [QA_01](ele-exams/QA_01.md), [checkpoint](ele-exams/implementation-state.json). Dowody wcześniejszej jednostki 00a zachowuje [QA_00](ele-exams/QA_00.md). Następna jednostka: **01b — 108**.
+Bieżące wyniki i ograniczenia: [QA_01](ele-exams/QA_01.md), [QA_01b](ele-exams/QA_01b.md), [checkpoint](ele-exams/implementation-state.json). Dowody wcześniejszej jednostki 00a zachowuje [QA_00](ele-exams/QA_00.md). Po odbiorze 01b następna jednostka: **02a — ELE.02-105**, trzy miejsca sterowania, krzyżowy i lekcja korespondencji.

@@ -392,7 +392,14 @@ export function PhysicalDiagram({
           <DevicePhysical
             product={catalog[d.productId]}
             device={d}
-            state={rt.devices[d.id]}
+            state={
+              catalog[d.productId].behaviorId === "auxiliary"
+                ? {
+                    ...rt.devices[d.id],
+                    mechanism: auxiliaryMechanism(p, rt, d.id),
+                  }
+                : rt.devices[d.id]
+            }
             selected={highlight.deviceIds.includes(d.id)}
             highlighted={highlight.terminals.map(terminalKey)}
             onSelect={() => onHighlight({ deviceIds: [d.id], terminals: [] })}

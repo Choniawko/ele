@@ -113,6 +113,14 @@ test("01b: source, isolated solver, independent START/STOP, NC block and return 
   const control = (name: string) =>
     page.getByRole("button", { name, exact: true });
   const status = page.locator(".reference-lesson > p[role=status]").last();
+  await expect(status).toContainText("Q2.AUX: zamknięty");
+  await control("Przełącz Q2 w lekcji").click();
+  await expect(
+    page.locator(
+      '.reference-lesson [data-device-id="Q2.AUX"][data-symbol-fragment="no"]',
+    ),
+  ).toHaveAttribute("data-closed", "false");
+  await control("Przełącz Q2 w lekcji").click();
   await control("Załącz energię lekcji").click();
   for (const start of ["S1", "S3"]) {
     await control(`${start} START — przytrzymaj`).focus();
@@ -121,6 +129,17 @@ test("01b: source, isolated solver, independent START/STOP, NC block and return 
     await expect(status).toContainText(
       "K1: załączony · K2: wyłączony · M: prawy",
     );
+    for (const fragment of ["pole1", "pole2", "pole3", "auxNO"])
+      await expect(
+        page.locator(
+          `.reference-lesson [data-device-id="K1"][data-symbol-fragment="${fragment}"]`,
+        ),
+      ).toHaveAttribute("data-closed", "true");
+    await expect(
+      page.locator(
+        '.reference-lesson [data-device-id="K1"][data-symbol-fragment="auxNC"]',
+      ),
+    ).toHaveAttribute("data-closed", "false");
     await control("S2 LEWY — przytrzymaj").focus();
     await page.keyboard.down("Space");
     await expect(status).toContainText("K2: wyłączony");
@@ -240,6 +259,9 @@ test("01b: OFF copy, expanded native ports, real 37 routes, common mechanism, he
   ).toHaveCount(6);
   await expect(schematic.locator('[data-terminal="K1:A1"]')).toHaveCount(1);
   await expect(schematic.locator('[data-terminal="K1:13"]')).toHaveCount(1);
+  await expect(
+    schematic.locator('[data-device="Q2.AUX"][data-symbol-fragment="no"]'),
+  ).toHaveAttribute("data-closed", "true");
   await page.getByLabel("Wybierz przewód instalacji").selectOption("W35");
   await page
     .getByRole("button", { name: "Wyjaśnij żyłę W35", exact: true })
@@ -295,6 +317,23 @@ test("01b: OFF copy, expanded native ports, real 37 routes, common mechanism, he
     return { checked, bad };
   }, before.document);
   expect(nativeEnds).toEqual({ checked: 37, bad: [] });
+  await page
+    .getByRole("button", { name: "Włącz zasilanie", exact: true })
+    .click();
+  await physical
+    .getByRole("button", { name: "Przytrzymaj S1 START", exact: true })
+    .focus();
+  await page.keyboard.press("Space");
+  for (const fragment of ["pole1", "pole2", "pole3", "auxNO"])
+    await expect(
+      schematic.locator(
+        `[data-device="K1"][data-symbol-fragment="${fragment}"]`,
+      ),
+    ).toHaveAttribute("data-closed", "true");
+  await expect(
+    schematic.locator('[data-device="K1"][data-symbol-fragment="auxNC"]'),
+  ).toHaveAttribute("data-closed", "false");
+  await page.getByRole("button", { name: "Zasilanie ON", exact: true }).click();
   await schematic
     .getByRole("button", { name: "Wyjaśnij symbol K1 A1–A2", exact: true })
     .click();

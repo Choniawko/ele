@@ -53,7 +53,7 @@ Porównanie powierzchni, zrzuty i wyniki weryfikacji są w [opisie UX/UI](docs/U
 
 ## Rzeczywisty stan
 
-To działająca wersja testowa, **nie pełny odbiór v1 ani pełne pokrycie kwalifikacji**. Katalog ma 32 rzeczywiste SKU (31 z oryginalnego seed i nowy XB5AA35): 4 opublikowane — Hager MBN116E, Mean Well HDR-60-24, Schneider LC1D09P7 i XB5AA35 — oraz 28 oczekujących. Osobne 41 profili dydaktycznych ma jawne ograniczenia. Publiczne zestawy dotyczą 17 obecnych arkuszy; odbiór 01a daje 1/17 gotowych wzorców. Warianty montażu i diagnozy dla tych arkuszy pozostają w przygotowaniu. Aktualny zakres i dowody: [checkpoint](docs/ele-exams/implementation-state.json) i [QA_01](docs/ele-exams/QA_01.md). Historyczne zestawy pozostają wyłącznie w obsłudze starszych zapisów i testach regresji.
+To działająca wersja testowa, **nie pełny odbiór v1 ani pełne pokrycie kwalifikacji**. Katalog ma 32 rzeczywiste SKU (31 z oryginalnego seed i nowy XB5AA35): 4 opublikowane — Hager MBN116E, Mean Well HDR-60-24, Schneider LC1D09P7 i XB5AA35 — oraz 28 oczekujących. Osobne 41 profili dydaktycznych ma jawne ograniczenia. Publiczne zestawy dotyczą 17 obecnych arkuszy; integracja 01a/01b daje 2/17 gotowych wzorców (101 i 108). Warianty montażu i diagnozy dla tych arkuszy pozostają w przygotowaniu. Aktualny zakres i dowody: [checkpoint](docs/ele-exams/implementation-state.json) i [QA_01](docs/ele-exams/QA_01.md). Historyczne zestawy pozostają wyłącznie w obsłudze starszych zapisów i testach regresji.
 
 Silnik jest rezystancyjny, quasi-statyczny. Ochrona, silnik, elektronika i pomiary specjalne mają jawne uproszczenia. Wyniki nie są protokołem odbioru realnej instalacji. Brak implementacji LLM jest zgodny z zakresem; dostępny jest tylko kontrakt przyszłego tutora.
 

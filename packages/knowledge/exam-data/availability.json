@@ -129,22 +129,30 @@
   },
   {
     "taskId": "ELE.02-108",
-    "status": "draft",
+    "status": "model-tested",
     "referenceRevision": "1",
     "documentPath": "examples/physical/ELE02_108_stanowisko.json",
     "fidelity": "educational",
-    "evidence": [],
+    "evidence": [
+      "tests/ele02-108.test.ts",
+      "tests/reference-108.test.ts",
+      "tests/reference-navigation.test.tsx",
+      "tests/e2e/reference-108.spec.ts",
+      "tests/e2e/ele02-108.spec.ts",
+      "docs/ele-exams/QA_01b.md",
+      "docs/ele-exams/qa/01b-production-draft.json"
+    ],
     "gates": {
-      "R1": "pending",
-      "R2": "pending",
-      "R3": "pending",
-      "R4": "pending",
-      "R5": "pending",
-      "R6": "pending",
-      "R7": "pending",
-      "R8": "pending",
-      "R9": "pending",
-      "R10": "pending"
+      "R1": "passed",
+      "R2": "passed",
+      "R3": "passed",
+      "R4": "passed",
+      "R5": "passed",
+      "R6": "passed",
+      "R7": "passed",
+      "R8": "passed",
+      "R9": "passed",
+      "R10": "passed"
     }
   },
   {

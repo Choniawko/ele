@@ -1,6 +1,6 @@
 import { schematicProjection } from "./schematic-projection";
 import { DeviceFragment } from "@renderers/fragment";
-import { mechanismOwner } from "@simulation/mechanisms";
+import { auxiliaryMechanism, mechanismOwner } from "@simulation/mechanisms";
 import { boundReference } from "../knowledge/reference-examples";
 import {
   boardCameras,
@@ -650,7 +650,17 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
           ownerId: mechanismOwner(project, d.id) ?? d.id,
           enclosure:
             view === "physical" ? enclosureFor(project, d.id) : undefined,
-          state: runtimeDevices[d.id],
+          state:
+            p.behaviorId === "auxiliary"
+              ? {
+                  ...runtimeDevices[d.id],
+                  mechanism: auxiliaryMechanism(
+                    project,
+                    { devices: runtimeDevices },
+                    d.id,
+                  ),
+                }
+              : runtimeDevices[d.id],
           view,
           selected: selection.includes(d.id),
           showTerminals:

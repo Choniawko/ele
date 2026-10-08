@@ -43,7 +43,7 @@ describe("source knowledge / stage 00a", () => {
     expect(examArticles).toHaveLength(25);
     expect(examComponents).toHaveLength(60);
     expect(validateExamKnowledge()).toEqual([]);
-    expect(readyTaskCount()).toBe(1);
+    expect(readyTaskCount()).toBe(2);
     expect(examTaskBySlug("ele02-999")).toBeUndefined();
     expect(examTaskBySlug("ele02-l01")?.code).toBe("L01");
     for (const c of examComponents) {

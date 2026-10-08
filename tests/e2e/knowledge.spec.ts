@@ -83,7 +83,7 @@ test("wycofany adres układu nie uruchamia dawnego modelu ani zastępczego wzorc
     .click();
   await expect(
     k(page).locator('[aria-label="Gotowe wzorce"] .knowledge-card'),
-  ).toHaveCount(1);
+  ).toHaveCount(2);
 });
 test("101: równoległe oprawy i tabela wskazują rzeczywistą żyłę w obu widokach", async ({
   page,
@@ -279,8 +279,8 @@ test("porządek aplikacji: pusty start i wyłącznie 17 obecnych arkuszy we wszy
     await expect(dialog.locator("[data-scenario]")).toHaveCount(0);
     await expect(
       dialog.getByRole("button", { name: /^Otwórz kopię ELE/ }),
-    ).toHaveCount(1);
-    await expect(dialog.getByText(/wzorzec w przygotowaniu/)).toHaveCount(16);
+    ).toHaveCount(2);
+    await expect(dialog.getByText(/wzorzec w przygotowaniu/)).toHaveCount(15);
     await dialog.getByRole("button", { name: "Zamknij", exact: true }).click();
   }
   await page.locator(".project-title").click();
@@ -290,8 +290,12 @@ test("porządek aplikacji: pusty start i wyłącznie 17 obecnych arkuszy we wszy
   const choices = page
     .getByLabel("Przykład", { exact: true })
     .locator("option");
-  await expect(choices).toHaveCount(1);
-  await expect(choices).toHaveAttribute("value", "ele02-101");
+  await expect(choices).toHaveCount(2);
+  expect(
+    await choices.evaluateAll((options) =>
+      options.map((o) => o.getAttribute("value")),
+    ),
+  ).toEqual(["ele02-101", "ele02-108"]);
   await page.getByRole("button", { name: "Anuluj", exact: true }).click();
   await page.getByRole("button", { name: "Zamknij", exact: true }).click();
   await page.getByRole("button", { name: "Baza wiedzy", exact: true }).click();

@@ -24,7 +24,7 @@ test("00a: all cards, article/category links, search synonyms and honest availab
   test.setTimeout(120000);
   await page.goto("./#/wiedza/zadania");
   await expect(page.locator(".exam-task-card")).toHaveCount(17);
-  await expect(page.getByText(/1\/17 gotowych układów/)).toBeVisible();
+  await expect(page.getByText(/2\/17 gotowych układów/)).toBeVisible();
   const search = page.getByLabel("Szukaj w materiałach źródłowych");
   for (const query of [
     "RCD",
