@@ -14,6 +14,7 @@ import { deviceByName, permanentNets } from "./diagram-model";
 import type { DiagramScope, Highlight } from "./types";
 import { physicalWirePaths } from "@editor/wire-routing";
 import { ElectricalSymbol } from "@renderers/electrical-symbol";
+import { routedNet } from "./diagram-routing";
 export { ElectricalSymbol } from "@renderers/electrical-symbol";
 const ink = "#253f43";
 const keyAction = (e: React.KeyboardEvent, action: () => void) => {
@@ -134,7 +135,16 @@ export function FunctionalDiagram({
       minY === maxY
         ? `M${minX} ${minY}H${maxX}`
         : `M${x} ${minY}V${maxY} ${pts.map((pt) => `M${pt.x} ${pt.y}H${x}`).join(" ")}`;
-    return { k, pts, x, path, minY, maxY };
+    const routed = anchor?.trunk
+      ? routedNet(pts, anchor.trunk)
+      : {
+          path,
+          junctions:
+            pts.length > 2 && minY !== maxY
+              ? [...new Set(pts.map((pt) => pt.y))].map((y) => ({ x, y }))
+              : [],
+        };
+    return { k, ...routed };
   });
   const selectedNets = new Set(highlight.terminals.map(net));
   return (
@@ -156,7 +166,7 @@ export function FunctionalDiagram({
           : "STAN ODNIESIENIA — bez pobudzenia"}
       </text>
       {lines.map((l) => (
-        <g key={l.k}>
+        <g key={l.k} data-functional-net={l.k}>
           <path d={l.path} stroke="white" strokeWidth="8" fill="none" />
           <path
             d={l.path}
@@ -164,11 +174,15 @@ export function FunctionalDiagram({
             strokeWidth={selectedNets.has(l.k) ? 3 : 2}
             fill="none"
           />
-          {l.pts.length > 2 &&
-            l.minY !== l.maxY &&
-            [...new Set(l.pts.map((pt) => pt.y))].map((y) => (
-              <circle key={y} cx={l.x} cy={y} r="4" fill={ink} />
-            ))}
+          {l.junctions.map((pt) => (
+            <circle
+              key={`${pt.x}:${pt.y}`}
+              cx={pt.x}
+              cy={pt.y}
+              r="4"
+              fill={ink}
+            />
+          ))}
         </g>
       ))}
       {scope.ports.map((pt) => (

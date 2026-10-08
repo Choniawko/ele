@@ -536,6 +536,27 @@ export function validateReference(r: ReferenceExample) {
       )
     )
       errors.push(`port:${pt.designation}`);
+  for (const a of r.diagrams.flatMap((d) => d.netAnchors ?? [])) {
+    if (
+      !r.bindings.some(
+        (b) =>
+          p.circuit.devices.find((d) => d.id === b.deviceId)?.designation ===
+            a.designation && b.terminalIds.includes(a.terminalId),
+      )
+    )
+      errors.push(`net-anchor:${a.designation}`);
+    if (
+      a.trunk &&
+      (a.trunk.length < 2 ||
+        a.trunk.some(
+          (pt) => !Number.isFinite(pt.x) || !Number.isFinite(pt.y),
+        ) ||
+        a.trunk
+          .slice(1)
+          .some((pt, i) => pt.x !== a.trunk![i].x && pt.y !== a.trunk![i].y))
+    )
+      errors.push(`net-trunk:${a.designation}`);
+  }
   for (const b of r.bindings)
     if (
       !r.profiles.some(

@@ -121,5 +121,10 @@ export type DiagramScope = {
   height: number;
   symbols: SymbolPlacement[];
   ports: PortPlacement[];
-  netAnchors?: { designation: string; terminalId: string; point: Point }[];
+  netAnchors?: {
+    designation: string;
+    terminalId: string;
+    point: Point;
+    trunk?: Point[];
+  }[];
 };

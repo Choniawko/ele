@@ -133,6 +133,11 @@ describe("01b / ELE.02-108 source and projection gates", () => {
     const invalid = r.create();
     Object.assign(invalid.schematic.symbolFragments!, { version: "2" });
     expect(() => validateProjectDocument(invalid)).toThrow();
+    const collision = r.create();
+    collision.schematic.symbolFragments!.placements.W1 =
+      collision.schematic.symbolFragments!.placements["symbol:K1:coil"];
+    delete collision.schematic.symbolFragments!.placements["symbol:K1:coil"];
+    expect(() => validateProjectDocument(collision)).toThrow(/koliduje/);
   });
   it("R4/R7: all graphical K1 contacts follow its coil; Q2.AUX follows actual protection owner", () => {
     const p = r.create();

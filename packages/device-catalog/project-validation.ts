@@ -54,10 +54,19 @@ export function validateProjectDocument(input: unknown): ProjectDocument {
     const project = projectSchema.parse(input);
     assertProjectCatalog(project);
     const terminals = new Set<string>(),
-      fragments = new Set<string>();
-    for (const placement of Object.values(
+      fragments = new Set<string>(),
+      circuitIds = new Set(
+        [
+          ...project.circuit.devices,
+          ...project.circuit.conductors,
+          ...project.circuit.bridges,
+        ].map((o) => o.id),
+      );
+    for (const [id, placement] of Object.entries(
       project.schematic.symbolFragments?.placements ?? {},
     )) {
+      if (circuitIds.has(id))
+        throw new Error("Identyfikator symbolu koliduje z obiektem obwodu.");
       const device = project.circuit.devices.find(
         (d) => d.id === placement.deviceId,
       );

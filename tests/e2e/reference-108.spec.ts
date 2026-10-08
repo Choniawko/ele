@@ -95,7 +95,12 @@ test.beforeEach(({ page }) => {
 test("01b: source, isolated solver, independent START/STOP, NC block and return of power", async ({
   page,
 }) => {
-  await page.goto("./#/wiedza/zadania/ele02-108");
+  await page.goto("./#/wiedza/zadania");
+  await page.getByLabel("Szukaj w materiałach źródłowych").fill("podtrzymanie");
+  await page
+    .locator(".exam-task-card")
+    .filter({ hasText: "ELE.02-108" })
+    .click();
   await page
     .getByRole("link", {
       name: ready
@@ -158,6 +163,43 @@ test("01b: source, isolated solver, independent START/STOP, NC block and return 
     page.locator(".reference-connections").nth(1).locator("tbody tr"),
   ).toHaveCount(15);
   await expect(page.locator(".reference-lesson > details")).toHaveCount(11);
+  const hiddenBypasses = await page
+    .locator(".reference-lesson")
+    .evaluate((host) => {
+      const hits: string[] = [];
+      for (const svg of host.querySelectorAll<SVGSVGElement>(
+        "svg.knowledge-diagram:not(.physical)",
+      )) {
+        const boxes = Array.from(
+          svg.querySelectorAll<SVGGElement>(
+            "[data-device-id][data-symbol-fragment]",
+          ),
+        ).map((el) => ({
+          name: `${el.dataset.deviceId}/${el.dataset.symbolFragment}`,
+          matrix: el.getScreenCTM()!.inverse(),
+        }));
+        for (const line of svg.querySelectorAll<SVGPathElement>(
+          "[data-functional-net] > path:nth-child(2)",
+        )) {
+          for (
+            let distance = 0;
+            distance < line.getTotalLength();
+            distance += 4
+          ) {
+            const point = line
+              .getPointAtLength(distance)
+              .matrixTransform(line.getScreenCTM()!);
+            for (const box of boxes) {
+              const local = point.matrixTransform(box.matrix);
+              if (local.x > 25 && local.x < 95 && local.y > -15 && local.y < 15)
+                hits.push(box.name);
+            }
+          }
+        }
+      }
+      return [...new Set(hits)];
+    });
+  expect(hiddenBypasses).toEqual([]);
   await control("Śledź W35").click();
   await expect(
     page.locator(".reference-connections tr[aria-selected=true]"),
@@ -288,6 +330,27 @@ test("01b: OFF copy, expanded native ports, real 37 routes, common mechanism, he
   await expect(schematic.locator(".board-instruction")).toContainText(
     "Wybierz drugi zacisk",
   );
+  const cameras = async () =>
+    Promise.all(
+      [physical, schematic].map((b) =>
+        b.locator(".joint-cells-layer").evaluate((el) => {
+          const m = (el as SVGGElement).getScreenCTM()!;
+          return [m.a, m.b, m.c, m.d, m.e, m.f];
+        }),
+      ),
+    );
+  const camera = await cameras();
+  await schematic
+    .getByRole("button", { name: "Wyjaśnij symbol K1 A1–A2", exact: true })
+    .click();
+  await panel.getByRole("button", { name: "Pełny artykuł aparatu" }).click();
+  await page
+    .getByRole("button", { name: "Wróć do mojego układu", exact: true })
+    .click();
+  await expect(schematic.locator(".board-instruction")).toContainText(
+    "Wybierz drugi zacisk",
+  );
+  expect(await cameras()).toEqual(camera);
   await page.keyboard.press("Escape");
   await page.reload();
   await saved(page);

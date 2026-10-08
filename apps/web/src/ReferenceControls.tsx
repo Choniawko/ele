@@ -5,11 +5,13 @@ function Momentary({
   deviceId,
   actuator,
   act,
+  active,
 }: {
   label: string;
   deviceId: string;
   actuator?: "start" | "stop";
   act: (a: RuntimeAction) => void;
+  active: boolean;
 }) {
   const pressed = useRef(false);
   const set = (state: boolean) => {
@@ -19,6 +21,7 @@ function Momentary({
   };
   return (
     <button
+      aria-pressed={active}
       onPointerDown={(e) => {
         if (e.button !== 0) return;
         e.currentTarget.setPointerCapture(e.pointerId);
@@ -80,6 +83,11 @@ export function ReferenceControls({
                 deviceId={id}
                 actuator={actuator as "start" | "stop"}
                 act={act}
+                active={
+                  actuator === "stop"
+                    ? !!runtime.devices[id].stopPressed
+                    : runtime.devices[id].manual
+                }
               />
             )),
           )}
@@ -89,6 +97,7 @@ export function ReferenceControls({
               label={`${id} LEWY — przytrzymaj`}
               deviceId={id}
               act={act}
+              active={runtime.devices[id].manual}
             />
           ))}
           <button

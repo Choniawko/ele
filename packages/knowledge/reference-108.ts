@@ -299,7 +299,18 @@ const diagrams: DiagramScope[] = [
       },
     ],
     netAnchors: [
-      { designation: "S1", terminalId: "3", point: { x: 140, y: 400 } },
+      {
+        designation: "S1",
+        terminalId: "3",
+        point: { x: 140, y: 400 },
+        trunk: [
+          { x: 1010, y: 140 },
+          { x: 1240, y: 140 },
+          { x: 1240, y: 260 },
+          { x: 140, y: 260 },
+          { x: 140, y: 1110 },
+        ],
+      },
       { designation: "K2", terminalId: "21", point: { x: 580, y: 400 } },
       { designation: "K1", terminalId: "21", point: { x: 580, y: 960 } },
       { designation: "ZS.N", terminalId: "2", point: { x: 1400, y: 550 } },

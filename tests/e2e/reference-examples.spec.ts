@@ -9,6 +9,9 @@ const availability = JSON.parse(
   readFileSync("packages/knowledge/exam-data/availability.json", "utf8"),
 );
 const ready = availability[0].status === "model-tested";
+const readyCount = availability.filter(
+  (r: { status: string }) => r.status === "model-tested",
+).length;
 const saved = (page: Page) =>
   expect(page.locator(".save-state")).toHaveText("Zapisano lokalnie");
 async function documents(page: Page): Promise<SavedProject[]> {
@@ -339,9 +342,9 @@ test("01a: responsive source/model distinction, native scrolling and gallery at 
   await page.goto("./#/wiedza/uklady");
   await expect(
     page.locator('[aria-label="Gotowe wzorce"] .knowledge-card'),
-  ).toHaveCount(ready ? 1 : 0);
+  ).toHaveCount(readyCount);
   await expect(
-    page.getByText(new RegExp(`${ready ? 1 : 0}/17 gotowych układów`)),
+    page.getByText(new RegExp(`${readyCount}/17 gotowych układów`)),
   ).toBeVisible();
 });
 test("01a: two gallery launches preserve earlier projects and canonical template", async ({
