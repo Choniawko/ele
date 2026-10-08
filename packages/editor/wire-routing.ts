@@ -1,10 +1,13 @@
-import { g, routers, type dia } from "@joint/core";
+import { g, routers, dia } from "@joint/core";
 import { catalog } from "@catalog/index";
+import { MM } from "@renderers/index";
 import type {
   Conductor,
   DeviceInstance,
   TerminalRef,
   PhysicalEnclosure,
+  ProjectDocument,
+  Point,
 } from "@model/index";
 
 type Side = "top" | "bottom";
@@ -38,11 +41,9 @@ function simplify(points: g.Point[]): g.Point[] {
         b = result.at(-1)!;
       const ab = { x: b.x - a.x, y: b.y - a.y },
         bc = { x: point.x - b.x, y: point.y - b.y };
-      if (
-        Math.abs(ab.x * bc.y - ab.y * bc.x) > 0.1 ||
-        ab.x * bc.x + ab.y * bc.y < 0
-      )
-        break;
+      // A collinear return retraces the same wire. Dropping the middle point
+      // only removes overlapping geometry; saved editing points stay intact.
+      if (Math.abs(ab.x * bc.y - ab.y * bc.x) > 0.1) break;
       result.pop();
     }
     result.push(point);
@@ -256,11 +257,7 @@ export function physicalWireRouters(
       };
       clampExit(sourceExit, wire.from.deviceId);
       clampExit(targetExit, wire.to.deviceId);
-      const waypoints = [
-        sourceExit,
-        ...vertices.map((p) => new g.Point(p)),
-        targetExit,
-      ];
+      const waypoints = vertices.map((p) => new g.Point(p));
       const obstacles = (view.paper?.model.getElements() ?? [])
         .filter(
           (element) =>
@@ -291,6 +288,19 @@ export function physicalWireRouters(
             targetSide,
             Math.max(sourceEnd.gap, targetEnd.gap) - CLEARANCE - 6,
           );
+      // Route between exits outside the device bodies. Letting Manhattan start
+      // at an internal terminal can cut through the case near its final bend.
+      const routingView = Object.create(view) as dia.LinkView;
+      Object.defineProperties(routingView, {
+        sourceAnchor: { value: sourceExit },
+        targetAnchor: { value: targetExit },
+        sourceBBox: {
+          value: new g.Rect(sourceExit.x - 0.5, sourceExit.y - 0.5, 1, 1),
+        },
+        targetBBox: {
+          value: new g.Rect(targetExit.x - 0.5, targetExit.y - 0.5, 1, 1),
+        },
+      });
       const route =
         direct ??
         routers.manhattan(
@@ -311,18 +321,95 @@ export function physicalWireRouters(
             // Overlapping cases during dragging, or a manual point placed inside
             // a case, may have no clear path. Keep those user points editable.
             fallbackRouter: (points) =>
-              routers.orthogonal(points, { padding: 0 }, view),
+              routers.orthogonal(points, { padding: 0 }, routingView),
           },
-          view,
+          routingView,
         );
-      const points = simplify([
+      const rawPoints = [
         view.sourceAnchor,
+        sourceExit,
         ...route.map((p) => new g.Point(p)),
+        targetExit,
         view.targetAnchor,
-      ]).slice(1, -1);
+      ];
+      // Manhattan snaps fractional port coordinates to its grid. Keep the
+      // original anchors and add a tiny right-angle bend instead of a diagonal.
+      const orthogonal = rawPoints.flatMap((b, i) => {
+        if (!i) return [b];
+        const a = rawPoints[i - 1],
+          dx = Math.abs(a.x - b.x),
+          dy = Math.abs(a.y - b.y);
+        if (dx && dy)
+          return [new g.Point(dx < dy ? a.x : b.x, dx < dy ? b.y : a.y), b];
+        return [b];
+      });
+      const points = simplify(orthogonal).slice(1, -1);
       cached = { key, points };
       return points.map((p) => p.clone());
     });
   }
   return result;
+}
+
+// Read-only SVG lessons use the same anchors, obstacles and router as the board.
+// This graph is rendering geometry derived from CircuitModel, never a solver netlist.
+export function physicalWirePaths(
+  project: ProjectDocument,
+): Record<string, Point[]> {
+  const graph = new dia.Graph();
+  for (const d of project.circuit.devices) {
+    const dim = catalog[d.productId].dimensions.value!;
+    graph.addCell(
+      new dia.Element({
+        type: "device",
+        id: d.id,
+        position: project.physical.devices[d.id],
+        size: { width: dim.width * MM, height: dim.height * MM },
+      }),
+    );
+  }
+  const anchor = (r: TerminalRef) => {
+    const d = project.circuit.devices.find((d) => d.id === r.deviceId)!,
+      t = catalog[d.productId].topology.terminals.find(
+        (t) => t.id === r.terminalId,
+      )!,
+      at = project.physical.devices[d.id];
+    return new g.Point(at.x + t.x * MM, at.y + t.y * MM);
+  };
+  const routing = physicalWireRouters(
+    project.circuit.devices,
+    project.circuit.conductors,
+    project.physical.enclosures,
+  );
+  return Object.fromEntries(
+    project.circuit.conductors.map((w) => {
+      const link = new dia.Link({
+        type: "wire",
+        id: w.id,
+        source: { id: w.from.deviceId, port: w.from.terminalId },
+        target: { id: w.to.deviceId, port: w.to.terminalId },
+      });
+      graph.addCell(link);
+      const sourceAnchor = anchor(w.from),
+        targetAnchor = anchor(w.to);
+      // The router needs only this geometric subset of LinkView.
+      // It does not require a mounted paper or DOM.
+      const view = {
+        model: link,
+        paper: { model: graph },
+        options: {},
+        sourceAnchor,
+        targetAnchor,
+        sourceBBox: (graph.getCell(w.from.deviceId) as dia.Element).getBBox(),
+        targetBBox: (graph.getCell(w.to.deviceId) as dia.Element).getBBox(),
+      } as unknown as dia.LinkView;
+      const points = [
+        sourceAnchor,
+        ...routing.get(w.id)!(project.physical.routes[w.id] ?? [], {}, view),
+        targetAnchor,
+      ].map(({ x, y }) => ({ x, y }));
+      link.remove();
+      return [w.id, points];
+    }),
+  );
 }

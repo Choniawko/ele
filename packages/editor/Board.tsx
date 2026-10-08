@@ -1,4 +1,9 @@
-import { boardCameras, openKnowledge } from "@/knowledge-navigation";
+import { boundReference } from "../knowledge/reference-examples";
+import {
+  boardCameras,
+  openKnowledge,
+  isKnowledgeHash,
+} from "@/knowledge-navigation";
 import { resolveKnowledge } from "../knowledge/bindings";
 import { mountingInfo } from "@catalog/mounting-profiles";
 import {
@@ -265,15 +270,17 @@ function BoardDevice(
     onSetCurrent: (ratedCurrentA) =>
       useApp.getState().updateDevice(data.device.id, { ratedCurrentA }),
     onRcdTest: () => useApp.getState().testRcd(data.device.id),
-    onExplainSymbol: resolveKnowledge(data.device.productId)
-      ? (fragmentId) =>
-          void openKnowledge(
-            data.device.productId,
-            data.device.id,
-            undefined,
-            fragmentId,
-          )
-      : undefined,
+    onExplainSymbol:
+      resolveKnowledge(data.device.productId) ||
+      boundReference(useApp.getState().project)
+        ? (fragmentId) =>
+            void openKnowledge(
+              data.device.productId,
+              data.device.id,
+              undefined,
+              fragmentId,
+            )
+        : undefined,
   };
   return data.view === "physical" ? (
     enclosure?.closed && enclosureWindows(enclosure).length ? (
@@ -449,7 +456,11 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
   }, [selection[0], view]);
   useEffect(() => {
     const key = (event: KeyboardEvent) => {
-      if (location.hash.startsWith("#knowledge")) return;
+      if (
+        isKnowledgeHash(location.hash) ||
+        (event.target as HTMLElement)?.closest(".reference-help")
+      )
+        return;
       if (
         (event.target as HTMLElement)?.closest("input,textarea,select,dialog")
       )

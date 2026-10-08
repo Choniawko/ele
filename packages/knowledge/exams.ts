@@ -1,3 +1,4 @@
+import { referenceByTask, validateReference } from "./reference-examples";
 import { z } from "zod";
 import { catalog } from "@catalog/index";
 import { normalizeSearch } from "./index";
@@ -323,12 +324,28 @@ export function validateExamKnowledge(
       !tasks.some((t) => t.id === issue.taskId && t.sourceId === issue.sourceId)
     )
       errors.push(`Issue ${issue.id}`);
-  for (const r of refs)
+  for (const r of refs) {
+    const example = referenceByTask(r.taskId);
+    if (
+      referenceIsReady(r) &&
+      (!example ||
+        r.referenceRevision !== example.referenceRevision ||
+        r.documentPath !== example.documentPath ||
+        validateReference(example).length ||
+        example.sourceFigureIds.some(
+          (id) =>
+            !tasks
+              .find((t) => t.id === r.taskId)
+              ?.schematics.some((f) => f.id === id),
+        ))
+    )
+      errors.push(`Reference mismatch ${r.taskId}`);
     if (
       !tasks.some((t) => t.id === r.taskId) ||
       (["model-tested", "source-verified"].includes(r.status) &&
         !referenceIsReady(r))
     )
       errors.push(`Ungated reference ${r.taskId}`);
+  }
   return errors;
 }

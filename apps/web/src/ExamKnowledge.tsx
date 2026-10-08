@@ -1,3 +1,9 @@
+import { ReferenceLesson } from "./ReferenceLesson";
+import {
+  referenceById,
+  referenceByTask,
+  referenceExamples,
+} from "../../../packages/knowledge/reference-examples";
 import { useEffect, useRef, useState } from "react";
 import {
   examTasks,
@@ -16,6 +22,7 @@ import {
   examArticleHref,
   componentHref,
   examTaskBySlug,
+  referenceIsReady,
   type ExamTask,
   type ExamArticle,
   type SourceFigure,
@@ -180,6 +187,7 @@ function Task({ task }: { task: ExamTask }) {
   const source = examSources.find((s) => s.id === task.sourceId)!;
   const issues = examIssues.filter((i) => i.taskId === task.id);
   const ref = examAvailability.find((r) => r.taskId === task.id)!;
+  const reference = referenceByTask(task.id);
   return (
     <>
       <span className="knowledge-eyebrow">
@@ -193,12 +201,25 @@ function Task({ task }: { task: ExamTask }) {
         Dostępna teoria ·{" "}
         {ref.status === "content-only"
           ? "Model oczekuje na odbiór etapowy"
-          : ref.status}
+          : ref.status === "draft"
+            ? "Szkic modelu w odbiorze"
+            : "Model dydaktyczny po odbiorze R1–R10"}
       </p>
-      <p>
-        Dotychczasowe importy 101 i 108 pozostają w pracowni. Ta karta nie
-        potwierdza jeszcze pełnych bramek R1–R10 dla gotowego wzorca.
-      </p>
+      {reference ? (
+        <p>
+          <a href={`#/wiedza/uklady/${reference.id}`}>
+            {referenceIsReady(ref)
+              ? "Gotowy układ i lekcja torów"
+              : "Obejrzyj opracowanie modelu"}
+          </a>{" "}
+          · Model dydaktyczny; geometria nie jest odwzorowaniem 1:1.
+        </p>
+      ) : (
+        <p>
+          Dotychczasowe importy 101 i 108 pozostają w pracowni. Ta karta nie
+          potwierdza jeszcze pełnych bramek R1–R10 dla gotowego wzorca.
+        </p>
+      )}
       <div
         className="exam-reading-tabs"
         role="tablist"
@@ -249,8 +270,15 @@ function Task({ task }: { task: ExamTask }) {
               „Działanie”.
             </p>
             <p>
-              <strong>Schemat z projektu:</strong> integracja zweryfikowanego
-              wzorca w kolejnym etapie. Rysunek źródłowy nie uruchamia solvera.
+              <strong>Schemat z projektu:</strong>{" "}
+              {reference ? (
+                <a href={`#/wiedza/uklady/${reference.id}`}>
+                  opracowanie i tabela połączeń z modelu
+                </a>
+              ) : (
+                "integracja wzorca w kolejnych etapach"
+              )}
+              . Rysunek źródłowy nie uruchamia solvera.
             </p>
           </div>
           <details>
@@ -525,8 +553,13 @@ export default function ExamKnowledge({ route }: { route: string }) {
     category === "zestaw"
       ? examComponents.find((c) => c.id === slug)
       : undefined;
-  const known = ["zadania", "aparaty", "czytanie", "zestaw"].includes(category);
-  const missing = (!!slug && !task && !article && !component) || !known;
+  const reference =
+    category === "uklady" && slug ? referenceById(slug) : undefined;
+  const known = ["zadania", "aparaty", "czytanie", "zestaw", "uklady"].includes(
+    category,
+  );
+  const missing =
+    (!!slug && !task && !article && !component && !reference) || !known;
   const result = searchExamKnowledge(query, qualification);
   const page = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -556,6 +589,7 @@ export default function ExamKnowledge({ route }: { route: string }) {
         <nav className="knowledge-departments" aria-label="Materiały ELE.02">
           {[
             ["zadania", "Zadania"],
+            ["uklady", "Gotowe układy"],
             ["aparaty", "Aparaty"],
             ["czytanie", "Czytanie schematów"],
             ["zestaw", "Zestaw stanowiska"],
@@ -575,6 +609,8 @@ export default function ExamKnowledge({ route }: { route: string }) {
             <h1 tabIndex={-1}>Nie znaleziono materiału</h1>
             <a href="#/wiedza/zadania">Wróć do zadań</a>
           </>
+        ) : reference ? (
+          <ReferenceLesson key={reference.id} reference={reference} />
         ) : task ? (
           <Task key={task.id} task={task} />
         ) : article ? (
@@ -584,13 +620,15 @@ export default function ExamKnowledge({ route }: { route: string }) {
         ) : (
           <>
             <h1 tabIndex={-1}>
-              {category === "zestaw"
-                ? "Zestaw stanowiska"
-                : category === "aparaty"
-                  ? "Aparaty i osprzęt"
-                  : category === "czytanie"
-                    ? "Czytanie schematów"
-                    : "Zadania ELE.02"}
+              {category === "uklady"
+                ? "Gotowe układy"
+                : category === "zestaw"
+                  ? "Zestaw stanowiska"
+                  : category === "aparaty"
+                    ? "Aparaty i osprzęt"
+                    : category === "czytanie"
+                      ? "Czytanie schematów"
+                      : "Zadania ELE.02"}
             </h1>
             <p className="knowledge-lead">
               17 kart źródłowych · 40 rysunków · 25 artykułów · 60 kategorii
@@ -629,6 +667,35 @@ export default function ExamKnowledge({ route }: { route: string }) {
               </p>
             ) : (
               <>
+                {category === "uklady" && (
+                  <section aria-label="Gotowe wzorce">
+                    <div className="knowledge-cards">
+                      {referenceExamples
+                        .filter((r) =>
+                          referenceIsReady(
+                            examAvailability.find((a) => a.taskId === r.taskId),
+                          ),
+                        )
+                        .map((r) => (
+                          <a
+                            className="knowledge-card"
+                            key={r.id}
+                            href={`#/wiedza/uklady/${r.id}`}
+                          >
+                            <h2>{r.taskId}</h2>
+                            <p>{r.title}</p>
+                            <span>Model dydaktyczny po odbiorze R1–R10</span>
+                          </a>
+                        ))}
+                    </div>
+                    {readyTaskCount() === 0 && (
+                      <p>
+                        Wzorce czekają na pełny odbiór. Materiały i opracowania
+                        znajdziesz na kartach zadań.
+                      </p>
+                    )}
+                  </section>
+                )}
                 {(category === "zadania" || showAll) && (
                   <section aria-label="Karty zadań">
                     <h2>Zadania ({result.tasks.length})</h2>
@@ -644,9 +711,13 @@ export default function ExamKnowledge({ route }: { route: string }) {
                           <p>{t.summary}</p>
                           <span>
                             Dostępna teoria
-                            {t.code === "114"
-                              ? " · Wymaga danych źródłowych"
-                              : " · Wzorzec oczekuje na odbiór"}
+                            {referenceIsReady(
+                              examAvailability.find((r) => r.taskId === t.id),
+                            )
+                              ? " · Gotowy układ dydaktyczny"
+                              : t.code === "114"
+                                ? " · Wymaga danych źródłowych"
+                                : " · Wzorzec oczekuje na odbiór"}
                           </span>
                         </a>
                       ))}

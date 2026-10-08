@@ -12,6 +12,7 @@ import { mechanismOwner } from "@simulation/mechanisms";
 import type { RuntimeSnapshot } from "@simulation/index";
 import { deviceByName, permanentNets } from "./examples";
 import type { DiagramScope, Highlight } from "./types";
+import { physicalWirePaths } from "@editor/wire-routing";
 const ink = "#253f43";
 const keyAction = (e: React.KeyboardEvent, action: () => void) => {
   if (e.key === "Enter" || e.key === " ") {
@@ -335,6 +336,7 @@ export function PhysicalDiagram({
   highlight: Highlight;
   onHighlight: (h: Highlight) => void;
 }) {
+  const routes = useMemo(() => physicalWirePaths(p), [p]);
   const bounds = {
     width: Math.max(
       1100,
@@ -361,6 +363,27 @@ export function PhysicalDiagram({
       aria-label="Tablica fizyczna przykładu"
     >
       <title>Tablica fizyczna — profile i zaciski z katalogu</title>
+      {p.physical.enclosures?.map((e) => (
+        <g key={e.id}>
+          <rect
+            x={e.position.x}
+            y={e.position.y}
+            width={e.width}
+            height={e.height}
+            fill="#f3f5f2"
+            stroke="#73887f"
+            strokeDasharray="6 3"
+          />
+          <text
+            x={e.position.x + 6}
+            y={e.position.y - 8}
+            fill={ink}
+            fontSize="20"
+          >
+            {e.name} · podgląd połączeń
+          </text>
+        </g>
+      ))}
       {p.physical.rails?.map((r) => (
         <rect
           key={r.id}
@@ -383,7 +406,13 @@ export function PhysicalDiagram({
         return (
           <path
             key={w.id}
-            d={`M${a.x} ${a.y}V${y}H${b.x}V${b.y}`}
+            d={
+              routes[w.id]?.length
+                ? routes[w.id]
+                    .map((pt, i) => `${i ? "L" : "M"}${pt.x} ${pt.y}`)
+                    .join(" ")
+                : `M${a.x} ${a.y}V${y}H${b.x}V${b.y}`
+            }
             fill="none"
             stroke={
               selected

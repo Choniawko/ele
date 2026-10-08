@@ -1,6 +1,13 @@
+import { ReferenceHelp } from "./ReferenceHelp";
+import { openReferenceHelp, useReferenceHelp } from "./reference-navigation";
+import { boundReference } from "../../../packages/knowledge/reference-examples";
 import { createPortal } from "react-dom";
 import { Knowledge } from "./Knowledge";
-import { openKnowledge, useKnowledgeRoute } from "./knowledge-navigation";
+import {
+  openKnowledge,
+  useKnowledgeRoute,
+  isKnowledgeHash,
+} from "./knowledge-navigation";
 import { resolveKnowledge } from "../../../packages/knowledge/bindings";
 import { motorConnection } from "@simulation/motor";
 import { mechanismOwner } from "@simulation/mechanisms";
@@ -713,7 +720,7 @@ function Inspector() {
               <p>{product.displayNamePl}</p>
             </div>
           </div>
-          {resolveKnowledge(product.id) && (
+          {(resolveKnowledge(product.id) || boundReference(p)) && (
             <div className="device-knowledge-help">
               <p className="small-help">
                 Poznaj działanie, symbole i mapę zacisków. Rola aparatu zależy
@@ -904,7 +911,8 @@ function Inspector() {
                       </span>
                       <Plus size={14} />
                     </button>
-                    {resolveKnowledge(product.id, t.id) && (
+                    {(resolveKnowledge(product.id, t.id) ||
+                      boundReference(p)) && (
                       <button
                         className="terminal-explain"
                         aria-label={`Wyjaśnij zacisk ${d.designation}:${t.id}`}
@@ -918,7 +926,7 @@ function Inspector() {
                   </div>
                 ))}
               </div>
-              {resolveKnowledge(product.id) && (
+              {(resolveKnowledge(product.id) || boundReference(p)) && (
                 <details className="symbol-help">
                   <summary>Wyjaśnij symbol</summary>
                   {product.topology.connections.map((c) => (
@@ -1157,6 +1165,11 @@ function Inspector() {
             {p.circuit.devices.find((d) => d.id === w.to.deviceId)?.designation}
             /{w.to.terminalId}
           </p>
+          {boundReference(p) && (
+            <button onClick={() => openReferenceHelp({ wireId: w.id })}>
+              Wyjaśnij żyłę {w.id}
+            </button>
+          )}
           <div className="form-field">
             <label>Rola zadeklarowana</label>
             <select
@@ -1663,7 +1676,8 @@ function App() {
     const id = setInterval(() => {
       const s = useApp.getState();
       if (
-        !location.hash.startsWith("#knowledge") &&
+        !isKnowledgeHash(location.hash) &&
+        !useReferenceHelp.getState().context &&
         !s.paused &&
         !s.busy &&
         s.runtime.status === "valid"
@@ -1674,7 +1688,11 @@ function App() {
   }, []);
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
-      if (location.hash.startsWith("#knowledge")) return;
+      if (
+        isKnowledgeHash(location.hash) ||
+        (e.target as HTMLElement)?.closest(".reference-help")
+      )
+        return;
       if ((e.target as HTMLElement)?.closest("input,textarea,select,dialog"))
         return;
       const s = useApp.getState();
@@ -2674,6 +2692,7 @@ function App() {
           </tbody>
         </table>
       </div>
+      {!knowledgeRoute && <ReferenceHelp />}
       {knowledgeRoute &&
         createPortal(<Knowledge route={knowledgeRoute} />, document.body)}
     </div>

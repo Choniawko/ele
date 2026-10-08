@@ -718,6 +718,9 @@ function CoreKnowledge({ route }: { route: string }) {
               <a className="knowledge-primary" href="#/wiedza/zadania">
                 Zadania ELE.02 — materiały źródłowe →
               </a>
+              <a className="knowledge-primary" href="#/wiedza/uklady">
+                Gotowe układy z arkuszy →
+              </a>
               <a href="#/wiedza/zestaw">Zestaw stanowiska →</a>
               {[
                 ["lesson", "Czytanie schematów"],

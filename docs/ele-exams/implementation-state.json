@@ -17,7 +17,7 @@
       ]
     },
     "01": {
-      "status": "pending",
+      "status": "in-progress",
       "evidence": []
     },
     "02": {
@@ -91,8 +91,14 @@
     },
     "01a": {
       "stageId": "01",
-      "status": "pending",
-      "evidence": []
+      "status": "implemented",
+      "evidence": [
+        "tests/reference-examples.test.ts",
+        "tests/reference-navigation.test.tsx",
+        "tests/reference-copy.test.ts",
+        "tests/e2e/reference-examples.spec.ts",
+        "pnpm test: 292 passed; production acceptance pending"
+      ]
     },
     "01b": {
       "stageId": "01",
@@ -237,19 +243,19 @@
   },
   "tasks": {
     "ELE.02-101": {
-      "referenceStatus": "content-only",
-      "fidelity": null,
-      "referenceRevision": null,
+      "referenceStatus": "draft",
+      "fidelity": "educational",
+      "referenceRevision": "1",
       "sourceStatusAtBaseline": "existing-repo-example-validated",
       "gates": {
-        "R1": "pending",
-        "R2": "pending",
-        "R3": "pending",
-        "R4": "pending",
-        "R5": "pending",
-        "R6": "pending",
+        "R1": "passed",
+        "R2": "passed",
+        "R3": "passed",
+        "R4": "passed",
+        "R5": "passed",
+        "R6": "passed",
         "R7": "pending",
-        "R8": "pending",
+        "R8": "passed",
         "R9": "pending",
         "R10": "pending"
       },

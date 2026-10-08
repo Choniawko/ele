@@ -1,20 +1,25 @@
 [
   {
     "taskId": "ELE.02-101",
-    "status": "content-only",
-    "referenceRevision": null,
-    "documentPath": null,
-    "fidelity": null,
-    "evidence": [],
+    "status": "draft",
+    "referenceRevision": "1",
+    "documentPath": "examples/physical/ELE02_101_stanowisko.json",
+    "fidelity": "educational",
+    "evidence": [
+      "tests/reference-examples.test.ts",
+      "tests/reference-navigation.test.tsx",
+      "tests/reference-copy.test.ts",
+      "tests/e2e/reference-examples.spec.ts"
+    ],
     "gates": {
-      "R1": "pending",
-      "R2": "pending",
-      "R3": "pending",
-      "R4": "pending",
-      "R5": "pending",
-      "R6": "pending",
+      "R1": "passed",
+      "R2": "passed",
+      "R3": "passed",
+      "R4": "passed",
+      "R5": "passed",
+      "R6": "passed",
       "R7": "pending",
-      "R8": "pending",
+      "R8": "passed",
       "R9": "pending",
       "R10": "pending"
     }

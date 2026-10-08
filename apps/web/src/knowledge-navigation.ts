@@ -5,6 +5,7 @@ import {
   validContext,
 } from "../../../packages/knowledge/bindings";
 import type { KnowledgeContext } from "../../../packages/knowledge/types";
+import { openReferenceHelp } from "./reference-navigation";
 export const boardCameras: KnowledgeContext["cameras"] = {};
 let originFocus: HTMLElement | null = null;
 const key = "ele.knowledge.context.v1";
@@ -40,12 +41,19 @@ export async function openKnowledge(
   deviceId?: string,
   terminalId?: string,
   fragmentId?: string,
+  fullArticle = false,
 ) {
+  if (
+    !fullArticle &&
+    deviceId &&
+    openReferenceHelp({ deviceId, terminalId, symbolId: fragmentId })
+  )
+    return true;
   const s = useApp.getState();
   try {
     await s.flushSave();
   } catch {
-    return;
+    return false;
   }
   originFocus =
     document.activeElement instanceof HTMLElement
@@ -83,6 +91,7 @@ export async function openKnowledge(
   location.hash = resolution
     ? `knowledge/article/${resolution.articleId}`
     : "knowledge";
+  return true;
 }
 export function returnToWorkbench(showDevice = false) {
   const c = readContext(),
@@ -118,7 +127,7 @@ export function restoreKnowledgeFocus() {
   else
     document.querySelector<HTMLButtonElement>("[data-knowledge-nav]")?.focus();
 }
-const isKnowledgeHash = (hash: string) =>
+export const isKnowledgeHash = (hash: string) =>
   hash.startsWith("#knowledge") || /^#\/wiedza(?:\/|$)/.test(hash);
 export function useKnowledgeRoute() {
   const [hash, setHash] = useState(location.hash);
