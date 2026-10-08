@@ -67,6 +67,12 @@ test("Pages: rzeczywisty Worker, edycja, autosave, odtworzenie i ponowna praca s
       /\/ele\/assets\/simulation\.worker-.+\.js$/.test(new URL(url).pathname),
     ),
   ).toBe(true);
+  await page.getByRole("button", { name: "Przykłady", exact: true }).click();
+  await page
+    .getByRole("button", { name: "Otwórz kopię ELE.02-101", exact: true })
+    .click();
+  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await expect(page.locator(".save-state")).toHaveText("Zapisano lokalnie");
   await page.locator(".project-title").click();
   const dialog = page.getByRole("dialog");
   await dialog.getByLabel("Nazwa projektu").fill("Wydanie ELE — /ele/");

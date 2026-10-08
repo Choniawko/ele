@@ -11,7 +11,7 @@ import {
 import { resolveKnowledge } from "../../../packages/knowledge/bindings";
 import { motorConnection } from "@simulation/motor";
 import { mechanismOwner } from "@simulation/mechanisms";
-import type { ExerciseVariant } from "@training/index";
+import { ExamExamples } from "./ExamExamples";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import {
   Activity,
@@ -1618,10 +1618,6 @@ function App() {
     wireLength = useApp((s) => s.length),
     wireStart = useApp((s) => s.wireStart);
   const [modal, setModal] = useState<Modal>(null),
-    [exerciseVariant, setExerciseVariant] = useState<ExerciseVariant | null>(
-      null,
-    ),
-    [diagnosticCase, setDiagnosticCase] = useState(0),
     [info, setInfo] = useState<Product | null>(null),
     [hideCatalog, setHideCatalog] = useState(() =>
       readLayoutPreference("hideCatalog", window.innerWidth < 1280),
@@ -2269,83 +2265,10 @@ function App() {
           }
           onClose={() => setModal(null)}
         >
-          <p className="modal-intro">
-            {modal === "examples"
-              ? "Sprawdź połączenia, włącz zasilanie i eksperymentuj z działającym układem."
-              : "Ćwicz montaż, uruchamianie i diagnozowanie. Ocena obejmuje funkcję obwodu, tor ochronny, oznaczenia i dowód pomiarowy."}
-          </p>
-          <div className="form-field">
-            <label htmlFor="practice-variant">
-              Nowe zestawy ELE.02 / ELE.05 — tryb
-            </label>
-            <select
-              id="practice-variant"
-              value={
-                exerciseVariant ??
-                (modal === "training" ? "assembly" : "reference")
-              }
-              onChange={(e) =>
-                setExerciseVariant(e.target.value as ExerciseVariant)
-              }
-            >
-              <option value="reference">Wzorzec — poprawnie zmontowany</option>
-              <option value="assembly">Montaż — samodzielne wykonanie</option>
-              <option value="diagnosis">Diagnoza — ukryta usterka</option>
-            </select>
-            {exerciseVariant === "diagnosis" && (
-              <select
-                aria-label="Wariant diagnostyczny"
-                value={diagnosticCase}
-                onChange={(e) => setDiagnosticCase(Number(e.target.value))}
-              >
-                {[0, 1, 2].map((i) => (
-                  <option value={i} key={i}>
-                    Wariant {i + 1}
-                  </option>
-                ))}
-              </select>
-            )}
-          </div>
-          <div className="scenario-grid">
-            {scenarios.map((s) => (
-              <button
-                className="scenario-card"
-                key={s.id}
-                data-scenario={s.id}
-                onClick={() => {
-                  const variant = s.practice
-                    ? (exerciseVariant ??
-                      (modal === "training" ? "assembly" : "reference"))
-                    : "reference";
-                  useApp
-                    .getState()
-                    .loadScenario(
-                      s.id,
-                      modal === "training" || variant !== "reference",
-                      variant,
-                      diagnosticCase,
-                    );
-                  setModal(null);
-                }}
-              >
-                <span className="scenario-top">
-                  <span>{String(s.number).padStart(2, "0")}</span>
-                  <small>{s.category}</small>
-                  <ChevronRight size={16} />
-                </span>
-                <strong>{s.title}</strong>
-                <p>{s.description}</p>
-                <span className="scenario-foot">
-                  {s.difficulty}
-                  <i /> {s.duration}
-                </span>
-              </button>
-            ))}
-          </div>
-          <p className="small-help">
-            Wybrane umiejętności ELE.02/ELE.05. Warianty dydaktyczne są
-            oznaczone; nie stanowią pełnego egzaminu.
-          </p>
+          <ExamExamples
+            training={modal === "training"}
+            onClose={() => setModal(null)}
+          />
         </ModalDialog>
       )}
       {modal === "export" && (

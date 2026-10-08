@@ -497,9 +497,8 @@ function Article({ article }: { article: ExamArticle }) {
       <p>{article.evidence}</p>
       <Manuals ids={article.manufacturerSources} />
       <p>
-        Integracja gotowego klasycznego wzorca nastąpi po jego próbach.
-        Dotychczasowe demonstracje są w{" "}
-        <a href="#knowledge">układach bazowych pracowni</a>.
+        <a href="#/wiedza/uklady">Sprawdzone wzorce z obecnych arkuszy</a> oraz
+        ich lekcje połączeń są dostępne w galerii.
       </p>
     </div>
   );
@@ -661,9 +660,7 @@ export default function ExamKnowledge({ route }: { route: string }) {
             </div>
             {qualification === "ELE.05" ? (
               <p className="knowledge-limit">
-                W tej paczce nie przekazano arkuszy ELE.05. Dotychczasowe treści
-                ELE.02/ELE.05 pozostają w{" "}
-                <a href="#knowledge">bazie pracowni</a>.
+                W tej paczce nie przekazano arkuszy ELE.05.
               </p>
             ) : (
               <>

@@ -1,7 +1,7 @@
 [
   {
     "taskId": "ELE.02-101",
-    "status": "draft",
+    "status": "model-tested",
     "referenceRevision": "1",
     "documentPath": "examples/physical/ELE02_101_stanowisko.json",
     "fidelity": "educational",
@@ -9,7 +9,10 @@
       "tests/reference-examples.test.ts",
       "tests/reference-navigation.test.tsx",
       "tests/reference-copy.test.ts",
-      "tests/e2e/reference-examples.spec.ts"
+      "tests/e2e/reference-examples.spec.ts",
+      "tests/wire-routing.test.ts",
+      "docs/ele-exams/QA_01.md",
+      "docs/ele-exams/qa/101-source-check-results.json"
     ],
     "gates": {
       "R1": "passed",
@@ -18,10 +21,10 @@
       "R4": "passed",
       "R5": "passed",
       "R6": "passed",
-      "R7": "pending",
+      "R7": "passed",
       "R8": "passed",
-      "R9": "pending",
-      "R10": "pending"
+      "R9": "passed",
+      "R10": "passed"
     }
   },
   {

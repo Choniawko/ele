@@ -1,3 +1,4 @@
+import { importLegacy } from "./legacy-project";
 import { test, expect, type Page } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 import type { SavedProject } from "../../apps/web/src/persistence";
@@ -57,6 +58,7 @@ test.beforeEach(async ({ page }) => {
   await expect(
     page.getByText("Zapisano lokalnie", { exact: true }),
   ).toBeVisible();
+  await importLegacy(page, "lamp");
 });
 test("formularz odrzuca nazwę 121 znaków; poprawna nazwa i długość przewodu przetrwają autosave i odświeżenie", async ({
   page,
@@ -116,18 +118,7 @@ for (const training of [false, true])
   test(`błąd odczytu zachowuje oryginał i udostępnia kopię ${training ? "bez ukrytych odpowiedzi" : "do odzyskania"}`, async ({
     page,
   }) => {
-    if (training) {
-      await page
-        .getByRole("button", { name: "Ćwiczenia", exact: true })
-        .click();
-      await page
-        .getByRole("dialog")
-        .getByRole("button", { name: /Diagnoza ukrytej usterki/ })
-        .click();
-      await expect(
-        page.getByText("Zapisano lokalnie", { exact: true }),
-      ).toBeVisible();
-    }
+    if (training) await importLegacy(page, "diagnosis", true);
     const broken = await savedProject(page, true);
     await page.reload();
     const recovery = page.locator(".recovery-notice");

@@ -10,7 +10,7 @@ import {
 import { DevicePhysical, DeviceSchematic, MM } from "@renderers/index";
 import { mechanismOwner } from "@simulation/mechanisms";
 import type { RuntimeSnapshot } from "@simulation/index";
-import { deviceByName, permanentNets } from "./examples";
+import { deviceByName, permanentNets } from "./diagram-model";
 import type { DiagramScope, Highlight } from "./types";
 import { physicalWirePaths } from "@editor/wire-routing";
 const ink = "#253f43";

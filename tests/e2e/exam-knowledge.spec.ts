@@ -24,7 +24,7 @@ test("00a: all cards, article/category links, search synonyms and honest availab
   test.setTimeout(120000);
   await page.goto("./#/wiedza/zadania");
   await expect(page.locator(".exam-task-card")).toHaveCount(17);
-  await expect(page.getByText(/0\/17 gotowych układów/)).toBeVisible();
+  await expect(page.getByText(/1\/17 gotowych układów/)).toBeVisible();
   const search = page.getByLabel("Szukaj w materiałach źródłowych");
   for (const query of [
     "RCD",
@@ -137,9 +137,7 @@ test("00a: native image dialog, keyboard zoom, Escape and return preserve the wo
     page.getByText("Zapisano lokalnie", { exact: true }),
   ).toBeVisible();
   await page.getByRole("button", { name: "Baza wiedzy", exact: true }).click();
-  await page
-    .getByRole("link", { name: /Zadania ELE.02 — materiały źródłowe/ })
-    .click();
+  await expect(page.locator(".exam-task-card")).toHaveCount(17);
   await page.locator(`a[href="${taskHref("108")}"]`).click();
   const trigger = page.getByRole("button", {
     name: "Powiększ: moc-i-sterowanie",

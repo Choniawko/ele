@@ -458,8 +458,9 @@ export function scenarioProject(
   variant: ExerciseVariant = "reference",
   diagnosticCase = 0,
 ): ProjectDocument {
-  const scenario = scenarios.find((s) => s.id === id) ?? scenarios[0],
-    p = scenario.create();
+  const scenario = scenarios.find((s) => s.id === id);
+  if (!scenario) throw new Error(`Nieznany zapisany scenariusz: ${id}`);
+  const p = scenario.create();
   p.scenarioId = scenario.id;
   p.name = scenario.title;
   if (training)

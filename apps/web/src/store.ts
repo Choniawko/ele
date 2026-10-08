@@ -17,7 +17,6 @@ import {
 } from "@model/physical";
 import type { PhysicalEnclosure, PhysicalTrunk } from "@model/index";
 import { diagnosticWitness } from "@training/assessment";
-import type { ExerciseVariant } from "@training/index";
 import { create } from "zustand";
 import {
   mountingRails,
@@ -55,12 +54,7 @@ import {
   type RuntimeSnapshot,
   type RuntimeAction,
 } from "@simulation/index";
-import {
-  scenarioProject,
-  colors,
-  checkScenario,
-  type CheckResult,
-} from "@training/index";
+import { colors, checkScenario, type CheckResult } from "@training/index";
 import type {
   MeasurementRequest,
   MeasurementRecord,
@@ -242,12 +236,6 @@ interface AppState {
     skipPreviousSave?: boolean,
   ) => void;
   newProject: () => void;
-  loadScenario: (
-    id: string,
-    training?: boolean,
-    variant?: ExerciseVariant,
-    diagnosticCase?: number,
-  ) => void;
   setMotorLinks: (id: string, connection: "star" | "delta" | "none") => void;
   attachAuxiliary: (id: string, parentId?: string) => void;
   setMechanicalInterlock: (id: string, otherId?: string) => void;
@@ -263,7 +251,7 @@ interface AppState {
 let worker: Worker | undefined,
   saveTimer: ReturnType<typeof setTimeout> | undefined,
   saveGeneration = 0;
-const startProject = scenarioProject("lamp");
+const startProject = emptyProject();
 function request(action?: RuntimeAction, measurement?: MeasurementRequest) {
   const s = useApp.getState(),
     sequence = s.sequence + 1;
@@ -1696,12 +1684,6 @@ export const useApp = create<AppState>((set, get) => ({
     scheduleSave();
   },
   newProject: () => get().load(emptyProject()),
-  loadScenario: (
-    id,
-    training = false,
-    variant = "reference",
-    diagnosticCase = 0,
-  ) => get().load(scenarioProject(id, training, variant, diagnosticCase)),
   setMotorLinks: (id, connection) =>
     transaction("Zmień mostki zaciskowe silnika", (p) => {
       const d = p.circuit.devices.find((d) => d.id === id);
@@ -1822,6 +1804,14 @@ export const useApp = create<AppState>((set, get) => ({
   },
   runChecks: () => {
     const s = get();
+    if (s.project.userMetadata.examReference) {
+      set({
+        checks: [],
+        notice:
+          "Ten wzorzec nie ma automatycznej oceny montażu. Wykonaj próby działania i pomiary opisane na karcie arkusza.",
+      });
+      return;
+    }
     const checks = checkScenario(s.project, s.runtime, s.measurements);
     if (s.project.training)
       transaction(

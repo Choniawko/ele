@@ -5,6 +5,7 @@ import {
   examArticles,
   examComponents,
   validateExamKnowledge,
+  readyTaskCount,
 } from "../packages/knowledge/exams";
 import manifest from "../packages/knowledge/exam-data/figure-manifest.json";
 import { readFileSync } from "node:fs";
@@ -27,9 +28,9 @@ if (errors.length) {
   process.exitCode = 1;
 } else
   console.log(
-    `Baza wiedzy: ${articles.length} artykułów, ${circuits.length} układów, ${lessons.length} lekcji — referencje poprawne.`,
+    `Artykuły katalogowe: ${articles.length}. Historyczne kontrakty regresji: ${circuits.length} układów, ${lessons.length} lekcji — referencje poprawne.`,
   );
 if (!errors.length)
   console.log(
-    `Materiały ELE.02: ${examTasks.length} zadań, ${examArticles.length} artykułów, ${examComponents.length} kategorii BOM, ${manifest.length / 2} oryginalnych rysunków PNG/SVG.`,
+    `Materiały ELE.02: ${examTasks.length} zadań, ${examArticles.length} artykułów, ${examComponents.length} kategorii BOM, ${manifest.length / 2} oryginalnych rysunków PNG/SVG; ${readyTaskCount()}/${examTasks.length} gotowych wzorców.`,
   );

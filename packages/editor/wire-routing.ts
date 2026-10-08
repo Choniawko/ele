@@ -249,11 +249,22 @@ export function physicalWireRouters(
         );
       const clampExit = (point: g.Point, deviceId: string) => {
         const e = enclosures.find((e) => e.deviceIds.includes(deviceId));
-        if (e)
-          point.y = Math.max(
+        if (e) {
+          const clipped = Math.max(
             e.position.y + 4,
             Math.min(e.position.y + e.height - 4, point.y),
           );
+          const box = (
+            deviceId === wire.from.deviceId ? source : target
+          ).getBBox();
+          // A tight teaching enclosure must not push an exit back inside the
+          // device's obstacle margin: grid search then falls back through its body.
+          if (
+            clipped <= box.y - CLEARANCE ||
+            clipped >= box.y + box.height + CLEARANCE
+          )
+            point.y = clipped;
+        }
       };
       clampExit(sourceExit, wire.from.deviceId);
       clampExit(targetExit, wire.to.deviceId);

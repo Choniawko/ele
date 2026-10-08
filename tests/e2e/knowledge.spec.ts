@@ -1,3 +1,4 @@
+import { importLegacy } from "./legacy-project";
 import { test, expect, type Page } from "@playwright/test";
 const k = (page: Page) => page.locator(".knowledge-page");
 async function documents(page: Page) {
@@ -35,14 +36,18 @@ test("wiedza: synonimy, progres, klawiatura i odświeżenie stałego adresu", as
 }) => {
   await page.getByRole("button", { name: "Baza wiedzy", exact: true }).click();
   await expect(
-    k(page).getByRole("heading", { name: "Baza wiedzy", exact: true }),
+    k(page).getByRole("heading", { name: "Zadania ELE.02", exact: true }),
   ).toBeFocused();
-  await k(page).getByLabel("Szukaj w bazie").fill("roznicowka");
-  await expect(k(page).locator(".knowledge-card")).toHaveCount(1);
   await k(page)
-    .getByRole("link", { name: /RCD i RCBO/ })
+    .getByLabel("Szukaj w materiałach źródłowych")
+    .fill("roznicowka");
+  await expect(k(page).locator(".exam-article-card").first()).toBeVisible();
+  await k(page)
+    .getByRole("link", { name: /Wyłącznik różnicowoprądowy — RCD/ })
     .click();
-  await expect(page).toHaveURL(/#knowledge\/article\/rcd$/);
+  await expect(page).toHaveURL(/#\/wiedza\/aparaty\/rcd$/);
+  // Existing product article URLs and reading progress remain compatible.
+  await page.goto("./#knowledge/article/rcd");
   await page.reload();
   await expect(
     k(page).getByRole("heading", { name: "RCD i RCBO", exact: true }),
@@ -61,96 +66,56 @@ test("wiedza: synonimy, progres, klawiatura i odświeżenie stałego adresu", as
     page.getByRole("button", { name: "Baza wiedzy", exact: true }),
   ).toBeFocused();
 });
-test("START/STOP: działanie solvera, pary zacisków, reset izolowany i kopia bez nadpisania", async ({
+test("wycofany adres układu nie uruchamia dawnego modelu ani zastępczego wzorca", async ({
   page,
 }) => {
   const before = await documents(page);
-  await page.getByRole("button", { name: "Baza wiedzy", exact: true }).click();
-  await expect(
-    k(page).getByRole("heading", { name: "Baza wiedzy", exact: true }),
-  ).toBeVisible();
   await page.goto("./#knowledge/circuit/start-stop");
-  const output = k(page).getByTestId("knowledge-readouts");
-  await k(page)
-    .getByRole("button", { name: "Wykonaj: Załącz zasilanie", exact: true })
-    .click();
-  await expect(output).toContainText("mechanizm OFF");
-  await k(page)
-    .getByRole("button", { name: "Wykonaj: Wciśnij START", exact: true })
-    .click();
-  await k(page)
-    .getByRole("button", { name: "Wykonaj: Puść START", exact: true })
-    .click();
-  await expect(output).toContainText("mechanizm ON");
-  await k(page)
-    .getByRole("button", { name: "Podtrzymanie K1 KA1 53–54" })
-    .click();
-  await expect(k(page).locator(".knowledge-highlight")).toContainText(
-    "KA1:53 ↔ KA1:54",
-  );
   await expect(
-    k(page).locator('.knowledge-physical [data-device="KA1"]'),
+    k(page).getByRole("heading", { name: "Ten dawny układ został wycofany" }),
   ).toBeVisible();
-  await k(page).getByRole("button", { name: "Powiększ rysunek" }).click();
-  await expect(k(page).getByRole("dialog")).toBeVisible();
-  await page.keyboard.press("Escape");
   await expect(
-    k(page).getByRole("button", { name: "Powiększ rysunek" }),
-  ).toBeFocused();
-  await k(page)
-    .getByRole("button", { name: "Wykonaj: Wciśnij STOP", exact: true })
-    .click();
-  await expect(output).toContainText("mechanizm OFF");
-  await k(page)
-    .getByRole("button", { name: "Reset przykładu", exact: true })
-    .click();
+    k(page).getByRole("button", { name: "Otwórz kopię w pracowni" }),
+  ).toHaveCount(0);
   expect(await documents(page)).toEqual(before);
   await k(page)
-    .getByRole("button", { name: "Otwórz kopię w pracowni", exact: true })
+    .getByRole("link", { name: "Przejdź do aktualnych układów" })
     .click();
-  await expect(k(page)).toHaveCount(0);
   await expect(
-    page.getByText("Zapisano lokalnie", { exact: true }),
-  ).toBeVisible();
-  const after = await documents(page);
-  expect(after).toHaveLength(before.length + 1);
-  for (const doc of before) expect(after).toContainEqual(doc);
+    k(page).locator('[aria-label="Gotowe wzorce"] .knowledge-card'),
+  ).toHaveCount(1);
 });
-test("lekcja węzłów: tabela wskazuje fizyczną żyłę, a solver zasila obie gałęzie lamp", async ({
+test("101: równoległe oprawy i tabela wskazują rzeczywistą żyłę w obu widokach", async ({
   page,
 }) => {
-  await page.goto("./#knowledge/lesson/wezel-i-skrzyzowanie");
+  const before = await documents(page);
+  await page.goto("./#/wiedza/uklady/ele02-101");
+  await k(page).getByRole("button", { name: "Śledź W27", exact: true }).click();
   await expect(
-    k(page).getByRole("heading", { name: "Węzeł i skrzyżowanie", exact: true }),
-  ).toBeVisible();
-  await k(page)
-    .getByRole("button", { name: "Wskaż XL2:3 do H2:L", exact: true })
-    .click();
-  await expect(k(page).locator(".knowledge-highlight")).toContainText(
-    "XL2:3 ↔ H2:L",
+    k(page).locator('.reference-connections tr[aria-selected="true"]'),
+  ).toContainText("OP2:L");
+  await expect(k(page).locator(".physical path[stroke='#b05a10']")).toHaveCount(
+    1,
   );
   await k(page)
-    .getByRole("button", { name: "Wykonaj: Załącz zasilanie", exact: true })
+    .getByRole("button", { name: "Załącz energię lekcji", exact: true })
     .click();
+  await expect(k(page).getByText(/OP1: świeci · OP2: świeci/)).toBeVisible();
   await k(page)
-    .getByRole("button", { name: "Wykonaj: Zamknij S1", exact: true })
+    .getByRole("button", { name: "Przełącz Q1 w lekcji", exact: true })
     .click();
-  const lamps = k(page)
-    .getByTestId("knowledge-readouts")
-    .locator("p")
-    .filter({ hasText: /H[12]/ });
-  await expect(lamps).toHaveCount(2);
-  for (const lamp of await lamps.all())
-    await expect(lamp).toContainText("odbiornik ON");
+  await expect(
+    k(page).getByText(/OP1: zgaszona · OP2: zgaszona.*H2: świeci/),
+  ).toBeVisible();
+  await k(page)
+    .getByRole("button", { name: "Reset lekcji", exact: true })
+    .click();
+  expect(await documents(page)).toEqual(before);
 });
 test("pomoc kontekstowa z osobnego bloku, powrót do zaznaczenia i kadru", async ({
   page,
 }) => {
-  await page.getByRole("button", { name: "Ćwiczenia", exact: true }).click();
-  await page
-    .getByLabel("Nowe zestawy ELE.02 / ELE.05 — tryb")
-    .selectOption("reference");
-  await page.locator('[data-scenario="exam-start-stop"]').click();
+  await importLegacy(page, "exam-start-stop", true);
   await expect(
     page.getByRole("button", {
       name: "Pokaż lub ukryj inspektor",
@@ -210,11 +175,7 @@ test("usunięcie aparatu w drugiej karcie unieważnia kontekst po odświeżeniu"
   page,
   context,
 }) => {
-  await page.getByRole("button", { name: "Ćwiczenia", exact: true }).click();
-  await page
-    .getByLabel("Nowe zestawy ELE.02 / ELE.05 — tryb")
-    .selectOption("reference");
-  await page.locator('[data-scenario="exam-start-stop"]').click();
+  await importLegacy(page, "exam-start-stop", true);
   await page
     .getByTestId("board-physical")
     .locator('[data-device="K1"]')
@@ -257,30 +218,83 @@ test("usunięcie aparatu w drugiej karcie unieważnia kontekst po odświeżeniu"
     await other.close();
   }
 });
-test("wąski ekran i 1366×768: czytelne widoki bez przepełnienia oraz przykład bez modelu", async ({
+test("wąski ekran i 1366×768: aktualna lekcja oraz teoria aparatu bez starej demonstracji", async ({
   page,
-}) => {
+}, info) => {
   await page.goto("./#knowledge/article/przekaznik");
   await expect(
-    k(page).getByText(/Brak przygotowanego interaktywnego przykładu/),
+    k(page).getByRole("link", {
+      name: "Sprawdzone wzorce i lekcje połączeń →",
+    }),
   ).toBeVisible();
-  await page.goto("./#knowledge/circuit/start-stop");
-  await expect(k(page).locator(".knowledge-views")).toBeVisible();
-  await k(page)
-    .locator(".knowledge-views")
-    .evaluate((e) => e.scrollIntoView({ block: "center" }));
-  await page.screenshot({ path: "docs/qa/knowledge-1366.png" });
+  await expect(k(page).locator(".knowledge-demo")).toHaveCount(0);
+  await page.goto("./#/wiedza/uklady/ele02-101");
+  await expect(k(page).locator(".reference-lesson")).toBeVisible();
+  await page.screenshot({ path: info.outputPath("knowledge-1366.png") });
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(
-    k(page).getByRole("button", { name: "Tablica fizyczna", exact: true }),
+    k(page).getByLabel("Powiększenie rysunków modelu"),
   ).toBeVisible();
-  await k(page)
-    .getByRole("button", { name: "Tablica fizyczna", exact: true })
-    .click();
-  await expect(k(page).locator(".knowledge-physical")).toBeVisible();
-  await expect(k(page).locator(".knowledge-functional")).toBeHidden();
+  await k(page).getByLabel("Powiększenie rysunków modelu").selectOption("2");
   expect(
     await k(page).evaluate((e) => e.scrollWidth <= e.clientWidth + 1),
   ).toBe(true);
-  await page.screenshot({ path: "docs/qa/knowledge-mobile.png" });
+  await page.screenshot({ path: info.outputPath("knowledge-mobile.png") });
+});
+test("porządek aplikacji: pusty start i wyłącznie 17 obecnych arkuszy we wszystkich wejściach", async ({
+  page,
+}) => {
+  await expect(
+    page.getByTestId("board-physical").locator("[data-device]"),
+  ).toHaveCount(0);
+  const scope = [
+    "101",
+    "103",
+    "104",
+    "105",
+    "106",
+    "107",
+    "108",
+    "109",
+    "110",
+    "112",
+    "113",
+    "114",
+    "115",
+    "116",
+    "117",
+    "L01",
+    "L02",
+  ].map((code) => `ELE.02-${code}`);
+  for (const entry of ["Przykłady", "Ćwiczenia"]) {
+    await page.getByRole("button", { name: entry, exact: true }).click();
+    const dialog = page.getByRole("dialog");
+    expect(
+      await dialog
+        .locator("[data-exam-task]")
+        .evaluateAll((cards) =>
+          cards.map((card) => card.getAttribute("data-exam-task")),
+        ),
+    ).toEqual(scope);
+    await expect(dialog.locator("[data-scenario]")).toHaveCount(0);
+    await expect(
+      dialog.getByRole("button", { name: /^Otwórz kopię ELE/ }),
+    ).toHaveCount(1);
+    await expect(dialog.getByText(/wzorzec w przygotowaniu/)).toHaveCount(16);
+    await dialog.getByRole("button", { name: "Zamknij", exact: true }).click();
+  }
+  await page.locator(".project-title").click();
+  await page
+    .getByRole("button", { name: "Kopiuj przykład", exact: true })
+    .click();
+  const choices = page
+    .getByLabel("Przykład", { exact: true })
+    .locator("option");
+  await expect(choices).toHaveCount(1);
+  await expect(choices).toHaveAttribute("value", "ele02-101");
+  await page.getByRole("button", { name: "Anuluj", exact: true }).click();
+  await page.getByRole("button", { name: "Zamknij", exact: true }).click();
+  await page.getByRole("button", { name: "Baza wiedzy", exact: true }).click();
+  await expect(k(page).locator(".exam-task-card")).toHaveCount(17);
+  await expect(k(page).locator(".knowledge-demo")).toHaveCount(0);
 });

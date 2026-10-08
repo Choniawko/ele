@@ -43,7 +43,7 @@ describe("source knowledge / stage 00a", () => {
     expect(examArticles).toHaveLength(25);
     expect(examComponents).toHaveLength(60);
     expect(validateExamKnowledge()).toEqual([]);
-    expect(readyTaskCount()).toBe(0);
+    expect(readyTaskCount()).toBe(1);
     expect(examTaskBySlug("ele02-999")).toBeUndefined();
     expect(examTaskBySlug("ele02-l01")?.code).toBe("L01");
     for (const c of examComponents) {
@@ -100,6 +100,7 @@ describe("source knowledge / stage 00a", () => {
   it("never promotes supplied content or a partial gate set to a ready circuit", () => {
     const ref = structuredClone(examAvailability[0]);
     ref.status = "model-tested";
+    ref.gates.R10 = "pending";
     expect(referenceIsReady(ref)).toBe(false);
     expect(
       validateExamKnowledge(examTasks, [ref, ...examAvailability.slice(1)]),

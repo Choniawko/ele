@@ -62,8 +62,9 @@ add("K1", "schneider-lc1d09p7", 410, 570);
 add("K2", "schneider-lc1d09p7", 520, 570);
 add("S1", "edu-start-stop-din", 635, 570);
 add("S2", "edu-push-no-din", 725, 570);
-add("S3", "edu-start-stop-panel", 880, 540);
-add("S4", "edu-push-no-panel", 980, 540);
+// Leave a clear wiring gutter above ZS.RES2 for the local 2–3/3–3 connections.
+add("S3", "edu-start-stop-panel", 880, 508);
+add("S4", "edu-push-no-panel", 980, 508);
 add("ZS.RES2", "edu-rail-terminal", 880, 745);
 p.circuit.supplySystems = [{ id: "supply-PZ", kind: "TN-S", sourceId: "PZ" }];
 p.circuit.mechanicalCouplings = [

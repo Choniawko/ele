@@ -96,8 +96,13 @@
         "tests/reference-examples.test.ts",
         "tests/reference-navigation.test.tsx",
         "tests/reference-copy.test.ts",
+        "tests/wire-routing.test.ts",
         "tests/e2e/reference-examples.spec.ts",
-        "pnpm test: 292 passed; production acceptance pending"
+        "pnpm test: 295 passed",
+        "draft production 2b02a7c: 4 passed, 1 deliberately skipped",
+        "dev full scope: 57 passed, 1 outdated navigation selector fixed and rerun passed, 1 local fixture skipped",
+        "dev targeted native 108 geometry and source navigation: 2 passed",
+        "final production dist and checkpoint pending"
       ]
     },
     "01b": {
@@ -243,7 +248,7 @@
   },
   "tasks": {
     "ELE.02-101": {
-      "referenceStatus": "draft",
+      "referenceStatus": "model-tested",
       "fidelity": "educational",
       "referenceRevision": "1",
       "sourceStatusAtBaseline": "existing-repo-example-validated",
@@ -254,12 +259,15 @@
         "R4": "passed",
         "R5": "passed",
         "R6": "passed",
-        "R7": "pending",
+        "R7": "passed",
         "R8": "passed",
-        "R9": "pending",
-        "R10": "pending"
+        "R9": "passed",
+        "R10": "passed"
       },
-      "evidence": []
+      "evidence": [
+        "docs/ele-exams/QA_01.md",
+        "docs/ele-exams/qa/101-source-check-results.json"
+      ]
     },
     "ELE.02-103": {
       "referenceStatus": "content-only",

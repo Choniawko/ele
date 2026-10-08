@@ -91,3 +91,13 @@ it("R8: failed prior save prevents replacement and preserves active session", as
   expect(useApp.getState().runtime).toBe(before.runtime);
   await expect(openReferenceCopy("unknown")).rejects.toThrow("pełnego odbioru");
 });
+it("does not grade an exam reference with the retired generic exercise checker", () => {
+  const before = useApp.getState();
+  before.runChecks();
+  expect(useApp.getState().checks).toEqual([]);
+  expect(useApp.getState().notice).toContain(
+    "nie ma automatycznej oceny montażu",
+  );
+  expect(useApp.getState().project).toBe(before.project);
+  expect(useApp.getState().runtime).toBe(before.runtime);
+});

@@ -73,25 +73,34 @@ test("folder, kopia przykładu, podgląd bez zmiany, autosave i pomiary po odśw
   watchErrors(page);
   await page.goto("./");
   await saved(page);
+  const earlier = await rows(page);
   await library(page);
   await folder(page, "Projekty do egzaminu");
   await page
     .getByRole("button", { name: "Kopiuj przykład", exact: true })
     .click();
   await page.getByLabel("Nazwa nowego projektu").fill("Moja lampa");
-  await page.getByLabel("Przykład", { exact: true }).selectOption("lamp");
+  await page.getByLabel("Przykład", { exact: true }).selectOption("ele02-101");
   await page.getByRole("button", { name: "Zapisz", exact: true }).click();
   await expect(page.getByRole("dialog")).toHaveCount(0);
   await saved(page);
   const original = (await rows(page)).find((r) => r.name === "Moja lampa")!;
   expect(original.folderId).toBeTruthy();
-  expect((await rows(page)).some((r) => r.name === "Lampa i łącznik")).toBe(
-    true,
-  );
+  for (const row of earlier) {
+    const retained = (await rows(page)).find((r) => r.id === row.id)!;
+    // Opening the library flushes the last save timestamp. All user data remains.
+    const { updatedAt: oldTime, ...oldData } = row;
+    const { updatedAt: newTime, ...newData } = retained;
+    expect(newTime >= oldTime).toBe(true);
+    expect(newData).toEqual(oldData);
+  }
   await page.getByLabel("Tryb pracy").selectOption("measure");
   await page.getByLabel("Funkcja miernika").selectOption("continuity");
   await page.getByRole("button", { name: /SONDA CZERWONA/ }).click();
-  for (const ref of ["G1:PE", "H1:PE"])
+  await page
+    .getByRole("button", { name: "Widok połączeń", exact: true })
+    .click();
+  for (const ref of ["PZ:PE", "OP1:PE"])
     await page
       .getByTestId("board-physical")
       .locator(`[data-terminal="${ref}"] circle`)

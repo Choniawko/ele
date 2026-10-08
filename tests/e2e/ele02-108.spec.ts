@@ -1,5 +1,6 @@
 import { test, expect, type Page } from "@playwright/test";
 import { readFile } from "node:fs/promises";
+import { wireGeometry } from "./wire-geometry";
 const text = await readFile(
   "examples/physical/ELE02_108_stanowisko.json",
   "utf8",
@@ -139,6 +140,10 @@ test("ELE.02-108: import, niezależne START/STOP, Q2, dwa kierunki i zapis", asy
   await expect(board(page).locator('[data-terminal="Q2:1"]')).toBeVisible();
   await expect(board(page).locator('[data-terminal="S3:1"]')).toBeVisible();
   await expect(board(page).locator('[data-terminal="S3:3"]')).toBeVisible();
+  const geometry = await wireGeometry(page, JSON.parse(text));
+  expect(geometry.checked).toBe(37);
+  expect(geometry.detached).toEqual([]);
+  expect(geometry.intrusions).toEqual([]);
   await page.screenshot({ path: info.outputPath("ele108-connections.png") });
   await expect(page.locator(".save-state")).toHaveText("Zapisano lokalnie");
   await page.reload();

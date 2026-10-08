@@ -1,6 +1,6 @@
 # ELE.02 — wdrażanie kolejnych wzorców
 
-Aktualny stan jest w [implementation-state.json](implementation-state.json), a dowody jednostki 00a w [QA_00.md](QA_00.md). Kolejna jednostka: **01a**, integracja istniejącego ELE.02-101 według [etapu 01](plan/etapy/01_wzorce_101_108.md) i [kontraktu 101](plan/zadania/ELE02_101.md).
+Aktualny stan jest w [implementation-state.json](implementation-state.json); dowody w [QA_00.md](QA_00.md) i [QA_01.md](QA_01.md). Jednostka 01a integruje istniejący ELE.02-101; galeria obejmuje tylko obecne arkusze. Kolejna jednostka: **01b**, integracja ELE.02-108 według [etapu 01](plan/etapy/01_wzorce_101_108.md) i [kontraktu 108](plan/zadania/ELE02_108.md).
 
 Instrukcje w `plan/` pochodzą z przekazanej paczki z 8 października 2026. Opisują cel 17 wzorców oraz historyczny stan wejściowy, a nie bieżące wyniki wdrożenia. Przy kontynuacji przeczytaj wymagania wspólne, kontrakty danych, kryteria BA/UX/QA i aktualny checkpoint; zachowaj nowsze zmiany repo.
 

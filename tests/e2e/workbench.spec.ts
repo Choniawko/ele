@@ -1,13 +1,7 @@
+import { importLegacy, importLegacyTitle } from "./legacy-project";
 import { test, expect, type Page, type Locator } from "@playwright/test";
 async function example(page: Page, title: string, training = false) {
-  await page
-    .getByRole("button", {
-      name: training ? "Ćwiczenia" : "Przykłady",
-      exact: true,
-    })
-    .click();
-  await page.getByRole("button", { name: new RegExp(title) }).click();
-  await expect(page.getByRole("dialog")).toHaveCount(0);
+  await importLegacyTitle(page, title, training);
 }
 const terminal = (page: Page, name: string) =>
   page
@@ -59,6 +53,7 @@ test.beforeEach(async ({ page }) => {
   await expect(
     page.getByText("Zapisano lokalnie", { exact: true }),
   ).toBeVisible();
+  await importLegacy(page, "lamp");
 });
 test("lampa świeci i grzałka żarzy się tylko przy zamkniętym obwodzie", async ({
   page,
