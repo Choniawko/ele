@@ -16,6 +16,7 @@ export interface DeviceProps {
   wireStart?: string;
   highlighted?: string[];
   onTerminal?: (ref: TerminalRef) => void;
+  onExplainSymbol?: (fragmentId: string) => void;
   onOperate?: (state?: boolean, actuator?: "start" | "stop") => void;
   onSetCurrent?: (currentA: number) => void;
   onRcdTest?: () => void;
@@ -1503,6 +1504,7 @@ export function DeviceSchematic({
   selected,
   showTerminals = true,
   onTerminal,
+  onExplainSymbol,
   red,
   black,
   highlighted,
@@ -1564,6 +1566,42 @@ export function DeviceSchematic({
           cn.condition === "healthy";
         return (
           <g key={cn.id}>
+            {onExplainSymbol && (
+              <g
+                role="button"
+                tabIndex={0}
+                aria-label={`Wyjaśnij symbol ${d.designation} ${cn.from}–${cn.to}`}
+                onPointerDown={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onExplainSymbol(cn.id);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    onExplainSymbol(cn.id);
+                  }
+                }}
+              >
+                <circle
+                  cx={154}
+                  cy={y - 16}
+                  r={7}
+                  fill="white"
+                  stroke="#557350"
+                />
+                <text
+                  x={154}
+                  y={y - 13}
+                  textAnchor="middle"
+                  fontSize={10}
+                  fill="#3e5040"
+                >
+                  ?
+                </text>
+              </g>
+            )}
             <path
               d={`M16 ${y}H61m38 0h45`}
               fill="none"

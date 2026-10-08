@@ -3344,4 +3344,79 @@ h3 {
   margin: 12px auto;
 }
 
-.distribution-drop-preview { z-index: 2; }
+.distribution-drop-preview {
+  z-index: 2;
+}
+.product-knowledge {
+  align-self: center;
+  background: transparent;
+  color: #557350;
+  border: 0;
+  padding: 8px;
+  cursor: pointer;
+}
+.terminal-help-row {
+  display: flex;
+  gap: 5px;
+  align-items: stretch;
+}
+.terminal-help-row > button:first-child {
+  flex: 1;
+  min-width: 0;
+}
+.terminal-list .terminal-explain {
+  width: 32px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+.device-knowledge-help {
+  padding: 10px 0;
+}
+.device-knowledge-help button,
+.symbol-help button {
+  border: 1px solid #bdcdb3;
+  background: #f4f7ed;
+  border-radius: 5px;
+  padding: 7px;
+  cursor: pointer;
+}
+.symbol-help {
+  margin: 15px 0;
+}
+.symbol-help summary {
+  cursor: pointer;
+}
+.symbol-help button {
+  display: block;
+  margin-top: 6px;
+  width: 100%;
+  text-align: left;
+}
+
+.knowledge-board-hint {
+  position: absolute;
+  bottom: 44px;
+  left: 20px;
+  right: 20px;
+  width: fit-content;
+  max-width: calc(100% - 40px);
+  z-index: 8;
+  background: #fff3da;
+  border: 1px solid #b47820;
+  border-radius: 7px;
+  padding: 8px 12px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.knowledge-board-hint button {
+  background: white;
+  border: 1px solid #c6a365;
+  border-radius: 5px;
+  padding: 5px 9px;
+  cursor: pointer;
+}

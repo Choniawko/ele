@@ -1,3 +1,7 @@
+import { createPortal } from "react-dom";
+import { Knowledge } from "./Knowledge";
+import { openKnowledge, useKnowledgeRoute } from "./knowledge-navigation";
+import { resolveKnowledge } from "../../../packages/knowledge/bindings";
 import { motorConnection } from "@simulation/motor";
 import { mechanismOwner } from "@simulation/mechanisms";
 import type { ExerciseVariant } from "@training/index";
@@ -267,6 +271,15 @@ const CatalogPanel = memo(function CatalogPanel({
                   <CircleHelp size={16} />
                 )}
               </button>
+              {resolveKnowledge(p.id) && (
+                <button
+                  className="product-knowledge"
+                  aria-label={`Poznaj ${p.manufacturerPartNumber || p.displayNamePl}`}
+                  onClick={() => void openKnowledge(p.id)}
+                >
+                  <BookOpen size={14} />
+                </button>
+              )}
               <button
                 className="product-info"
                 onClick={() => onProduct(p)}
@@ -700,6 +713,17 @@ function Inspector() {
               <p>{product.displayNamePl}</p>
             </div>
           </div>
+          {resolveKnowledge(product.id) && (
+            <div className="device-knowledge-help">
+              <p className="small-help">
+                Poznaj działanie, symbole i mapę zacisków. Rola aparatu zależy
+                od połączeń Twojego projektu.
+              </p>
+              <button onClick={() => void openKnowledge(product.id, d.id)}>
+                Poznaj aparat
+              </button>
+            </div>
+          )}
           <div className="device-state">
             <span
               className={
@@ -859,29 +883,61 @@ function Inspector() {
               </p>
               <div className="terminal-list">
                 {product.topology.terminals.map((t) => (
-                  <button
-                    key={t.id}
-                    onClick={() =>
-                      useApp
-                        .getState()
-                        .terminalClick({ deviceId: d.id, terminalId: t.id })
-                    }
-                  >
-                    <span className="terminal-number">{t.label}</span>
-                    <span>
-                      {t.role}
-                      <small>
-                        {t.maxConductors
-                          ? t.maxConductors === 1
-                            ? "1 miejsce na przewód"
-                            : `${t.maxConductors} miejsca (profil)`
-                          : "Punkt pomiarowy"}
-                      </small>
-                    </span>
-                    <Plus size={14} />
-                  </button>
+                  <div className="terminal-help-row" key={t.id}>
+                    <button
+                      onClick={() =>
+                        useApp
+                          .getState()
+                          .terminalClick({ deviceId: d.id, terminalId: t.id })
+                      }
+                    >
+                      <span className="terminal-number">{t.label}</span>
+                      <span>
+                        {t.role}
+                        <small>
+                          {t.maxConductors
+                            ? t.maxConductors === 1
+                              ? "1 miejsce na przewód"
+                              : `${t.maxConductors} miejsca (profil)`
+                            : "Punkt pomiarowy"}
+                        </small>
+                      </span>
+                      <Plus size={14} />
+                    </button>
+                    {resolveKnowledge(product.id, t.id) && (
+                      <button
+                        className="terminal-explain"
+                        aria-label={`Wyjaśnij zacisk ${d.designation}:${t.id}`}
+                        onClick={() =>
+                          void openKnowledge(product.id, d.id, t.id)
+                        }
+                      >
+                        <CircleHelp size={15} />
+                      </button>
+                    )}
+                  </div>
                 ))}
               </div>
+              {resolveKnowledge(product.id) && (
+                <details className="symbol-help">
+                  <summary>Wyjaśnij symbol</summary>
+                  {product.topology.connections.map((c) => (
+                    <button
+                      key={c.id}
+                      onClick={() =>
+                        void openKnowledge(product.id, d.id, undefined, c.id)
+                      }
+                    >
+                      {c.kind === "coil"
+                        ? "Cewka"
+                        : c.kind === "contact"
+                          ? "Styk"
+                          : "Fragment"}{" "}
+                      {c.from}–{c.to}
+                    </button>
+                  ))}
+                </details>
+              )}
             </>
           )}
           {tab === "data" && (
@@ -1531,6 +1587,7 @@ function readLayoutPreference(key: string, fallback: boolean): boolean {
   }
 }
 function App() {
+  const knowledgeRoute = useKnowledgeRoute();
   const project = useApp((s) => s.project),
     rt = useApp((s) => s.runtime),
     mode = useApp((s) => s.mode),
@@ -1605,13 +1662,19 @@ function App() {
   useEffect(() => {
     const id = setInterval(() => {
       const s = useApp.getState();
-      if (!s.paused && !s.busy && s.runtime.status === "valid")
+      if (
+        !location.hash.startsWith("#knowledge") &&
+        !s.paused &&
+        !s.busy &&
+        s.runtime.status === "valid"
+      )
         s.step(200 * s.speed);
     }, 200);
     return () => clearInterval(id);
   }, []);
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
+      if (location.hash.startsWith("#knowledge")) return;
       if ((e.target as HTMLElement)?.closest("input,textarea,select,dialog"))
         return;
       const s = useApp.getState();
@@ -1673,7 +1736,12 @@ function App() {
   const scenario = scenarios.find((s) => s.id === project.scenarioId),
     passed = project.training?.completedChecks.length ?? 0;
   return (
-    <div className={`app-shell ${focusBoard ? "board-focused" : ""}`}>
+    <div
+      inert={!!knowledgeRoute}
+      aria-hidden={knowledgeRoute ? true : undefined}
+      style={knowledgeRoute ? { visibility: "hidden" } : undefined}
+      className={`app-shell ${focusBoard ? "board-focused" : ""}`}
+    >
       <header className="app-header">
         <a
           className="brand"
@@ -1717,6 +1785,9 @@ function App() {
                 : "Zapisywanie…"}
         </span>
         <nav className="header-nav">
+          <button data-knowledge-nav onClick={() => void openKnowledge()}>
+            <BookOpen size={16} /> Baza wiedzy
+          </button>
           <button onClick={() => setModal("examples")}>
             <LayoutGrid size={16} />
             Przykłady
@@ -1994,7 +2065,9 @@ function App() {
                       key={role}
                       className={wireRole === role ? "selected" : ""}
                       style={
-                        { "--wire-color": colors[role] } as React.CSSProperties
+                        {
+                          "--wire-color": colors[role],
+                        } as React.CSSProperties
                       }
                       onClick={() => useApp.getState().setWireOptions({ role })}
                     >
@@ -2601,6 +2674,8 @@ function App() {
           </tbody>
         </table>
       </div>
+      {knowledgeRoute &&
+        createPortal(<Knowledge route={knowledgeRoute} />, document.body)}
     </div>
   );
 }

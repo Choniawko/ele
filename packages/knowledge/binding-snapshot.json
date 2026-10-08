@@ -1,0 +1,1623 @@
+[
+  {
+    "productId": "hager-mbn116e",
+    "productRevision": "verified-1",
+    "topologyRevision": "1",
+    "articleId": "mcb",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: Zacisk górny. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: Zacisk dolny. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "pole1": {
+        "sectionId": "reference",
+        "explanation": "1–2: styk: zamykany operatorem. Mapa katalogowa produktu.",
+        "terminalIds": ["1", "2"]
+      }
+    }
+  },
+  {
+    "productId": "schneider-lc1d09p7",
+    "productRevision": "verified-20261005-1",
+    "topologyRevision": "1",
+    "articleId": "stycznik",
+    "terminals": {
+      "13": {
+        "sectionId": "terminals",
+        "explanation": "13: NO. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "14": {
+        "sectionId": "terminals",
+        "explanation": "14: NO. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "21": {
+        "sectionId": "terminals",
+        "explanation": "21: NC. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "22": {
+        "sectionId": "terminals",
+        "explanation": "22: NC. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "1L1": {
+        "sectionId": "terminals",
+        "explanation": "1L1: 1/L1. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "3L2": {
+        "sectionId": "terminals",
+        "explanation": "3L2: 3/L2. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "5L3": {
+        "sectionId": "terminals",
+        "explanation": "5L3: 5/L3. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "2T1": {
+        "sectionId": "terminals",
+        "explanation": "2T1: 2/T1. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "4T2": {
+        "sectionId": "terminals",
+        "explanation": "4T2: 4/T2. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "6T3": {
+        "sectionId": "terminals",
+        "explanation": "6T3: 6/T3. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "A1": {
+        "sectionId": "terminals",
+        "explanation": "A1: Cewka 230 V AC. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "A2": {
+        "sectionId": "terminals",
+        "explanation": "A2: Cewka 230 V AC. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "coil": {
+        "sectionId": "operation",
+        "explanation": "A1–A2: cewka. Mapa katalogowa produktu.",
+        "terminalIds": ["A1", "A2"]
+      },
+      "pole1": {
+        "sectionId": "reference",
+        "explanation": "1L1–2T1: styk: NO zamykany mechanizmem. Mapa katalogowa produktu.",
+        "terminalIds": ["1L1", "2T1"]
+      },
+      "pole2": {
+        "sectionId": "reference",
+        "explanation": "3L2–4T2: styk: NO zamykany mechanizmem. Mapa katalogowa produktu.",
+        "terminalIds": ["3L2", "4T2"]
+      },
+      "pole3": {
+        "sectionId": "reference",
+        "explanation": "5L3–6T3: styk: NO zamykany mechanizmem. Mapa katalogowa produktu.",
+        "terminalIds": ["5L3", "6T3"]
+      },
+      "auxNO": {
+        "sectionId": "reference",
+        "explanation": "13–14: styk: NO zamykany mechanizmem. Mapa katalogowa produktu.",
+        "terminalIds": ["13", "14"]
+      },
+      "auxNC": {
+        "sectionId": "reference",
+        "explanation": "21–22: styk: NC rozwierany mechanizmem. Mapa katalogowa produktu.",
+        "terminalIds": ["21", "22"]
+      }
+    }
+  },
+  {
+    "productId": "meanwell-hdr60-24",
+    "productRevision": "verified-1",
+    "topologyRevision": "1",
+    "articleId": "zasilacze",
+    "terminals": {
+      "L": {
+        "sectionId": "terminals",
+        "explanation": "L: Wejście AC L · pin 5. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "N": {
+        "sectionId": "terminals",
+        "explanation": "N: Wejście AC N · pin 6. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "-V1": {
+        "sectionId": "terminals",
+        "explanation": "-V1: Wyjście −V · pin 1. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "-V2": {
+        "sectionId": "terminals",
+        "explanation": "-V2: Wyjście −V · pin 2. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "+V1": {
+        "sectionId": "terminals",
+        "explanation": "+V1: Wyjście +V · pin 3. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "+V2": {
+        "sectionId": "terminals",
+        "explanation": "+V2: Wyjście +V · pin 4. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "input": {
+        "sectionId": "reference",
+        "explanation": "L–N: blok elektroniki. Mapa katalogowa produktu.",
+        "terminalIds": ["L", "N"]
+      },
+      "minus": {
+        "sectionId": "reference",
+        "explanation": "-V1–-V2: połączenie stałe. Mapa katalogowa produktu.",
+        "terminalIds": ["-V1", "-V2"]
+      },
+      "plus": {
+        "sectionId": "reference",
+        "explanation": "+V1–+V2: połączenie stałe. Mapa katalogowa produktu.",
+        "terminalIds": ["+V1", "+V2"]
+      }
+    }
+  },
+  {
+    "productId": "schneider-xb5aa35",
+    "productRevision": "verified-20261005-1",
+    "topologyRevision": "1",
+    "articleId": "laczniki",
+    "terminals": {
+      "13": {
+        "sectionId": "terminals",
+        "explanation": "3 · 13: NO · nadruk bloku / pełny numer ISO. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "14": {
+        "sectionId": "terminals",
+        "explanation": "4 · 14: NO · nadruk bloku / pełny numer ISO. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "21": {
+        "sectionId": "terminals",
+        "explanation": "1 · 21: NC · nadruk bloku / pełny numer ISO. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      },
+      "22": {
+        "sectionId": "terminals",
+        "explanation": "2 · 22: NC · nadruk bloku / pełny numer ISO. Mapa konkretnego produktu w katalogu. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "no": {
+        "sectionId": "reference",
+        "explanation": "13–14: styk: zamykany operatorem. Mapa katalogowa produktu.",
+        "terminalIds": ["13", "14"]
+      },
+      "nc": {
+        "sectionId": "reference",
+        "explanation": "21–22: styk: NC rozwierany operatorem. Mapa katalogowa produktu.",
+        "terminalIds": ["21", "22"]
+      }
+    }
+  },
+  {
+    "productId": "edu-source-ac",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "zasilacze",
+    "terminals": {
+      "L": {
+        "sectionId": "terminals",
+        "explanation": "L: Faza L. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "N": {
+        "sectionId": "terminals",
+        "explanation": "N: Neutralny N. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "PE": {
+        "sectionId": "terminals",
+        "explanation": "PE: Ochronny PE. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "bond": {
+        "sectionId": "reference",
+        "explanation": "N–PE: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["N", "PE"]
+      }
+    }
+  },
+  {
+    "productId": "edu-source-dc",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "zasilacze",
+    "terminals": {
+      "+": {
+        "sectionId": "terminals",
+        "explanation": "+: Plus. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "-": {
+        "sectionId": "terminals",
+        "explanation": "-: Minus izolowany. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {}
+  },
+  {
+    "productId": "edu-source-3ph",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "zasilacze",
+    "terminals": {
+      "L1": {
+        "sectionId": "terminals",
+        "explanation": "L1: Faza 1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "L2": {
+        "sectionId": "terminals",
+        "explanation": "L2: Faza 2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "L3": {
+        "sectionId": "terminals",
+        "explanation": "L3: Faza 3. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "N": {
+        "sectionId": "terminals",
+        "explanation": "N: Neutralny. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "PE": {
+        "sectionId": "terminals",
+        "explanation": "PE: Ochronny. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "bond": {
+        "sectionId": "reference",
+        "explanation": "N–PE: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["N", "PE"]
+      }
+    }
+  },
+  {
+    "productId": "edu-switch",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "laczniki",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: Styk wejściowy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: Styk wyjściowy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "pole1": {
+        "sectionId": "reference",
+        "explanation": "1–2: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      }
+    }
+  },
+  {
+    "productId": "edu-changeover",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "laczniki",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: Tor 1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: Tor 2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "COM": {
+        "sectionId": "terminals",
+        "explanation": "COM: Wspólny. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "route1": {
+        "sectionId": "reference",
+        "explanation": "COM–1: styk: NC rozwierany operatorem. Model dydaktyczny.",
+        "terminalIds": ["COM", "1"]
+      },
+      "route2": {
+        "sectionId": "reference",
+        "explanation": "COM–2: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["COM", "2"]
+      }
+    }
+  },
+  {
+    "productId": "edu-crossover",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "laczniki",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: Tor wejścia 1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: Tor wejścia 2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: Tor wyjścia 1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "4": {
+        "sectionId": "terminals",
+        "explanation": "4: Tor wyjścia 2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "straight1": {
+        "sectionId": "reference",
+        "explanation": "1–3: styk: NC rozwierany operatorem. Model dydaktyczny.",
+        "terminalIds": ["1", "3"]
+      },
+      "straight2": {
+        "sectionId": "reference",
+        "explanation": "2–4: styk: NC rozwierany operatorem. Model dydaktyczny.",
+        "terminalIds": ["2", "4"]
+      },
+      "cross1": {
+        "sectionId": "reference",
+        "explanation": "1–4: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["1", "4"]
+      },
+      "cross2": {
+        "sectionId": "reference",
+        "explanation": "2–3: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["2", "3"]
+      }
+    }
+  },
+  {
+    "productId": "edu-start",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "laczniki",
+    "terminals": {
+      "13": {
+        "sectionId": "terminals",
+        "explanation": "13: NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "14": {
+        "sectionId": "terminals",
+        "explanation": "14: NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "NO": {
+        "sectionId": "reference",
+        "explanation": "13–14: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["13", "14"]
+      }
+    }
+  },
+  {
+    "productId": "edu-stop",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "laczniki",
+    "terminals": {
+      "21": {
+        "sectionId": "terminals",
+        "explanation": "21: NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "22": {
+        "sectionId": "terminals",
+        "explanation": "22: NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "NC": {
+        "sectionId": "reference",
+        "explanation": "21–22: styk: NC rozwierany operatorem. Model dydaktyczny.",
+        "terminalIds": ["21", "22"]
+      }
+    }
+  },
+  {
+    "productId": "edu-rcd",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "rcd",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: Faza wejściowa. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: Faza wyjściowa. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "N-in": {
+        "sectionId": "terminals",
+        "explanation": "N-in: Neutralny wejściowy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "N-out": {
+        "sectionId": "terminals",
+        "explanation": "N-out: Neutralny wyjściowy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "pole1": {
+        "sectionId": "reference",
+        "explanation": "1–2: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      },
+      "poleN": {
+        "sectionId": "reference",
+        "explanation": "N-in–N-out: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["N-in", "N-out"]
+      }
+    }
+  },
+  {
+    "productId": "edu-rcbo",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "rcd",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: Faza wejściowa. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: Faza wyjściowa. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "N-in": {
+        "sectionId": "terminals",
+        "explanation": "N-in: Neutralny wejściowy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "N-out": {
+        "sectionId": "terminals",
+        "explanation": "N-out: Neutralny wyjściowy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "pole1": {
+        "sectionId": "reference",
+        "explanation": "1–2: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      },
+      "poleN": {
+        "sectionId": "reference",
+        "explanation": "N-in–N-out: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["N-in", "N-out"]
+      }
+    }
+  },
+  {
+    "productId": "edu-mcb3",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "mcb",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: L1 in. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: L1 out. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: L2 in. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "4": {
+        "sectionId": "terminals",
+        "explanation": "4: L2 out. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "5": {
+        "sectionId": "terminals",
+        "explanation": "5: L3 in. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "6": {
+        "sectionId": "terminals",
+        "explanation": "6: L3 out. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "pole1": {
+        "sectionId": "reference",
+        "explanation": "1–2: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      },
+      "pole2": {
+        "sectionId": "reference",
+        "explanation": "3–4: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["3", "4"]
+      },
+      "pole3": {
+        "sectionId": "reference",
+        "explanation": "5–6: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["5", "6"]
+      }
+    }
+  },
+  {
+    "productId": "edu-isolator",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "laczniki",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: Faza wejściowa. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: Faza wyjściowa. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "N-in": {
+        "sectionId": "terminals",
+        "explanation": "N-in: Neutralny wejściowy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "N-out": {
+        "sectionId": "terminals",
+        "explanation": "N-out: Neutralny wyjściowy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "pole1": {
+        "sectionId": "reference",
+        "explanation": "1–2: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      },
+      "poleN": {
+        "sectionId": "reference",
+        "explanation": "N-in–N-out: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["N-in", "N-out"]
+      }
+    }
+  },
+  {
+    "productId": "edu-contactor-ac",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "stycznik",
+    "terminals": {
+      "13": {
+        "sectionId": "terminals",
+        "explanation": "13: Pomocniczy NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "14": {
+        "sectionId": "terminals",
+        "explanation": "14: Pomocniczy NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "21": {
+        "sectionId": "terminals",
+        "explanation": "21: Pomocniczy NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "22": {
+        "sectionId": "terminals",
+        "explanation": "22: Pomocniczy NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "1L1": {
+        "sectionId": "terminals",
+        "explanation": "1L1: Tor mocy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3L2": {
+        "sectionId": "terminals",
+        "explanation": "3L2: Tor mocy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "5L3": {
+        "sectionId": "terminals",
+        "explanation": "5L3: Tor mocy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2T1": {
+        "sectionId": "terminals",
+        "explanation": "2T1: Tor mocy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "4T2": {
+        "sectionId": "terminals",
+        "explanation": "4T2: Tor mocy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "6T3": {
+        "sectionId": "terminals",
+        "explanation": "6T3: Tor mocy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "A1": {
+        "sectionId": "terminals",
+        "explanation": "A1: Cewka. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "A2": {
+        "sectionId": "terminals",
+        "explanation": "A2: Cewka. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "coil": {
+        "sectionId": "operation",
+        "explanation": "A1–A2: cewka. Model dydaktyczny.",
+        "terminalIds": ["A1", "A2"]
+      },
+      "pole1": {
+        "sectionId": "reference",
+        "explanation": "1L1–2T1: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["1L1", "2T1"]
+      },
+      "pole2": {
+        "sectionId": "reference",
+        "explanation": "3L2–4T2: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["3L2", "4T2"]
+      },
+      "pole3": {
+        "sectionId": "reference",
+        "explanation": "5L3–6T3: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["5L3", "6T3"]
+      },
+      "auxNO": {
+        "sectionId": "reference",
+        "explanation": "13–14: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["13", "14"]
+      },
+      "auxNC": {
+        "sectionId": "reference",
+        "explanation": "21–22: styk: NC rozwierany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["21", "22"]
+      }
+    }
+  },
+  {
+    "productId": "edu-contactor-dc",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "stycznik",
+    "terminals": {
+      "13": {
+        "sectionId": "terminals",
+        "explanation": "13: Pomocniczy NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "14": {
+        "sectionId": "terminals",
+        "explanation": "14: Pomocniczy NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "21": {
+        "sectionId": "terminals",
+        "explanation": "21: Pomocniczy NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "22": {
+        "sectionId": "terminals",
+        "explanation": "22: Pomocniczy NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "1L1": {
+        "sectionId": "terminals",
+        "explanation": "1L1: Tor mocy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3L2": {
+        "sectionId": "terminals",
+        "explanation": "3L2: Tor mocy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "5L3": {
+        "sectionId": "terminals",
+        "explanation": "5L3: Tor mocy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2T1": {
+        "sectionId": "terminals",
+        "explanation": "2T1: Tor mocy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "4T2": {
+        "sectionId": "terminals",
+        "explanation": "4T2: Tor mocy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "6T3": {
+        "sectionId": "terminals",
+        "explanation": "6T3: Tor mocy. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "A1": {
+        "sectionId": "terminals",
+        "explanation": "A1: Cewka. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "A2": {
+        "sectionId": "terminals",
+        "explanation": "A2: Cewka. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "coil": {
+        "sectionId": "operation",
+        "explanation": "A1–A2: cewka. Model dydaktyczny.",
+        "terminalIds": ["A1", "A2"]
+      },
+      "pole1": {
+        "sectionId": "reference",
+        "explanation": "1L1–2T1: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["1L1", "2T1"]
+      },
+      "pole2": {
+        "sectionId": "reference",
+        "explanation": "3L2–4T2: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["3L2", "4T2"]
+      },
+      "pole3": {
+        "sectionId": "reference",
+        "explanation": "5L3–6T3: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["5L3", "6T3"]
+      },
+      "auxNO": {
+        "sectionId": "reference",
+        "explanation": "13–14: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["13", "14"]
+      },
+      "auxNC": {
+        "sectionId": "reference",
+        "explanation": "21–22: styk: NC rozwierany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["21", "22"]
+      }
+    }
+  },
+  {
+    "productId": "edu-relay",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "przekaznik",
+    "terminals": {
+      "11": {
+        "sectionId": "terminals",
+        "explanation": "11: COM 1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "12": {
+        "sectionId": "terminals",
+        "explanation": "12: NC 1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "14": {
+        "sectionId": "terminals",
+        "explanation": "14: NO 1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "21": {
+        "sectionId": "terminals",
+        "explanation": "21: COM 2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "22": {
+        "sectionId": "terminals",
+        "explanation": "22: NC 2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "24": {
+        "sectionId": "terminals",
+        "explanation": "24: NO 2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "A1": {
+        "sectionId": "terminals",
+        "explanation": "A1: Cewka +. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "A2": {
+        "sectionId": "terminals",
+        "explanation": "A2: Cewka −. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "coil": {
+        "sectionId": "operation",
+        "explanation": "A1–A2: cewka. Model dydaktyczny.",
+        "terminalIds": ["A1", "A2"]
+      },
+      "nc1": {
+        "sectionId": "reference",
+        "explanation": "11–12: styk: NC rozwierany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["11", "12"]
+      },
+      "no1": {
+        "sectionId": "reference",
+        "explanation": "11–14: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["11", "14"]
+      },
+      "nc2": {
+        "sectionId": "reference",
+        "explanation": "21–22: styk: NC rozwierany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["21", "22"]
+      },
+      "no2": {
+        "sectionId": "reference",
+        "explanation": "21–24: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["21", "24"]
+      }
+    }
+  },
+  {
+    "productId": "edu-bistable",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "bistabilny",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: N (wariant impulsu L). Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: L (wariant impulsu L). Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "6": {
+        "sectionId": "terminals",
+        "explanation": "6: Wejście impulsu L. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "10": {
+        "sectionId": "terminals",
+        "explanation": "10: NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "11": {
+        "sectionId": "terminals",
+        "explanation": "11: COM. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "12": {
+        "sectionId": "terminals",
+        "explanation": "12: NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "electronics": {
+        "sectionId": "reference",
+        "explanation": "3–1: blok elektroniki. Model dydaktyczny.",
+        "terminalIds": ["3", "1"]
+      },
+      "input": {
+        "sectionId": "reference",
+        "explanation": "6–1: blok elektroniki. Model dydaktyczny.",
+        "terminalIds": ["6", "1"]
+      },
+      "nc": {
+        "sectionId": "reference",
+        "explanation": "11–10: styk: NC rozwierany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["11", "10"]
+      },
+      "no": {
+        "sectionId": "reference",
+        "explanation": "11–12: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["11", "12"]
+      }
+    }
+  },
+  {
+    "productId": "edu-staircase",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "czasowe",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: N. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: L. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "5": {
+        "sectionId": "terminals",
+        "explanation": "5: Wyjście fazy L. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "6": {
+        "sectionId": "terminals",
+        "explanation": "6: Wejście sterujące L. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "electronics": {
+        "sectionId": "reference",
+        "explanation": "3–1: blok elektroniki. Model dydaktyczny.",
+        "terminalIds": ["3", "1"]
+      },
+      "input": {
+        "sectionId": "reference",
+        "explanation": "6–1: blok elektroniki. Model dydaktyczny.",
+        "terminalIds": ["6", "1"]
+      },
+      "out": {
+        "sectionId": "reference",
+        "explanation": "3–5: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["3", "5"]
+      }
+    }
+  },
+  {
+    "productId": "edu-timer",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "czasowe",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: AC L · 230 V. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: Wspólny AC N / DC −. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "4": {
+        "sectionId": "terminals",
+        "explanation": "4: Alternatywne 24 V AC/DC +. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "7": {
+        "sectionId": "terminals",
+        "explanation": "7: NC 1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "8": {
+        "sectionId": "terminals",
+        "explanation": "8: COM 1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "9": {
+        "sectionId": "terminals",
+        "explanation": "9: NO 1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "10": {
+        "sectionId": "terminals",
+        "explanation": "10: NC 2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "11": {
+        "sectionId": "terminals",
+        "explanation": "11: COM 2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "12": {
+        "sectionId": "terminals",
+        "explanation": "12: NO 2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "electronics": {
+        "sectionId": "reference",
+        "explanation": "1–3: blok elektroniki. Model dydaktyczny.",
+        "terminalIds": ["1", "3"]
+      },
+      "dc-input": {
+        "sectionId": "reference",
+        "explanation": "4–3: blok elektroniki. Model dydaktyczny.",
+        "terminalIds": ["4", "3"]
+      },
+      "nc1": {
+        "sectionId": "reference",
+        "explanation": "8–7: styk: NC rozwierany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["8", "7"]
+      },
+      "no1": {
+        "sectionId": "reference",
+        "explanation": "8–9: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["8", "9"]
+      },
+      "nc2": {
+        "sectionId": "reference",
+        "explanation": "11–10: styk: NC rozwierany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["11", "10"]
+      },
+      "no2": {
+        "sectionId": "reference",
+        "explanation": "11–12: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["11", "12"]
+      }
+    }
+  },
+  {
+    "productId": "edu-thermal",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "zabezpieczenia-silnikowe",
+    "terminals": {
+      "95": {
+        "sectionId": "terminals",
+        "explanation": "95: Pomocniczy NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "96": {
+        "sectionId": "terminals",
+        "explanation": "96: Pomocniczy NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "97": {
+        "sectionId": "terminals",
+        "explanation": "97: Pomocniczy NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "98": {
+        "sectionId": "terminals",
+        "explanation": "98: Pomocniczy NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "1L1": {
+        "sectionId": "terminals",
+        "explanation": "1L1: Tor mocy L1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3L2": {
+        "sectionId": "terminals",
+        "explanation": "3L2: Tor mocy L2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "5L3": {
+        "sectionId": "terminals",
+        "explanation": "5L3: Tor mocy L3. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2T1": {
+        "sectionId": "terminals",
+        "explanation": "2T1: Tor mocy L1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "4T2": {
+        "sectionId": "terminals",
+        "explanation": "4T2: Tor mocy L2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "6T3": {
+        "sectionId": "terminals",
+        "explanation": "6T3: Tor mocy L3. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "pole1": {
+        "sectionId": "reference",
+        "explanation": "1L1–2T1: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1L1", "2T1"]
+      },
+      "pole2": {
+        "sectionId": "reference",
+        "explanation": "3L2–4T2: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["3L2", "4T2"]
+      },
+      "pole3": {
+        "sectionId": "reference",
+        "explanation": "5L3–6T3: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["5L3", "6T3"]
+      },
+      "nc": {
+        "sectionId": "reference",
+        "explanation": "95–96: styk: NC otwierany po wyzwoleniu. Model dydaktyczny.",
+        "terminalIds": ["95", "96"]
+      },
+      "no": {
+        "sectionId": "reference",
+        "explanation": "97–98: styk: NO zamykany po wyzwoleniu. Model dydaktyczny.",
+        "terminalIds": ["97", "98"]
+      }
+    }
+  },
+  {
+    "productId": "edu-motor",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "silnik",
+    "terminals": {
+      "U": {
+        "sectionId": "terminals",
+        "explanation": "U: Faza U. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "V": {
+        "sectionId": "terminals",
+        "explanation": "V: Faza V. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "W": {
+        "sectionId": "terminals",
+        "explanation": "W: Faza W. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "PE": {
+        "sectionId": "terminals",
+        "explanation": "PE: Obudowa. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "u": {
+        "sectionId": "reference",
+        "explanation": "U–star: odbiornik / uzwojenie. Model dydaktyczny.",
+        "terminalIds": ["U"]
+      },
+      "v": {
+        "sectionId": "reference",
+        "explanation": "V–star: odbiornik / uzwojenie. Model dydaktyczny.",
+        "terminalIds": ["V"]
+      },
+      "w": {
+        "sectionId": "reference",
+        "explanation": "W–star: odbiornik / uzwojenie. Model dydaktyczny.",
+        "terminalIds": ["W"]
+      }
+    }
+  },
+  {
+    "productId": "edu-bus-n",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "zlaczki",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: Wspólny potencjał. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: Wspólny potencjał. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: Wspólny potencjał. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "4": {
+        "sectionId": "terminals",
+        "explanation": "4: Wspólny potencjał. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "5": {
+        "sectionId": "terminals",
+        "explanation": "5: Wspólny potencjał. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "b2": {
+        "sectionId": "reference",
+        "explanation": "1–2: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      },
+      "b3": {
+        "sectionId": "reference",
+        "explanation": "1–3: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "3"]
+      },
+      "b4": {
+        "sectionId": "reference",
+        "explanation": "1–4: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "4"]
+      },
+      "b5": {
+        "sectionId": "reference",
+        "explanation": "1–5: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "5"]
+      }
+    }
+  },
+  {
+    "productId": "edu-bus-pe",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "zlaczki",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: Wspólny potencjał. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: Wspólny potencjał. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: Wspólny potencjał. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "4": {
+        "sectionId": "terminals",
+        "explanation": "4: Wspólny potencjał. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "5": {
+        "sectionId": "terminals",
+        "explanation": "5: Wspólny potencjał. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "b2": {
+        "sectionId": "reference",
+        "explanation": "1–2: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      },
+      "b3": {
+        "sectionId": "reference",
+        "explanation": "1–3: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "3"]
+      },
+      "b4": {
+        "sectionId": "reference",
+        "explanation": "1–4: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "4"]
+      },
+      "b5": {
+        "sectionId": "reference",
+        "explanation": "1–5: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "5"]
+      }
+    }
+  },
+  {
+    "productId": "edu-motor-six",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "silnik",
+    "terminals": {
+      "U1": {
+        "sectionId": "terminals",
+        "explanation": "U1: Początek U. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "V1": {
+        "sectionId": "terminals",
+        "explanation": "V1: Początek V. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "W1": {
+        "sectionId": "terminals",
+        "explanation": "W1: Początek W. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "W2": {
+        "sectionId": "terminals",
+        "explanation": "W2: Koniec W. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "U2": {
+        "sectionId": "terminals",
+        "explanation": "U2: Koniec U. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "V2": {
+        "sectionId": "terminals",
+        "explanation": "V2: Koniec V. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "PE": {
+        "sectionId": "terminals",
+        "explanation": "PE: Obudowa / PE. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "winding-U": {
+        "sectionId": "reference",
+        "explanation": "U1–U2: odbiornik / uzwojenie. Model dydaktyczny.",
+        "terminalIds": ["U1", "U2"]
+      },
+      "winding-V": {
+        "sectionId": "reference",
+        "explanation": "V1–V2: odbiornik / uzwojenie. Model dydaktyczny.",
+        "terminalIds": ["V1", "V2"]
+      },
+      "winding-W": {
+        "sectionId": "reference",
+        "explanation": "W1–W2: odbiornik / uzwojenie. Model dydaktyczny.",
+        "terminalIds": ["W1", "W2"]
+      }
+    }
+  },
+  {
+    "productId": "edu-auxiliary",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "blok-pomocniczy",
+    "terminals": {
+      "53": {
+        "sectionId": "terminals",
+        "explanation": "53: NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "54": {
+        "sectionId": "terminals",
+        "explanation": "54: NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "61": {
+        "sectionId": "terminals",
+        "explanation": "61: NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "62": {
+        "sectionId": "terminals",
+        "explanation": "62: NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "no": {
+        "sectionId": "reference",
+        "explanation": "53–54: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["53", "54"]
+      },
+      "nc": {
+        "sectionId": "reference",
+        "explanation": "61–62: styk: NC rozwierany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["61", "62"]
+      }
+    }
+  },
+  {
+    "productId": "edu-mcb-adjustable",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "mcb",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: Zacisk górny. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: Zacisk dolny. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "pole1": {
+        "sectionId": "reference",
+        "explanation": "1–2: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      }
+    }
+  },
+  {
+    "productId": "edu-junction-terminal",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "zlaczki",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: 1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: 2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "bridge": {
+        "sectionId": "reference",
+        "explanation": "1–2: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      }
+    }
+  },
+  {
+    "productId": "edu-splice-3",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "zlaczki",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: 1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: 2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: 3. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "b2": {
+        "sectionId": "reference",
+        "explanation": "1–2: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      },
+      "b3": {
+        "sectionId": "reference",
+        "explanation": "1–3: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "3"]
+      }
+    }
+  },
+  {
+    "productId": "edu-phase-distribution",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "zlaczki",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: 1. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: 2. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: 3. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "b2": {
+        "sectionId": "reference",
+        "explanation": "1–2: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      },
+      "b3": {
+        "sectionId": "reference",
+        "explanation": "1–3: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "3"]
+      }
+    }
+  },
+  {
+    "productId": "edu-motor-protection",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "zabezpieczenia-silnikowe",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: L1 in. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: L1 out. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: L2 in. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "4": {
+        "sectionId": "terminals",
+        "explanation": "4: L2 out. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "5": {
+        "sectionId": "terminals",
+        "explanation": "5: L3 in. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "6": {
+        "sectionId": "terminals",
+        "explanation": "6: L3 out. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "pole1": {
+        "sectionId": "reference",
+        "explanation": "1–2: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      },
+      "pole2": {
+        "sectionId": "reference",
+        "explanation": "3–4: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["3", "4"]
+      },
+      "pole3": {
+        "sectionId": "reference",
+        "explanation": "5–6: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["5", "6"]
+      }
+    }
+  },
+  {
+    "productId": "edu-motor-aux-no",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "blok-pomocniczy",
+    "terminals": {
+      "13": {
+        "sectionId": "terminals",
+        "explanation": "13: NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "14": {
+        "sectionId": "terminals",
+        "explanation": "14: NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "no": {
+        "sectionId": "reference",
+        "explanation": "13–14: styk: NO zamykany mechanizmem. Model dydaktyczny.",
+        "terminalIds": ["13", "14"]
+      }
+    }
+  },
+  {
+    "productId": "edu-rail-terminal",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "zlaczki",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: Wejście. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: Wyjście. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "bridge": {
+        "sectionId": "reference",
+        "explanation": "1–2: połączenie stałe. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      }
+    }
+  },
+  {
+    "productId": "edu-start-stop-din",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "laczniki",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: STOP NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: STOP NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: START NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "4": {
+        "sectionId": "terminals",
+        "explanation": "4: START NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "stop": {
+        "sectionId": "reference",
+        "explanation": "1–2: styk: NC rozwierany STOP. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      },
+      "start": {
+        "sectionId": "reference",
+        "explanation": "3–4: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["3", "4"]
+      }
+    }
+  },
+  {
+    "productId": "edu-push-no-din",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "laczniki",
+    "terminals": {
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "4": {
+        "sectionId": "terminals",
+        "explanation": "4: NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "no": {
+        "sectionId": "reference",
+        "explanation": "3–4: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["3", "4"]
+      }
+    }
+  },
+  {
+    "productId": "edu-start-stop-panel",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "laczniki",
+    "terminals": {
+      "1": {
+        "sectionId": "terminals",
+        "explanation": "1: STOP NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "2": {
+        "sectionId": "terminals",
+        "explanation": "2: STOP NC. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: START NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "4": {
+        "sectionId": "terminals",
+        "explanation": "4: START NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "stop": {
+        "sectionId": "reference",
+        "explanation": "1–2: styk: NC rozwierany STOP. Model dydaktyczny.",
+        "terminalIds": ["1", "2"]
+      },
+      "start": {
+        "sectionId": "reference",
+        "explanation": "3–4: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["3", "4"]
+      }
+    }
+  },
+  {
+    "productId": "edu-push-no-panel",
+    "productRevision": "1",
+    "topologyRevision": "1",
+    "articleId": "laczniki",
+    "terminals": {
+      "3": {
+        "sectionId": "terminals",
+        "explanation": "3: NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      },
+      "4": {
+        "sectionId": "terminals",
+        "explanation": "4: NO. Mapa profilu dydaktycznego. Funkcja w instalacji zależy od połączeń."
+      }
+    },
+    "fragments": {
+      "no": {
+        "sectionId": "reference",
+        "explanation": "3–4: styk: zamykany operatorem. Model dydaktyczny.",
+        "terminalIds": ["3", "4"]
+      }
+    }
+  }
+]

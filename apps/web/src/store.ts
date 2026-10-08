@@ -94,6 +94,7 @@ interface AppState {
   mode: Mode;
   view: View;
   selection: string[];
+  knowledgeHighlight: TerminalRef[];
   wireStart: TerminalRef | null;
   waypoints: Point[];
   adding: string | null;
@@ -534,6 +535,7 @@ export const useApp = create<AppState>((set, get) => ({
   mode: "build",
   view: "physical",
   selection: [],
+  knowledgeHighlight: [],
   wireStart: null,
   waypoints: [],
   adding: null,
@@ -872,11 +874,12 @@ export const useApp = create<AppState>((set, get) => ({
   },
   select: (id, multi = false) => {
     if (!id) {
-      set({ selection: [] });
+      set({ selection: [], knowledgeHighlight: [] });
       return;
     }
     const current = get().selection;
     set({
+      knowledgeHighlight: [],
       selection: multi
         ? current.includes(id)
           ? current.filter((x) => x !== id)
@@ -1356,7 +1359,13 @@ export const useApp = create<AppState>((set, get) => ({
       },
       electrical,
     );
-    if (accepted) set({ selection: [], wireStart: null, waypoints: [] });
+    if (accepted)
+      set({
+        selection: [],
+        knowledgeHighlight: [],
+        wireStart: null,
+        waypoints: [],
+      });
   },
   duplicateSelection: () => {
     const ids = get().selection,
@@ -1660,6 +1669,7 @@ export const useApp = create<AppState>((set, get) => ({
             : "training"
         : "build",
       selection: [],
+      knowledgeHighlight: [],
       wireStart: null,
       waypoints: [],
       adding: null,

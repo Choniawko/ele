@@ -22,6 +22,12 @@ Otwórz http://127.0.0.1:5173. Do wersji produkcyjnej: `pnpm build`, następnie 
 
 W Budowie kliknij aparat z katalogu i miejsce na tablicy. Dwa kliknięcia zacisków tworzą przewód; kliknięcie tła między końcami dodaje punkty trasy. Esc anuluje, Backspace usuwa ostatni punkt. Shift umożliwia wielokrotne zaznaczenie; dostępne są kopiowanie, wyrównanie, Delete i historia Ctrl/Cmd+Z. Ciasne zaciski można wybrać z listy w inspektorze albo po powiększeniu widoku. Przyciski START/STOP przytrzymuje się myszą lub spacją.
 
+## Baza wiedzy
+
+W nagłówku wybierz **Baza wiedzy**: 12 artykułów o aparatach, 6 układów i 6 lekcji czytania schematów. Zacznij od „Uczę się od podstaw” albo wyszukaj aparat, skrót lub synonim. W pracowni „Poznaj aparat”, osobne wyjaśnienie zacisku i znak `?` przy symbolu otwierają pomoc bez edycji instalacji.
+
+Demonstracja ma schemat funkcjonalny, tablicę i tabelę żył; działa na osobnej kopii z solverem. Przełącz stan odniesienia/działania i wykonaj kroki START → puszczenie → STOP. „Otwórz kopię w pracowni” tworzy nowy projekt. Stały adres przykładu: `/ele/#knowledge/circuit/start-stop`. Progres czytania jest lokalny i oddzielny od projektów. [Zakres, źródła i dopisywanie materiałów](docs/KNOWLEDGE.md).
+
 ## Moje projekty
 
 Kliknij nazwę bieżącego projektu w nagłówku, aby otworzyć bibliotekę. Utwórz folder, wybierz go i dodaj pusty projekt, importuj plik/wklej JSON albo zapisz kopię przykładu. Karty mają podgląd, przenoszenie do folderu, zmianę nazwy, duplikowanie, eksport i usuwanie. Usunięcie folderu domyślnie zachowuje jego projekty w „Bez folderu”.

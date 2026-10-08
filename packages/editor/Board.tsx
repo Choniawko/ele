@@ -1,3 +1,5 @@
+import { boardCameras, openKnowledge } from "@/knowledge-navigation";
+import { resolveKnowledge } from "../knowledge/bindings";
 import { mountingInfo } from "@catalog/mounting-profiles";
 import {
   enclosureWindows,
@@ -263,6 +265,15 @@ function BoardDevice(
     onSetCurrent: (ratedCurrentA) =>
       useApp.getState().updateDevice(data.device.id, { ratedCurrentA }),
     onRcdTest: () => useApp.getState().testRcd(data.device.id),
+    onExplainSymbol: resolveKnowledge(data.device.productId)
+      ? (fragmentId) =>
+          void openKnowledge(
+            data.device.productId,
+            data.device.id,
+            undefined,
+            fragmentId,
+          )
+      : undefined,
   };
   return data.view === "physical" ? (
     enclosure?.closed && enclosureWindows(enclosure).length ? (
@@ -303,6 +314,7 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
   const project = useApp((s) => s.project),
     runtimeDevices = useApp((s) => s.runtime.devices),
     selection = useApp((s) => s.selection),
+    knowledgeHighlight = useApp((s) => s.knowledgeHighlight),
     wireStart = useApp((s) => s.wireStart),
     showTerminals = useApp((s) => s.showTerminals),
     instrument = useApp((s) => s.instrument),
@@ -321,6 +333,25 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
     [mountingPreview, setMountingPreview] = useState<Point | null>(null);
   const focusedId = useApp((s) => s.focusedEnclosureId);
   const mountingTarget = useApp((s) => s.mountingTarget);
+  useEffect(() => {
+    boardCameras[view] = transform;
+  }, [view, transform]);
+  useEffect(() => {
+    const restore = (event: Event) => {
+      const cameras = (event as CustomEvent).detail;
+      const c = cameras?.[view];
+      if (
+        c &&
+        Number.isFinite(c.scale) &&
+        c.scale > 0 &&
+        Number.isFinite(c.x) &&
+        Number.isFinite(c.y)
+      )
+        setTransform(c);
+    };
+    window.addEventListener("ele:restore-cameras", restore);
+    return () => window.removeEventListener("ele:restore-cameras", restore);
+  }, [view]);
   const [draggedProduct, setDraggedProduct] = useState<string | null>(null);
   const savedCamera = useRef<typeof transform | null>(null);
   const cameraProject = useRef(project.circuit.projectId);
@@ -418,6 +449,7 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
   }, [selection[0], view]);
   useEffect(() => {
     const key = (event: KeyboardEvent) => {
+      if (location.hash.startsWith("#knowledge")) return;
       if (
         (event.target as HTMLElement)?.closest("input,textarea,select,dialog")
       )
@@ -589,9 +621,12 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
           red: instrument.red ? terminalKey(instrument.red) : undefined,
           black: instrument.black ? terminalKey(instrument.black) : undefined,
           wireStart: wireStart ? terminalKey(wireStart) : undefined,
-          highlighted: selectedWire
-            ? [terminalKey(selectedWire.from), terminalKey(selectedWire.to)]
-            : [],
+          highlighted: [
+            ...knowledgeHighlight.map(terminalKey),
+            ...(selectedWire
+              ? [terminalKey(selectedWire.from), terminalKey(selectedWire.to)]
+              : []),
+          ],
         },
       };
     });
@@ -749,6 +784,7 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
     wireStart,
     transform.scale,
     selectedWire,
+    knowledgeHighlight,
     wireRouters,
     measuredPath,
   ]);
@@ -1603,6 +1639,20 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
             ))}
           </g>
         </svg>
+      )}
+      {knowledgeHighlight.length > 0 && (
+        <div className="knowledge-board-hint" role="status">
+          Pomoc wskazuje:{" "}
+          {knowledgeHighlight
+            .map(
+              (ref) =>
+                `${project.circuit.devices.find((d) => d.id === ref.deviceId)?.designation}:${ref.terminalId}`,
+            )
+            .join(" ↔ ")}
+          <button onClick={() => useApp.setState({ knowledgeHighlight: [] })}>
+            Zamknij wskazanie
+          </button>
+        </div>
       )}
       <div className="canvas-caption">
         <span>

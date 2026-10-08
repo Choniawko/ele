@@ -337,7 +337,7 @@ const defs: [string, string, string, string, () => ProjectDocument][] = [
     () => basic("fan"),
   ],
 ];
-function arrangeProject(project: ProjectDocument): ProjectDocument {
+export function arrangeProject(project: ProjectDocument): ProjectDocument {
   const p = project,
     occupied: { x: number; y: number; w: number; h: number }[] = [];
   let schematicY = 80;
