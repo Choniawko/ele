@@ -1,6 +1,6 @@
 # Odbiór 01b — ELE.02-108
 
-Jednostka w odbiorze. Końcowe wyniki zostaną zapisane po pełnej regresji i testach produkcyjnych.
+Data: 2026-10-09. Jednostka **01b: tested**, cały etap **01: tested**. Kod i niezmieniony dist: `8d8fa3bf37eba979e21cee7a20c94230b8e2308f`. 101 i 108 są gotowymi modelami dydaktycznymi: **2/17**. Następujący commit raportu zawiera tylko dokumentację, obrazy i poprawkę prewarunku testu; aplikacja i dist odpowiadają podanemu SHA.
 
 ## Funkcja i zgodność
 
@@ -10,7 +10,7 @@ Natywny schemat pracowni zapisuje opcjonalne `schematic.symbolFragments`, wersja
 
 Przesunięcie pojedynczego fragmentu zmienia geometrię i autosave, zachowując circuit/revision oraz fizyczny layout. Usuwanie aparatu usuwa jego fragmenty. Walidacja odrzuca brakujące fragmenty, powtórzone zaciski, niepełne pokrycie i kolizję ID symbolu z obiektem obwodu. Zmieniona żyła nadal jest rysowana przez bieżący dokument; nieaktualne powiązanie lekcji jest odrzucane.
 
-Solver odtwarza podtrzymanie prawego K1, chwilowy lewy K2, niezależne START/STOP obu stanowisk, blokadę NC, wspólne ON/OFF/TRIPPED Q2 oraz zachowanie przy powrocie energii. Lekcja ma własną sesję. Przyciski reagują na trzymanie klawisza/wskaźnika i zwolnienie/blur/cancel; stan przycisku i symbolu pochodzi z runtime. Ω sprawnej cewki jest jawnie unsupported.
+Solver odtwarza podtrzymanie prawego K1, chwilowy lewy K2, niezależne START/STOP obu stanowisk, blokadę NC, wspólne ON/OFF/TRIPPED Q2 oraz zachowanie przy powrocie energii. Lekcja ma własną sesję. Przyciski reagują na trzymanie klawisza/wskaźnika i zwolnienie/blur/cancel; stan przycisku i symbolu pochodzi z runtime. Ω sprawnej cewki jest jawnie unsupported. Q2.AUX odczytuje wspólny mechanizm także przed pierwszym ON energii. Po akcji lekcja pokazuje bieżący runtime również przy energii OFF; reset przywraca stan odniesienia.
 
 ## Źródła i ograniczenia
 
@@ -22,7 +22,15 @@ Wszystkie trzy `108-ISSUE-01/02/03` pozostają open: brak tabliczki/długości, 
 
 ## Wykonanie i odbiór obrazu
 
-W pierwszej produkcji `1131bbe` testy automatyczne dały 3 passed/1 świadomy skip publicznej kopii. Ogląd obrazu wykrył nakładanie powrotu za STOP-ami na wiersz Q1/STOP, sugerujące obejście. Ten snapshot nie stanowi odbioru R7 ani podstawy awansu: [zapis](qa/01b-initial-production.json). Poprawiono trasę jednym ortogonalnym odcinkiem należącym do rzeczywistego węzła; źródłem grup pozostaje `permanentNets`. Dodano próbę natywnego SVG wykrywającą linie przechodzące przez wnętrza symboli. Końcowa produkcja będzie testowana po tej poprawce.
+W pierwszej produkcji `1131bbe` testy automatyczne dały 3 passed/1 świadomy skip publicznej kopii. Ogląd obrazu wykrył nakładanie powrotu za STOP-ami na wiersz Q1/STOP, sugerujące obejście. Ten snapshot nie stanowi odbioru R7 ani podstawy awansu: [zapis](qa/01b-initial-production.json). Poprawiono trasę jednym ortogonalnym odcinkiem należącym do rzeczywistego węzła; źródłem grup pozostaje `permanentNets`. Dodano próbę natywnego SVG wykrywającą linie przechodzące przez wnętrza symboli. Poprawiony draft `2768c4f`: **3 passed / 1 świadomy skip**, 54,9 s; [zapis](qa/01b-production-draft.json). Końcowa produkcja 8d8fa3b przeszła po poprawce także wspólny mechanizm przy OFF.
+
+## Potwierdzone kontrole
+
+- Typy, lint, katalog i wiedza: passed; 2/17 gotowych wzorców.
+- `pnpm test`: **303 passed, 22 pliki, 28,17 s**, z domyślnymi limitami; końcowy zestaw uruchomiono osobno. Wcześniejszy test archiwum przekroczył 5000 ms przy równoległym obciążeniu; nie zmieniano tego limitu.
+- `pnpm test:e2e`: pełny przebieg **61 passed, 1 failed, 1 skipped, 18,4 min**. Test 108 po próbie ON/OFF pozostawał w trybie Test, więc nie rozpoczynał przewodu. Dodano jawny powrót do Budowy, bez zmiany aplikacji; ponowienie tego scenariusza: **1 passed, 30,4 s**. Potwierdzono wszystkie **62 unikalne scenariusze + 1 brakujący lokalny plik**. Raporty: `release/qa-01b-dev-full/`, `release/qa-01b-dev-rerun/`.
+- Wszystkie siedem prób źródłowych: [rejestr wykonania](qa/108-source-check-results.json); 82 oryginalne specyfikacje pozostają niezmienione.
+- `pnpm build`: passed, czysty kod 8d8fa3b, base `/ele/`, builtAt `2026-10-08T22:15:06.886Z`. `pnpm test:e2e:production`: **44 passed / 1 skipped, 7,2 min**, na tym samym dist. Wszystkie cztery scenariusze 108 i pięć 101 passed, w tym publiczne kopie, wcześniejsze projekty, Worker, odświeżenie i kamera. Nie wykonywano kolejnego builda.
 
 ## Bramki R1–R10
 
@@ -37,6 +45,20 @@ W pierwszej produkcji `1131bbe` testy automatyczne dały 3 passed/1 świadomy sk
 | R7 | Natywny rozwinięty schemat i tablica, 37 końców w każdym widoku, brak przejść fizycznych przez obudowy; poprawiona trasa za STOP |
 | R8 | Nowe ID/OFF, import/export/roundtrip, geometryczny autosave/odświeżenie, wcześniejsze projekty i szablon zachowane |
 | R9 | Wyszukanie „podtrzymanie”, pomoc K1/W35, pełny artykuł i powrót, kamera/klawiatura/przewód; cztery viewporty i zoom |
-| R10 | Wymaga końcowego niezmienionego dist /ele/, pełnego E2E oraz manifestu i archiwum |
+| R10 | Dist 8d8fa3b pod /ele/: 44 passed/1 lokalny skip, wszystkie 4 scenariusze 108 passed; identyczny manifest przed i po, archiwum zweryfikowane |
 
 Następna jednostka po odbiorze: **02a — ELE.02-105**, dwie schodowe, jeden krzyżowy, dwie równoległe oprawy, lekcja korespondencji i osiem kombinacji. Nie implementowano jej w 01b.
+
+## Obrazy i przygotowane archiwum
+
+Obejrzano **11 zrzutów końcowej produkcji**, nie makiety. Lekcja i pomoc mieściły się w czterech wymaganych viewportach; rysunki mają własne przewijanie i zoom. Na 390×844 panel pomocy zajmuje większą część kanwy, lecz zamknięcie jest widoczne. W dwóch pełnych zrzutach SVG użyto wyższego viewportu 1366×1600, aby stały kontener nie obciął dolnych torów. Cztery zrzuty wymaganych rozmiarów pozostały bez zmiany.
+
+- Lekcja: [1366x768](qa/01b-108-lesson-1366x768.png), [1920x1080](qa/01b-108-lesson-1920x1080.png), [390x844](qa/01b-108-lesson-390x844.png), [844x390](qa/01b-108-lesson-844x390.png).
+- Pomoc: [1366x768](qa/01b-108-help-1366x768.png), [1920x1080](qa/01b-108-help-1920x1080.png), [390x844](qa/01b-108-help-390x844.png), [844x390](qa/01b-108-help-844x390.png).
+- [Tor mocy](qa/01b-108-power-diagram.png), [tor sterowania](qa/01b-108-control-diagram.png), [W35 w dwóch natywnych widokach](qa/01b-108-wire-context.png).
+
+Archiwum lokalne: `release/ele-preview-8d8fa3bf37eb.tar.gz`. SHA-256: `d3e9a2482de9ae12b8255802e77ab957717a469693f762557d6bc13d4ea3e77b`. [Dowód produkcji i manifestu](qa/01b-production-final.json). Build: wersja 0.2.0, tag null, base /ele/, builtAt 2026-10-08T22:15:06.886Z. `pnpm release:pack` i `pnpm dist:validate`: passed; manifest nie zmienił się między testami i pakowaniem. Pozostaje ostrzeżenie rozmiaru głównego JS 1662,60 kB / gzip 473,20 kB. Nie publikowano Pages ani wydania.
+
+## Zapisana biblioteka lokalna
+
+Przed próbą uzupełnienia istniejącej kopii 108 zapisano kopię wszystkich tabel IndexedDB w ignorowanym `release/local-library-01b-default-upgrade/backup.json`. Biblioteka zawiera obecnie trzy projekty, w tym nową kopię 101. Zapisany 108 ma zmieniony circuit i physical względem wzorca wejściowego; automatyczna aktualizacja została pominięta. Zachowano wszystkie rekordy i dokumenty użytkownika. Nowy rozwinięty wzorzec 108 można otworzyć jako osobną kopię z Przykładów. Tymczasową stronę aktualizacji usunięto.

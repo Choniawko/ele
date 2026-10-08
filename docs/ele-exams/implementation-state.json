@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "baselineCommit": "9c4895a817b5f5869d17b3cf23a3e9695d49f6cf",
-  "lastImplementedCommit": "280b194cd1c6b71ecdc04d178b38a0ba5d225e65",
+  "lastImplementedCommit": "8d8fa3bf37eba979e21cee7a20c94230b8e2308f",
   "notice": "Stage checkpoints reflect executed work; source specifications are not executed tests.",
   "stages": {
     "00": {
@@ -17,10 +17,11 @@
       ]
     },
     "01": {
-      "status": "in-progress",
+      "status": "tested",
       "evidence": [
         "docs/ele-exams/QA_01.md",
-        "01a tested; 01b pending"
+        "docs/ele-exams/QA_01b.md",
+        "01a and 01b tested; 2/17 public educational references"
       ]
     },
     "02": {
@@ -114,8 +115,23 @@
     },
     "01b": {
       "stageId": "01",
-      "status": "in-progress",
-      "evidence": []
+      "status": "tested",
+      "evidence": [
+        "docs/ele-exams/QA_01b.md",
+        "docs/ele-exams/qa/108-source-check-results.json",
+        "docs/ele-exams/qa/01b-production-final.json",
+        "pnpm typecheck, lint, catalog:validate, knowledge:validate: passed",
+        "pnpm test: 303 passed, 22 files, 28.17s",
+        "dev full: 61 passed, 1 failed mode precondition corrected in test, 1 skipped; targeted rerun: 1 passed; all 62 unique scenarios verified",
+        "pnpm test:e2e:production: 44 passed, 1 local fixture skipped, 7.2m on unchanged /ele/ dist 8d8fa3b",
+        "all four new 108 production scenarios passed, including public OFF copies and shared native mechanisms",
+        "37 native schematic and 37 native physical endpoints audited; zero physical body intrusions",
+        "11 production screenshots inspected in docs/ele-exams/qa/01b-*.png",
+        "pnpm build, release:pack, dist:validate: passed"
+      ],
+      "implementationCommit": "8d8fa3bf37eba979e21cee7a20c94230b8e2308f",
+      "referenceIntegrationCommit": "1131bbe86f7b1d785739ee13c7a6563ad4944a02",
+      "testedAt": "2026-10-08T22:43:30.949578+00:00"
     },
     "02a": {
       "stageId": "02",
@@ -372,23 +388,30 @@
       "evidence": []
     },
     "ELE.02-108": {
-      "referenceStatus": "content-only",
-      "fidelity": null,
-      "referenceRevision": null,
+      "referenceStatus": "model-tested",
+      "fidelity": "educational",
+      "referenceRevision": "1",
       "sourceStatusAtBaseline": "existing-repo-example-validated",
       "gates": {
-        "R1": "pending",
-        "R2": "pending",
-        "R3": "pending",
-        "R4": "pending",
-        "R5": "pending",
-        "R6": "pending",
-        "R7": "pending",
-        "R8": "pending",
-        "R9": "pending",
-        "R10": "pending"
+        "R1": "passed",
+        "R2": "passed",
+        "R3": "passed",
+        "R4": "passed",
+        "R5": "passed",
+        "R6": "passed",
+        "R7": "passed",
+        "R8": "passed",
+        "R9": "passed",
+        "R10": "passed"
       },
-      "evidence": []
+      "evidence": [
+        "tests/ele02-108.test.ts",
+        "tests/reference-108.test.ts",
+        "tests/e2e/reference-108.spec.ts",
+        "docs/ele-exams/QA_01b.md",
+        "docs/ele-exams/qa/108-source-check-results.json",
+        "docs/ele-exams/qa/01b-production-final.json"
+      ]
     },
     "ELE.02-109": {
       "referenceStatus": "content-only",
@@ -733,18 +756,18 @@
       "evidence": []
     }
   },
-  "nextUnit": "01b",
+  "nextUnit": "02a",
   "verifiedBuild": {
     "schemaVersion": 1,
     "version": "0.2.0",
     "tag": null,
-    "commit": "280b194cd1c6b71ecdc04d178b38a0ba5d225e65",
+    "commit": "8d8fa3bf37eba979e21cee7a20c94230b8e2308f",
     "base": "/ele/",
-    "builtAt": "2026-10-08T17:09:52.241Z"
+    "builtAt": "2026-10-08T22:15:06.886Z"
   },
   "releasePreparation": {
-    "archive": "release/ele-preview-280b194cd1c6.tar.gz",
-    "sha256": "65fc4affb21aa182c1c88acf4f2eaf226592cd8d3312a446adc5310dceee0249",
+    "archive": "release/ele-preview-8d8fa3bf37eb.tar.gz",
+    "sha256": "d3e9a2482de9ae12b8255802e77ab957717a469693f762557d6bc13d4ea3e77b",
     "published": false
   }
 }

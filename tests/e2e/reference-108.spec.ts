@@ -334,6 +334,7 @@ test("01b: OFF copy, expanded native ports, real 37 routes, common mechanism, he
     schematic.locator('[data-device="K1"][data-symbol-fragment="auxNC"]'),
   ).toHaveAttribute("data-closed", "false");
   await page.getByRole("button", { name: "Zasilanie ON", exact: true }).click();
+  await page.getByLabel("Tryb pracy").selectOption("build");
   await schematic
     .getByRole("button", { name: "Wyjaśnij symbol K1 A1–A2", exact: true })
     .click();
