@@ -1,16 +1,19 @@
 {
   "schemaVersion": 1,
   "baselineCommit": "9c4895a817b5f5869d17b3cf23a3e9695d49f6cf",
-  "lastImplementedCommit": null,
+  "lastImplementedCommit": "72e2f32e853d9901570542437ee7623d48c18054",
   "notice": "Stage checkpoints reflect executed work; source specifications are not executed tests.",
   "stages": {
     "00": {
-      "status": "implemented",
+      "status": "tested",
       "evidence": [
         "docs/ele-exams/QA_00.md",
         "pnpm test: 277 passed",
         "pnpm test:e2e: 52 passed, 1 skipped",
-        "pnpm typecheck, lint, catalog:validate, knowledge:validate: passed"
+        "pnpm typecheck, lint, catalog:validate, knowledge:validate: passed",
+        "pnpm test:e2e:production: 34 passed, 1 skipped",
+        "pnpm build, release:pack, dist:validate: passed",
+        "docs/ele-exams/qa: 7 inspected production screenshots"
       ]
     },
     "01": {
@@ -73,13 +76,18 @@
   "units": {
     "00a": {
       "stageId": "00",
-      "status": "implemented",
+      "status": "tested",
       "evidence": [
         "docs/ele-exams/QA_00.md",
         "pnpm test: 277 passed",
         "pnpm test:e2e: 52 passed, 1 skipped",
-        "pnpm typecheck, lint, catalog:validate, knowledge:validate: passed"
-      ]
+        "pnpm typecheck, lint, catalog:validate, knowledge:validate: passed",
+        "pnpm test:e2e:production: 34 passed, 1 skipped",
+        "pnpm build, release:pack, dist:validate: passed",
+        "docs/ele-exams/qa: 7 inspected production screenshots"
+      ],
+      "implementationCommit": "72e2f32e853d9901570542437ee7623d48c18054",
+      "testedAt": "2026-10-08T15:10:58.551009+00:00"
     },
     "01a": {
       "stageId": "01",
@@ -704,5 +712,18 @@
       "evidence": []
     }
   },
-  "nextUnit": "01a"
+  "nextUnit": "01a",
+  "verifiedBuild": {
+    "schemaVersion": 1,
+    "version": "0.2.0",
+    "tag": null,
+    "commit": "72e2f32e853d9901570542437ee7623d48c18054",
+    "base": "/ele/",
+    "builtAt": "2026-10-08T15:02:03.333Z"
+  },
+  "releasePreparation": {
+    "archive": "release/ele-preview-72e2f32e853d.tar.gz",
+    "sha256": "8e8d72aaf58d549cda7705d45b23edaa84a1cf40938ad340cf312928647c7434",
+    "published": false
+  }
 }
