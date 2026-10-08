@@ -170,6 +170,7 @@ interface AppState {
     view: "physical" | "schematic",
     points: Point[],
   ) => void;
+  moveSchematicFragment: (id: string, point: Point) => void;
   moveDevices: (
     positions: Record<string, Point>,
     view: "physical" | "schematic",
@@ -1123,7 +1124,31 @@ export const useApp = create<AppState>((set, get) => ({
     }
     transaction(
       "Przesuń aparaty",
-      (p) => Object.assign(p[view].devices, nextPositions),
+      (p) => {
+        if (view === "schematic")
+          for (const [id, pos] of Object.entries(nextPositions))
+            for (const f of Object.values(
+              p.schematic.symbolFragments?.placements ?? {},
+            ))
+              if (f.deviceId === id) {
+                f.position.x += pos.x - p.schematic.devices[id].x;
+                f.position.y += pos.y - p.schematic.devices[id].y;
+              }
+        Object.assign(p[view].devices, nextPositions);
+      },
+      false,
+    );
+  },
+  moveSchematicFragment: (id, point) => {
+    if (!get().project.schematic.symbolFragments?.placements[id]) return;
+    transaction(
+      "Przesuń symbol schematu",
+      (p) => {
+        p.schematic.symbolFragments!.placements[id].position = {
+          x: Math.round(point.x / 10) * 10,
+          y: Math.round(point.y / 10) * 10,
+        };
+      },
       false,
     );
   },
@@ -1341,6 +1366,10 @@ export const useApp = create<AppState>((set, get) => ({
         for (const t of p.physical.trunking ?? [])
           t.conductorIds = t.conductorIds.filter((id) => !removed.includes(id));
         for (const l of [p.physical, p.schematic]) {
+          if (l.symbolFragments)
+            for (const [key, f] of Object.entries(l.symbolFragments.placements))
+              if (ids.includes(f.deviceId))
+                delete l.symbolFragments.placements[key];
           for (const id of ids) delete l.devices[id];
           for (const id of removed) delete l.routes[id];
         }

@@ -129,10 +129,10 @@
   },
   {
     "taskId": "ELE.02-108",
-    "status": "content-only",
-    "referenceRevision": null,
-    "documentPath": null,
-    "fidelity": null,
+    "status": "draft",
+    "referenceRevision": "1",
+    "documentPath": "examples/physical/ELE02_108_stanowisko.json",
+    "fidelity": "educational",
     "evidence": [],
     "gates": {
       "R1": "pending",

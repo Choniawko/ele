@@ -82,7 +82,10 @@ export function ReferenceHelp() {
     }
   };
   return (
-    <aside className="reference-help" aria-label="Pomoc w układzie 101">
+    <aside
+      className="reference-help"
+      aria-label={`Pomoc w układzie ${reference?.taskId ?? "egzaminacyjnym"}`}
+    >
       <header>
         <h2 ref={heading} tabIndex={-1}>
           {wire
@@ -92,8 +95,8 @@ export function ReferenceHelp() {
         <button onClick={closeReferenceHelp}>Schowaj pomoc</button>
       </header>
       <p>
-        ELE.02-101 · model dydaktyczny · lekcja v
-        {reference?.referenceRevision ?? "1"}
+        {reference?.taskId ?? "Zadanie egzaminacyjne"} · model dydaktyczny ·
+        lekcja v{reference?.referenceRevision ?? "1"}
       </p>
       {!valid ? (
         <p role="status">
@@ -120,7 +123,9 @@ export function ReferenceHelp() {
           )}
           {profile && (
             <>
+              <p>{profile.modelLabel}</p>
               <p>{profile.principle}</p>
+              <p>{profile.measurements}</p>
               <p>
                 <strong>Symbol:</strong> {profile.symbol}
               </p>
@@ -140,7 +145,12 @@ export function ReferenceHelp() {
                 <dl>
                   {profile.terminals.map((t) => (
                     <div key={t.id}>
-                      <dt>{t.id}</dt>
+                      <dt>
+                        {t.id}
+                        {t.sourceLabel &&
+                          t.sourceLabel !== t.id &&
+                          ` (arkusz: ${t.sourceLabel})`}
+                      </dt>
                       <dd>{t.role}</dd>
                     </div>
                   ))}
@@ -202,10 +212,10 @@ export function ReferenceHelp() {
             </div>
           ))}
           <a
-            href="#/wiedza/uklady/ele02-101"
+            href={`#/wiedza/uklady/${reference?.id ?? ""}`}
             onClick={(e) => {
               e.preventDefault();
-              void navigate("/wiedza/uklady/ele02-101");
+              void navigate(`/wiedza/uklady/${reference?.id ?? ""}`);
             }}
           >
             Lekcja i pełna tabela połączeń

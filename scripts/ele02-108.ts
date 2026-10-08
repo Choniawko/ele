@@ -1,3 +1,4 @@
+import { layout108 } from "../packages/circuit-model/expanded-108";
 import { writeFileSync } from "node:fs";
 import { emptyProject, type DeviceSettings, type Role } from "@model/index";
 import { catalog } from "@catalog/index";
@@ -175,6 +176,7 @@ remote.forEach(
     ][i]),
 );
 cable("C.R2", "YLY 5×1,5 mm²", remote);
+layout108(p);
 writeFileSync(
   "examples/physical/ELE02_108_stanowisko.json",
   JSON.stringify(validateProjectDocument(p), null, 2) + "\n",

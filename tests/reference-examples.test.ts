@@ -51,7 +51,7 @@ describe("01a / ELE.02-101 reference gates", () => {
     };
     expect(validateReference(broken).length).toBeGreaterThan(0);
     expect(referenceById("missing")).toBeUndefined();
-    expect(referenceByTask("ELE.02-108")).toBeUndefined();
+    expect(referenceByTask("ELE.02-108")?.id).toBe("ele02-108");
     expect(() => referenceCopy("missing")).toThrow("Nieznany wzorzec");
   });
   it("R3: independently read phase branches, parallel lamps, correspondences and N/PE separation", () => {

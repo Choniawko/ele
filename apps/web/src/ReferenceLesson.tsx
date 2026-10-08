@@ -1,3 +1,4 @@
+import { ReferenceControls } from "./ReferenceControls";
 import { useState } from "react";
 import type { CSSProperties } from "react";
 import { catalog } from "@catalog/index";
@@ -50,6 +51,7 @@ export function ReferenceLesson({
 }: {
   reference: ReferenceExample;
 }) {
+  const motor = r.taskId === "ELE.02-108";
   const [project] = useState(r.create),
     [runtime, setRuntime] = useState(() => initialRuntime(project));
   const [highlight, setHighlight] = useState<Highlight>({
@@ -91,8 +93,11 @@ export function ReferenceLesson({
   };
   const voltage = measure(project, runtime, {
     function: "voltage-ac",
-    red: { deviceId: "GW", terminalId: "test-L" },
-    black: { deviceId: "GW", terminalId: "test-N" },
+    red: { deviceId: motor ? "K1" : "GW", terminalId: motor ? "A1" : "test-L" },
+    black: {
+      deviceId: motor ? "K1" : "GW",
+      terminalId: motor ? "A2" : "test-N",
+    },
     testVoltageV: 500,
     compensateLeads: true,
     rcdMultiplier: 1,
@@ -100,13 +105,15 @@ export function ReferenceLesson({
   return (
     <section
       className="reference-lesson"
-      aria-label="Lekcja układu 101"
+      aria-label={`Lekcja układu ${r.taskId}`}
       style={{ "--diagram-scale": diagramScale } as CSSProperties}
     >
-      <h1 tabIndex={-1}>ELE.02-101 — {r.title}</h1>
+      <h1 tabIndex={-1}>
+        {r.taskId} — {r.title}
+      </h1>
       <p>
         Opracowanie modelu dydaktycznego · wersja {r.referenceRevision}.{" "}
-        <a href="#/wiedza/zadania/ele02-101">
+        <a href={`#/wiedza/zadania/${r.id}`}>
           Porównaj z oryginałem arkusza i źródłowym BOM
         </a>
         .
@@ -157,23 +164,7 @@ export function ReferenceLesson({
             ? "Wyłącz energię lekcji"
             : "Załącz energię lekcji"}
         </button>
-        {["Q1", "Q2", "B6", "B10", "RCD"].map((id) => (
-          <button
-            key={id}
-            onClick={() =>
-              act({
-                type: "operate",
-                deviceId: id,
-                state: !runtime.devices[id].manual,
-              })
-            }
-          >
-            Przełącz {id} w lekcji
-          </button>
-        ))}
-        <button onClick={() => act({ type: "test-rcd", deviceId: "RCD" })}>
-          TEST RCD w lekcji
-        </button>
+        <ReferenceControls motor={motor} runtime={runtime} act={act} />
         <button
           onClick={() => {
             setRuntime(initialRuntime(project));
@@ -183,14 +174,38 @@ export function ReferenceLesson({
           Reset lekcji
         </button>
       </div>
-      <p role="status">
-        OP1: {runtime.devices.OP1.powered ? "świeci" : "zgaszona"} · OP2:{" "}
-        {runtime.devices.OP2.powered ? "świeci" : "zgaszona"} · H1:{" "}
-        {runtime.devices.H1.powered ? "świeci" : "zgaszona"} · H2:{" "}
-        {runtime.devices.H2.powered ? "świeci" : "zgaszona"} · GW L–N:{" "}
-        {voltage.value?.toFixed(1) ?? "brak odczytu"} V · RCD:{" "}
-        {runtime.devices.RCD.tripped ? "wyzwolony" : "niewyzwolony"}.
-      </p>
+      {motor ? (
+        <p role="status">
+          K1: {runtime.devices.K1.mechanism ? "załączony" : "wyłączony"} · K2:{" "}
+          {runtime.devices.K2.mechanism ? "załączony" : "wyłączony"} · M:{" "}
+          {runtime.devices.M.powered
+            ? runtime.devices.M.direction === "123"
+              ? "prawy"
+              : "lewy"
+            : "stoi"}{" "}
+          · Q2:{" "}
+          {runtime.devices.Q2.tripped
+            ? "TRIPPED"
+            : runtime.devices.Q2.manual
+              ? "ON"
+              : "OFF"}{" "}
+          · Q2.AUX:{" "}
+          {runtime.devices["Q2.AUX"].mechanism ? "zamknięty" : "otwarty"} · K1
+          A1–A2: {voltage.value?.toFixed(1) ?? "brak odczytu"} V.
+        </p>
+      ) : (
+        <>
+          {" "}
+          <p role="status">
+            OP1: {runtime.devices.OP1.powered ? "świeci" : "zgaszona"} · OP2:{" "}
+            {runtime.devices.OP2.powered ? "świeci" : "zgaszona"} · H1:{" "}
+            {runtime.devices.H1.powered ? "świeci" : "zgaszona"} · H2:{" "}
+            {runtime.devices.H2.powered ? "świeci" : "zgaszona"} · GW L–N:{" "}
+            {voltage.value?.toFixed(1) ?? "brak odczytu"} V · RCD:{" "}
+            {runtime.devices.RCD.tripped ? "wyzwolony" : "niewyzwolony"}.
+          </p>
+        </>
+      )}
       <h2>Schemat z projektu — fragmenty jednego obwodu</h2>
       <label>
         Powiększenie rysunków modelu{" "}
@@ -205,11 +220,24 @@ export function ReferenceLesson({
           ))}
         </select>
       </label>
-      <p>
-        RCD ma dwa sprzężone bieguny; oba symbole Q1/Q2 należą do tego samego
-        łącznika. Kropka oznacza węzeł; skrzyżowanie z przerwą nie tworzy
-        połączenia. N i PE nie są zamienne.
-      </p>
+      {motor ? (
+        <p>
+          K1/K2 mają oddzielne symbole cewki, trzech torów mocy i NO/NC z tym
+          samym oznaczeniem. To jeden mechanizm, nie nowe aparaty. Q2.AUX jest
+          związany z Q2 przez assembly. K1 NO podtrzymuje prawy, K2 nie ma
+          podtrzymania. Kropka oznacza węzeł; skrzyżowanie z przerwą nie łączy
+          torów. N i PE są odrębne.
+        </p>
+      ) : (
+        <>
+          {" "}
+          <p>
+            RCD ma dwa sprzężone bieguny; oba symbole Q1/Q2 należą do tego
+            samego łącznika. Kropka oznacza węzeł; skrzyżowanie z przerwą nie
+            tworzy połączenia. N i PE nie są zamienne.
+          </p>
+        </>
+      )}
       {r.diagrams.map((scope) => (
         <section key={scope.title}>
           <h3>{scope.title}</h3>
@@ -317,7 +345,10 @@ export function ReferenceLesson({
       {r.profiles.map((profile) => (
         <details key={profile.productId}>
           <summary>{catalog[profile.productId].displayNamePl}</summary>
+          <p>{profile.modelLabel}</p>
           <p>{profile.principle}</p>
+          <p>{profile.mounting}</p>
+          <p>{profile.measurements}</p>
           <p>Symbol: {profile.symbol}</p>
           <p>Stan odniesienia: {profile.referenceState}</p>
           <ul>
@@ -328,12 +359,25 @@ export function ReferenceLesson({
           <dl>
             {profile.terminals.map((t) => (
               <div key={t.id}>
-                <dt>{t.id}</dt>
+                <dt>
+                  {t.id}
+                  {t.sourceLabel &&
+                    t.sourceLabel !== t.id &&
+                    ` (arkusz: ${t.sourceLabel})`}
+                </dt>
                 <dd>{t.role}</dd>
               </div>
             ))}
           </dl>
           <p>Próba: {profile.test}</p>
+          {profile.sources?.map((source) => (
+            <p key={source.url}>
+              <a href={source.url} target="_blank" rel="noreferrer">
+                {source.title}
+              </a>{" "}
+              · {source.locator} · sprawdzono {source.verifiedAt}
+            </p>
+          ))}
           {profile.limitations.map((l) => (
             <p key={l}>{l}</p>
           ))}

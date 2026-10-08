@@ -1,3 +1,6 @@
+import { schematicProjection } from "./schematic-projection";
+import { DeviceFragment } from "@renderers/fragment";
+import { mechanismOwner } from "@simulation/mechanisms";
 import { boundReference } from "../knowledge/reference-examples";
 import {
   boardCameras,
@@ -64,6 +67,8 @@ import "@joint/react/styles.css";
 import type { dia } from "@joint/core";
 interface ElementData {
   device: DeviceInstance;
+  fragmentId?: string;
+  ownerId?: string;
   state?: DeviceRuntime;
   view: "physical" | "schematic";
   selected: boolean;
@@ -313,6 +318,14 @@ function BoardDevice(
     ) : (
       <DevicePhysical {...props} />
     )
+  ) : data.fragmentId ? (
+    <DeviceFragment
+      {...props}
+      connection={props.product.topology.connections.find(
+        (c) => c.id === data.fragmentId,
+      )!}
+      ownerId={data.ownerId}
+    />
   ) : (
     <DeviceSchematic {...props} />
   );
@@ -481,7 +494,10 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
       const size = host.current?.getBoundingClientRect();
       if (!size) return;
       const currentProject = useApp.getState().project;
-      const ps = Object.values(currentProject[view].devices);
+      const ps =
+        view === "schematic"
+          ? schematicProjection(currentProject).elements.map((e) => e.position)
+          : Object.values(currentProject.physical.devices);
       const width = Math.max(
           view === "physical" ? 1100 : 1140,
           ...ps.map((p) => p.x + 260),
@@ -579,35 +595,49 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
     project.physical.enclosures?.filter((e) => e.distribution).length ?? 0,
   ]);
   const cells = useMemo(() => {
-    const elements: ElementRecord[] = project.circuit.devices.map((d) => {
+    const projection = schematicProjection(project);
+    const entries =
+      view === "schematic"
+        ? projection.elements
+        : project.circuit.devices.map((device) => ({
+            id: device.id,
+            device,
+            position: project.physical.devices[device.id],
+            fragmentId: undefined as string | undefined,
+            geometry: schematicGeometry(catalog[device.productId]),
+          }));
+    const elements: ElementRecord[] = entries.map((entry) => {
+      const d = entry.device;
       const p = catalog[d.productId],
         dim = p.dimensions.value!,
-        geo = schematicGeometry(p);
+        geo = entry.geometry;
       const ports: Record<string, ElementPort> = Object.fromEntries(
-        p.topology.terminals.map((t) => {
-          const pt =
-            view === "physical"
-              ? { x: t.x * MM, y: t.y * MM }
-              : geo.ports[t.id];
-          return [
-            t.id,
-            {
-              cx: pt.x,
-              cy: pt.y,
-              width: 1,
-              height: 1,
-              color: "transparent",
-              outline: "transparent",
-              className: "app-port",
-              passive: true,
-            },
-          ];
-        }),
+        p.topology.terminals
+          .filter((t) => view === "physical" || geo.ports[t.id])
+          .map((t) => {
+            const pt =
+              view === "physical"
+                ? { x: t.x * MM, y: t.y * MM }
+                : geo.ports[t.id];
+            return [
+              t.id,
+              {
+                cx: pt.x,
+                cy: pt.y,
+                width: 1,
+                height: 1,
+                color: "transparent",
+                outline: "transparent",
+                className: "app-port",
+                passive: true,
+              },
+            ];
+          }),
       );
       return {
-        id: d.id,
+        id: entry.id,
         type: "element",
-        position: project[view].devices[d.id],
+        position: entry.position,
         size:
           view === "physical"
             ? { width: dim.width * MM, height: dim.height * MM }
@@ -616,6 +646,8 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
         z: 2,
         data: {
           device: d,
+          fragmentId: entry.fragmentId,
+          ownerId: mechanismOwner(project, d.id) ?? d.id,
           enclosure:
             view === "physical" ? enclosureFor(project, d.id) : undefined,
           state: runtimeDevices[d.id],
@@ -645,13 +677,15 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
       id: w.id,
       type: "link",
       source: {
-        id: w.from.deviceId,
-        port: w.from.terminalId,
+        ...(view === "schematic"
+          ? projection.endpoint(w.from)
+          : { id: w.from.deviceId, port: w.from.terminalId }),
         ...(view === "physical" ? { anchor: { name: "center" } } : {}),
       },
       target: {
-        id: w.to.deviceId,
-        port: w.to.terminalId,
+        ...(view === "schematic"
+          ? projection.endpoint(w.to)
+          : { id: w.to.deviceId, port: w.to.terminalId }),
         ...(view === "physical" ? { anchor: { name: "center" } } : {}),
       },
       vertices: project[view].routes[w.id] ?? [],
@@ -710,13 +744,15 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
       id: b.id,
       type: "link",
       source: {
-        id: b.from.deviceId,
-        port: b.from.terminalId,
+        ...(view === "schematic"
+          ? projection.endpoint(b.from)
+          : { id: b.from.deviceId, port: b.from.terminalId }),
         anchor: { name: "center" },
       },
       target: {
-        id: b.to.deviceId,
-        port: b.to.terminalId,
+        ...(view === "schematic"
+          ? projection.endpoint(b.to)
+          : { id: b.to.deviceId, port: b.to.terminalId }),
         anchor: { name: "center" },
       },
       z: 3,
@@ -814,6 +850,7 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
   const modelPoint = (ref: NonNullable<typeof wireStart>): Point | null => {
     const d = project.circuit.devices.find((d) => d.id === ref.deviceId);
     if (!d) return null;
+    if (view === "schematic") return schematicProjection(project).point(ref);
     const p = catalog[d.productId],
       position = project[view].devices[d.id],
       t = p.topology.terminals.find((t) => t.id === ref.terminalId)!;
@@ -1086,21 +1123,26 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
               <rect
                 x={30}
                 y={25}
-                width={1090}
+                width={Math.max(
+                  1090,
+                  ...schematicProjection(project).elements.map(
+                    (e) => e.position.x + e.geometry.width + 60,
+                  ),
+                )}
                 height={Math.max(
                   850,
-                  ...project.circuit.devices.map(
-                    (d) =>
-                      project.schematic.devices[d.id].y +
-                      schematicGeometry(catalog[d.productId]).height +
-                      80,
+                  ...schematicProjection(project).elements.map(
+                    (e) => e.position.y + e.geometry.height + 80,
                   ),
                 )}
                 fill="#fdfdf7"
                 stroke="#d6dccc"
               />
               <text x={50} y={50} fill="#889377" fontSize={12}>
-                SCHEMAT ROZWINIĘTY · symbole w spoczynku
+                SCHEMAT ROZWINIĘTY ·{" "}
+                {project.schematic.symbolFragments
+                  ? "stan solvera; wspólne oznaczenie = jeden mechanizm"
+                  : "symbole w spoczynku"}
               </text>
             </>
           )}
@@ -1156,7 +1198,7 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
               .select(
                 model.get("data")?.dragHandle
                   ? model.get("data").enclosure.id
-                  : String(model.id),
+                  : (model.get("data")?.device?.id ?? String(model.id)),
                 event.shiftKey,
               );
           }}
@@ -1172,6 +1214,12 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
               model.get("data")?.enclosure;
             if (box) {
               enclosureDrag.current = box;
+              return;
+            }
+            if (model.get("data")?.fragmentId) {
+              deviceDrag.current = {
+                [String(model.id)]: { ...model.position() },
+              };
               return;
             }
             deviceDrag.current = Object.fromEntries(
@@ -1274,6 +1322,13 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
               return;
             }
             if (!movable || !deviceDrag.current) return;
+            if (model.get("data")?.fragmentId) {
+              const pos = { ...model.position() };
+              model.position(deviceDrag.current[String(model.id)]);
+              useApp.getState().moveSchematicFragment(String(model.id), pos);
+              deviceDrag.current = null;
+              return;
+            }
             const old = deviceDrag.current[String(model.id)],
               pos = model.position();
             if (

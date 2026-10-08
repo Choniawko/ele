@@ -938,67 +938,256 @@
   "schematic": {
     "devices": {
       "PZ": {
-        "x": 80,
+        "x": 60,
         "y": 100
       },
       "M": {
-        "x": 320,
+        "x": 1100,
         "y": 100
       },
       "ZS.PE": {
-        "x": 560,
-        "y": 100
+        "x": 1110,
+        "y": 430
       },
       "ZS.N": {
-        "x": 800,
-        "y": 100
+        "x": 1200,
+        "y": 1440
       },
       "ZS.RES1": {
-        "x": 1040,
-        "y": 100
+        "x": 60,
+        "y": 1590
       },
       "Q1": {
         "x": 80,
-        "y": 750
+        "y": 600
       },
       "Q2": {
-        "x": 320,
-        "y": 750
+        "x": 310,
+        "y": 420
       },
       "Q2.AUX": {
-        "x": 560,
-        "y": 750
+        "x": 320,
+        "y": 600
       },
       "K1": {
-        "x": 800,
-        "y": 750
+        "x": 640,
+        "y": 1310
       },
       "K2": {
-        "x": 1040,
-        "y": 750
+        "x": 800,
+        "y": 1590
       },
       "S1": {
-        "x": 80,
-        "y": 1400
+        "x": 320,
+        "y": 830
       },
       "S2": {
         "x": 320,
-        "y": 1400
+        "y": 1310
       },
       "S3": {
-        "x": 560,
-        "y": 1400
+        "x": 320,
+        "y": 960
       },
       "S4": {
-        "x": 800,
-        "y": 1400
+        "x": 320,
+        "y": 1440
       },
       "ZS.RES2": {
-        "x": 1040,
-        "y": 1400
+        "x": 300,
+        "y": 1590
       }
     },
-    "routes": {}
+    "routes": {},
+    "symbolFragments": {
+      "version": "1",
+      "placements": {
+        "symbol:Q2:pole1": {
+          "deviceId": "Q2",
+          "fragmentId": "pole1",
+          "position": {
+            "x": 310,
+            "y": 120
+          }
+        },
+        "symbol:K1:pole1": {
+          "deviceId": "K1",
+          "fragmentId": "pole1",
+          "position": {
+            "x": 550,
+            "y": 120
+          }
+        },
+        "symbol:K2:pole1": {
+          "deviceId": "K2",
+          "fragmentId": "pole1",
+          "position": {
+            "x": 790,
+            "y": 120
+          }
+        },
+        "symbol:Q2:pole2": {
+          "deviceId": "Q2",
+          "fragmentId": "pole2",
+          "position": {
+            "x": 310,
+            "y": 270
+          }
+        },
+        "symbol:K1:pole2": {
+          "deviceId": "K1",
+          "fragmentId": "pole2",
+          "position": {
+            "x": 550,
+            "y": 270
+          }
+        },
+        "symbol:K2:pole2": {
+          "deviceId": "K2",
+          "fragmentId": "pole2",
+          "position": {
+            "x": 790,
+            "y": 270
+          }
+        },
+        "symbol:Q2:pole3": {
+          "deviceId": "Q2",
+          "fragmentId": "pole3",
+          "position": {
+            "x": 310,
+            "y": 420
+          }
+        },
+        "symbol:K1:pole3": {
+          "deviceId": "K1",
+          "fragmentId": "pole3",
+          "position": {
+            "x": 550,
+            "y": 420
+          }
+        },
+        "symbol:K2:pole3": {
+          "deviceId": "K2",
+          "fragmentId": "pole3",
+          "position": {
+            "x": 790,
+            "y": 420
+          }
+        },
+        "symbol:Q1:pole1": {
+          "deviceId": "Q1",
+          "fragmentId": "pole1",
+          "position": {
+            "x": 80,
+            "y": 600
+          }
+        },
+        "symbol:Q2.AUX:no": {
+          "deviceId": "Q2.AUX",
+          "fragmentId": "no",
+          "position": {
+            "x": 320,
+            "y": 600
+          }
+        },
+        "symbol:S1:stop": {
+          "deviceId": "S1",
+          "fragmentId": "stop",
+          "position": {
+            "x": 560,
+            "y": 600
+          }
+        },
+        "symbol:S3:stop": {
+          "deviceId": "S3",
+          "fragmentId": "stop",
+          "position": {
+            "x": 800,
+            "y": 600
+          }
+        },
+        "symbol:S1:start": {
+          "deviceId": "S1",
+          "fragmentId": "start",
+          "position": {
+            "x": 320,
+            "y": 830
+          }
+        },
+        "symbol:S3:start": {
+          "deviceId": "S3",
+          "fragmentId": "start",
+          "position": {
+            "x": 320,
+            "y": 960
+          }
+        },
+        "symbol:K1:auxNO": {
+          "deviceId": "K1",
+          "fragmentId": "auxNO",
+          "position": {
+            "x": 320,
+            "y": 1090
+          }
+        },
+        "symbol:K2:auxNC": {
+          "deviceId": "K2",
+          "fragmentId": "auxNC",
+          "position": {
+            "x": 640,
+            "y": 960
+          }
+        },
+        "symbol:K1:coil": {
+          "deviceId": "K1",
+          "fragmentId": "coil",
+          "position": {
+            "x": 940,
+            "y": 960
+          }
+        },
+        "symbol:S2:no": {
+          "deviceId": "S2",
+          "fragmentId": "no",
+          "position": {
+            "x": 320,
+            "y": 1310
+          }
+        },
+        "symbol:S4:no": {
+          "deviceId": "S4",
+          "fragmentId": "no",
+          "position": {
+            "x": 320,
+            "y": 1440
+          }
+        },
+        "symbol:K1:auxNC": {
+          "deviceId": "K1",
+          "fragmentId": "auxNC",
+          "position": {
+            "x": 640,
+            "y": 1310
+          }
+        },
+        "symbol:K2:coil": {
+          "deviceId": "K2",
+          "fragmentId": "coil",
+          "position": {
+            "x": 940,
+            "y": 1310
+          }
+        },
+        "symbol:K2:auxNO": {
+          "deviceId": "K2",
+          "fragmentId": "auxNO",
+          "position": {
+            "x": 800,
+            "y": 1590
+          }
+        }
+      }
+    }
   },
   "faults": [],
   "userMetadata": {

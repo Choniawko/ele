@@ -3,6 +3,7 @@ import { catalog } from "@catalog/index";
 import { validateProjectDocument } from "@catalog/project-validation";
 import { clone, newId, type ProjectDocument } from "@model/index";
 import type { DiagramScope } from "./types";
+import { reference108 } from "./reference-108";
 
 export interface LessonFragment {
   id: string;
@@ -21,8 +22,17 @@ export interface DeviceProfile {
   states: string[];
   test: string;
   articleId: string;
-  terminals: { id: string; role: string }[];
+  terminals: { id: string; role: string; sourceLabel?: string }[];
   limitations: string[];
+  modelLabel?: string;
+  mounting?: string;
+  measurements?: string;
+  sources?: {
+    title: string;
+    url: string;
+    locator: string;
+    verifiedAt: string;
+  }[];
 }
 export interface LessonBinding {
   deviceId: string;
@@ -422,6 +432,7 @@ export const referenceExamples: ReferenceExample[] = [
       },
     ],
   },
+  reference108,
 ];
 export const referenceById = (id: string) =>
   referenceExamples.find((r) => r.id === id);

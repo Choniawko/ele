@@ -110,3 +110,30 @@ it("R6/R9: electrical edits invalidate an open panel; unknown and unbound object
   useApp.setState({ project: p });
   expect(openReferenceHelp({ deviceId: "Q1" })).toBe(false);
 });
+
+it("01b: contact/coil and real R2 wire help share the 108 apparatus and return to its own lesson", () => {
+  const p = referenceCopy("ele02-108");
+  useApp.setState({
+    project: p,
+    runtime: initialRuntime(p),
+    selection: ["K1"],
+  });
+  render(<ReferenceHelp />);
+  act(() => {
+    expect(openReferenceHelp({ deviceId: "K1", symbolId: "auxNO" })).toBe(true);
+  });
+  expect(
+    screen.getByRole("complementary", { name: "Pomoc w układzie ELE.02-108" }),
+  ).toBeTruthy();
+  expect(screen.getByText(/Własny NO 13–14/)).toBeTruthy();
+  expect(
+    screen
+      .getByRole("link", { name: "Lekcja i pełna tabela połączeń" })
+      .getAttribute("href"),
+  ).toBe("#/wiedza/uklady/ele02-108");
+  closeReferenceHelp();
+  act(() => {
+    expect(openReferenceHelp({ wireId: "W35" })).toBe(true);
+  });
+  expect(screen.getByText(/S3:4/)).toBeTruthy();
+});

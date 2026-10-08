@@ -191,7 +191,7 @@ test("01a: OFF copy/import, context table routes in both views, camera/focus/sta
     .getByRole("button", { name: "Wyjaśnij żyłę W21", exact: true })
     .click();
   const panel = page.getByRole("complementary", {
-    name: "Pomoc w układzie 101",
+    name: "Pomoc w układzie ELE.02-101",
   });
   await expect(panel.getByRole("heading", { name: "Żyła W21" })).toBeFocused();
   await panel.getByRole("button", { name: "Wskaż końce i trasę W21" }).click();
@@ -323,7 +323,7 @@ test("01a: responsive source/model distinction, native scrolling and gallery at 
   ]) {
     await page.setViewportSize({ width, height });
     const panel = page.getByRole("complementary", {
-      name: "Pomoc w układzie 101",
+      name: "Pomoc w układzie ELE.02-101",
     });
     await expect(
       panel.getByRole("button", { name: "Schowaj pomoc", exact: true }),
@@ -412,7 +412,7 @@ test("01a: context/source reading suspends the clock and editor shortcuts, then 
     .getByRole("button", { name: "Wyjaśnij żyłę W21", exact: true })
     .click();
   const panel = page.getByRole("complementary", {
-    name: "Pomoc w układzie 101",
+    name: "Pomoc w układzie ELE.02-101",
   });
   await expect(panel.getByRole("heading", { name: "Żyła W21" })).toBeFocused();
   await expect(
