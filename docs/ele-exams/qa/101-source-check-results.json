@@ -3,7 +3,7 @@
   "taskId": "ELE.02-101",
   "referenceRevision": "1",
   "fidelity": "educational",
-  "implementationCommit": "2b02a7ce711c667fa13d68139436a59ed3792a2f",
+  "implementationCommit": "280b194cd1c6b71ecdc04d178b38a0ba5d225e65",
   "notice": "Executed solver/model checks, not measurements on a physical installation. Original 82 specifications remain unchanged.",
   "checks": [
     {
@@ -16,7 +16,7 @@
       "executionEvidence": {
         "command": "pnpm test",
         "result": "295 passed, 21 files (18:49 CEST); these five source checks passed",
-        "additionalBrowserEvidence": "tests/e2e/reference-examples.spec.ts: 4 passed, 1 deliberately skipped on draft production /ele/ build 2b02a7c; final public-copy acceptance follows in QA_01.md"
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 40 passed, 1 local fixture skipped on /ele/ build 280b194; all five reference-example scenarios passed, including public OFF copies. See QA_01.md."
       }
     },
     {
@@ -29,7 +29,7 @@
       "executionEvidence": {
         "command": "pnpm test",
         "result": "295 passed, 21 files (18:49 CEST); these five source checks passed",
-        "additionalBrowserEvidence": "tests/e2e/reference-examples.spec.ts: 4 passed, 1 deliberately skipped on draft production /ele/ build 2b02a7c; final public-copy acceptance follows in QA_01.md"
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 40 passed, 1 local fixture skipped on /ele/ build 280b194; all five reference-example scenarios passed, including public OFF copies. See QA_01.md."
       }
     },
     {
@@ -42,7 +42,7 @@
       "executionEvidence": {
         "command": "pnpm test",
         "result": "295 passed, 21 files (18:49 CEST); these five source checks passed",
-        "additionalBrowserEvidence": "tests/e2e/reference-examples.spec.ts: 4 passed, 1 deliberately skipped on draft production /ele/ build 2b02a7c; final public-copy acceptance follows in QA_01.md"
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 40 passed, 1 local fixture skipped on /ele/ build 280b194; all five reference-example scenarios passed, including public OFF copies. See QA_01.md."
       }
     },
     {
@@ -55,7 +55,7 @@
       "executionEvidence": {
         "command": "pnpm test",
         "result": "295 passed, 21 files (18:49 CEST); these five source checks passed",
-        "additionalBrowserEvidence": "tests/e2e/reference-examples.spec.ts: 4 passed, 1 deliberately skipped on draft production /ele/ build 2b02a7c; final public-copy acceptance follows in QA_01.md"
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 40 passed, 1 local fixture skipped on /ele/ build 280b194; all five reference-example scenarios passed, including public OFF copies. See QA_01.md."
       }
     },
     {
@@ -68,7 +68,7 @@
       "executionEvidence": {
         "command": "pnpm test",
         "result": "295 passed, 21 files (18:49 CEST); these five source checks passed",
-        "additionalBrowserEvidence": "tests/e2e/reference-examples.spec.ts: 4 passed, 1 deliberately skipped on draft production /ele/ build 2b02a7c; final public-copy acceptance follows in QA_01.md"
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 40 passed, 1 local fixture skipped on /ele/ build 280b194; all five reference-example scenarios passed, including public OFF copies. See QA_01.md."
       }
     }
   ],

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "baselineCommit": "9c4895a817b5f5869d17b3cf23a3e9695d49f6cf",
-  "lastImplementedCommit": "72e2f32e853d9901570542437ee7623d48c18054",
+  "lastImplementedCommit": "280b194cd1c6b71ecdc04d178b38a0ba5d225e65",
   "notice": "Stage checkpoints reflect executed work; source specifications are not executed tests.",
   "stages": {
     "00": {
@@ -18,7 +18,10 @@
     },
     "01": {
       "status": "in-progress",
-      "evidence": []
+      "evidence": [
+        "docs/ele-exams/QA_01.md",
+        "01a tested; 01b pending"
+      ]
     },
     "02": {
       "status": "pending",
@@ -91,19 +94,23 @@
     },
     "01a": {
       "stageId": "01",
-      "status": "implemented",
+      "status": "tested",
       "evidence": [
-        "tests/reference-examples.test.ts",
-        "tests/reference-navigation.test.tsx",
-        "tests/reference-copy.test.ts",
-        "tests/wire-routing.test.ts",
-        "tests/e2e/reference-examples.spec.ts",
-        "pnpm test: 295 passed",
-        "draft production 2b02a7c: 4 passed, 1 deliberately skipped",
-        "dev full scope: 57 passed, 1 outdated navigation selector fixed and rerun passed, 1 local fixture skipped",
-        "dev targeted native 108 geometry and source navigation: 2 passed",
-        "final production dist and checkpoint pending"
-      ]
+        "docs/ele-exams/QA_01.md",
+        "docs/ele-exams/qa/101-source-check-results.json",
+        "pnpm typecheck, lint, catalog:validate, knowledge:validate: passed",
+        "pnpm test: 295 passed, 21 files",
+        "dev full: 57 passed, 1 failed outdated navigation selector subsequently fixed, 1 skipped",
+        "dev targeted rerun including failed navigation and native 108 geometry: 2 passed; all 58 unique dev scenarios verified",
+        "pnpm test:e2e:production: 40 passed, 1 local fixture skipped, 6.2 minutes",
+        "all five reference-example production scenarios passed, including two public OFF copies",
+        "70 native wire routes checked (101: 33, 108: 37)",
+        "13 production screenshots inspected in docs/ele-exams/qa/01a-*.png",
+        "pnpm build, release:pack, dist:validate: passed"
+      ],
+      "implementationCommit": "280b194cd1c6b71ecdc04d178b38a0ba5d225e65",
+      "referenceIntegrationCommit": "2b02a7ce711c667fa13d68139436a59ed3792a2f",
+      "testedAt": "2026-10-08T17:19:27.119649+00:00"
     },
     "01b": {
       "stageId": "01",
@@ -726,18 +733,18 @@
       "evidence": []
     }
   },
-  "nextUnit": "01a",
+  "nextUnit": "01b",
   "verifiedBuild": {
     "schemaVersion": 1,
     "version": "0.2.0",
     "tag": null,
-    "commit": "72e2f32e853d9901570542437ee7623d48c18054",
+    "commit": "280b194cd1c6b71ecdc04d178b38a0ba5d225e65",
     "base": "/ele/",
-    "builtAt": "2026-10-08T15:02:03.333Z"
+    "builtAt": "2026-10-08T17:09:52.241Z"
   },
   "releasePreparation": {
-    "archive": "release/ele-preview-72e2f32e853d.tar.gz",
-    "sha256": "8e8d72aaf58d549cda7705d45b23edaa84a1cf40938ad340cf312928647c7434",
+    "archive": "release/ele-preview-280b194cd1c6.tar.gz",
+    "sha256": "65fc4affb21aa182c1c88acf4f2eaf226592cd8d3312a446adc5310dceee0249",
     "published": false
   }
 }
