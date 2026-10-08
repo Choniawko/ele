@@ -1,0 +1,342 @@
+[
+  {
+    "taskId": "ELE.02-101",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-103",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-104",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-105",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-106",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-107",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-108",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-109",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-110",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-112",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-113",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-114",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-115",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-116",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-117",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-L01",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  },
+  {
+    "taskId": "ELE.02-L02",
+    "status": "content-only",
+    "referenceRevision": null,
+    "documentPath": null,
+    "fidelity": null,
+    "evidence": [],
+    "gates": {
+      "R1": "pending",
+      "R2": "pending",
+      "R3": "pending",
+      "R4": "pending",
+      "R5": "pending",
+      "R6": "pending",
+      "R7": "pending",
+      "R8": "pending",
+      "R9": "pending",
+      "R10": "pending"
+    }
+  }
+]

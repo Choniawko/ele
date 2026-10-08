@@ -1,0 +1,2624 @@
+{
+  "format": "ele-reference-task-plan",
+  "version": 1,
+  "baselineCommit": "9c4895a817b5f5869d17b3cf23a3e9695d49f6cf",
+  "tasks": [
+    {
+      "taskId": "ELE.02-101",
+      "code": "101",
+      "title": "Dwie oprawy z dwóch miejsc i gniazdo",
+      "stageId": "01",
+      "taskPrompt": "zadania/ELE02_101.md",
+      "sourceStatusAtBaseline": "existing-repo-example-validated",
+      "referenceAtBaseline": "materialy/examples/import/ELE02_101_stanowisko.json",
+      "plannedReferencePath": "examples/physical/ELE02_101_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "101-QA-01",
+        "101-QA-02",
+        "101-QA-03",
+        "101-QA-04",
+        "101-QA-05"
+      ],
+      "figureIds": [
+        "ELE02_101_p1_ideowy",
+        "ELE02_101_p2_rozmieszczenie"
+      ],
+      "componentIds": [
+        "rcd2",
+        "b6",
+        "b10",
+        "indicator-green",
+        "case8",
+        "lamp-pe",
+        "junction-box",
+        "changeover",
+        "socket1"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "rcd2",
+          "status": "educational-model",
+          "note": "Model sinusoidalnego AC. Typ rzeczywistego RCD nie jest określony przez arkusze; model nie potwierdza doboru typu ani prądu znamionowego konkretnego SKU.",
+          "productId": "edu-rcd",
+          "productRevision": "1",
+          "topologyId": "rcd-2p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b10",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 10
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "indicator-green",
+          "status": "educational-model",
+          "note": "Zielona 230 V AC; w 109 wybór koloru jest zakupową propozycją.",
+          "productId": "edu-indicator-green-230",
+          "productRevision": "1",
+          "topologyId": "didactic-indicator-ln-v1",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "case8",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "lamp-pe",
+          "status": "educational-model",
+          "note": "Oprawa klasy I z L/N/PE i źródłem 40 W; parametry rzeczywistej oprawy osobno.",
+          "productId": "edu-bulkhead-40",
+          "productRevision": "1",
+          "topologyId": "didactic-bulkhead-lnpe-v1",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "junction-box",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "changeover",
+          "status": "educational-model",
+          "note": "COM/1/2 to numeracja modelu. W 107 źródło oznacza COM jako 2 — mapa instancji nie może kopiować numerów bez sprawdzenia.",
+          "productId": "edu-changeover",
+          "productRevision": "1",
+          "topologyId": "changeover",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "socket1",
+          "status": "educational-model",
+          "note": "Gniazdo 1-fazowe z osobnymi punktami użytkowymi pomiarów; bez gwarancji doboru rzeczywistego gniazda do B20.",
+          "productId": "edu-socket",
+          "productRevision": "1",
+          "topologyId": "socket",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "101-ISSUE-01"
+      ],
+      "knowledgeArticleIds": [
+        "rcd",
+        "mcb",
+        "laczniki",
+        "lampy",
+        "gniazda",
+        "obudowy",
+        "czytanie-schematu"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-103",
+      "code": "103",
+      "title": "Rozdzielnica z dwoma RCD i rozdziałem faz",
+      "stageId": "03",
+      "taskPrompt": "zadania/ELE02_103.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_103_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "103-QA-01",
+        "103-QA-02",
+        "103-QA-03",
+        "103-QA-04",
+        "103-QA-05"
+      ],
+      "figureIds": [
+        "ELE02_103_p3_ideowy",
+        "ELE02_103_p2_rozmieszczenie"
+      ],
+      "componentIds": [
+        "rcd2",
+        "rcd4",
+        "b6",
+        "b10",
+        "b20",
+        "case12",
+        "socket1",
+        "lamp-no-pe",
+        "bus-n",
+        "bus-pe"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "rcd2",
+          "status": "educational-model",
+          "note": "Model sinusoidalnego AC. Typ rzeczywistego RCD nie jest określony przez arkusze; model nie potwierdza doboru typu ani prądu znamionowego konkretnego SKU.",
+          "productId": "edu-rcd",
+          "productRevision": "1",
+          "topologyId": "rcd-2p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "rcd4",
+          "status": "missing-model",
+          "note": "Nie ma RCD 4P. Zestaw dwóch RCD 2P nie jest jednym wspólnym mechanizmem 4P.",
+          "plannedProductId": "edu-rcd-4p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b10",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 10
+          },
+          "sourceQuantity": 3,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b20",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 20
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "case12",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "socket1",
+          "status": "educational-model",
+          "note": "Gniazdo 1-fazowe z osobnymi punktami użytkowymi pomiarów; bez gwarancji doboru rzeczywistego gniazda do B20.",
+          "productId": "edu-socket",
+          "productRevision": "1",
+          "topologyId": "socket",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "lamp-no-pe",
+          "status": "partial-adaptation",
+          "note": "Funkcja L/N jest dostępna. To lampa dydaktyczna 60 W; ustawienie do 40 W nie zweryfikuje mechaniki oprawki E27 z 103.",
+          "productId": "edu-lamp",
+          "productRevision": "1",
+          "topologyId": "load",
+          "requiredSettings": {
+            "powerW": 40
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bus-n",
+          "status": "partial-adaptation",
+          "note": "Model ma 5 zacisków; tabela osprzętu wymaga co najmniej 6. Liczba i pojemność modelu nie są danymi produktu. W 103 muszą być dwa niezależne potencjały N.",
+          "productId": "edu-bus-n",
+          "productRevision": "1",
+          "topologyId": "bus",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bus-pe",
+          "status": "partial-adaptation",
+          "note": "Model ma 5 zacisków; źródła mogą wymagać co najmniej 6. Połączenie PE z rzeczywistą szyną lub obudową wynika z ich konstrukcji.",
+          "productId": "edu-bus-pe",
+          "productRevision": "1",
+          "topologyId": "bus",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "103-ISSUE-01",
+        "103-ISSUE-02"
+      ],
+      "knowledgeArticleIds": [
+        "rcd",
+        "mcb",
+        "lampy",
+        "gniazda",
+        "obudowy",
+        "zlaczki",
+        "n-pe-wezly"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-104",
+      "code": "104",
+      "title": "Automat schodowy sterowany warunkiem zmierzchu",
+      "stageId": "07",
+      "taskPrompt": "zadania/ELE02_104.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_104_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "104-QA-01",
+        "104-QA-02",
+        "104-QA-03",
+        "104-QA-04"
+      ],
+      "figureIds": [
+        "ELE02_104_p1_ideowy",
+        "ELE02_104_p3_montazowy",
+        "ELE02_104_p2_rozmieszczenie"
+      ],
+      "componentIds": [
+        "rcd2",
+        "b6",
+        "twilight",
+        "staircase",
+        "case8",
+        "lamp-pe",
+        "wall-no"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "rcd2",
+          "status": "educational-model",
+          "note": "Model sinusoidalnego AC. Typ rzeczywistego RCD nie jest określony przez arkusze; model nie potwierdza doboru typu ani prądu znamionowego konkretnego SKU.",
+          "productId": "edu-rcd",
+          "productRevision": "1",
+          "topologyId": "rcd-2p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "twilight",
+          "status": "missing-model",
+          "note": "Brak aparatu z wejściem światła i zewnętrzną sondą.",
+          "plannedProductId": "edu-twilight-external-probe",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "staircase",
+          "status": "partial-adaptation",
+          "note": "Profil AS-212 umożliwia nastawę 60 s; dokładny aparat w 104 nie jest wskazany. Potwierdzić instrukcję i sposób zasilenia przez AZ.",
+          "productId": "edu-staircase",
+          "productRevision": "1",
+          "topologyId": "staircase",
+          "requiredSettings": {
+            "timeS": 60
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "case8",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "lamp-pe",
+          "status": "educational-model",
+          "note": "Oprawa klasy I z L/N/PE i źródłem 40 W; parametry rzeczywistej oprawy osobno.",
+          "productId": "edu-bulkhead-40",
+          "productRevision": "1",
+          "topologyId": "didactic-bulkhead-lnpe-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "wall-no",
+          "status": "partial-adaptation",
+          "note": "Funkcja chwilowego NO jest dostępna; nie odwzorowuje montażu i zacisków przycisku natynkowego z arkusza.",
+          "productId": "edu-start",
+          "productRevision": "1",
+          "topologyId": "push-no",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "104-ISSUE-01"
+      ],
+      "knowledgeArticleIds": [
+        "rcd",
+        "mcb",
+        "przycisk",
+        "az-as",
+        "lampy",
+        "obudowy"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-105",
+      "code": "105",
+      "title": "Dwie oprawy sterowane z trzech miejsc",
+      "stageId": "02",
+      "taskPrompt": "zadania/ELE02_105.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_105_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "105-QA-01",
+        "105-QA-02",
+        "105-QA-03",
+        "105-QA-04"
+      ],
+      "figureIds": [
+        "ELE02_105_p1_ideowy",
+        "ELE02_105_p2_rozmieszczenie"
+      ],
+      "componentIds": [
+        "b6",
+        "case8",
+        "lamp-pe",
+        "changeover",
+        "crossover",
+        "junction-box"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "case8",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "lamp-pe",
+          "status": "educational-model",
+          "note": "Oprawa klasy I z L/N/PE i źródłem 40 W; parametry rzeczywistej oprawy osobno.",
+          "productId": "edu-bulkhead-40",
+          "productRevision": "1",
+          "topologyId": "didactic-bulkhead-lnpe-v1",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "changeover",
+          "status": "educational-model",
+          "note": "COM/1/2 to numeracja modelu. W 107 źródło oznacza COM jako 2 — mapa instancji nie może kopiować numerów bez sprawdzenia.",
+          "productId": "edu-changeover",
+          "productRevision": "1",
+          "topologyId": "changeover",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "crossover",
+          "status": "educational-model",
+          "note": "Dwa sprzężone tory korespondencyjne, stan prosty / krzyżowy.",
+          "productId": "edu-crossover",
+          "productRevision": "1",
+          "topologyId": "crossover",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "junction-box",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "105-ISSUE-01"
+      ],
+      "knowledgeArticleIds": [
+        "mcb",
+        "laczniki",
+        "lampy",
+        "obudowy",
+        "pomiary"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-106",
+      "code": "106",
+      "title": "Przekaźnik bistabilny z dwóch miejsc i gniazdo",
+      "stageId": "05",
+      "taskPrompt": "zadania/ELE02_106.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_106_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "106-QA-01",
+        "106-QA-02",
+        "106-QA-03",
+        "106-QA-04"
+      ],
+      "figureIds": [
+        "ELE02_106_p3_montazowy",
+        "ELE02_106_p2_rozmieszczenie"
+      ],
+      "componentIds": [
+        "rcd2",
+        "b6",
+        "b10",
+        "case8",
+        "lamp-pe",
+        "socket1",
+        "wall-no",
+        "bistable-din"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "rcd2",
+          "status": "educational-model",
+          "note": "Model sinusoidalnego AC. Typ rzeczywistego RCD nie jest określony przez arkusze; model nie potwierdza doboru typu ani prądu znamionowego konkretnego SKU.",
+          "productId": "edu-rcd",
+          "productRevision": "1",
+          "topologyId": "rcd-2p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b10",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 10
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "case8",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "lamp-pe",
+          "status": "educational-model",
+          "note": "Oprawa klasy I z L/N/PE i źródłem 40 W; parametry rzeczywistej oprawy osobno.",
+          "productId": "edu-bulkhead-40",
+          "productRevision": "1",
+          "topologyId": "didactic-bulkhead-lnpe-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "socket1",
+          "status": "educational-model",
+          "note": "Gniazdo 1-fazowe z osobnymi punktami użytkowymi pomiarów; bez gwarancji doboru rzeczywistego gniazda do B20.",
+          "productId": "edu-socket",
+          "productRevision": "1",
+          "topologyId": "socket",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "wall-no",
+          "status": "partial-adaptation",
+          "note": "Funkcja chwilowego NO jest dostępna; nie odwzorowuje montażu i zacisków przycisku natynkowego z arkusza.",
+          "productId": "edu-start",
+          "productRevision": "1",
+          "topologyId": "push-no",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bistable-din",
+          "status": "missing-model",
+          "note": "edu-bistable jest profilem BIS-411. BIS-413 z czasem ma inny kontrakt zachowania.",
+          "plannedProductId": "edu-bis413-230",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "106-ISSUE-01",
+        "106-ISSUE-02"
+      ],
+      "knowledgeArticleIds": [
+        "rcd",
+        "mcb",
+        "przycisk",
+        "bistabilny",
+        "lampy",
+        "gniazda",
+        "obudowy"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-107",
+      "code": "107",
+      "title": "Bistabilny z przełączaniem aktywności przycisku",
+      "stageId": "05",
+      "taskPrompt": "zadania/ELE02_107.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_107_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "107-QA-01",
+        "107-QA-02",
+        "107-QA-03",
+        "107-QA-04",
+        "107-QA-05"
+      ],
+      "figureIds": [
+        "ELE02_107_p2_ideowy",
+        "ELE02_107_p2_rozdzielnice",
+        "ELE02_107_p1_rozmieszczenie"
+      ],
+      "componentIds": [
+        "rcd2",
+        "b6",
+        "bistable-din",
+        "indicator-red",
+        "indicator-green",
+        "indicator-yellow",
+        "case8",
+        "case4",
+        "lamp-pe",
+        "wall-no",
+        "changeover"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "rcd2",
+          "status": "educational-model",
+          "note": "Model sinusoidalnego AC. Typ rzeczywistego RCD nie jest określony przez arkusze; model nie potwierdza doboru typu ani prądu znamionowego konkretnego SKU.",
+          "productId": "edu-rcd",
+          "productRevision": "1",
+          "topologyId": "rcd-2p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bistable-din",
+          "status": "missing-model",
+          "note": "edu-bistable jest profilem BIS-411. BIS-413 z czasem ma inny kontrakt zachowania.",
+          "plannedProductId": "edu-bis413-230",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "indicator-red",
+          "status": "missing-model",
+          "note": "Brak opublikowanego czerwonego wariantu lampki DIN 230 V.",
+          "plannedProductId": "edu-indicator-red-230",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "indicator-green",
+          "status": "educational-model",
+          "note": "Zielona 230 V AC; w 109 wybór koloru jest zakupową propozycją.",
+          "productId": "edu-indicator-green-230",
+          "productRevision": "1",
+          "topologyId": "didactic-indicator-ln-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "indicator-yellow",
+          "status": "missing-model",
+          "note": "Brak opublikowanego żółtego wariantu lampki DIN 230 V.",
+          "plannedProductId": "edu-indicator-yellow-230",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "case8",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "case4",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "lamp-pe",
+          "status": "educational-model",
+          "note": "Oprawa klasy I z L/N/PE i źródłem 40 W; parametry rzeczywistej oprawy osobno.",
+          "productId": "edu-bulkhead-40",
+          "productRevision": "1",
+          "topologyId": "didactic-bulkhead-lnpe-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "wall-no",
+          "status": "partial-adaptation",
+          "note": "Funkcja chwilowego NO jest dostępna; nie odwzorowuje montażu i zacisków przycisku natynkowego z arkusza.",
+          "productId": "edu-start",
+          "productRevision": "1",
+          "topologyId": "push-no",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "changeover",
+          "status": "educational-model",
+          "note": "COM/1/2 to numeracja modelu. W 107 źródło oznacza COM jako 2 — mapa instancji nie może kopiować numerów bez sprawdzenia.",
+          "productId": "edu-changeover",
+          "productRevision": "1",
+          "topologyId": "changeover",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "107-ISSUE-01"
+      ],
+      "knowledgeArticleIds": [
+        "rcd",
+        "mcb",
+        "przycisk",
+        "laczniki",
+        "bistabilny",
+        "lampy",
+        "obudowy"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-108",
+      "code": "108",
+      "title": "Prawo z podtrzymaniem, lewo chwilowe z dwóch miejsc",
+      "stageId": "01",
+      "taskPrompt": "zadania/ELE02_108.md",
+      "sourceStatusAtBaseline": "existing-repo-example-validated",
+      "referenceAtBaseline": "materialy/examples/import/ELE02_108_stanowisko.json",
+      "plannedReferencePath": "examples/physical/ELE02_108_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "108-QA-01",
+        "108-QA-02",
+        "108-QA-03",
+        "108-QA-04",
+        "108-QA-05",
+        "108-QA-06",
+        "108-QA-07"
+      ],
+      "figureIds": [
+        "ELE02_108_p2_moc-i-sterowanie",
+        "ELE02_108_p1_rozmieszczenie"
+      ],
+      "componentIds": [
+        "b6",
+        "motor-protection",
+        "motor-aux",
+        "contactor",
+        "start-stop-din",
+        "start-stop-panel",
+        "no-din",
+        "no-panel",
+        "case-r2",
+        "rail-n",
+        "rail-pe",
+        "motor3-y"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "motor-protection",
+          "status": "educational-model",
+          "note": "Wyłącznik silnikowy, nie termik wpięty zamiast niego. Domyślne 4,35 A jest założeniem; nastawa do danych motoru. Model cieplny i zwarciowy jest uproszczony.",
+          "productId": "edu-motor-protection",
+          "productRevision": "1",
+          "topologyId": "motor-protection-3p-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "motor-aux",
+          "status": "educational-model",
+          "note": "Dołączyć do wyłącznika silnikowego przez assembly. NO reaguje na ON/OFF/trip, bez osobnej cewki.",
+          "productId": "edu-motor-aux-no",
+          "productRevision": "1",
+          "topologyId": "motor-aux-no-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "contactor",
+          "status": "partial-adaptation",
+          "note": "Opublikowany stycznik 230 V AC z własnym NO/NC. W źródłach dopuszczono różne aparaty; geometria i dobór obciążenia wymagają sprawdzenia. W 109 użyte dwa tory główne.",
+          "productId": "schneider-lc1d09p7",
+          "productRevision": "verified-20261005-1",
+          "topologyId": "lc1d09p7-stage-one",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "start-stop-din",
+          "status": "educational-model",
+          "note": "Dwa niezależne operatory: NO START i NC STOP; odpowiednie powiązania symbole–mechanizm.",
+          "productId": "edu-start-stop-din",
+          "productRevision": "1",
+          "topologyId": "independent-start-stop-din-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "start-stop-panel",
+          "status": "educational-model",
+          "note": "Dwa niezależne operatory; wariant obudowy w 108.",
+          "productId": "edu-start-stop-panel",
+          "productRevision": "1",
+          "topologyId": "independent-start-stop-panel-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "no-din",
+          "status": "educational-model",
+          "note": "Jeden chwilowy NO.",
+          "productId": "edu-push-no-din",
+          "productRevision": "1",
+          "topologyId": "push-no-34-din-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "no-panel",
+          "status": "educational-model",
+          "note": "Jeden chwilowy NO.",
+          "productId": "edu-push-no-panel",
+          "productRevision": "1",
+          "topologyId": "push-no-34-panel-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "case-r2",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "rail-n",
+          "status": "partial-adaptation",
+          "note": "Jeden wspólny tor 1–2. Kolor, izolacja i połączenie z TH35 nie potwierdzają właściwości rzeczywistego SKU N/PE.",
+          "productId": "edu-rail-terminal",
+          "productRevision": "1",
+          "topologyId": "rail-terminal-2-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "rail-pe",
+          "status": "partial-adaptation",
+          "note": "Jeden wspólny tor 1–2. Kolor, izolacja i połączenie z TH35 nie potwierdzają właściwości rzeczywistego SKU N/PE.",
+          "productId": "edu-rail-terminal",
+          "productRevision": "1",
+          "topologyId": "rail-terminal-2-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "motor3-y",
+          "status": "partial-adaptation",
+          "note": "Napięcie 230Δ/400Y odpowiada profilowi 113. Obecny model rezystancyjny 3 kW nie odwzorowuje dokładnie silnika do 1,5 kW, jego rozruchu i pomiarów. W 108 zastosowano edu-motor, a tabliczki nie ma w PDF.",
+          "productId": "edu-motor-six",
+          "productRevision": "1",
+          "topologyId": "motor-six-windings-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "108-ISSUE-01",
+        "108-ISSUE-02",
+        "108-ISSUE-03"
+      ],
+      "knowledgeArticleIds": [
+        "mcb",
+        "ochrona-silnika",
+        "stycznik",
+        "start-stop",
+        "przycisk",
+        "silniki",
+        "obudowy",
+        "zlaczki",
+        "czytanie-schematu",
+        "n-pe-wezly"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-109",
+      "code": "109",
+      "title": "Silnik jednofazowy: pomiary i zmiana kierunku",
+      "stageId": "10",
+      "taskPrompt": "zadania/ELE02_109.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_109_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "109-QA-01",
+        "109-QA-02",
+        "109-QA-03",
+        "109-QA-04",
+        "109-QA-05"
+      ],
+      "figureIds": [
+        "ELE02_109_p2_moc-i-sterowanie",
+        "ELE02_109_p2_rozmieszczenie"
+      ],
+      "componentIds": [
+        "motor1",
+        "contactor",
+        "b6",
+        "c-motor",
+        "no-nc-maintained",
+        "indicator-green",
+        "rail-end",
+        "bus-n",
+        "bus-pe",
+        "plug1"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "motor1",
+          "status": "missing-model",
+          "note": "Model trójfazowy nie zastępuje silnika kondensatorowego z U/Z.",
+          "plannedProductId": "edu-motor-1ph-capacitor",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "contactor",
+          "status": "partial-adaptation",
+          "note": "Opublikowany stycznik 230 V AC z własnym NO/NC. W źródłach dopuszczono różne aparaty; geometria i dobór obciążenia wymagają sprawdzenia. W 109 użyte dwa tory główne.",
+          "productId": "schneider-lc1d09p7",
+          "productRevision": "verified-20261005-1",
+          "topologyId": "lc1d09p7-stage-one",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "c-motor",
+          "status": "missing-model",
+          "note": "Potrzebny wariant C 1P z prądem dobranym do tabliczki silnika 109.",
+          "plannedProductId": "edu-mcb-c-adjustable",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "no-nc-maintained",
+          "status": "missing-model",
+          "note": "Brak jednego operatora utrzymującego pozycję i jednocześnie przełączającego NO/NC.",
+          "plannedProductId": "edu-push-maintained-no-nc",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "indicator-green",
+          "status": "educational-model",
+          "note": "Zielona 230 V AC; w 109 wybór koloru jest zakupową propozycją.",
+          "productId": "edu-indicator-green-230",
+          "productRevision": "1",
+          "topologyId": "didactic-indicator-ln-v1",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "rail-end",
+          "status": "material-only",
+          "note": "Osprzęt montażowy, bez zachowania elektrycznego w katalogu. Dobór do rzeczywistej szyny, średnicy przewodu i obudowy.",
+          "sourceQuantity": 3,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bus-n",
+          "status": "partial-adaptation",
+          "note": "Model ma 5 zacisków; tabela osprzętu wymaga co najmniej 6. Liczba i pojemność modelu nie są danymi produktu. W 103 muszą być dwa niezależne potencjały N.",
+          "productId": "edu-bus-n",
+          "productRevision": "1",
+          "topologyId": "bus",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bus-pe",
+          "status": "partial-adaptation",
+          "note": "Model ma 5 zacisków; źródła mogą wymagać co najmniej 6. Połączenie PE z rzeczywistą szyną lub obudową wynika z ich konstrukcji.",
+          "productId": "edu-bus-pe",
+          "productRevision": "1",
+          "topologyId": "bus",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "plug1",
+          "status": "material-only",
+          "note": "Osprzęt realnego stanowiska; źródło modelu nie jest zweryfikowanym SKU wtyczki.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "109-ISSUE-01",
+        "109-ISSUE-02",
+        "109-ISSUE-03"
+      ],
+      "knowledgeArticleIds": [
+        "mcb",
+        "stycznik",
+        "jeden-no-nc",
+        "lampy",
+        "gniazda",
+        "silniki",
+        "zlaczki",
+        "pomiary"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-110",
+      "code": "110",
+      "title": "Gniazdo 3-fazowe, 1-fazowe i oświetlenie",
+      "stageId": "03",
+      "taskPrompt": "zadania/ELE02_110.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_110_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "110-QA-01",
+        "110-QA-02",
+        "110-QA-03",
+        "110-QA-04"
+      ],
+      "figureIds": [
+        "ELE02_110_p2_ideowy",
+        "ELE02_110_p1_rozmieszczenie"
+      ],
+      "componentIds": [
+        "rcd4",
+        "b6",
+        "b10",
+        "b16-3",
+        "case12",
+        "socket3",
+        "lamp-pe",
+        "wall-switch",
+        "socket1",
+        "gland5",
+        "gland3-25",
+        "gland3-15",
+        "junction-box4"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "rcd4",
+          "status": "missing-model",
+          "note": "Nie ma RCD 4P. Zestaw dwóch RCD 2P nie jest jednym wspólnym mechanizmem 4P.",
+          "plannedProductId": "edu-rcd-4p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b10",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 10
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b16-3",
+          "status": "missing-model",
+          "note": "edu-mcb3 to C16. Potrzebny odrębny profil B16 3P.",
+          "plannedProductId": "edu-mcb-b16-3p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "case12",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "socket3",
+          "status": "missing-model",
+          "note": "Brak gniazda 3P+N+PE z pięcioma torami i punktami pomiarowymi.",
+          "plannedProductId": "edu-cee-socket-5p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "lamp-pe",
+          "status": "educational-model",
+          "note": "Oprawa klasy I z L/N/PE i źródłem 40 W; parametry rzeczywistej oprawy osobno.",
+          "productId": "edu-bulkhead-40",
+          "productRevision": "1",
+          "topologyId": "didactic-bulkhead-lnpe-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "wall-switch",
+          "status": "educational-model",
+          "note": "Ogólny łącznik 1P; sprawdzić geometrię i terminale konkretnego egzemplarza.",
+          "productId": "edu-switch",
+          "productRevision": "1",
+          "topologyId": "switch-1p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "socket1",
+          "status": "educational-model",
+          "note": "Gniazdo 1-fazowe z osobnymi punktami użytkowymi pomiarów; bez gwarancji doboru rzeczywistego gniazda do B20.",
+          "productId": "edu-socket",
+          "productRevision": "1",
+          "topologyId": "socket",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "gland5",
+          "status": "material-only",
+          "note": "Osprzęt montażowy, bez zachowania elektrycznego w katalogu. Dobór do rzeczywistej szyny, średnicy przewodu i obudowy.",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "gland3-25",
+          "status": "material-only",
+          "note": "Osprzęt montażowy, bez zachowania elektrycznego w katalogu. Dobór do rzeczywistej szyny, średnicy przewodu i obudowy.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "gland3-15",
+          "status": "material-only",
+          "note": "Osprzęt montażowy, bez zachowania elektrycznego w katalogu. Dobór do rzeczywistej szyny, średnicy przewodu i obudowy.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "junction-box4",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "110-ISSUE-01"
+      ],
+      "knowledgeArticleIds": [
+        "rcd",
+        "mcb",
+        "laczniki",
+        "lampy",
+        "gniazda",
+        "obudowy",
+        "dlawnice"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-112",
+      "code": "112",
+      "title": "Bistabilny w puszce, trzy przyciski",
+      "stageId": "06",
+      "taskPrompt": "zadania/ELE02_112.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_112_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "112-QA-01",
+        "112-QA-02",
+        "112-QA-03",
+        "112-QA-04",
+        "112-QA-05"
+      ],
+      "figureIds": [
+        "ELE02_112_p1_ideowy",
+        "ELE02_112_p2_montazowy",
+        "ELE02_112_p3_rozmieszczenie"
+      ],
+      "componentIds": [
+        "bistable-box",
+        "junction-plate",
+        "lamp-pe",
+        "wall-no",
+        "junction-box"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "bistable-box",
+          "status": "missing-model",
+          "note": "BIS-402 ma numerację i montaż dopuszkowy różne od edu-bistable.",
+          "plannedProductId": "edu-bis402",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "junction-plate",
+          "status": "missing-model",
+          "note": "Potrzebnych 5 niezależnych torów, a nie jedna złączka pięciowejściowa o wspólnym potencjale.",
+          "plannedProductId": "edu-junction-plate-5-circuits",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "lamp-pe",
+          "status": "educational-model",
+          "note": "Oprawa klasy I z L/N/PE i źródłem 40 W; parametry rzeczywistej oprawy osobno.",
+          "productId": "edu-bulkhead-40",
+          "productRevision": "1",
+          "topologyId": "didactic-bulkhead-lnpe-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "wall-no",
+          "status": "partial-adaptation",
+          "note": "Funkcja chwilowego NO jest dostępna; nie odwzorowuje montażu i zacisków przycisku natynkowego z arkusza.",
+          "productId": "edu-start",
+          "productRevision": "1",
+          "topologyId": "push-no",
+          "sourceQuantity": 3,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "junction-box",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 3,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "112-ISSUE-01"
+      ],
+      "knowledgeArticleIds": [
+        "przycisk",
+        "bistabilny",
+        "lampy",
+        "obudowy",
+        "zlaczki",
+        "czytanie-schematu",
+        "n-pe-wezly",
+        "pomiary"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-113",
+      "code": "113",
+      "title": "Podnośnik: gotowość, kierunki i krańcówki",
+      "stageId": "09",
+      "taskPrompt": "zadania/ELE02_113.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_113_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "113-QA-01",
+        "113-QA-02",
+        "113-QA-03",
+        "113-QA-04",
+        "113-QA-05",
+        "113-QA-06"
+      ],
+      "figureIds": [
+        "ELE02_113_p3_moc-i-sterowanie",
+        "ELE02_113_p2_rozmieszczenie"
+      ],
+      "componentIds": [
+        "motor3-y",
+        "contactor",
+        "contactor-block",
+        "aux-relay",
+        "b6",
+        "no-din",
+        "nc-din",
+        "no-nc-momentary",
+        "limit-switch",
+        "indicator-yellow",
+        "bus-n",
+        "bus-pe",
+        "plug3"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "motor3-y",
+          "status": "partial-adaptation",
+          "note": "Napięcie 230Δ/400Y odpowiada profilowi 113. Obecny model rezystancyjny 3 kW nie odwzorowuje dokładnie silnika do 1,5 kW, jego rozruchu i pomiarów. W 108 zastosowano edu-motor, a tabliczki nie ma w PDF.",
+          "productId": "edu-motor-six",
+          "productRevision": "1",
+          "topologyId": "motor-six-windings-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "contactor",
+          "status": "partial-adaptation",
+          "note": "Opublikowany stycznik 230 V AC z własnym NO/NC. W źródłach dopuszczono różne aparaty; geometria i dobór obciążenia wymagają sprawdzenia. W 109 użyte dwa tory główne.",
+          "productId": "schneider-lc1d09p7",
+          "productRevision": "verified-20261005-1",
+          "topologyId": "lc1d09p7-stage-one",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "contactor-block",
+          "status": "missing-model",
+          "note": "edu-auxiliary ma 1NO+1NC; źródła 113/116 wymieniają 2NO+2NC. Nie podpisywać go jako tego bloku.",
+          "plannedProductId": "edu-auxiliary-2no2nc",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "aux-relay",
+          "status": "missing-model",
+          "note": "edu-relay jest 24 V DC. Potrzebny pomocniczy 230 V AC z NO i NC; użycie innego stycznika z dodatkowymi niewykorzystanymi torami byłoby odrębną adaptacją.",
+          "plannedProductId": "edu-auxiliary-contactor-230",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "no-din",
+          "status": "educational-model",
+          "note": "Jeden chwilowy NO.",
+          "productId": "edu-push-no-din",
+          "productRevision": "1",
+          "topologyId": "push-no-34-din-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "nc-din",
+          "status": "partial-adaptation",
+          "note": "Funkcja NC jest dostępna, ale obecny przycisk panelowy nie jest zweryfikowanym źródłowym wariantem na TH35.",
+          "productId": "edu-stop",
+          "productRevision": "1",
+          "topologyId": "push-nc",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "no-nc-momentary",
+          "status": "partial-adaptation",
+          "note": "Jeden wspólny operator NO+NC chwilowy. To produkt panelowy; nie przedstawiać jako SVN351 DIN.",
+          "productId": "schneider-xb5aa35",
+          "productRevision": "verified-20261005-1",
+          "topologyId": "xb5aa35-1no1nc",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "limit-switch",
+          "status": "missing-model",
+          "note": "Potrzebny jeden mechanizm NO/NC i jawne zadziałanie krańcówki.",
+          "plannedProductId": "edu-limit-switch-no-nc",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "indicator-yellow",
+          "status": "missing-model",
+          "note": "Brak opublikowanego żółtego wariantu lampki DIN 230 V.",
+          "plannedProductId": "edu-indicator-yellow-230",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bus-n",
+          "status": "partial-adaptation",
+          "note": "Model ma 5 zacisków; tabela osprzętu wymaga co najmniej 6. Liczba i pojemność modelu nie są danymi produktu. W 103 muszą być dwa niezależne potencjały N.",
+          "productId": "edu-bus-n",
+          "productRevision": "1",
+          "topologyId": "bus",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bus-pe",
+          "status": "partial-adaptation",
+          "note": "Model ma 5 zacisków; źródła mogą wymagać co najmniej 6. Połączenie PE z rzeczywistą szyną lub obudową wynika z ich konstrukcji.",
+          "productId": "edu-bus-pe",
+          "productRevision": "1",
+          "topologyId": "bus",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "plug3",
+          "status": "material-only",
+          "note": "Osprzęt realnego stanowiska; źródło modelu nie jest zweryfikowanym SKU wtyczki.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "113-ISSUE-01",
+        "113-ISSUE-02",
+        "113-ISSUE-03"
+      ],
+      "knowledgeArticleIds": [
+        "mcb",
+        "stycznik",
+        "jeden-no-nc",
+        "przycisk",
+        "krancowka",
+        "lampy",
+        "gniazda",
+        "silniki",
+        "zlaczki"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-114",
+      "code": "114",
+      "title": "Oświetlenie: faza podstawowa i rezerwowa po 5 s",
+      "stageId": "12",
+      "taskPrompt": "zadania/ELE02_114.md",
+      "sourceStatusAtBaseline": "source-review-required",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_114_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "114-QA-01",
+        "114-QA-02",
+        "114-QA-03",
+        "114-QA-04",
+        "114-QA-05"
+      ],
+      "figureIds": [
+        "ELE02_114_p2_ideowy",
+        "ELE02_114_p2_rozdzielnica"
+      ],
+      "componentIds": [
+        "aux-relay",
+        "b10",
+        "no-nc-maintained",
+        "timer",
+        "case12",
+        "lamp-pe",
+        "indicator-green",
+        "indicator-red"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "aux-relay",
+          "status": "missing-model",
+          "note": "edu-relay jest 24 V DC. Potrzebny pomocniczy 230 V AC z NO i NC; użycie innego stycznika z dodatkowymi niewykorzystanymi torami byłoby odrębną adaptacją.",
+          "plannedProductId": "edu-auxiliary-contactor-230",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b10",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 10
+          },
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "no-nc-maintained",
+          "status": "missing-model",
+          "note": "Brak jednego operatora utrzymującego pozycję i jednocześnie przełączającego NO/NC.",
+          "plannedProductId": "edu-push-maintained-no-nc",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "timer",
+          "status": "partial-adaptation",
+          "note": "Dostępne tryby PCU A–D. Nie rozstrzygają sprzeczności 114 ani nie dowodzą zgodności z nieznanym KT. Zaciski 11/10/12 są tylko jednym z torów tego modelu.",
+          "productId": "edu-timer",
+          "productRevision": "1",
+          "topologyId": "timer-duo",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "case12",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "lamp-pe",
+          "status": "educational-model",
+          "note": "Oprawa klasy I z L/N/PE i źródłem 40 W; parametry rzeczywistej oprawy osobno.",
+          "productId": "edu-bulkhead-40",
+          "productRevision": "1",
+          "topologyId": "didactic-bulkhead-lnpe-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "indicator-green",
+          "status": "educational-model",
+          "note": "Zielona 230 V AC; w 109 wybór koloru jest zakupową propozycją.",
+          "productId": "edu-indicator-green-230",
+          "productRevision": "1",
+          "topologyId": "didactic-indicator-ln-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "indicator-red",
+          "status": "missing-model",
+          "note": "Brak opublikowanego czerwonego wariantu lampki DIN 230 V.",
+          "plannedProductId": "edu-indicator-red-230",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "114-ISSUE-01",
+        "114-ISSUE-02",
+        "114-ISSUE-03",
+        "114-ISSUE-04"
+      ],
+      "knowledgeArticleIds": [
+        "mcb",
+        "stycznik",
+        "jeden-no-nc",
+        "czasowy",
+        "lampy",
+        "obudowy"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-115",
+      "code": "115",
+      "title": "Licznik energii, schodowe, dwie oprawy i gniazdo",
+      "stageId": "04",
+      "taskPrompt": "zadania/ELE02_115.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_115_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "115-QA-01",
+        "115-QA-02",
+        "115-QA-03",
+        "115-QA-04",
+        "115-QA-05"
+      ],
+      "figureIds": [
+        "ELE02_115_p2_ideowy",
+        "ELE02_115_p2_rozdzielnica",
+        "ELE02_115_p1_rozmieszczenie"
+      ],
+      "componentIds": [
+        "rcd2",
+        "b6",
+        "b10",
+        "energy-meter",
+        "indicator-red",
+        "indicator-green",
+        "indicator-yellow",
+        "case12",
+        "bus-n",
+        "bus-pe",
+        "lamp-pe",
+        "changeover",
+        "socket1",
+        "junction-box"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "rcd2",
+          "status": "educational-model",
+          "note": "Model sinusoidalnego AC. Typ rzeczywistego RCD nie jest określony przez arkusze; model nie potwierdza doboru typu ani prądu znamionowego konkretnego SKU.",
+          "productId": "edu-rcd",
+          "productRevision": "1",
+          "topologyId": "rcd-2p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b10",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 10
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "energy-meter",
+          "status": "missing-model",
+          "note": "Potrzebny tor pomiaru mocy czynnej i całkowanie energii w czasie.",
+          "plannedProductId": "edu-energy-meter-1ph",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "indicator-red",
+          "status": "missing-model",
+          "note": "Brak opublikowanego czerwonego wariantu lampki DIN 230 V.",
+          "plannedProductId": "edu-indicator-red-230",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "indicator-green",
+          "status": "educational-model",
+          "note": "Zielona 230 V AC; w 109 wybór koloru jest zakupową propozycją.",
+          "productId": "edu-indicator-green-230",
+          "productRevision": "1",
+          "topologyId": "didactic-indicator-ln-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "indicator-yellow",
+          "status": "missing-model",
+          "note": "Brak opublikowanego żółtego wariantu lampki DIN 230 V.",
+          "plannedProductId": "edu-indicator-yellow-230",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "case12",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bus-n",
+          "status": "partial-adaptation",
+          "note": "Model ma 5 zacisków; tabela osprzętu wymaga co najmniej 6. Liczba i pojemność modelu nie są danymi produktu. W 103 muszą być dwa niezależne potencjały N.",
+          "productId": "edu-bus-n",
+          "productRevision": "1",
+          "topologyId": "bus",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bus-pe",
+          "status": "partial-adaptation",
+          "note": "Model ma 5 zacisków; źródła mogą wymagać co najmniej 6. Połączenie PE z rzeczywistą szyną lub obudową wynika z ich konstrukcji.",
+          "productId": "edu-bus-pe",
+          "productRevision": "1",
+          "topologyId": "bus",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "lamp-pe",
+          "status": "educational-model",
+          "note": "Oprawa klasy I z L/N/PE i źródłem 40 W; parametry rzeczywistej oprawy osobno.",
+          "productId": "edu-bulkhead-40",
+          "productRevision": "1",
+          "topologyId": "didactic-bulkhead-lnpe-v1",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "changeover",
+          "status": "educational-model",
+          "note": "COM/1/2 to numeracja modelu. W 107 źródło oznacza COM jako 2 — mapa instancji nie może kopiować numerów bez sprawdzenia.",
+          "productId": "edu-changeover",
+          "productRevision": "1",
+          "topologyId": "changeover",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "socket1",
+          "status": "educational-model",
+          "note": "Gniazdo 1-fazowe z osobnymi punktami użytkowymi pomiarów; bez gwarancji doboru rzeczywistego gniazda do B20.",
+          "productId": "edu-socket",
+          "productRevision": "1",
+          "topologyId": "socket",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "junction-box",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 2,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "115-ISSUE-01"
+      ],
+      "knowledgeArticleIds": [
+        "rcd",
+        "mcb",
+        "laczniki",
+        "energia",
+        "lampy",
+        "gniazda",
+        "obudowy",
+        "zlaczki"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-116",
+      "code": "116",
+      "title": "Pomiary silnika i zasilanie w trójkącie",
+      "stageId": "08",
+      "taskPrompt": "zadania/ELE02_116.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_116_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "116-QA-01",
+        "116-QA-02",
+        "116-QA-03",
+        "116-QA-04",
+        "116-QA-05"
+      ],
+      "figureIds": [
+        "ELE02_116_p1_montazowy",
+        "ELE02_116_p1_gniazdo"
+      ],
+      "componentIds": [
+        "motor3-d",
+        "contactor",
+        "contactor-block",
+        "motor-protection",
+        "motor-aux",
+        "b6",
+        "start-stop-din",
+        "bus-n",
+        "bus-pe",
+        "socket3",
+        "plug3"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "motor3-d",
+          "status": "missing-model",
+          "note": "edu-motor-six jest 230Δ/400Y. Potrzebny odrębny profil 400Δ/690Y; sama zmiana napisu nie zmienia napięcia uzwojenia.",
+          "plannedProductId": "edu-motor-six-400d-690y",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "contactor",
+          "status": "partial-adaptation",
+          "note": "Opublikowany stycznik 230 V AC z własnym NO/NC. W źródłach dopuszczono różne aparaty; geometria i dobór obciążenia wymagają sprawdzenia. W 109 użyte dwa tory główne.",
+          "productId": "schneider-lc1d09p7",
+          "productRevision": "verified-20261005-1",
+          "topologyId": "lc1d09p7-stage-one",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "contactor-block",
+          "status": "missing-model",
+          "note": "edu-auxiliary ma 1NO+1NC; źródła 113/116 wymieniają 2NO+2NC. Nie podpisywać go jako tego bloku.",
+          "plannedProductId": "edu-auxiliary-2no2nc",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "motor-protection",
+          "status": "educational-model",
+          "note": "Wyłącznik silnikowy, nie termik wpięty zamiast niego. Domyślne 4,35 A jest założeniem; nastawa do danych motoru. Model cieplny i zwarciowy jest uproszczony.",
+          "productId": "edu-motor-protection",
+          "productRevision": "1",
+          "topologyId": "motor-protection-3p-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "motor-aux",
+          "status": "educational-model",
+          "note": "Dołączyć do wyłącznika silnikowego przez assembly. NO reaguje na ON/OFF/trip, bez osobnej cewki.",
+          "productId": "edu-motor-aux-no",
+          "productRevision": "1",
+          "topologyId": "motor-aux-no-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "start-stop-din",
+          "status": "educational-model",
+          "note": "Dwa niezależne operatory: NO START i NC STOP; odpowiednie powiązania symbole–mechanizm.",
+          "productId": "edu-start-stop-din",
+          "productRevision": "1",
+          "topologyId": "independent-start-stop-din-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bus-n",
+          "status": "partial-adaptation",
+          "note": "Model ma 5 zacisków; tabela osprzętu wymaga co najmniej 6. Liczba i pojemność modelu nie są danymi produktu. W 103 muszą być dwa niezależne potencjały N.",
+          "productId": "edu-bus-n",
+          "productRevision": "1",
+          "topologyId": "bus",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bus-pe",
+          "status": "partial-adaptation",
+          "note": "Model ma 5 zacisków; źródła mogą wymagać co najmniej 6. Połączenie PE z rzeczywistą szyną lub obudową wynika z ich konstrukcji.",
+          "productId": "edu-bus-pe",
+          "productRevision": "1",
+          "topologyId": "bus",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "socket3",
+          "status": "missing-model",
+          "note": "Brak gniazda 3P+N+PE z pięcioma torami i punktami pomiarowymi.",
+          "plannedProductId": "edu-cee-socket-5p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "plug3",
+          "status": "material-only",
+          "note": "Osprzęt realnego stanowiska; źródło modelu nie jest zweryfikowanym SKU wtyczki.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "116-ISSUE-01",
+        "116-ISSUE-02"
+      ],
+      "knowledgeArticleIds": [
+        "mcb",
+        "ochrona-silnika",
+        "stycznik",
+        "start-stop",
+        "gniazda",
+        "silniki",
+        "zlaczki",
+        "pomiary"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-117",
+      "code": "117",
+      "title": "Ściemniacz sterowany przyciskiem i gniazdo",
+      "stageId": "13",
+      "taskPrompt": "zadania/ELE02_117.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_117_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "117-QA-01",
+        "117-QA-02",
+        "117-QA-03",
+        "117-QA-04",
+        "117-QA-05"
+      ],
+      "figureIds": [
+        "ELE02_117_p2_montazowy",
+        "ELE02_117_p1_rozmieszczenie"
+      ],
+      "componentIds": [
+        "rcd2",
+        "b6",
+        "b10",
+        "case8",
+        "lamp-pe",
+        "wall-no",
+        "dimmer",
+        "socket1",
+        "junction-box"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "rcd2",
+          "status": "educational-model",
+          "note": "Model sinusoidalnego AC. Typ rzeczywistego RCD nie jest określony przez arkusze; model nie potwierdza doboru typu ani prądu znamionowego konkretnego SKU.",
+          "productId": "edu-rcd",
+          "productRevision": "1",
+          "topologyId": "rcd-2p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b10",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 10
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "case8",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "lamp-pe",
+          "status": "educational-model",
+          "note": "Oprawa klasy I z L/N/PE i źródłem 40 W; parametry rzeczywistej oprawy osobno.",
+          "productId": "edu-bulkhead-40",
+          "productRevision": "1",
+          "topologyId": "didactic-bulkhead-lnpe-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "wall-no",
+          "status": "partial-adaptation",
+          "note": "Funkcja chwilowego NO jest dostępna; nie odwzorowuje montażu i zacisków przycisku natynkowego z arkusza.",
+          "productId": "edu-start",
+          "productRevision": "1",
+          "topologyId": "push-no",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "dimmer",
+          "status": "missing-model",
+          "note": "SCO-815: izolowane wejście sterowania, krótkie/długie naciśnięcia, jasność i właściwy model obciążenia.",
+          "plannedProductId": "edu-sco815",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "socket1",
+          "status": "educational-model",
+          "note": "Gniazdo 1-fazowe z osobnymi punktami użytkowymi pomiarów; bez gwarancji doboru rzeczywistego gniazda do B20.",
+          "productId": "edu-socket",
+          "productRevision": "1",
+          "topologyId": "socket",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "junction-box",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "117-ISSUE-01"
+      ],
+      "knowledgeArticleIds": [
+        "rcd",
+        "mcb",
+        "przycisk",
+        "sciemniacz",
+        "lampy",
+        "gniazda",
+        "obudowy"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-L01",
+      "code": "L01",
+      "title": "Silnik z regulatorem temperatury i kontrolą faz",
+      "stageId": "11",
+      "taskPrompt": "zadania/ELE02_L01.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_L01_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "L01-QA-01",
+        "L01-QA-02",
+        "L01-QA-03",
+        "L01-QA-04"
+      ],
+      "figureIds": [
+        "ELE02_L01_p3_jednokreskowy",
+        "ELE02_L01_p2_rozdzielnica",
+        "ELE02_L01_p2_rozmieszczenie"
+      ],
+      "componentIds": [
+        "motor3-d",
+        "contactor",
+        "motor-protection",
+        "motor-aux",
+        "b6",
+        "phase-monitor",
+        "thermostat",
+        "bus-n",
+        "bus-pe",
+        "plug3"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "motor3-d",
+          "status": "missing-model",
+          "note": "edu-motor-six jest 230Δ/400Y. Potrzebny odrębny profil 400Δ/690Y; sama zmiana napisu nie zmienia napięcia uzwojenia.",
+          "plannedProductId": "edu-motor-six-400d-690y",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "contactor",
+          "status": "partial-adaptation",
+          "note": "Opublikowany stycznik 230 V AC z własnym NO/NC. W źródłach dopuszczono różne aparaty; geometria i dobór obciążenia wymagają sprawdzenia. W 109 użyte dwa tory główne.",
+          "productId": "schneider-lc1d09p7",
+          "productRevision": "verified-20261005-1",
+          "topologyId": "lc1d09p7-stage-one",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "motor-protection",
+          "status": "educational-model",
+          "note": "Wyłącznik silnikowy, nie termik wpięty zamiast niego. Domyślne 4,35 A jest założeniem; nastawa do danych motoru. Model cieplny i zwarciowy jest uproszczony.",
+          "productId": "edu-motor-protection",
+          "productRevision": "1",
+          "topologyId": "motor-protection-3p-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "motor-aux",
+          "status": "educational-model",
+          "note": "Dołączyć do wyłącznika silnikowego przez assembly. NO reaguje na ON/OFF/trip, bez osobnej cewki.",
+          "productId": "edu-motor-aux-no",
+          "productRevision": "1",
+          "topologyId": "motor-aux-no-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "phase-monitor",
+          "status": "missing-model",
+          "note": "Brak CKF ze stykiem pozwolenia. Model trzeba związać z właściwą instrukcją.",
+          "plannedProductId": "edu-phase-sequence-monitor",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "thermostat",
+          "status": "missing-model",
+          "note": "Potrzebny próg, histereza, sonda i tor wentylacyjny zgodny z instrukcją, dla RT-820 2–8.",
+          "plannedProductId": "edu-rt820",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bus-n",
+          "status": "partial-adaptation",
+          "note": "Model ma 5 zacisków; tabela osprzętu wymaga co najmniej 6. Liczba i pojemność modelu nie są danymi produktu. W 103 muszą być dwa niezależne potencjały N.",
+          "productId": "edu-bus-n",
+          "productRevision": "1",
+          "topologyId": "bus",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "bus-pe",
+          "status": "partial-adaptation",
+          "note": "Model ma 5 zacisków; źródła mogą wymagać co najmniej 6. Połączenie PE z rzeczywistą szyną lub obudową wynika z ich konstrukcji.",
+          "productId": "edu-bus-pe",
+          "productRevision": "1",
+          "topologyId": "bus",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "plug3",
+          "status": "material-only",
+          "note": "Osprzęt realnego stanowiska; źródło modelu nie jest zweryfikowanym SKU wtyczki.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "L01-ISSUE-01",
+        "L01-ISSUE-02"
+      ],
+      "knowledgeArticleIds": [
+        "mcb",
+        "ochrona-silnika",
+        "stycznik",
+        "temperatura",
+        "kolejnosc-faz",
+        "gniazda",
+        "silniki",
+        "zlaczki"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    },
+    {
+      "taskId": "ELE.02-L02",
+      "code": "L02",
+      "title": "Licznik energii, gniazdo i jeden łącznik",
+      "stageId": "04",
+      "taskPrompt": "zadania/ELE02_L02.md",
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "referenceAtBaseline": null,
+      "plannedReferencePath": "examples/physical/ELE02_L02_stanowisko.json",
+      "readyAtBaselineInTargetKnowledgeUI": false,
+      "acceptanceCheckIds": [
+        "L02-QA-01",
+        "L02-QA-02",
+        "L02-QA-03",
+        "L02-QA-04"
+      ],
+      "figureIds": [
+        "ELE02_L02_p2_ideowy",
+        "ELE02_L02_p3_montazowy",
+        "ELE02_L02_p2_rozmieszczenie"
+      ],
+      "componentIds": [
+        "rcd2",
+        "b6",
+        "b10",
+        "energy-meter",
+        "case8",
+        "lamp-pe",
+        "junction-box",
+        "wall-switch",
+        "socket1"
+      ],
+      "profileDependencies": [
+        {
+          "componentId": "rcd2",
+          "status": "educational-model",
+          "note": "Model sinusoidalnego AC. Typ rzeczywistego RCD nie jest określony przez arkusze; model nie potwierdza doboru typu ani prądu znamionowego konkretnego SKU.",
+          "productId": "edu-rcd",
+          "productRevision": "1",
+          "topologyId": "rcd-2p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b6",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 6
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "b10",
+          "status": "educational-model",
+          "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+          "productId": "edu-mcb-adjustable",
+          "productRevision": "1",
+          "topologyId": "mcb-adjustable-1p-v1",
+          "requiredSettings": {
+            "ratedCurrentA": 10
+          },
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "energy-meter",
+          "status": "missing-model",
+          "note": "Potrzebny tor pomiaru mocy czynnej i całkowanie energii w czasie.",
+          "plannedProductId": "edu-energy-meter-1ph",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "case8",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "lamp-pe",
+          "status": "educational-model",
+          "note": "Oprawa klasy I z L/N/PE i źródłem 40 W; parametry rzeczywistej oprawy osobno.",
+          "productId": "edu-bulkhead-40",
+          "productRevision": "1",
+          "topologyId": "didactic-bulkhead-lnpe-v1",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "junction-box",
+          "status": "physical-layout",
+          "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych.",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "wall-switch",
+          "status": "educational-model",
+          "note": "Ogólny łącznik 1P; sprawdzić geometrię i terminale konkretnego egzemplarza.",
+          "productId": "edu-switch",
+          "productRevision": "1",
+          "topologyId": "switch-1p",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        },
+        {
+          "componentId": "socket1",
+          "status": "educational-model",
+          "note": "Gniazdo 1-fazowe z osobnymi punktami użytkowymi pomiarów; bez gwarancji doboru rzeczywistego gniazda do B20.",
+          "productId": "edu-socket",
+          "productRevision": "1",
+          "topologyId": "socket",
+          "sourceQuantity": 1,
+          "sourceUnit": "szt."
+        }
+      ],
+      "sourceIssueIds": [
+        "L02-ISSUE-01"
+      ],
+      "knowledgeArticleIds": [
+        "rcd",
+        "mcb",
+        "laczniki",
+        "energia",
+        "lampy",
+        "gniazda",
+        "obudowy"
+      ],
+      "requiredGates": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R7",
+        "R8",
+        "R9",
+        "R10"
+      ]
+    }
+  ]
+}

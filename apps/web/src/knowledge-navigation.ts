@@ -118,6 +118,8 @@ export function restoreKnowledgeFocus() {
   else
     document.querySelector<HTMLButtonElement>("[data-knowledge-nav]")?.focus();
 }
+const isKnowledgeHash = (hash: string) =>
+  hash.startsWith("#knowledge") || /^#\/wiedza(?:\/|$)/.test(hash);
 export function useKnowledgeRoute() {
   const [hash, setHash] = useState(location.hash);
   useEffect(() => {
@@ -127,12 +129,12 @@ export function useKnowledgeRoute() {
   }, []);
   const previous = useRef(hash);
   useEffect(() => {
-    if (
-      previous.current.startsWith("#knowledge") &&
-      !hash.startsWith("#knowledge")
-    )
+    if (isKnowledgeHash(previous.current) && !isKnowledgeHash(hash))
       restoreKnowledgeFocus();
     previous.current = hash;
   }, [hash]);
-  return hash.startsWith("#knowledge") ? hash.slice(1) : null;
+  if (hash.startsWith("#knowledge")) return hash.slice(1);
+  if (/^#\/wiedza(?:\/|$)/.test(hash))
+    return `knowledge/exam${hash.slice("#/wiedza".length)}`;
+  return null;
 }

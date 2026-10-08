@@ -1,0 +1,708 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "9c4895a817b5f5869d17b3cf23a3e9695d49f6cf",
+  "lastImplementedCommit": null,
+  "notice": "Stage checkpoints reflect executed work; source specifications are not executed tests.",
+  "stages": {
+    "00": {
+      "status": "implemented",
+      "evidence": [
+        "docs/ele-exams/QA_00.md",
+        "pnpm test: 277 passed",
+        "pnpm test:e2e: 52 passed, 1 skipped",
+        "pnpm typecheck, lint, catalog:validate, knowledge:validate: passed"
+      ]
+    },
+    "01": {
+      "status": "pending",
+      "evidence": []
+    },
+    "02": {
+      "status": "pending",
+      "evidence": []
+    },
+    "03": {
+      "status": "pending",
+      "evidence": []
+    },
+    "04": {
+      "status": "pending",
+      "evidence": []
+    },
+    "05": {
+      "status": "pending",
+      "evidence": []
+    },
+    "06": {
+      "status": "pending",
+      "evidence": []
+    },
+    "07": {
+      "status": "pending",
+      "evidence": []
+    },
+    "08": {
+      "status": "pending",
+      "evidence": []
+    },
+    "09": {
+      "status": "pending",
+      "evidence": []
+    },
+    "10": {
+      "status": "pending",
+      "evidence": []
+    },
+    "11": {
+      "status": "pending",
+      "evidence": []
+    },
+    "12": {
+      "status": "pending",
+      "evidence": []
+    },
+    "13": {
+      "status": "pending",
+      "evidence": []
+    },
+    "14": {
+      "status": "pending",
+      "evidence": []
+    }
+  },
+  "units": {
+    "00a": {
+      "stageId": "00",
+      "status": "implemented",
+      "evidence": [
+        "docs/ele-exams/QA_00.md",
+        "pnpm test: 277 passed",
+        "pnpm test:e2e: 52 passed, 1 skipped",
+        "pnpm typecheck, lint, catalog:validate, knowledge:validate: passed"
+      ]
+    },
+    "01a": {
+      "stageId": "01",
+      "status": "pending",
+      "evidence": []
+    },
+    "01b": {
+      "stageId": "01",
+      "status": "pending",
+      "evidence": []
+    },
+    "02a": {
+      "stageId": "02",
+      "status": "pending",
+      "evidence": []
+    },
+    "03a": {
+      "stageId": "03",
+      "status": "pending",
+      "evidence": []
+    },
+    "03b": {
+      "stageId": "03",
+      "status": "pending",
+      "evidence": []
+    },
+    "03c": {
+      "stageId": "03",
+      "status": "pending",
+      "evidence": []
+    },
+    "04a": {
+      "stageId": "04",
+      "status": "pending",
+      "evidence": []
+    },
+    "04b": {
+      "stageId": "04",
+      "status": "pending",
+      "evidence": []
+    },
+    "04c": {
+      "stageId": "04",
+      "status": "pending",
+      "evidence": []
+    },
+    "05a": {
+      "stageId": "05",
+      "status": "pending",
+      "evidence": []
+    },
+    "05b": {
+      "stageId": "05",
+      "status": "pending",
+      "evidence": []
+    },
+    "05c": {
+      "stageId": "05",
+      "status": "pending",
+      "evidence": []
+    },
+    "06a": {
+      "stageId": "06",
+      "status": "pending",
+      "evidence": []
+    },
+    "06b": {
+      "stageId": "06",
+      "status": "pending",
+      "evidence": []
+    },
+    "07a": {
+      "stageId": "07",
+      "status": "pending",
+      "evidence": []
+    },
+    "07b": {
+      "stageId": "07",
+      "status": "pending",
+      "evidence": []
+    },
+    "08a": {
+      "stageId": "08",
+      "status": "pending",
+      "evidence": []
+    },
+    "08b": {
+      "stageId": "08",
+      "status": "pending",
+      "evidence": []
+    },
+    "09a": {
+      "stageId": "09",
+      "status": "pending",
+      "evidence": []
+    },
+    "09b": {
+      "stageId": "09",
+      "status": "pending",
+      "evidence": []
+    },
+    "10a": {
+      "stageId": "10",
+      "status": "pending",
+      "evidence": []
+    },
+    "10b": {
+      "stageId": "10",
+      "status": "pending",
+      "evidence": []
+    },
+    "11a": {
+      "stageId": "11",
+      "status": "pending",
+      "evidence": []
+    },
+    "11b": {
+      "stageId": "11",
+      "status": "pending",
+      "evidence": []
+    },
+    "12a": {
+      "stageId": "12",
+      "status": "pending",
+      "evidence": []
+    },
+    "12b": {
+      "stageId": "12",
+      "status": "pending",
+      "evidence": []
+    },
+    "13a": {
+      "stageId": "13",
+      "status": "pending",
+      "evidence": []
+    },
+    "13b": {
+      "stageId": "13",
+      "status": "pending",
+      "evidence": []
+    },
+    "14a": {
+      "stageId": "14",
+      "status": "pending",
+      "evidence": []
+    }
+  },
+  "tasks": {
+    "ELE.02-101": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "existing-repo-example-validated",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-103": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-104": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-105": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-106": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-107": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-108": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "existing-repo-example-validated",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-109": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-110": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-112": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-113": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-114": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "source-review-required",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-115": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-116": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-117": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-L01": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    },
+    "ELE.02-L02": {
+      "referenceStatus": "content-only",
+      "fidelity": null,
+      "referenceRevision": null,
+      "sourceStatusAtBaseline": "requires-project-authoring",
+      "gates": {
+        "R1": "pending",
+        "R2": "pending",
+        "R3": "pending",
+        "R4": "pending",
+        "R5": "pending",
+        "R6": "pending",
+        "R7": "pending",
+        "R8": "pending",
+        "R9": "pending",
+        "R10": "pending"
+      },
+      "evidence": []
+    }
+  },
+  "issues": {
+    "101-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "103-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "103-ISSUE-02": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "104-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "105-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "106-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "106-ISSUE-02": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "107-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "108-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "108-ISSUE-02": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "108-ISSUE-03": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "109-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "109-ISSUE-02": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "109-ISSUE-03": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "110-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "112-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "113-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "113-ISSUE-02": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "113-ISSUE-03": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "114-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "114-ISSUE-02": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "114-ISSUE-03": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "114-ISSUE-04": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "115-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "116-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "116-ISSUE-02": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "117-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "L01-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "L01-ISSUE-02": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    },
+    "L02-ISSUE-01": {
+      "state": "open",
+      "resolution": null,
+      "evidence": []
+    }
+  },
+  "nextUnit": "01a"
+}

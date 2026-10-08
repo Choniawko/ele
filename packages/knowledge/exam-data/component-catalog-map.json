@@ -1,0 +1,433 @@
+{
+  "format": "ele-knowledge-catalog-map",
+  "version": 1,
+  "repositoryCommit": "9c4895a817b5f5869d17b3cf23a3e9695d49f6cf",
+  "statuses": {
+    "educational-model": "Dostępny model dydaktyczny funkcji, bez deklaracji identyczności z realnym SKU.",
+    "partial-adaptation": "Dostępna część funkcji lub inna konstrukcja; wymagane jawne ograniczenie.",
+    "missing-model": "Brak modelu dla wymaganego wariantu. plannedProductId jest tylko propozycją.",
+    "physical-layout": "Obiekt organizacji montażu, bez productId w katalogu elektrycznym.",
+    "material-only": "Materiał / osprzęt, nie aktywny model."
+  },
+  "mappings": [
+    {
+      "componentId": "rcd2",
+      "status": "educational-model",
+      "note": "Model sinusoidalnego AC. Typ rzeczywistego RCD nie jest określony przez arkusze; model nie potwierdza doboru typu ani prądu znamionowego konkretnego SKU.",
+      "productId": "edu-rcd",
+      "productRevision": "1",
+      "topologyId": "rcd-2p"
+    },
+    {
+      "componentId": "rcd4",
+      "status": "missing-model",
+      "note": "Nie ma RCD 4P. Zestaw dwóch RCD 2P nie jest jednym wspólnym mechanizmem 4P.",
+      "plannedProductId": "edu-rcd-4p"
+    },
+    {
+      "componentId": "b6",
+      "status": "educational-model",
+      "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+      "productId": "edu-mcb-adjustable",
+      "productRevision": "1",
+      "topologyId": "mcb-adjustable-1p-v1",
+      "requiredSettings": {
+        "ratedCurrentA": 6
+      }
+    },
+    {
+      "componentId": "b10",
+      "status": "educational-model",
+      "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+      "productId": "edu-mcb-adjustable",
+      "productRevision": "1",
+      "topologyId": "mcb-adjustable-1p-v1",
+      "requiredSettings": {
+        "ratedCurrentA": 10
+      }
+    },
+    {
+      "componentId": "b20",
+      "status": "educational-model",
+      "note": "Nastawa dydaktyczna B; nie zmieniać etykiety bez ustawienia ratedCurrentA.",
+      "productId": "edu-mcb-adjustable",
+      "productRevision": "1",
+      "topologyId": "mcb-adjustable-1p-v1",
+      "requiredSettings": {
+        "ratedCurrentA": 20
+      }
+    },
+    {
+      "componentId": "b16-3",
+      "status": "missing-model",
+      "note": "edu-mcb3 to C16. Potrzebny odrębny profil B16 3P.",
+      "plannedProductId": "edu-mcb-b16-3p"
+    },
+    {
+      "componentId": "c-motor",
+      "status": "missing-model",
+      "note": "Potrzebny wariant C 1P z prądem dobranym do tabliczki silnika 109.",
+      "plannedProductId": "edu-mcb-c-adjustable"
+    },
+    {
+      "componentId": "motor-protection",
+      "status": "educational-model",
+      "note": "Wyłącznik silnikowy, nie termik wpięty zamiast niego. Domyślne 4,35 A jest założeniem; nastawa do danych motoru. Model cieplny i zwarciowy jest uproszczony.",
+      "productId": "edu-motor-protection",
+      "productRevision": "1",
+      "topologyId": "motor-protection-3p-v1"
+    },
+    {
+      "componentId": "motor-aux",
+      "status": "educational-model",
+      "note": "Dołączyć do wyłącznika silnikowego przez assembly. NO reaguje na ON/OFF/trip, bez osobnej cewki.",
+      "productId": "edu-motor-aux-no",
+      "productRevision": "1",
+      "topologyId": "motor-aux-no-v1"
+    },
+    {
+      "componentId": "contactor",
+      "status": "partial-adaptation",
+      "note": "Opublikowany stycznik 230 V AC z własnym NO/NC. W źródłach dopuszczono różne aparaty; geometria i dobór obciążenia wymagają sprawdzenia. W 109 użyte dwa tory główne.",
+      "productId": "schneider-lc1d09p7",
+      "productRevision": "verified-20261005-1",
+      "topologyId": "lc1d09p7-stage-one"
+    },
+    {
+      "componentId": "contactor-block",
+      "status": "missing-model",
+      "note": "edu-auxiliary ma 1NO+1NC; źródła 113/116 wymieniają 2NO+2NC. Nie podpisywać go jako tego bloku.",
+      "plannedProductId": "edu-auxiliary-2no2nc"
+    },
+    {
+      "componentId": "aux-relay",
+      "status": "missing-model",
+      "note": "edu-relay jest 24 V DC. Potrzebny pomocniczy 230 V AC z NO i NC; użycie innego stycznika z dodatkowymi niewykorzystanymi torami byłoby odrębną adaptacją.",
+      "plannedProductId": "edu-auxiliary-contactor-230"
+    },
+    {
+      "componentId": "start-stop-din",
+      "status": "educational-model",
+      "note": "Dwa niezależne operatory: NO START i NC STOP; odpowiednie powiązania symbole–mechanizm.",
+      "productId": "edu-start-stop-din",
+      "productRevision": "1",
+      "topologyId": "independent-start-stop-din-v1"
+    },
+    {
+      "componentId": "start-stop-panel",
+      "status": "educational-model",
+      "note": "Dwa niezależne operatory; wariant obudowy w 108.",
+      "productId": "edu-start-stop-panel",
+      "productRevision": "1",
+      "topologyId": "independent-start-stop-panel-v1"
+    },
+    {
+      "componentId": "no-din",
+      "status": "educational-model",
+      "note": "Jeden chwilowy NO.",
+      "productId": "edu-push-no-din",
+      "productRevision": "1",
+      "topologyId": "push-no-34-din-v1"
+    },
+    {
+      "componentId": "no-panel",
+      "status": "educational-model",
+      "note": "Jeden chwilowy NO.",
+      "productId": "edu-push-no-panel",
+      "productRevision": "1",
+      "topologyId": "push-no-34-panel-v1"
+    },
+    {
+      "componentId": "nc-din",
+      "status": "partial-adaptation",
+      "note": "Funkcja NC jest dostępna, ale obecny przycisk panelowy nie jest zweryfikowanym źródłowym wariantem na TH35.",
+      "productId": "edu-stop",
+      "productRevision": "1",
+      "topologyId": "push-nc"
+    },
+    {
+      "componentId": "no-nc-momentary",
+      "status": "partial-adaptation",
+      "note": "Jeden wspólny operator NO+NC chwilowy. To produkt panelowy; nie przedstawiać jako SVN351 DIN.",
+      "productId": "schneider-xb5aa35",
+      "productRevision": "verified-20261005-1",
+      "topologyId": "xb5aa35-1no1nc"
+    },
+    {
+      "componentId": "no-nc-maintained",
+      "status": "missing-model",
+      "note": "Brak jednego operatora utrzymującego pozycję i jednocześnie przełączającego NO/NC.",
+      "plannedProductId": "edu-push-maintained-no-nc"
+    },
+    {
+      "componentId": "limit-switch",
+      "status": "missing-model",
+      "note": "Potrzebny jeden mechanizm NO/NC i jawne zadziałanie krańcówki.",
+      "plannedProductId": "edu-limit-switch-no-nc"
+    },
+    {
+      "componentId": "wall-no",
+      "status": "partial-adaptation",
+      "note": "Funkcja chwilowego NO jest dostępna; nie odwzorowuje montażu i zacisków przycisku natynkowego z arkusza.",
+      "productId": "edu-start",
+      "productRevision": "1",
+      "topologyId": "push-no"
+    },
+    {
+      "componentId": "wall-switch",
+      "status": "educational-model",
+      "note": "Ogólny łącznik 1P; sprawdzić geometrię i terminale konkretnego egzemplarza.",
+      "productId": "edu-switch",
+      "productRevision": "1",
+      "topologyId": "switch-1p"
+    },
+    {
+      "componentId": "changeover",
+      "status": "educational-model",
+      "note": "COM/1/2 to numeracja modelu. W 107 źródło oznacza COM jako 2 — mapa instancji nie może kopiować numerów bez sprawdzenia.",
+      "productId": "edu-changeover",
+      "productRevision": "1",
+      "topologyId": "changeover"
+    },
+    {
+      "componentId": "crossover",
+      "status": "educational-model",
+      "note": "Dwa sprzężone tory korespondencyjne, stan prosty / krzyżowy.",
+      "productId": "edu-crossover",
+      "productRevision": "1",
+      "topologyId": "crossover"
+    },
+    {
+      "componentId": "bistable-din",
+      "status": "missing-model",
+      "note": "edu-bistable jest profilem BIS-411. BIS-413 z czasem ma inny kontrakt zachowania.",
+      "plannedProductId": "edu-bis413-230"
+    },
+    {
+      "componentId": "bistable-box",
+      "status": "missing-model",
+      "note": "BIS-402 ma numerację i montaż dopuszkowy różne od edu-bistable.",
+      "plannedProductId": "edu-bis402"
+    },
+    {
+      "componentId": "twilight",
+      "status": "missing-model",
+      "note": "Brak aparatu z wejściem światła i zewnętrzną sondą.",
+      "plannedProductId": "edu-twilight-external-probe"
+    },
+    {
+      "componentId": "staircase",
+      "status": "partial-adaptation",
+      "note": "Profil AS-212 umożliwia nastawę 60 s; dokładny aparat w 104 nie jest wskazany. Potwierdzić instrukcję i sposób zasilenia przez AZ.",
+      "productId": "edu-staircase",
+      "productRevision": "1",
+      "topologyId": "staircase",
+      "requiredSettings": {
+        "timeS": 60
+      }
+    },
+    {
+      "componentId": "timer",
+      "status": "partial-adaptation",
+      "note": "Dostępne tryby PCU A–D. Nie rozstrzygają sprzeczności 114 ani nie dowodzą zgodności z nieznanym KT. Zaciski 11/10/12 są tylko jednym z torów tego modelu.",
+      "productId": "edu-timer",
+      "productRevision": "1",
+      "topologyId": "timer-duo"
+    },
+    {
+      "componentId": "thermostat",
+      "status": "missing-model",
+      "note": "Potrzebny próg, histereza, sonda i tor wentylacyjny zgodny z instrukcją, dla RT-820 2–8.",
+      "plannedProductId": "edu-rt820"
+    },
+    {
+      "componentId": "phase-monitor",
+      "status": "missing-model",
+      "note": "Brak CKF ze stykiem pozwolenia. Model trzeba związać z właściwą instrukcją.",
+      "plannedProductId": "edu-phase-sequence-monitor"
+    },
+    {
+      "componentId": "energy-meter",
+      "status": "missing-model",
+      "note": "Potrzebny tor pomiaru mocy czynnej i całkowanie energii w czasie.",
+      "plannedProductId": "edu-energy-meter-1ph"
+    },
+    {
+      "componentId": "dimmer",
+      "status": "missing-model",
+      "note": "SCO-815: izolowane wejście sterowania, krótkie/długie naciśnięcia, jasność i właściwy model obciążenia.",
+      "plannedProductId": "edu-sco815"
+    },
+    {
+      "componentId": "indicator-green",
+      "status": "educational-model",
+      "note": "Zielona 230 V AC; w 109 wybór koloru jest zakupową propozycją.",
+      "productId": "edu-indicator-green-230",
+      "productRevision": "1",
+      "topologyId": "didactic-indicator-ln-v1"
+    },
+    {
+      "componentId": "indicator-red",
+      "status": "missing-model",
+      "note": "Brak opublikowanego czerwonego wariantu lampki DIN 230 V.",
+      "plannedProductId": "edu-indicator-red-230"
+    },
+    {
+      "componentId": "indicator-yellow",
+      "status": "missing-model",
+      "note": "Brak opublikowanego żółtego wariantu lampki DIN 230 V.",
+      "plannedProductId": "edu-indicator-yellow-230"
+    },
+    {
+      "componentId": "lamp-pe",
+      "status": "educational-model",
+      "note": "Oprawa klasy I z L/N/PE i źródłem 40 W; parametry rzeczywistej oprawy osobno.",
+      "productId": "edu-bulkhead-40",
+      "productRevision": "1",
+      "topologyId": "didactic-bulkhead-lnpe-v1"
+    },
+    {
+      "componentId": "lamp-no-pe",
+      "status": "partial-adaptation",
+      "note": "Funkcja L/N jest dostępna. To lampa dydaktyczna 60 W; ustawienie do 40 W nie zweryfikuje mechaniki oprawki E27 z 103.",
+      "productId": "edu-lamp",
+      "productRevision": "1",
+      "topologyId": "load",
+      "requiredSettings": {
+        "powerW": 40
+      }
+    },
+    {
+      "componentId": "socket1",
+      "status": "educational-model",
+      "note": "Gniazdo 1-fazowe z osobnymi punktami użytkowymi pomiarów; bez gwarancji doboru rzeczywistego gniazda do B20.",
+      "productId": "edu-socket",
+      "productRevision": "1",
+      "topologyId": "socket"
+    },
+    {
+      "componentId": "socket3",
+      "status": "missing-model",
+      "note": "Brak gniazda 3P+N+PE z pięcioma torami i punktami pomiarowymi.",
+      "plannedProductId": "edu-cee-socket-5p"
+    },
+    {
+      "componentId": "plug3",
+      "status": "material-only",
+      "note": "Osprzęt realnego stanowiska; źródło modelu nie jest zweryfikowanym SKU wtyczki."
+    },
+    {
+      "componentId": "plug1",
+      "status": "material-only",
+      "note": "Osprzęt realnego stanowiska; źródło modelu nie jest zweryfikowanym SKU wtyczki."
+    },
+    {
+      "componentId": "motor1",
+      "status": "missing-model",
+      "note": "Model trójfazowy nie zastępuje silnika kondensatorowego z U/Z.",
+      "plannedProductId": "edu-motor-1ph-capacitor"
+    },
+    {
+      "componentId": "motor3-y",
+      "status": "partial-adaptation",
+      "note": "Napięcie 230Δ/400Y odpowiada profilowi 113. Obecny model rezystancyjny 3 kW nie odwzorowuje dokładnie silnika do 1,5 kW, jego rozruchu i pomiarów. W 108 zastosowano edu-motor, a tabliczki nie ma w PDF.",
+      "productId": "edu-motor-six",
+      "productRevision": "1",
+      "topologyId": "motor-six-windings-v1"
+    },
+    {
+      "componentId": "motor3-d",
+      "status": "missing-model",
+      "note": "edu-motor-six jest 230Δ/400Y. Potrzebny odrębny profil 400Δ/690Y; sama zmiana napisu nie zmienia napięcia uzwojenia.",
+      "plannedProductId": "edu-motor-six-400d-690y"
+    },
+    {
+      "componentId": "case8",
+      "status": "physical-layout",
+      "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych."
+    },
+    {
+      "componentId": "case12",
+      "status": "physical-layout",
+      "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych."
+    },
+    {
+      "componentId": "case4",
+      "status": "physical-layout",
+      "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych."
+    },
+    {
+      "componentId": "case-r2",
+      "status": "physical-layout",
+      "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych."
+    },
+    {
+      "componentId": "junction-box",
+      "status": "physical-layout",
+      "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych."
+    },
+    {
+      "componentId": "junction-box4",
+      "status": "physical-layout",
+      "note": "Obiekt obudowy / puszki jest częścią układu fizycznego, nie osobnym modelem aparatu elektrycznego. Wymiary, montaż, pojemność i prowadzenie kabli wymagają rzeczywistych danych."
+    },
+    {
+      "componentId": "junction-plate",
+      "status": "missing-model",
+      "note": "Potrzebnych 5 niezależnych torów, a nie jedna złączka pięciowejściowa o wspólnym potencjale.",
+      "plannedProductId": "edu-junction-plate-5-circuits"
+    },
+    {
+      "componentId": "bus-n",
+      "status": "partial-adaptation",
+      "note": "Model ma 5 zacisków; tabela osprzętu wymaga co najmniej 6. Liczba i pojemność modelu nie są danymi produktu. W 103 muszą być dwa niezależne potencjały N.",
+      "productId": "edu-bus-n",
+      "productRevision": "1",
+      "topologyId": "bus"
+    },
+    {
+      "componentId": "bus-pe",
+      "status": "partial-adaptation",
+      "note": "Model ma 5 zacisków; źródła mogą wymagać co najmniej 6. Połączenie PE z rzeczywistą szyną lub obudową wynika z ich konstrukcji.",
+      "productId": "edu-bus-pe",
+      "productRevision": "1",
+      "topologyId": "bus"
+    },
+    {
+      "componentId": "rail-n",
+      "status": "partial-adaptation",
+      "note": "Jeden wspólny tor 1–2. Kolor, izolacja i połączenie z TH35 nie potwierdzają właściwości rzeczywistego SKU N/PE.",
+      "productId": "edu-rail-terminal",
+      "productRevision": "1",
+      "topologyId": "rail-terminal-2-v1"
+    },
+    {
+      "componentId": "rail-pe",
+      "status": "partial-adaptation",
+      "note": "Jeden wspólny tor 1–2. Kolor, izolacja i połączenie z TH35 nie potwierdzają właściwości rzeczywistego SKU N/PE.",
+      "productId": "edu-rail-terminal",
+      "productRevision": "1",
+      "topologyId": "rail-terminal-2-v1"
+    },
+    {
+      "componentId": "rail-end",
+      "status": "material-only",
+      "note": "Osprzęt montażowy, bez zachowania elektrycznego w katalogu. Dobór do rzeczywistej szyny, średnicy przewodu i obudowy."
+    },
+    {
+      "componentId": "gland5",
+      "status": "material-only",
+      "note": "Osprzęt montażowy, bez zachowania elektrycznego w katalogu. Dobór do rzeczywistej szyny, średnicy przewodu i obudowy."
+    },
+    {
+      "componentId": "gland3-25",
+      "status": "material-only",
+      "note": "Osprzęt montażowy, bez zachowania elektrycznego w katalogu. Dobór do rzeczywistej szyny, średnicy przewodu i obudowy."
+    },
+    {
+      "componentId": "gland3-15",
+      "status": "material-only",
+      "note": "Osprzęt montażowy, bez zachowania elektrycznego w katalogu. Dobór do rzeczywistej szyny, średnicy przewodu i obudowy."
+    }
+  ]
+}

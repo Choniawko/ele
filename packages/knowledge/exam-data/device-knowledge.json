@@ -1,0 +1,575 @@
+{
+  "format": "ele-device-knowledge",
+  "version": 1,
+  "articles": [
+    {
+      "id": "rcd",
+      "title": "Wyłącznik różnicowoprądowy — RCD",
+      "componentIds": [
+        "rcd2",
+        "rcd4"
+      ],
+      "principle": "RCD porównuje prądy płynące przez swoje czynne tory. Różnica może spowodować wyłączenie. Prąd znamionowy aparatu i prąd różnicowy IΔn to różne parametry. Sam RCD nie zastępuje wyłącznika nadprądowego.",
+      "howToRead": "Zidentyfikuj wszystkie tory objęte jednym aparatem: L i N w 2P albo L1/L2/L3 i N w 4P. PE prowadź poza aparatem. Dwa RCD mogą mieć wspólny N przed nimi; za nimi tory N należą do własnych grup.",
+      "classicUse": "101: wspólna ochrona gniazda i oświetlenia. 103: osobne grupy RCD4 i RCD2.",
+      "practiceCheck": "Wskaż powrót N każdego odbiornika i wykonaj próbę TEST według instrukcji. TEST sprawdza funkcję testową aparatu; nie jest pełnym pomiarem ochrony instalacji.",
+      "commonMistake": "Łączenie N za dwoma RCD albo pomylenie 25 A z 30 mA. Typu A/AC nie dopisuj do nieokreślonego arkusza.",
+      "taskCodes": [
+        "101",
+        "103",
+        "104",
+        "106",
+        "107",
+        "110",
+        "115",
+        "117",
+        "L02"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "mcb",
+      "title": "Wyłącznik nadprądowy — MCB",
+      "componentIds": [
+        "b6",
+        "b10",
+        "b20",
+        "b16-3",
+        "c-motor"
+      ],
+      "principle": "MCB rozłącza obwód ręcznie oraz przy określonym przeciążeniu lub zwarciu. B/C opisuje charakterystykę, liczba amperów prąd znamionowy; liczba biegunów określa sprzężone tory.",
+      "howToRead": "Odszukaj doprowadzenie fazy i gałąź za wyłącznikiem. 3P zasila trzy fazy; nie jest pięciotorowym osprzętem CEE.",
+      "classicUse": "101: B6 oświetlenie i B10 gniazdo. 110: B16 3P gniazdo CEE. 109: charakterystyka C z prądem dobranym do silnika.",
+      "practiceCheck": "Wyłącz jedną gałąź i ustal, które odbiorniki tracą zasilanie. Dobór rzeczywistego MCB wymaga danych przewodów, obciążenia i ochrony.",
+      "commonMistake": "Zamiana C16 na B16 przez etykietę lub uznanie B20 z arkusza za ogólne zalecenie domowe.",
+      "taskCodes": [
+        "101",
+        "103",
+        "104",
+        "105",
+        "106",
+        "107",
+        "108",
+        "109",
+        "110",
+        "113",
+        "114",
+        "115",
+        "116",
+        "117",
+        "L01",
+        "L02"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "ochrona-silnika",
+      "title": "Wyłącznik silnikowy i jego styk pomocniczy",
+      "componentIds": [
+        "motor-protection",
+        "motor-aux"
+      ],
+      "principle": "Wyłącznik silnikowy jest aparatem w torze trzech faz. Jego nastawa wynika z danych silnika i warunków zastosowania. Pomocniczy styk śledzi stan mechanizmu; nie ma osobnej cewki.",
+      "howToRead": "Powiąż trzy tory mocy Q z jego stykiem pomocniczym w sterowaniu. W 108 NO Q2 13–14 jest warunkiem zasilenia obu kierunków.",
+      "classicUse": "108: OFF lub wyzwolenie Q2 odbiera moc i zgodę na pracę cewek. L01: szeregowa zgoda wraz z CKF i RT.",
+      "practiceCheck": "Sprawdź OFF i trip przy żądaniu pracy. Odczytaj prąd z tabliczki rzeczywistego motoru przed nastawą.",
+      "commonMistake": "Użycie 4,35 A z modelu jako danych kupionego silnika albo przypisanie pomocniczego styku do innego mechanizmu.",
+      "taskCodes": [
+        "108",
+        "116",
+        "L01"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "stycznik",
+      "title": "Stycznik, cewka i styki pomocnicze",
+      "componentIds": [
+        "contactor",
+        "contactor-block",
+        "aux-relay"
+      ],
+      "principle": "Napięcie na cewce uruchamia mechanizm styków. Tory mocy zasilają odbiornik, a pomocnicze mogą podtrzymywać lub blokować sterowanie. Oddzielny blok musi pasować do konkretnego stycznika.",
+      "howToRead": "Cewka K1 i wiele styków oznaczonych K1 należą do tego samego mechanizmu. Linie połączeń są elektryczne; powiązanie mechaniczne nie jest przewodem.",
+      "classicUse": "108: NO K1 podtrzymuje prawy kierunek, NC przeciwnego stycznika blokuje drugi. 113: pomocniczy K1 podtrzymuje gotowość.",
+      "practiceCheck": "Odszukaj zasilanie cewki, jej N i wszystkie zależne styki. Zwolnij START i wskaż rzeczywistą drogę podtrzymania.",
+      "commonMistake": "Każdy NO nazwany podtrzymaniem; blok 1NO+1NC opisany jako 2NO+2NC; cewka 24 V DC potraktowana jak 230 V AC.",
+      "taskCodes": [
+        "108",
+        "109",
+        "113",
+        "114",
+        "116",
+        "L01"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "start-stop",
+      "title": "Dwa niezależne przyciski START i STOP",
+      "componentIds": [
+        "start-stop-din",
+        "start-stop-panel"
+      ],
+      "principle": "START chwilowo zamyka NO. STOP chwilowo otwiera NC. Dwa operatory są niezależne; puszczenie START nie powoduje samo naciśnięcia STOP.",
+      "howToRead": "Na symbolu zespołu rozdziel START i STOP. Oba STOP-y z dwóch miejsc mogą leżeć w szeregu, a START-y równolegle.",
+      "classicUse": "108: START z obu miejsc włącza K1, STOP z dowolnego miejsca przerywa zasilanie cewek. 116: osobne uruchomienie i zatrzymanie.",
+      "practiceCheck": "Przeanalizuj osobno każdy klawisz oraz trzymanie drugiego. Sprawdź, czy jest styk podtrzymania.",
+      "commonMistake": "Zastąpienie zespołu jednym operatorem przełączającym jednocześnie NO i NC.",
+      "taskCodes": [
+        "108",
+        "116"
+      ],
+      "manufacturerSources": [
+        "hager-svn391"
+      ],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "jeden-no-nc",
+      "title": "Jeden operator NO+NC: chwilowy lub utrzymujący",
+      "componentIds": [
+        "no-nc-momentary",
+        "no-nc-maintained"
+      ],
+      "principle": "Jeden operator zmienia dwa przeciwne tory. Wersja chwilowa wraca po puszczeniu; wersja utrzymująca pozostaje w wybranym położeniu. To inne zachowania niż dwa niezależne klawisze.",
+      "howToRead": "Odszukaj wspólny mechanizm styków. Stan NO/NC czytaj w stanie odniesienia, bez traktowania położenia na ekranie jako niezmiennej cechy.",
+      "classicUse": "113: S3/S4 mają własny NO żądania i NC blokujący żądanie przeciwne. 109/114: operator utrzymuje pozycję.",
+      "practiceCheck": "Naciśnij jeden przycisk i zbadaj oba tory. Dla 113 przeanalizuj także równoczesne naciśnięcie obu.",
+      "commonMistake": "Mylenie utrzymującego przycisku z elektronicznym przekaźnikiem bistabilnym.",
+      "taskCodes": [
+        "109",
+        "113",
+        "114"
+      ],
+      "manufacturerSources": [
+        "hager-svn351",
+        "hager-svn352"
+      ],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "przycisk",
+      "title": "Przycisk chwilowy NO lub NC",
+      "componentIds": [
+        "no-din",
+        "no-panel",
+        "nc-din",
+        "wall-no"
+      ],
+      "principle": "Przycisk chwilowy wraca do stanu spoczynkowego. NO przewodzi podczas naciśnięcia; NC podczas spoczynku. Elektronika aparatu odbierającego impuls decyduje, co stanie się dalej.",
+      "howToRead": "Oddziel mechanizm przycisku od wejścia przekaźnika. Równoległe NO dają żądanie z dowolnego miejsca; szeregowe NC pozwalają przerwać z dowolnego miejsca.",
+      "classicUse": "112: trzy równoległe NO do wejścia PB. 108: lewe NO utrzymują cewkę tylko podczas trzymania.",
+      "practiceCheck": "Sprawdź naciśnięcie i puszczenie, nie sam stan aktywny.",
+      "commonMistake": "Podświetlany przycisk zastosowany z BIS-402 mimo zakazu producenta; przyciski sterujące połączone szeregowo zamiast równolegle.",
+      "taskCodes": [
+        "104",
+        "106",
+        "107",
+        "108",
+        "112",
+        "113",
+        "117"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "krancowka",
+      "title": "Łącznik krańcowy",
+      "componentIds": [
+        "limit-switch"
+      ],
+      "principle": "Krańcówka zmienia styki po zadziałaniu przez mechanizm. Może odbierać pozwolenie dalszego ruchu w jednym kierunku.",
+      "howToRead": "Wk1/Wk2 i ich NC śledź w odpowiedniej gałęzi cewki. Otwarcie krańcówki poza torem K1 nie kasuje automatycznie jego podtrzymania.",
+      "classicUse": "113: dojazd do krańca przerywa właściwy kierunek; przeciwny może pozostać dostępny.",
+      "practiceCheck": "Przy trzymanym żądaniu zadziałaj krańcówkę i sprawdź obie gałęzie oraz gotowość K1.",
+      "commonMistake": "Obie krańcówki połączone jako jeden globalny STOP mimo innego rysunku.",
+      "taskCodes": [
+        "113"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "laczniki",
+      "title": "Łączniki jednobiegunowy, schodowy i krzyżowy",
+      "componentIds": [
+        "wall-switch",
+        "changeover",
+        "crossover"
+      ],
+      "principle": "Jednobiegunowy utrzymuje przerwę lub połączenie. Schodowy wybiera jeden z dwóch torów z COM. Krzyżowy zmienia parowanie dwóch żył korespondencyjnych.",
+      "howToRead": "Najpierw ustal COM schodowych i pary krzyżowego; nie zakładaj numeru COM z innego produktu. N oraz PE opraw nie biorą udziału w przełączaniu fazy.",
+      "classicUse": "101/115: dwa schodowe. 105: schodowy–krzyżowy–schodowy. 107: schodowy wybiera funkcję obwodu, a nie steruje bezpośrednio oprawą.",
+      "practiceCheck": "Sprawdź wszystkie 4 lub 8 kombinacji położeń; każda zmiana jednego łącznika w 101/105 odwraca stan obu równoległych opraw.",
+      "commonMistake": "Oprawy połączone szeregowo albo traktowanie każdego schodowego jako układu oświetlenia z dwóch miejsc.",
+      "taskCodes": [
+        "101",
+        "105",
+        "107",
+        "110",
+        "115",
+        "L02"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "bistabilny",
+      "title": "Przekaźnik bistabilny DIN i dopuszkowy",
+      "componentIds": [
+        "bistable-din",
+        "bistable-box"
+      ],
+      "principle": "Impuls wejściowy zmienia zapamiętany stan wyjścia. Warianty różnią się zasilaniem, zaciskami, montażem i funkcjami czasu; wspólna nazwa nie gwarantuje wymienności.",
+      "howToRead": "Rozdziel stałe L/N elektroniki, wejście impulsowe i separowany COM/NO/NC. COM wyjścia potrzebuje doprowadzenia właściwej fazy.",
+      "classicUse": "106/107: wariant DIN z czasem. 112: dopuszkowy BIS-402 w P3. BIS-413 oraz BIS-402 mają różne mapy zacisków.",
+      "practiceCheck": "Wywołaj krótkie impulsy z każdego przycisku, a dla BIS-413 również czas i długie przytrzymanie według E220128.",
+      "commonMistake": "Przeniesienie numeracji BIS-411 na BIS-402 albo pominięcie czasu BIS-413.",
+      "taskCodes": [
+        "106",
+        "107",
+        "112"
+      ],
+      "manufacturerSources": [
+        "ff-bis413",
+        "ff-bis402"
+      ],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "az-as",
+      "title": "Automat zmierzchowy i schodowy",
+      "componentIds": [
+        "twilight",
+        "staircase"
+      ],
+      "principle": "AZ ocenia światło z sondy i wystawia warunek. AS po impulsie odmierza czas świecenia. To dwa odrębne aparaty i dwa odrębne warunki.",
+      "howToRead": "Oddziel sondę, zasilanie elektroniki, wejście przycisku oraz wyjście lampy. W 104 wyjście AZ dopuszcza zasilanie AS przy zasłoniętej sondzie.",
+      "classicUse": "104: światło z przycisku jest dostępne dopiero przy ciemnej czujce i gaśnie po minucie.",
+      "practiceCheck": "Porównaj jasną i ciemną sondę; mierz też zasilanie AS, nie tylko wygląd żarówki.",
+      "commonMistake": "AZ dodany jedynie do toru lampy mimo wymagania odcięcia zasilania AS. Numery trzeba ustalić z instrukcji zakupionych aparatów.",
+      "taskCodes": [
+        "104"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "czasowy",
+      "title": "Przekaźnik czasowy i tor przełączny",
+      "componentIds": [
+        "timer"
+      ],
+      "principle": "Przekaźnik czasowy zmienia stan wyjścia według wybranego trybu oraz sygnału zasilania lub sterowania. Opóźnienie załączenia nie oznacza automatycznie opóźnienia powrotu.",
+      "howToRead": "Odszukaj COM i stan spoczynkowy styku, a następnie źródło wyzwolenia czasu. Nie łącz obu faz w jeden wspólny węzeł.",
+      "classicUse": "114: rezerwa L2 po 5 s, gdy KP straci zasilanie L1. Zachowanie powrotu wymaga instrukcji i rozstrzygnięcia źródła.",
+      "practiceCheck": "Sprawdź stan początkowy, po zaniku, po czasie i po powrocie. Każdy opisany wynik musi wynikać z konkretnego trybu.",
+      "commonMistake": "Wymuszenie 5 s w obie strony, żeby pasowało do wszystkich zdań karty TAK/NIE.",
+      "taskCodes": [
+        "114"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "temperatura",
+      "title": "Regulator temperatury i sonda",
+      "componentIds": [
+        "thermostat"
+      ],
+      "principle": "Regulator przełącza wyjście względem nastawy, z histerezą określoną przez model. Tor ogrzewania i wentylacji nie jest ten sam.",
+      "howToRead": "Rozdziel zasilanie RT, sondę i styk wyjściowy. Dla RT-820 E211220 wentylacja ponad próg korzysta z 2–8, mimo oznaczenia 8 jako NC w stanie biernym.",
+      "classicUse": "L01: temperatura ponad 28°C może uruchomić silnik tylko przy zgodzie Q1 i CKF.",
+      "practiceCheck": "Ogrzej i ochłodź sondę, uwzględniając próg powrotu i tolerancję. Temperatura nie zastępuje innych warunków pozwolenia.",
+      "commonMistake": "Założenie „powyżej nastawy = numer NO” bez instrukcji.",
+      "taskCodes": [
+        "L01"
+      ],
+      "manufacturerSources": [
+        "ff-rt820"
+      ],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "kolejnosc-faz",
+      "title": "Czujnik kolejności faz — CKF",
+      "componentIds": [
+        "phase-monitor"
+      ],
+      "principle": "CKF sprawdza warunki określone przez swój model i wystawia styk pozwolenia. Nie zastępuje ochrony przeciążeniowej silnika.",
+      "howToRead": "Oddziel przyłącza obserwowanych faz od styku w torze cewki. Nie wnioskuj dodatkowej kontroli asymetrii lub zaniku bez instrukcji.",
+      "classicUse": "L01: szeregowy tor Q1–CKF–RT dopuszcza pracę K.",
+      "practiceCheck": "Odbierz pozwolenie CKF przy aktywnym żądaniu temperatury i sprawdź odpadnięcie K.",
+      "commonMistake": "Zasilenie cewki z pominięciem styku CKF, bo na rysunku trudno odnaleźć ten fragment.",
+      "taskCodes": [
+        "L01"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "energia",
+      "title": "Licznik energii: W, kW i kWh",
+      "componentIds": [
+        "energy-meter"
+      ],
+      "principle": "Licznik sumuje energię przepływającą przez swój tor pomiarowy. Energia zależy od rzeczywistej mocy i czasu; nie jest samą obecnością napięcia.",
+      "howToRead": "Wskaż wejście i wyjście licznika z instrukcji. Umieszczenie przed RCD w 115/L02 obejmuje obie gałęzie.",
+      "classicUse": "Odbiornik rezystancyjny 1 kW pracujący przez 1 h zużywa 1 kWh; przez 6 min około 0,1 kWh przy stałej mocy.",
+      "practiceCheck": "Uruchom obciążenie próbne i porównaj przyrost wskazania z czasem oraz rzeczywistą mocą.",
+      "commonMistake": "Licznik zliczający znamionową moc wyłączonego odbiornika albo dowolnie wymyślone zaciski 1–4.",
+      "taskCodes": [
+        "115",
+        "L02"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "sciemniacz",
+      "title": "Ściemniacz sterowany przyciskiem",
+      "componentIds": [
+        "dimmer"
+      ],
+      "principle": "Krótki impuls i dłuższe trzymanie mogą mieć różne funkcje. Ściemniacz musi współpracować z właściwym typem obciążenia.",
+      "howToRead": "Rozdziel zasilanie, wyjście oprawy i izolowane wejście sterujące. Dla SCO-815 E230329 wejście 1–3 jest osobnym torem od wyjścia 12.",
+      "classicUse": "117: krótko włącz/wyłącz, długo reguluj jasność zgodnie z konkretną instrukcją.",
+      "practiceCheck": "Sprawdź oba czasy naciśnięcia oraz kolejne kierunki regulacji. Żarówka 40 W z arkusza nie jest dowolnym LED.",
+      "commonMistake": "Regulacja samym parametrem mocy lampy bez działania wyjścia SCO.",
+      "taskCodes": [
+        "117"
+      ],
+      "manufacturerSources": [
+        "ff-sco815"
+      ],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "lampy",
+      "title": "Oprawa, PE i lampki sygnalizacyjne",
+      "componentIds": [
+        "indicator-green",
+        "indicator-red",
+        "indicator-yellow",
+        "lamp-pe",
+        "lamp-no-pe"
+      ],
+      "principle": "Oprawa służy oświetleniu, lampka sygnalizacyjna informuje o napięciu na swojej gałęzi. PE oprawy klasy I pełni rolę ochronną, nie jest powrotem roboczym prądu lampy.",
+      "howToRead": "Prześledź oba zaciski każdej lampki. Znaczenie koloru nie zastępuje informacji, gdzie wpięto lampkę.",
+      "classicUse": "101/115: sygnał gałęzi może świecić mimo wyłączonych opraw. 109: H2 przed S1 nie świadczy o pracy wału.",
+      "practiceCheck": "Wyłącz odbiornik przez jego sterowanie i sprawdź, które sygnały nadal mają napięcie. Ciągłość PE badaj bez zasilania.",
+      "commonMistake": "Lampka sygnalizacyjna nazwana lampką pracy mimo połączenia przed przyciskiem.",
+      "taskCodes": [
+        "101",
+        "103",
+        "104",
+        "105",
+        "106",
+        "107",
+        "109",
+        "110",
+        "112",
+        "113",
+        "114",
+        "115",
+        "117",
+        "L02"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "gniazda",
+      "title": "Gniazda i wtyczki 1-fazowe oraz CEE",
+      "componentIds": [
+        "socket1",
+        "socket3",
+        "plug1",
+        "plug3"
+      ],
+      "principle": "Gniazdo i wtyczka są interfejsem torów zasilania. Wariant 1-fazowy ze stykiem ochronnym ma L/N/PE; CEE 3P+N+PE ma pięć odrębnych torów.",
+      "howToRead": "Odczytaj oznaczenia na osprzęcie i schemat przewodu. Liczba biegunów wyłącznika nie jest liczbą styków gniazda.",
+      "classicUse": "110: oddzielne B16 3P do CEE i B10 do gniazda 1-fazowego. 113/L01: wtyczka zasilania stanowiska.",
+      "practiceCheck": "Sprawdź ciągłość PE, a pomiary napięcia przypisz do rzeczywistych par punktów. L–N i L–L to inne pomiary.",
+      "commonMistake": "Pominięcie N w pięciotorowym osprzęcie albo źle dobrana wtyczka do kabla i gniazda.",
+      "taskCodes": [
+        "101",
+        "103",
+        "106",
+        "109",
+        "110",
+        "113",
+        "115",
+        "116",
+        "117",
+        "L01",
+        "L02"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "silniki",
+      "title": "Silnik: tabliczka, uzwojenia i kierunek",
+      "componentIds": [
+        "motor1",
+        "motor3-y",
+        "motor3-d"
+      ],
+      "principle": "Napięcie tabliczki odnosi się do uzwojeń i sposobu połączenia. Δ230/Y400 pracuje w gwieździe przy 400 V; Δ400/Y690 w trójkącie przy 400 V. Silnik jednofazowy kondensatorowy ma inne uzwojenia i procedurę zmiany kierunku.",
+      "howToRead": "Rozróżnij symbol 3~ lub 1~, tory mocy, PE i tablicę zaciskową. Numeracja i fizyczny układ śrub wymagają instrukcji, nie podobieństwa obrazka.",
+      "classicUse": "113: Δ230/Y400. 116/L01: Δ400/Y690. 109: U1/U2 i Z1/Z2 oraz kondensator; 108 nie podaje tabliczki.",
+      "practiceCheck": "Odczytaj tabliczkę, rozpoznaj końce uzwojeń i zapisz pomiary z jednostką. Prąd solvera rezystancyjnego nie jest pomiarem motoru.",
+      "commonMistake": "Trójkąt przy 400 V na motorze Δ230/Y400 albo zmiana kierunku 1-fazowego przez zamianę L/N.",
+      "taskCodes": [
+        "108",
+        "109",
+        "113",
+        "116",
+        "L01"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "obudowy",
+      "title": "Rozdzielnica i puszka jako miejsce montażu",
+      "componentIds": [
+        "case8",
+        "case12",
+        "case4",
+        "case-r2",
+        "junction-box",
+        "junction-box4"
+      ],
+      "principle": "Obudowa określa miejsce i pojemność montażową. Sama obecność aparatów w jednej puszce nie oznacza ich elektrycznego połączenia.",
+      "howToRead": "Plan rozmieszczenia mówi, gdzie montować; schemat mówi, co łączyć. R1 w 108 to szyna TH35, R2 obudowa; nie kupuj obudowy dla R1 na podstawie samej litery R.",
+      "classicUse": "112: BIS i złączki mają zmieścić się w zamkniętej P3. 107: główne 8M i dodatkowa obudowa 4M.",
+      "practiceCheck": "Policz szerokości rzeczywistych produktów, miejsce na żyły i dostęp do zacisków. Zachowaj wskazane wymiary źródła przy wiernym odtworzeniu.",
+      "commonMistake": "12M uznane za geometrycznie identyczne z 8M albo puszka potraktowana jako wspólny węzeł.",
+      "taskCodes": [
+        "101",
+        "103",
+        "104",
+        "105",
+        "106",
+        "107",
+        "108",
+        "110",
+        "112",
+        "114",
+        "115",
+        "117",
+        "L02"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "zlaczki",
+      "title": "Złączki, listwy i niezależne potencjały",
+      "componentIds": [
+        "junction-plate",
+        "bus-n",
+        "bus-pe",
+        "rail-n",
+        "rail-pe",
+        "rail-end"
+      ],
+      "principle": "Typowa złączka wielowejściowa tworzy jeden wspólny potencjał. Płytka z pięcioma niezależnymi torami tworzy pięć różnych węzłów. Listwa N i listwa PE mają odrębne funkcje.",
+      "howToRead": "Dla każdego toru nazwij potencjał i odbiorniki. W 103 osobne N za RCD nie mogą zostać zmostkowane. Szyna TH35 służy montażowi; połączenie ochronne zależy od konstrukcji osprzętu.",
+      "classicUse": "112: płytka 5 torów lub dopuszczone dodatkowe złączki. 108: tor N cewek i PE motoru przez oddzielne elementy.",
+      "practiceCheck": "Sprawdź ciągłość w obrębie węzła oraz przerwę między niezależnymi torami. Dobierz złączkę do drutu/linki, przekroju i liczby przewodów.",
+      "commonMistake": "Wszystkie śruby na płytce zwarte jednym mostkiem albo dowolna liczba żył pod zaciskiem, bo solver pozwala.",
+      "taskCodes": [
+        "103",
+        "108",
+        "109",
+        "112",
+        "113",
+        "115",
+        "116",
+        "L01"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "dlawnice",
+      "title": "Dławnica i prowadzenie przewodu",
+      "componentIds": [
+        "gland5",
+        "gland3-25",
+        "gland3-15"
+      ],
+      "principle": "Dławnica jest elementem mocowania i wprowadzenia kabla. Jej zakres musi pasować do średnicy zewnętrznej kabla, a gwint i otwór do obudowy.",
+      "howToRead": "Na planie odróżnij wejście kabla i liczbę żył od zacisku elektrycznego. Dławnica nie jest połączeniem elektrycznym między żyłami.",
+      "classicUse": "110: dwie dla kabla 5×2,5, jedna dla 3×2,5 i jedna dla 3×1,5.",
+      "practiceCheck": "Sprawdź zakres zacisku i rzeczywisty przewód, a następnie odciążenie mechaniczne i miejsce na zakończenia.",
+      "commonMistake": "Dobór tylko z rozmiaru otworu albo liczby żył bez pomiaru średnicy powłoki.",
+      "taskCodes": [
+        "110"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "czytanie-schematu",
+      "title": "Od rysunku do połączeń na stanowisku",
+      "componentIds": [],
+      "principle": "Schemat ideowy pokazuje relacje elektryczne. Schemat montażowy wiąże je z zaciskami. Plan rozmieszczenia dodaje pozycje i wymiary. Każdy odpowiada na inne pytanie o ten sam układ.",
+      "howToRead": "1. Odszukaj źródło i L/N/PE. 2. Oddziel moc od sterowania. 3. Zidentyfikuj wspólny mechanizm symboli K/Q/S. 4. Śledź zamkniętą drogę zasilania i powrotu. 5. Rozwiń oznaczenia wielu żył. 6. Dopasuj zaciski z właściwej instrukcji.",
+      "classicUse": "101 łączy jednokreskowy plan z przewodami korespondencyjnymi; 108 rozdziela moc i dwa różne kierunki sterowania; 112 wymaga uzupełnienia pinów PB.",
+      "practiceCheck": "Przed łączeniem sporządź listę węzłów i sprawdź jeden odbiornik od źródła do powrotu. Dla każdego sterowania zapisz stan spoczynkowy, naciśnięcie, puszczenie i zanik napięcia.",
+      "commonMistake": "Jedna linia potraktowana jako jedna żyła mimo oznaczenia kabla; symbol przy cewce pomylony z drugim fizycznym stycznikiem.",
+      "taskCodes": [
+        "101",
+        "108",
+        "112"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "n-pe-wezly",
+      "title": "N, PE i rozgałęzienia na schemacie",
+      "componentIds": [],
+      "principle": "N jest torem roboczym, PE torem ochronnym. Podobne położenie listew na planie nie oznacza, że można je połączyć za RCD lub zastąpić jedną wspólną listwą.",
+      "howToRead": "Nazwij każdy węzeł przed prowadzeniem żyły. Przy skrzyżowaniu przewodów sprawdź znak połączenia i konwencję danego rysunku; nie dodawaj węzła tylko dlatego, że linie przecinają się na ekranie.",
+      "classicUse": "103: dwie niezależne grupy N. 112: pięć niezależnych torów płytki. 108: PE silnika oraz N cewek są osobne.",
+      "practiceCheck": "Sprawdź połączenia wewnątrz własnego węzła oraz przerwę pomiędzy torami, które powinny być niezależne.",
+      "commonMistake": "Rozgałęzienie przewodów wykonane tylko jako skrzyżowanie wizualne albo mostek z N do PE.",
+      "taskCodes": [
+        "103",
+        "108",
+        "112"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    },
+    {
+      "id": "pomiary",
+      "title": "Ciągłość, przerwa, rezystancja i izolacja",
+      "componentIds": [],
+      "principle": "Badanie ciągłości pyta o połączenie. Pomiar rezystancji uzwojenia i rezystancji izolacji odpowiadają na inne pytania, przy różnych warunkach przygotowania badanego obiektu.",
+      "howToRead": "Zapisz oba punkty pomiaru, stan łączników, obecność żarówki i stan zasilania. Przerwa może być wynikiem prawidłowym, jeśli źródło wymaga braku połączenia.",
+      "classicUse": "105: zestyk przed montażem. 112: ciągłość PE oraz spodziewana przerwa L–N bez żarówki. 109/116: pomiary uzwojeń i izolacji silnika.",
+      "practiceCheck": "Wykonaj próbę w warunkach z arkusza i instrukcji przyrządu, podaj wartość oraz jednostkę. Symulacja i model rezystancyjny nie zastępują pomiaru realnego stanowiska.",
+      "commonMistake": "Wpisanie TAK lub ciągłość dla każdej pary, rezystancja izolacji potraktowana jak test brzęczykiem albo pomiar rezystancji przy zasilaniu.",
+      "taskCodes": [
+        "105",
+        "109",
+        "112",
+        "116"
+      ],
+      "manufacturerSources": [],
+      "evidence": "Zasada opracowana na podstawie podanych zadań i wskazanych instrukcji; szczegółowa numeracja zależy od modelu."
+    }
+  ]
+}

@@ -62,3 +62,12 @@ Przy równoległym obciążeniu buildem i generowaniem zrzutów istniejący test
 Vite zgłasza duży główny chunk (około 1,39 MB, gzip 406 kB); build kończy się poprawnie. Podział bundla pozostaje osobną pracą wydajnościową. Nie utworzono tagu, commita wydania ani deploymentu GitHub Pages.
 
 Przegląd wizualny obejmuje wszystkie sześć układów i osobne widoki mocy. Układ schodowy przedstawia drugi przełącznik z lustrzaną orientacją portów (korespondencje 1/2 od lewej, COM od prawej), bez zamiany ID zacisków. W prawo/lewo osobne korytarze rysunku prowadzą trzy węzły wyjściowe do F1; krzyżowanie torów nie oznacza ich połączenia. Layout nie zmienia solvera ani listy żył.
+## Materiały źródłowe ELE.02 — jednostka 00a
+
+Karty 17 zadań, 25 artykułów i 60 kategorii BOM rozszerzają dotychczasową wiedzę pod adresami `#/wiedza/zadania`, `#/wiedza/aparaty`, `#/wiedza/czytanie` i `#/wiedza/zestaw`. [Plan, checkpoint i następne jednostki](ele-exams/README.md) oddzielają dostępność teorii od odbioru gotowych projektów.
+
+`packages/knowledge/exams.ts` parsuje dane przez Zod i waliduje referencje; `exam-data/availability.json` jest osobnym rejestrem wzorców. Nowy wpis nie staje się gotowym układem bez rewizji, dokumentu, fidelity, dowodów i wszystkich bramek R1–R10. Etap 00a nie podnosi statusu istniejących importów 101/108 do odbioru całego zakresu.
+
+`ExamKnowledge.tsx` jest ładowany osobno przez React.lazy. Oryginalne 40 PNG/SVG pozostają statycznymi plikami `public/knowledge/ele02/`, poza JS i ładowanymi na żądanie przez BASE_URL. Manifest SHA-256 blokuje przypadkową zmianę źródła. Mobilne części Rysunek/Działanie/Aparaty/Próby oraz natywny dialog z zoomem mają klawiaturę i przywracanie fokusu. Pomoc korzysta z dotychczasowego powrotu do zamontowanego edytora.
+
+Nie dodano modeli, nastaw, migracji ProjectDocument ani semantycznych hotspotów do źródłowych wycinków. Szczegółowa integracja ról, żył i wzorców należy do następnych jednostek. Nieznane długości 108, niekompletny rysunek 112 i cztery kwestie 114 pozostają jawne. Filtr ELE.05 wyjaśnia brak dostarczonych arkuszy; dotychczasowa ogólna wiedza ELE.05 jest nadal dostępna.

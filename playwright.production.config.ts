@@ -6,6 +6,7 @@ export default defineConfig(base, {
     "exam-practice.spec.ts",
     "pages.spec.ts",
     "knowledge.spec.ts",
+    "exam-knowledge.spec.ts",
     "my-projects.spec.ts",
     "physical-installation.spec.ts",
     "ele02-108.spec.ts",

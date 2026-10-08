@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { catalog } from "@catalog/index";
 import type { Conductor, Bridge } from "@model/index";
 import { advance, initialRuntime } from "@simulation/index";
@@ -400,7 +400,23 @@ function Demo({ id }: { id: string }) {
     </section>
   );
 }
+const ExamKnowledge = lazy(() => import("./ExamKnowledge"));
 export function Knowledge({ route }: { route: string }) {
+  return route.startsWith("knowledge/exam") ? (
+    <Suspense
+      fallback={
+        <div className="knowledge-page" role="status">
+          Ładowanie materiałów…
+        </div>
+      }
+    >
+      <ExamKnowledge route={route} />
+    </Suspense>
+  ) : (
+    <CoreKnowledge route={route} />
+  );
+}
+function CoreKnowledge({ route }: { route: string }) {
   const project = useApp((s) => s.project);
   const [query, setQuery] = useState(""),
     [qualification, setQualification] = useState(""),
@@ -699,6 +715,10 @@ export function Knowledge({ route }: { route: string }) {
               </span>
             </div>
             <div className="knowledge-departments">
+              <a className="knowledge-primary" href="#/wiedza/zadania">
+                Zadania ELE.02 — materiały źródłowe →
+              </a>
+              <a href="#/wiedza/zestaw">Zestaw stanowiska →</a>
               {[
                 ["lesson", "Czytanie schematów"],
                 ["article", "Aparaty i osprzęt"],

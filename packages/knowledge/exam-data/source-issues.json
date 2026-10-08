@@ -1,0 +1,516 @@
+{
+  "format": "ele-source-review",
+  "version": 1,
+  "policy": "Stan otwarty to pytanie lub jawne ograniczenie, nie automatycznie błąd autora arkusza. Interpretacje nie są oficjalnym kluczem CKE.",
+  "issues": [
+    {
+      "id": "101-ISSUE-01",
+      "taskId": "ELE.02-101",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Przykład aplikacji ma geometrię dydaktyczną; długości żył i wymiary trzeba dopasować do realnej płyty.",
+      "sourceId": "pdf-ele02-101",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        7
+      ],
+      "resolution": null
+    },
+    {
+      "id": "103-ISSUE-01",
+      "taskId": "ELE.02-103",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Brak mocy docelowych odbiorników: równomiernego obciążenia faz nie da się dowieść wyłącznie z liczby zabezpieczeń.",
+      "sourceId": "pdf-ele02-103",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "resolution": null
+    },
+    {
+      "id": "103-ISSUE-02",
+      "taskId": "ELE.02-103",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Arkusz nie określa typu różnicowego A/AC.",
+      "sourceId": "pdf-ele02-103",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "resolution": null
+    },
+    {
+      "id": "104-ISSUE-01",
+      "taskId": "ELE.02-104",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "W przesłanym arkuszu nie wskazano modeli AZ i AS. Dokładne zaciski oraz restart/ponowne wyzwolenie wymagają instrukcji dobranych egzemplarzy.",
+      "sourceId": "pdf-ele02-104",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "resolution": null
+    },
+    {
+      "id": "105-ISSUE-01",
+      "taskId": "ELE.02-105",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Arkusz pokazuje tylko B6 w rozdzielnicy zadania; zasilanie stanowiska ma osobną ochronę opisaną w przygotowaniu. Nie usuwać kontekstu stanowiska.",
+      "sourceId": "pdf-ele02-105",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6
+      ],
+      "resolution": null
+    },
+    {
+      "id": "106-ISSUE-01",
+      "taskId": "ELE.02-106",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Arkusz wymaga DY 1,5 mm² dla wszystkich połączeń, także gałęzi gniazda. Zachować to jako wymaganie tego stanowiska, nie ogólne zalecenie instalacji domowej.",
+      "sourceId": "pdf-ele02-106",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "resolution": null
+    },
+    {
+      "id": "106-ISSUE-02",
+      "taskId": "ELE.02-106",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Wariant ćwiczenia exam-bistable w repo używa profilu BIS-411; to adaptacja, a nie dokładny model przykładowego BIS-413.",
+      "sourceId": "pdf-ele02-106",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "resolution": null
+    },
+    {
+      "id": "107-ISSUE-01",
+      "taskId": "ELE.02-107",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Wymagany jest wybrany model BIS z regulacją czasu i jego instrukcja. Nie podano nastawy czasowej, więc nie dopisywać arbitralnego czasu do oceny zadania.",
+      "sourceId": "pdf-ele02-107",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "resolution": null
+    },
+    {
+      "id": "108-ISSUE-01",
+      "taskId": "ELE.02-108",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Przesłany PDF ma tylko 2 strony: brak tabel wyposażenia, długości i tabliczki silnika. Ilości aparatów są odczytem rysunku; nastawy i długości nie są ustalonymi danymi egzaminu.",
+      "sourceId": "pdf-ele02-108",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "resolution": null
+    },
+    {
+      "id": "108-ISSUE-02",
+      "taskId": "ELE.02-108",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "W istniejącym JSON repo nastawa Q2 4,35 A i długości 0,4/1 m są jawnie dydaktycznymi założeniami.",
+      "sourceId": "pdf-ele02-108",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "resolution": null
+    },
+    {
+      "id": "108-ISSUE-03",
+      "taskId": "ELE.02-108",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Rysunek nie definiuje kolejności zadziałania przy jednoczesnym żądaniu dwóch kierunków. Zachowanie solvera nie jest gwarancją rzeczywistych styczników.",
+      "sourceId": "pdf-ele02-108",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "resolution": null
+    },
+    {
+      "id": "109-ISSUE-01",
+      "taskId": "ELE.02-109",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Brak instrukcji konkretnego silnika i kondensatora. Nie przygotowano numerowanej tabeli mostków kierunku.",
+      "sourceId": "pdf-ele02-109",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8
+      ],
+      "resolution": null
+    },
+    {
+      "id": "109-ISSUE-02",
+      "taskId": "ELE.02-109",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Prąd zabezpieczenia C wynika z dobranego silnika, nie z wartości B6.",
+      "sourceId": "pdf-ele02-109",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8
+      ],
+      "resolution": null
+    },
+    {
+      "id": "109-ISSUE-03",
+      "taskId": "ELE.02-109",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Treść 109 wskazuje LgY, a tabela materiałów LY dla 0,75 i 2,5 mm². Zachowano nazwę LY w zestawieniu źródłowym; wybór przewodu do stanowiska trzeba uzgodnić z treścią i zaciskami, nie uznać obu typów za identyczne.",
+      "sourceId": "pdf-ele02-109",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8
+      ],
+      "resolution": null
+    },
+    {
+      "id": "110-ISSUE-01",
+      "taskId": "ELE.02-110",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Jedno gniazdo CEE może służyć także 116, o ile jest zgodne z przygotowaniem stanowiska.",
+      "sourceId": "pdf-ele02-110",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        8
+      ],
+      "resolution": null
+    },
+    {
+      "id": "112-ISSUE-01",
+      "taskId": "ELE.02-112",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Jeśli płytka nie mieści się w puszce, arkusz dopuszcza dodatkowe 2 złączki podwójne i 2 potrójne. To wariant zamiast płytki, nie obowiązkowy dodatkowy zakup.",
+      "sourceId": "pdf-ele02-112",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "resolution": null
+    },
+    {
+      "id": "113-ISSUE-01",
+      "taskId": "ELE.02-113",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Tabela materiałów podaje korytko 25×40×200, ale instrukcja cięcia wymaga łącznie 1500 mm. Zachować rozbieżność, przy zakupie odnieść się do rzeczywistych odcinków.",
+      "sourceId": "pdf-ele02-113",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "resolution": null
+    },
+    {
+      "id": "113-ISSUE-02",
+      "taskId": "ELE.02-113",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Płyta 300×300 mm ma 0,09 m², lecz tabela wpisuje 0,9 m². Nie przenosić tej wartości do zakupów bez korekty jednostek.",
+      "sourceId": "pdf-ele02-113",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "resolution": null
+    },
+    {
+      "id": "113-ISSUE-03",
+      "taskId": "ELE.02-113",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "K1 ma cewkę 230 V; dostępny edu-relay jest 24 V DC i nie jest zamiennikiem 1:1.",
+      "sourceId": "pdf-ele02-113",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "resolution": null
+    },
+    {
+      "id": "114-ISSUE-01",
+      "taskId": "ELE.02-114",
+      "state": "open",
+      "severity": "blocks-graded-reference",
+      "description": "Kryterium 2 mówi o czerwonej lampce przy obu Q1/Q2 ON; rysunek umieszcza H2 za NC KP, więc przy aktywnej cewce KP H2 jest wyłączona.",
+      "sourceId": "pdf-ele02-114",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "resolution": null
+    },
+    {
+      "id": "114-ISSUE-02",
+      "taskId": "ELE.02-114",
+      "state": "open",
+      "severity": "blocks-graded-reference",
+      "description": "Kryterium 6 wymaga powrotu po 5 s; tabela sprzętu wymaga tylko opóźnionego załączania. Brak instrukcji KT rozstrzygającej funkcję powrotu.",
+      "sourceId": "pdf-ele02-114",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "resolution": null
+    },
+    {
+      "id": "114-ISSUE-03",
+      "taskId": "ELE.02-114",
+      "state": "open",
+      "severity": "blocks-graded-reference",
+      "description": "Kryterium 8 wiąże wciskanie S ze zmianą lampek kontrolnych; H1/H2 są przed S.",
+      "sourceId": "pdf-ele02-114",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "resolution": null
+    },
+    {
+      "id": "114-ISSUE-04",
+      "taskId": "ELE.02-114",
+      "state": "open",
+      "severity": "blocks-graded-reference",
+      "description": "Nie wiadomo, które linie są celowo fałszywymi zdaniami TAK/NIE, a które rozbieżnością źródła. Brak oficjalnego klucza.",
+      "sourceId": "pdf-ele02-114",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "resolution": null
+    },
+    {
+      "id": "115-ISSUE-01",
+      "taskId": "ELE.02-115",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Brak modelu licznika; jego numery zacisków, liczba modułów i dopuszczalny prąd nie są ustalone przez ten arkusz.",
+      "sourceId": "pdf-ele02-115",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "resolution": null
+    },
+    {
+      "id": "116-ISSUE-01",
+      "taskId": "ELE.02-116",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Wskazanie wyposażenia wymaga zakresu obejmującego 1,1 In. Nie jest to samodzielna uniwersalna reguła ustawiania rzeczywistego zabezpieczenia; potrzebne tabliczka, lokalizacja ochrony i instrukcja.",
+      "sourceId": "pdf-ele02-116",
+      "sourcePages": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7
+      ],
+      "resolution": null
+    },
+    {
+      "id": "116-ISSUE-02",
+      "taskId": "ELE.02-116",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Obecny edu-motor-six nosi profil 230Δ/400Y; do dokładnego wariantu trzeba dodać nowy profil 400Δ/690Y, nie zmieniać po cichu starej rewizji.",
+      "sourceId": "pdf-ele02-116",
+      "sourcePages": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7
+      ],
+      "resolution": null
+    },
+    {
+      "id": "117-ISSUE-01",
+      "taskId": "ELE.02-117",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Strona produktu opisuje regulację w pętli; instrukcja E230329 precyzuje zmianę kierunku kolejnych długich naciśnięć. Dla modelu aplikacji przyjąć i zacytować konkretną instrukcję, zamiast łączyć opisy różnych wersji.",
+      "sourceId": "pdf-ele02-117",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "resolution": null
+    },
+    {
+      "id": "L01-ISSUE-01",
+      "taskId": "ELE.02-L01",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Brak modelu CKF w źródle; jego zaciski i dodatkowe warunki kontroli muszą wynikać z dobranej instrukcji.",
+      "sourceId": "pdf-ele02-L01",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "resolution": null
+    },
+    {
+      "id": "L01-ISSUE-02",
+      "taskId": "ELE.02-L01",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Instrukcja regulatora i tabliczka silnika pozostają obowiązkowym kontekstem dokładnego wykonania.",
+      "sourceId": "pdf-ele02-L01",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "resolution": null
+    },
+    {
+      "id": "L02-ISSUE-01",
+      "taskId": "ELE.02-L02",
+      "state": "open",
+      "severity": "verify-for-exact-implementation",
+      "description": "Model licznika nie jest wskazany w arkuszu. Pełna mapa zacisków wymaga wybranej instrukcji.",
+      "sourceId": "pdf-ele02-L02",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "resolution": null
+    }
+  ]
+}
