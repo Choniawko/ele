@@ -3,7 +3,7 @@
   "auditBaseline": "c0b5ea49b370cfb5a681bfc5abf5d9d9dfd56e57",
   "branch": "fix/audit-v0.3.0-learning",
   "publicationAuthorized": false,
-  "currentStage": "4",
+  "currentStage": "5",
   "stages": {
     "0": {
       "status": "tested",
@@ -39,11 +39,7 @@
       "reproducerExit": 0,
       "targetUnitTests": 35,
       "browserTests": 3,
-      "checks": [
-        "typecheck",
-        "lint",
-        "build"
-      ],
+      "checks": ["typecheck", "lint", "build"],
       "evidence": [
         "tests/contact-state.test.tsx",
         "tests/e2e/audit-learning.spec.ts",
@@ -55,12 +51,7 @@
       "status": "tested",
       "unitTests": 21,
       "browserScenarios": 18,
-      "checks": [
-        "typecheck",
-        "lint",
-        "knowledge:validate",
-        "build"
-      ],
+      "checks": ["typecheck", "lint", "knowledge:validate", "build"],
       "changes": [
         "Canonical apparatus cards and legacy aliases",
         "SKU/manufacturer/terminal search",
@@ -77,10 +68,7 @@
       "status": "tested",
       "targetUnitTests": 25,
       "browserScenarios": 8,
-      "checks": [
-        "typecheck",
-        "lint"
-      ],
+      "checks": ["typecheck", "lint"],
       "evidence": [
         "tests/e2e/audit-learning.spec.ts",
         "tests/e2e/reference-examples.spec.ts",
@@ -93,7 +81,7 @@
       ]
     },
     "4": {
-      "status": "awaiting-final-browser-acceptance",
+      "status": "tested",
       "completed": [
         "Typed lesson declarations and validated device/terminal references",
         "Demand-loaded knowledge, contextual help, projects and examples",
@@ -112,11 +100,31 @@
         "dist:validate"
       ],
       "reproducerExit": 0,
-      "browserAcceptance": "Previous full production run: 47 passed, 5 failed (one stale SKU map and four outdated collapsed-panel/view selectors), 1 local-fixture skip. Corrections implemented; final suite pending.",
+      "browserAcceptance": {
+        "fullProductionBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd",
+        "fullPassed": 54,
+        "fullFailed": 1,
+        "fullSkipped": 1,
+        "failedSelector": "Aparaty tabs are mobile-only; fixed test viewport and separated remaining source/purchase note.",
+        "affectedFinalBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57",
+        "affectedFinalPassed": 27,
+        "distinctVerifiedScenarios": 56,
+        "report": "browser-results.json"
+      },
       "bundleEvidence": "bundle-comparison.json",
       "limitations": [
         "Initial JS remains 1329.33 kB with a Vite warning; warning threshold unchanged.",
         "Two accepted references only. Historical factories remain regression fixtures and do not load in the workbench."
+      ],
+      "unitSeconds": 43.59,
+      "bundleBytes": 1329337,
+      "bundleGzipBytes": 378183,
+      "evidence": [
+        "tests/e2e/audit-learning.spec.ts",
+        "tests/e2e/knowledge.spec.ts",
+        "tests/e2e/exam-knowledge.spec.ts",
+        "browser-results.json",
+        "bundle-comparison.json"
       ]
     },
     "5": {
@@ -133,5 +141,20 @@
     "tests/audit/reproduce-contact-state.mjs",
     "tests/contact-state.test.tsx"
   ],
-  "nextAction": "Finish production browser acceptance for stage 4; then implement one source-verified 105 pattern using docs/ele-exams/plan/etapy/02_schodowe_105.md."
+  "nextAction": "Stage 5: implement and independently verify only 02a / ELE.02-105 using docs/ele-exams/plan/etapy/02_schodowe_105.md; keep 114 source gate and ELE.05 limitations.",
+  "pullRequest": "https://github.com/Choniawko/ele/pull/8",
+  "verifiedBuild": {
+    "schemaVersion": 1,
+    "version": "0.3.0",
+    "tag": null,
+    "commit": "c0ad2ea104e11f27981b643c9942a36925a36e57",
+    "base": "/ele/",
+    "builtAt": "2026-10-09T17:52:39.823Z"
+  },
+  "ci": {
+    "runId": 37969409337,
+    "statusAtCheckpoint": "in-progress",
+    "url": "https://github.com/Choniawko/ele/actions/runs/37969409337",
+    "note": "Local results do not imply remote CI completion. Latest documentation commit may start a new run."
+  }
 }

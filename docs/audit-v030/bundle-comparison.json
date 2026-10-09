@@ -7,9 +7,9 @@
   },
   "initial": [
     {
-      "path": "assets/index-hSQWqI-_.js",
-      "bytes": 877373,
-      "gzipBytes": 263353
+      "path": "assets/index-B8yJwYdt.js",
+      "bytes": 877378,
+      "gzipBytes": 263358
     },
     {
       "path": "assets/reference-identity-C42Q9CXc.js",
@@ -27,8 +27,8 @@
       "gzipBytes": 55816
     }
   ],
-  "bytes": 1329332,
-  "gzipBytes": 378178,
+  "bytes": 1329337,
+  "gzipBytes": 378183,
   "leakedTaskTitles": [],
   "historicalFixtures": []
 }
