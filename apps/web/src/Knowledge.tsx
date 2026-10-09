@@ -18,7 +18,25 @@ import {
 import { useApp } from "./store";
 import "./knowledge.css";
 const ExamKnowledge = lazy(() => import("./ExamKnowledge"));
+const legacyLearningRoutes: Record<string, string> = {
+  "knowledge/lesson/linia-i-zyla": "#/wiedza/uklady/ele02-101",
+  "knowledge/lesson/wezel-i-skrzyzowanie": "#/wiedza/uklady/ele02-101",
+  "knowledge/lesson/stan-odniesienia": "#/wiedza/uklady/ele02-108",
+  "knowledge/lesson/jeden-aparat-wiele-symboli": "#/wiedza/uklady/ele02-108",
+  "knowledge/lesson/szeregowo-rownolegle": "#/wiedza/uklady/ele02-108",
+  "knowledge/circuit/start-stop": "#/wiedza/uklady/ele02-108",
+};
 export function Knowledge({ route }: { route: string }) {
+  const redirect = legacyLearningRoutes[route];
+  useEffect(() => {
+    if (redirect) location.replace(redirect);
+  }, [redirect]);
+  if (redirect)
+    return (
+      <div className="knowledge-page" role="status">
+        Otwieranie lekcji na obecnym wzorcu…
+      </div>
+    );
   return route === "knowledge" ||
     route === "knowledge/map" ||
     route.startsWith("knowledge/exam") ? (

@@ -1,4 +1,9 @@
 import { auxiliaryMechanism, mechanicallyBlocked } from "./mechanisms";
+import {
+  resolveConnectionState,
+  refreshConnectionStates,
+  type InternalConnectionState,
+} from "./connections";
 import { analyzeMotor, type WindingConnection } from "./motor";
 import { catalog } from "@catalog/index";
 import {
@@ -22,6 +27,7 @@ import {
 } from "./numeric";
 export * from "./numeric";
 export interface DeviceRuntime {
+  connections?: Record<string, InternalConnectionState>;
   manual: boolean;
   stopPressed?: boolean;
   coil: boolean;
@@ -99,7 +105,7 @@ export function initialRuntime(
   sessionId = "session",
   seed = 1,
 ): RuntimeSnapshot {
-  return {
+  const runtime: RuntimeSnapshot = {
     sessionId,
     revision: project.circuit.revision,
     sequence: 0,
@@ -116,6 +122,8 @@ export function initialRuntime(
     errors: [],
     durationMs: 0,
   };
+  refreshConnectionStates(project, runtime);
+  return runtime;
 }
 function activeFaults(project: ProjectDocument, timeMs: number): Fault[] {
   return project.faults.filter((f) => f.activeAtMs <= timeMs);
@@ -165,44 +173,8 @@ export function compile(
       top = p.topology,
       k = (id: string) => `${d.id}:${id}`,
       df = faults.filter((f) => f.targetId === d.id);
-    const mechanism =
-      p.behaviorId === "auxiliary"
-        ? auxiliaryMechanism(project, rt, d.id)
-        : state.mechanism;
     for (const cn of top.connections) {
-      let closed = true;
-      if (cn.kind === "contact") {
-        const value =
-          cn.condition === "manual"
-            ? state.manual && !state.tripped
-            : cn.condition === "manual-inverse"
-              ? !state.manual
-              : cn.condition === "stop-inverse"
-                ? !state.stopPressed
-                : cn.condition === "mechanism"
-                  ? mechanism
-                  : cn.condition === "mechanism-inverse"
-                    ? !mechanism
-                    : cn.condition === "healthy"
-                      ? !state.tripped
-                      : state.tripped;
-        closed = value;
-        if (
-          df.some(
-            (f) =>
-              f.kind === "welded-contact" &&
-              (f.from && f.to
-                ? (f.from.terminalId === cn.from &&
-                    f.to.terminalId === cn.to) ||
-                  (f.from.terminalId === cn.to && f.to.terminalId === cn.from)
-                : cn.condition === "mechanism" || cn.condition === "manual"),
-          )
-        )
-          closed = true;
-      }
-      if (cn.kind === "coil" && df.some((f) => f.kind === "open-coil"))
-        closed = false;
-      if (!closed) continue;
+      if (!resolveConnectionState(project, rt, d, cn).conducting) continue;
       let resistanceOhm = cn.resistanceOhm ?? 0.005;
       if (cn.kind === "load") {
         const nominal = d.settings.voltageV ?? p.defaults.voltageV ?? 230;
@@ -771,6 +743,8 @@ export function advance(
   } catch (error) {
     rt.status = "solver-error";
     rt.errors = [error instanceof Error ? error.message : "Błąd symulacji"];
+  } finally {
+    refreshConnectionStates(project, rt);
   }
   rt.durationMs = performance.now() - started;
   return rt;

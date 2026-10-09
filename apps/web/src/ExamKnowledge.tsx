@@ -753,8 +753,8 @@ export default function ExamKnowledge({ route }: { route: string }) {
                     </div>
                     {category === "czytanie" && (
                       <p>
-                        <a href="#knowledge/lesson/linia-i-zyla">
-                          Dotychczasowe interaktywne lekcje czytania schematów →
+                        <a href="#/wiedza/uklady/ele02-101">
+                          Czytaj schemat i śledź rzeczywiste żyły w ELE.02-101 →
                         </a>
                       </p>
                     )}

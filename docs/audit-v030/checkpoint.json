@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "auditBaseline": "c0b5ea49b370cfb5a681bfc5abf5d9d9dfd56e57",
+  "branch": "fix/audit-v0.3.0-learning",
+  "publicationAuthorized": false,
+  "currentStage": "2",
+  "stages": {
+    "0": {
+      "status": "tested",
+      "unitTests": 303,
+      "unitFiles": 22,
+      "checks": {
+        "typecheck": {
+          "exitCode": 0,
+          "seconds": 15.42
+        },
+        "lint": {
+          "exitCode": 0,
+          "seconds": 7.57
+        },
+        "catalog:validate": {
+          "exitCode": 0,
+          "seconds": 1.72
+        },
+        "knowledge:validate": {
+          "exitCode": 0,
+          "seconds": 1.6
+        },
+        "build": {
+          "exitCode": 0,
+          "seconds": 20.05
+        }
+      },
+      "reproducerExit": 1,
+      "finding": "QA-01 reproduced: welded K1/pole1 conducts, both SVGs open"
+    },
+    "1": {
+      "status": "tested",
+      "reproducerExit": 0,
+      "targetUnitTests": 35,
+      "browserTests": 3,
+      "checks": [
+        "typecheck",
+        "lint",
+        "build"
+      ],
+      "evidence": [
+        "tests/contact-state.test.tsx",
+        "tests/e2e/audit-learning.spec.ts",
+        "tests/e2e/knowledge.spec.ts"
+      ],
+      "limitations": "Hidden faults use a uniform labelled mechanism view; measurement remains actual continuity."
+    },
+    "2": {
+      "status": "in-progress",
+      "completed": "Named article fields; canonical card migration started."
+    },
+    "3": {
+      "status": "pending"
+    },
+    "4": {
+      "status": "pending"
+    },
+    "5": {
+      "status": "pending"
+    }
+  },
+  "openDecisions": [
+    "ELE.05 requires its own source materials; none supplied in this audit",
+    "ELE.02-114 has unresolved source contradictions; no automatic grading",
+    "Hidden diagnostic faults: all contact symbols show an explicitly labelled mechanism view, continuity requires measurement"
+  ],
+  "evidence": [
+    "tests/audit/reproduce-contact-state.mjs",
+    "tests/contact-state.test.tsx"
+  ]
+}

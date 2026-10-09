@@ -1,5 +1,6 @@
 import type { InternalConnection } from "@catalog/index";
 import type { DeviceRuntime } from "@simulation/index";
+import { connectionDisplay } from "@simulation/connections";
 import type { DeviceProps } from "./index";
 import { ElectricalSymbol } from "./electrical-symbol";
 
@@ -10,24 +11,7 @@ export const fragmentGeometry = {
   to: { x: 140, y: 55 },
 };
 export function fragmentClosed(c: InternalConnection, state?: DeviceRuntime) {
-  switch (c.condition) {
-    case "manual":
-      return !!state?.manual && !state?.tripped;
-    case "manual-inverse":
-      return !state?.manual;
-    case "stop-inverse":
-      return !state?.stopPressed;
-    case "mechanism":
-      return !!state?.mechanism;
-    case "mechanism-inverse":
-      return !state?.mechanism;
-    case "healthy":
-      return !state?.tripped;
-    case "tripped":
-      return !!state?.tripped;
-    default:
-      return true;
-  }
+  return connectionDisplay(c, state).displayClosed;
 }
 export function DeviceFragment({
   connection: c,
@@ -65,7 +49,13 @@ export function DeviceFragment({
       data-symbol-fragment={c.id}
       data-mechanism={ownerId ?? d.id}
       data-closed={fragmentClosed(c, state)}
+      data-state-view={connectionDisplay(c, state).displayMode}
     >
+      <title>
+        {connectionDisplay(c, state).displayMode === "mechanism"
+          ? "Położenie mechanizmu — ciągłość sprawdź pomiarem"
+          : `Rzeczywista ciągłość: ${fragmentClosed(c, state) ? "zamknięta droga" : "otwarta droga"}`}
+      </title>
       <rect
         width="180"
         height="110"
@@ -84,9 +74,11 @@ export function DeviceFragment({
         />
       </g>
       <text x="80" y="100" textAnchor="middle" fontSize="10" fill="#536254">
-        {ownerId && ownerId !== d.id
-          ? `mechanizm ${ownerId}`
-          : `${d.designation} · wspólny mechanizm`}
+        {connectionDisplay(c, state).displayMode === "mechanism"
+          ? "Położenie mechanizmu · sprawdź ciągłość"
+          : ownerId && ownerId !== d.id
+            ? `mechanizm ${ownerId}`
+            : `${d.designation} · wspólny mechanizm`}
       </text>
       {onExplainSymbol && (
         <g

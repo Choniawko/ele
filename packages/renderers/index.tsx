@@ -3,6 +3,7 @@ import { LoadVisual } from "./loads";
 import type { Product, InternalConnection } from "@catalog/index";
 import type { DeviceInstance, TerminalRef } from "@model/index";
 import type { DeviceRuntime } from "@simulation/index";
+import { connectionDisplay } from "@simulation/connections";
 export const MM = 2.2;
 export interface DeviceProps {
   product: Product;
@@ -1565,7 +1566,17 @@ export function DeviceSchematic({
           cn.condition === "stop-inverse" ||
           cn.condition === "healthy";
         return (
-          <g key={cn.id}>
+          <g
+            key={cn.id}
+            data-symbol-fragment={cn.id}
+            data-closed={connectionDisplay(cn, s).displayClosed}
+            data-state-view={connectionDisplay(cn, s).displayMode}
+          >
+            <title>
+              {connectionDisplay(cn, s).displayMode === "mechanism"
+                ? "Położenie mechanizmu — ciągłość sprawdź pomiarem"
+                : "Rzeczywista ciągłość"}
+            </title>
             {onExplainSymbol && (
               <g
                 role="button"
@@ -1613,7 +1624,7 @@ export function DeviceSchematic({
                 <circle cx={64} cy={y} r={2.5} fill="#fff" stroke="#536254" />
                 <circle cx={97} cy={y} r={2.5} fill="#fff" stroke="#536254" />
                 <path
-                  d={`M64 ${y}L97 ${nc ? y : y - 14}`}
+                  d={`M64 ${y}L97 ${connectionDisplay(cn, s).displayClosed ? y : y - 14}`}
                   stroke="#536254"
                   strokeWidth={1.5}
                 />

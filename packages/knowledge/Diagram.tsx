@@ -10,6 +10,10 @@ import {
 import { DevicePhysical, DeviceSchematic, MM } from "@renderers/index";
 import { auxiliaryMechanism, mechanismOwner } from "@simulation/mechanisms";
 import type { RuntimeSnapshot } from "@simulation/index";
+import {
+  documentaryConnectionClosed,
+  resolveConnectionState,
+} from "@simulation/connections";
 import { deviceByName, permanentNets } from "./diagram-model";
 import type { DiagramScope, Highlight } from "./types";
 import { physicalWirePaths } from "@editor/wire-routing";
@@ -30,42 +34,10 @@ function closed(
   id: string,
   live: boolean,
 ) {
-  if (!live) {
-    const d = p.circuit.devices.find((d) => d.id === id)!;
-    const manual = !!d.settings.position;
-    if (c.condition === "manual") return manual;
-    if (c.condition === "manual-inverse") return !manual;
-    const owner = mechanismOwner(p, id);
-    if (owner && c.condition === "mechanism")
-      return !!p.circuit.devices.find((d) => d.id === owner)?.settings.position;
-    return [
-      "manual-inverse",
-      "stop-inverse",
-      "mechanism-inverse",
-      "healthy",
-    ].includes(c.condition ?? "");
-  }
-  const state = rt.devices[id],
-    owner = mechanismOwner(p, id),
-    mechanism = owner ? auxiliaryMechanism(p, rt, id) : state.mechanism;
-  switch (c.condition) {
-    case "manual":
-      return state.manual && !state.tripped;
-    case "manual-inverse":
-      return !state.manual;
-    case "stop-inverse":
-      return !state.stopPressed;
-    case "mechanism":
-      return !!mechanism;
-    case "mechanism-inverse":
-      return !mechanism;
-    case "healthy":
-      return !state.tripped;
-    case "tripped":
-      return state.tripped;
-    default:
-      return true;
-  }
+  const d = p.circuit.devices.find((d) => d.id === id)!;
+  return live
+    ? resolveConnectionState(p, rt, d, c).displayClosed
+    : documentaryConnectionClosed(p, d, c);
 }
 export function FunctionalDiagram({
   project: p,
@@ -162,8 +134,10 @@ export function FunctionalDiagram({
       </desc>
       <text x="30" y="38" fill={ink} fontSize="24" fontWeight="600">
         {live
-          ? "WIDOK DZIAŁANIA — stan solvera"
-          : "STAN ODNIESIENIA — bez pobudzenia"}
+          ? p.faults.some((f) => f.hidden)
+            ? "POŁOŻENIE MECHANIZMÓW — ciągłość sprawdź pomiarem"
+            : "WIDOK DZIAŁANIA — rzeczywista ciągłość"
+          : "WIDOK DOKUMENTACYJNY — stan odniesienia, bez pobudzenia"}
       </text>
       {lines.map((l) => (
         <g key={l.k} data-functional-net={l.k}>
@@ -218,6 +192,13 @@ export function FunctionalDiagram({
             data-device-id={s.d.id}
             data-symbol-fragment={s.c.id}
             data-closed={closed(s.c, p, rt, s.d.id, live)}
+            data-state-view={
+              !live
+                ? "documentary"
+                : p.faults.some((f) => f.hidden)
+                  ? "mechanism"
+                  : "continuity"
+            }
             transform={`translate(${s.x} ${s.y})`}
             role="button"
             tabIndex={0}
