@@ -20,7 +20,7 @@ Otwórz http://127.0.0.1:5173. Do wersji produkcyjnej: `pnpm build`, następnie 
 3. Otwórz wzorzec jako nową kopię, wybierz Widok połączeń, włącz zasilanie i przełącz Q1/Q2.
 4. W trybie Pomiary sprawdź napięcie GW:test-L / GW:test-N; ciągłość PE sprawdzaj przy wyłączonym zasilaniu.
 
-Przykłady, Ćwiczenia i kopiowanie w bibliotece obejmują wyłącznie obecne 17 zadań. Obecnie gotowy jest wzorzec 101; pozostałe karty udostępniają materiały źródłowe i status przygotowania. Nowa instalacja zaczyna od pustego projektu, a wcześniejsze własne zapisy nadal można otwierać i importować.
+Przykłady, Ćwiczenia i kopiowanie w bibliotece obejmują wyłącznie obecne 17 zadań. Obecnie gotowe są wzorce 101 i 108; pozostałe karty udostępniają materiały źródłowe i status przygotowania. Nowa instalacja zaczyna od pustego projektu, a wcześniejsze własne zapisy nadal można otwierać i importować.
 
 W Budowie kliknij aparat z katalogu i miejsce na tablicy. Dwa kliknięcia zacisków tworzą przewód; kliknięcie tła między końcami dodaje punkty trasy. Esc anuluje, Backspace usuwa ostatni punkt. Shift umożliwia wielokrotne zaznaczenie; dostępne są kopiowanie, wyrównanie, Delete i historia Ctrl/Cmd+Z. Ciasne zaciski można wybrać z listy w inspektorze albo po powiększeniu widoku. Przyciski START/STOP przytrzymuje się myszą lub spacją.
 
@@ -28,7 +28,7 @@ W Budowie kliknij aparat z katalogu i miejsce na tablicy. Dwa kliknięcia zacisk
 
 W nagłówku wybierz **Baza wiedzy**: 17 kart arkuszy, 25 artykułów, 60 kategorii BOM i 40 oryginalnych rysunków. Wyszukaj kod, aparat lub synonim. Wzorzec 101 ma schemat funkcjonalny, tablicę z rzeczywistymi trasami i tabelę wszystkich 33 żył, wyprowadzone z jednego CircuitModel. Stały adres: `/ele/#/wiedza/uklady/ele02-101`.
 
-„Poznaj aparat” i osobne wyjaśnienie zacisku otwierają pomoc z rolą w tym układzie. Zwykły gest zacisku nadal rozpoczyna łączenie. Powrót zachowuje kadr, zaznaczenie i rozpoczętą pracę; czytanie zawiesza automatyczny zegar. Pełne artykuły katalogowe zachowują istniejące adresy i lokalny progres. Dawne demonstracje oraz układy bazowe wycofano. [Zakres i dopisywanie materiałów](docs/KNOWLEDGE.md), [odbiór 01a](docs/ele-exams/QA_01.md).
+„Poznaj aparat” i osobne wyjaśnienie zacisku otwierają pomoc z rolą w tym układzie. Zwykły gest zacisku nadal rozpoczyna łączenie. Powrót zachowuje kadr, zaznaczenie i rozpoczętą pracę; czytanie zawiesza automatyczny zegar. Pełne artykuły katalogowe zachowują istniejące adresy i lokalny progres. Dawne demonstracje oraz układy bazowe wycofano. [Zakres i dopisywanie materiałów](docs/KNOWLEDGE.md), [odbiór etapu 01](docs/ele-exams/QA_01.md) i [odbiór 108](docs/ele-exams/QA_01b.md).
 
 ## Moje projekty
 

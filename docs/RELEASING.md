@@ -1,6 +1,8 @@
 # Weryfikacja i wydawanie ELE
 
-Adres docelowy: **https://choniawko.github.io/ele/**. Build i preview używają `/ele/`; serwer developerski pozostaje przy `/`. Pierwsze wydanie obejmuje zakres [etapu ćwiczeń](exam-coverage.md), wraz z jego jawnymi ograniczeniami. Wersja 0.2.0 dodaje dotychczasowe rozszerzenia instalacji/konstruktora rozdzielnicy oraz [ELE.02-108](ELE02_108.md), w tym edukacyjny wyłącznik silnikowy i niezależne START/STOP.
+Adres docelowy: **https://choniawko.github.io/ele/**. Build i preview używają `/ele/`; serwer developerski pozostaje przy `/`. Pierwsze wydanie obejmuje zakres [etapu ćwiczeń](exam-coverage.md), wraz z jego jawnymi ograniczeniami. Wersja 0.2.0 dodaje dotychczasowe rozszerzenia instalacji/konstruktora rozdzielnicy oraz [ELE.02-108](ELE02_108.md), w tym edukacyjny wyłącznik silnikowy i niezależne START/STOP. Wersja 0.3.0 dodaje bazę wiedzy z 17 kartami zadań i przyjęte wzorce/lekcje ELE.02-101 oraz ELE.02-108, pomoc kontekstową i rozwinięte symbole 108. Gotowe są 2/17 wzorców; ograniczenia i dowody opisują [QA_01](ele-exams/QA_01.md) oraz [QA_01b](ele-exams/QA_01b.md).
+
+Merge do `main` uruchamia wyłącznie `ELE CI`. Publikacja wymaga nowego anotowanego tagu zgodnego z wersją w `package.json`; tag uruchamia `ELE Release`, który po pełnej weryfikacji zapisuje archiwum wydania i wdraża je na Pages.
 
 ## Kontrole i artefakt
 
@@ -46,14 +48,14 @@ Nie znaleziono wcześniejszej polityki wydawania w repozytorium ani dyskusji PR 
 | Pages | Source: **GitHub Actions**, bez gałęzi publikacyjnej i bez custom domain dla tego adresu. |
 | Environments → github-pages | **Selected branches and tags**, reguła typu **Tag: `v*`**. Nie wybieraj „Protected branches only”: workflow tagowy i rollback na tagu potrzebują dostępu. Nie dodawaj reguły dla PR/main. Zachowaj wymaganą ręczną akceptację przez recenzenta, jeśli jest częścią ustalonej polityki. |
 
-Przed wydaniem należy zobaczyć zielony check aktualnego PR i push/merge na main, potwierdzić powyższe ustawienia, a dopiero potem utworzyć tag. Przykład dla obecnej wersji `0.1.0`, po połączeniu PR:
+Przed wydaniem należy zobaczyć zielony check aktualnego PR i push/merge na main, potwierdzić powyższe ustawienia, a dopiero potem utworzyć tag. Przykład dla wersji `0.3.0`, po połączeniu PR:
 
 ```sh
 git fetch origin
 git switch main
 git pull --ff-only
-git tag -a v0.1.0 -m "ELE 0.1.0"
-git push origin v0.1.0
+git tag -a v0.3.0 -m "ELE 0.3.0"
+git push origin v0.3.0
 ```
 
 Workflow `ELE Release` przeprowadzi kontrole ponownie; zaakceptuj deployment w environment, jeśli jego reguły tego wymagają. Po sukcesie sprawdź `/ele/version.json`, otwórz przykład i wykonaj zasilanie → zapis → odświeżenie. Zapisz URL przebiegu oraz SHA artefaktu w notatkach wydania. Skrypty testują gotowy dist lokalnie/na runnerze; sam ich sukces nie oznacza wykonania deploymentu w GitHub Pages.
