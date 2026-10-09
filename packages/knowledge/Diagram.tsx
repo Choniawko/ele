@@ -7,7 +7,12 @@ import {
   type Conductor,
   type Bridge,
 } from "@model/index";
-import { DevicePhysical, DeviceSchematic, MM } from "@renderers/index";
+import {
+  DevicePhysical,
+  DeviceSchematic,
+  schematicGeometry,
+  MM,
+} from "@renderers/index";
 import { auxiliaryMechanism, mechanismOwner } from "@simulation/mechanisms";
 import type { RuntimeSnapshot } from "@simulation/index";
 import {
@@ -513,6 +518,7 @@ export function PhysicalDiagram({
 }
 export function ProductIllustration({ productId }: { productId: string }) {
   const product = catalog[productId],
+    geometry = schematicGeometry(product),
     device = {
       id: "illustration",
       productId,
@@ -534,14 +540,11 @@ export function ProductIllustration({ productId }: { productId: string }) {
             showTerminals={false}
           />
         </svg>
-        <figcaption>
-          {product.displayNamePl} ·{" "}
-          {product.educational ? "profil dydaktyczny" : "produkt katalogowy"}
-        </figcaption>
+        <figcaption>Wygląd profilu</figcaption>
       </figure>
       <figure>
         <svg
-          viewBox="-10 -20 180 430"
+          viewBox={`-10 -20 ${geometry.width + 20} ${geometry.height + 30}`}
           role="img"
           aria-label="Symbole aparatu w stanie odniesienia"
         >
@@ -551,7 +554,7 @@ export function ProductIllustration({ productId }: { productId: string }) {
             showTerminals={false}
           />
         </svg>
-        <figcaption>Stan odniesienia; symbole funkcjonalne modelu.</figcaption>
+        <figcaption>Symbol — stan odniesienia</figcaption>
       </figure>
     </div>
   );

@@ -403,6 +403,57 @@
 .knowledge-next a {
   display: block;
 }
+.knowledge-card-intro .knowledge-product-illustration {
+  margin: 12px auto;
+  padding: 10px;
+}
+.knowledge-apparatus-page .knowledge-main {
+  padding-top: 20px;
+}
+.knowledge-apparatus-page h1 {
+  font-size: 32px;
+  margin: 8px 0;
+}
+.knowledge-apparatus-page .knowledge-lead {
+  font-size: 18px;
+  line-height: 1.45;
+  margin: 10px 0 16px;
+}
+.knowledge-card-intro .knowledge-prose {
+  font-size: 16px;
+  line-height: 1.55;
+  margin: 10px auto;
+}
+.knowledge-card-intro .knowledge-product-illustration svg {
+  height: 150px;
+}
+.knowledge-card-intro .knowledge-prose section {
+  margin: 0;
+}
+.knowledge-card-intro h2 {
+  margin-top: 12px;
+}
+.knowledge-model-summary {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.knowledge-card-tasks {
+  padding: 10px 14px;
+  margin-bottom: 16px;
+}
+.knowledge-card-tasks h2 {
+  margin: 0 0 8px;
+}
+.knowledge-card-tasks .knowledge-related {
+  gap: 8px 14px;
+  font-size: 14px;
+}
+.knowledge-card-toc > summary,
+.knowledge-product-map > summary {
+  cursor: pointer;
+  padding: 12px 0;
+  font-weight: 700;
+}
 .knowledge-limit {
   padding: 18px;
   background: #fff3de;

@@ -317,6 +317,7 @@ test("audit: workbench loads knowledge content only when opened", async ({
 test("audit: 108 unknown nameplate stays separate from model and purchase", async ({
   page,
 }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("./#/wiedza/zadania/ele02-108");
   await page.getByRole("tab", { name: "Aparaty", exact: true }).click();
   const motor = page.getByRole("row").filter({
@@ -348,5 +349,53 @@ test("audit: remaining legacy lesson and circuit addresses resolve to appropriat
     await expect(
       page.getByText("Nie znaleziono materiału", { exact: true }),
     ).toHaveCount(0);
+  }
+});
+
+test("audit: apparatus card shows its purpose, symbol, operation and named lesson on the first screen", async ({
+  page,
+}, info) => {
+  for (const [width, height] of [
+    [1366, 768],
+    [390, 844],
+  ]) {
+    await page.setViewportSize({ width, height });
+    await page.goto("./#/wiedza/aparaty/stycznik");
+    await expect(
+      page.getByRole("heading", { name: "Stycznik", exact: true, level: 1 }),
+    ).toBeVisible();
+    const positions = await page
+      .locator(".knowledge-card-intro")
+      .evaluate((host) =>
+        [
+          ".knowledge-product-illustration",
+          "#section-operation",
+          ".knowledge-card-tasks a",
+        ].map((selector) => {
+          const b = host.querySelector(selector)!.getBoundingClientRect();
+          return { top: b.top, bottom: b.bottom };
+        }),
+      );
+    for (const b of positions) {
+      expect(b.top).toBeGreaterThanOrEqual(0);
+      expect(b.bottom).toBeLessThanOrEqual(height);
+    }
+    await expect(page.locator(".knowledge-model-summary")).toContainText(
+      "A1/A2",
+    );
+    await expect(page.locator(".knowledge-model-summary")).toContainText(
+      "230 V AC",
+    );
+    await expect(page.locator(".knowledge-card-tasks")).toContainText(
+      "ELE.02-108",
+    );
+    await expect(
+      page
+        .locator(".knowledge-card-toc")
+        .filter({ hasText: "Spis szczegółów" }),
+    ).not.toHaveAttribute("open");
+    await page.screenshot({
+      path: info.outputPath(`contactor-card-${width}.png`),
+    });
   }
 });

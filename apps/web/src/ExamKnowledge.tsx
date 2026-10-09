@@ -365,7 +365,8 @@ function Task({ task }: { task: ExamTask }) {
                           (b.note ||
                             "Parametry: sprawdź wskazane źródło; opis kategorii zakupowej jest osobno.")}
                         <small>
-                          {b.sourceLocator} · {b.note}
+                          {b.sourceLocator}
+                          {!b.sourceParameters && b.note && ` · ${b.note}`}
                         </small>
                         <details>
                           <summary>
@@ -379,6 +380,9 @@ function Task({ task }: { task: ExamTask }) {
                             Wariant zakupowy / kategoria:{" "}
                             {b.purchaseVariant ?? c.parameters}
                           </p>
+                          {b.sourceParameters && b.note && (
+                            <p>Uwaga opracowania: {b.note}</p>
+                          )}
                         </details>
                       </td>
                     </tr>

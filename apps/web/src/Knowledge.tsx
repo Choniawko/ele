@@ -23,7 +23,11 @@ import {
   progressKey,
   readProgress,
 } from "../../../packages/knowledge/progress";
-import type { KnowledgeSource } from "../../../packages/knowledge/types";
+import type {
+  Article,
+  Section,
+  KnowledgeSource,
+} from "../../../packages/knowledge/types";
 import {
   readContext,
   readProductSelection,
@@ -107,6 +111,59 @@ function SourceList({ items }: { items: KnowledgeSource[] }) {
     </ol>
   );
 }
+function ApparatusSection({
+  article,
+  section,
+}: {
+  article: Article;
+  section: Section;
+}) {
+  return (
+    <section id={`section-${section.id}`}>
+      <h2>
+        {section.id === "operation"
+          ? "Co zmienia się po zadziałaniu"
+          : section.title}
+      </h2>
+      {section.paragraphs.map((text, i) => (
+        <p key={i}>{text}</p>
+      ))}
+      {section.sourceIds.length > 0 && (
+        <small>
+          Źródła:{" "}
+          {section.sourceIds.map((id, i) => {
+            const source = article.sources.find((s) => s.id === id)!;
+            return (
+              <span key={id}>
+                {i > 0 ? " · " : ""}
+                <a href={source.url} target="_blank" rel="noreferrer">
+                  {source.title}
+                </a>
+              </span>
+            );
+          })}
+        </small>
+      )}
+    </section>
+  );
+}
+const taskReady = (code: string) =>
+  referenceIsReady(examAvailability.find((r) => r.taskId === `ELE.02-${code}`));
+function TaskLinks({ codes }: { codes: string[] }) {
+  return (
+    <div className="knowledge-related">
+      {codes.map((code) => (
+        <a
+          key={code}
+          href={`#/wiedza/${taskReady(code) ? "uklady" : "zadania"}/ele02-${code.toLowerCase()}`}
+        >
+          ELE.02-{code} ·{" "}
+          {taskReady(code) ? "Możesz uruchomić" : "Schemat i teoria"}
+        </a>
+      ))}
+    </div>
+  );
+}
 function CoreKnowledge({ route }: { route: string }) {
   const project = useApp((s) => s.project);
   const [progress, setProgress] = useState(readProgress),
@@ -117,6 +174,13 @@ function CoreKnowledge({ route }: { route: string }) {
   const [, routeKind, slug] = route.split("/");
   const article = routeKind === "article" ? apparatusCard(slug) : undefined;
   const item = article;
+  const readyCodes = article?.taskCodes.filter(taskReady) ?? [];
+  const primaryCodes = readyCodes.length
+    ? readyCodes
+    : (article?.taskCodes.slice(0, 1) ?? []);
+  const otherCodes =
+    article?.taskCodes.filter((code) => !primaryCodes.includes(code)) ?? [];
+  const operation = article?.sections.find((s) => s.id === "operation");
   const pickedId = context
     ? (valid?.productId ?? null)
     : readProductSelection();
@@ -159,7 +223,7 @@ function CoreKnowledge({ route }: { route: string }) {
     }
   };
   return (
-    <div className="knowledge-page">
+    <div className="knowledge-page knowledge-apparatus-page">
       <header className="knowledge-header">
         <a href="#knowledge" className="knowledge-brand">
           Pracownia / Baza wiedzy
@@ -187,7 +251,6 @@ function CoreKnowledge({ route }: { route: string }) {
         )}
         {article ? (
           <>
-            <a href="#knowledge">← Baza wiedzy</a>
             <span className="knowledge-eyebrow">
               Aparat · {article.level} · {article.qualifications.join(" / ")}
             </span>
@@ -195,35 +258,45 @@ function CoreKnowledge({ route }: { route: string }) {
               {article.title}
             </h1>
             <p className="knowledge-lead">{article.summary}</p>
-            <nav className="knowledge-toc" aria-label="Spis treści">
-              {article.sections.map((s) => (
-                <button
-                  key={s.id}
-                  onClick={() => {
-                    const section = document.getElementById(`section-${s.id}`);
-                    const details = section?.closest("details");
-                    if (details) details.open = true;
-                    section?.scrollIntoView({
-                      behavior: matchMedia("(prefers-reduced-motion: reduce)")
-                        .matches
-                        ? "instant"
-                        : "smooth",
-                      block: "start",
-                    });
-                  }}
-                >
-                  {s.title}
-                </button>
-              ))}
-            </nav>
-            <p className="knowledge-limit">{article.scope}</p>
-            {(pickedProduct || article.illustrationProductId) && (
-              <ProductIllustration
-                productId={pickedProduct?.id ?? article.illustrationProductId}
-              />
-            )}
+            <div className="knowledge-card-intro">
+              {(pickedProduct || article.illustrationProductId) && (
+                <ProductIllustration
+                  productId={pickedProduct?.id ?? article.illustrationProductId}
+                />
+              )}
+              {displayedProduct && (
+                <p className="knowledge-model-summary">
+                  {displayedProduct.educational
+                    ? "Profil dydaktyczny"
+                    : `${displayedProduct.manufacturer} ${displayedProduct.manufacturerPartNumber}`}{" "}
+                  · {displayedProduct.published ? "opublikowany" : "oczekujący"}{" "}
+                  · rewizja {displayedProduct.revision}
+                  {displayedProduct.topology.coil && (
+                    <>
+                      {" "}
+                      · cewka {displayedProduct.topology.coil.voltageV} V{" "}
+                      {displayedProduct.topology.coil.kind} · zaciski{" "}
+                      {displayedProduct.topology.coil.plus}/
+                      {displayedProduct.topology.coil.minus}
+                    </>
+                  )}
+                </p>
+              )}
+              {operation && (
+                <div className="knowledge-prose">
+                  <ApparatusSection article={article} section={operation} />
+                </div>
+              )}
+              {article.taskCodes.length > 0 && (
+                <section className="knowledge-next knowledge-card-tasks">
+                  <h2>Zadania z tym aparatem</h2>
+                  <TaskLinks codes={primaryCodes} />
+                </section>
+              )}
+            </div>
             {displayedProduct && (
-              <section className="knowledge-prose knowledge-product-map">
+              <details className="knowledge-prose knowledge-product-map">
+                <summary>Dane i mapa ilustrowanego profilu</summary>
                 <h2>
                   {pickedProduct ? "Wybrany model" : "Ilustrowany profil"}:{" "}
                   {displayedProduct.displayNamePl}
@@ -289,76 +362,51 @@ function CoreKnowledge({ route }: { route: string }) {
                     ))}
                   </ul>
                 </details>
-              </section>
+              </details>
             )}
+            {otherCodes.length > 0 && (
+              <details className="knowledge-card-toc">
+                <summary>Inne zadania z tym aparatem</summary>
+                <TaskLinks codes={otherCodes} />
+              </details>
+            )}
+            <details className="knowledge-card-toc">
+              <summary>Spis szczegółów i zakres teorii</summary>
+              <nav className="knowledge-toc" aria-label="Spis treści">
+                {article.sections.map((s) => (
+                  <button
+                    key={s.id}
+                    onClick={() => {
+                      const section = document.getElementById(
+                        `section-${s.id}`,
+                      );
+                      const details = section?.closest("details");
+                      if (details) details.open = true;
+                      section?.scrollIntoView({
+                        behavior: matchMedia("(prefers-reduced-motion: reduce)")
+                          .matches
+                          ? "instant"
+                          : "smooth",
+                        block: "start",
+                      });
+                    }}
+                  >
+                    {s.title}
+                  </button>
+                ))}
+              </nav>
+              <p className="knowledge-limit">{article.scope}</p>
+            </details>
             <div className="knowledge-prose">
-              {article.sections.map((section) => {
-                const body = (
-                  <section key={section.id} id={`section-${section.id}`}>
-                    <h2>
-                      {section.id === "operation"
-                        ? "Co zmienia się po zadziałaniu"
-                        : section.title}
-                    </h2>
-                    {section.paragraphs.map((text, i) => (
-                      <p key={i}>{text}</p>
-                    ))}
-                    {section.sourceIds.length > 0 && (
-                      <small>
-                        Źródła:{" "}
-                        {section.sourceIds.map((id, i) => {
-                          const source = article.sources.find(
-                            (s) => s.id === id,
-                          )!;
-                          return (
-                            <span key={id}>
-                              {i > 0 ? " · " : ""}
-                              <a
-                                href={source.url}
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                {source.title}
-                              </a>
-                            </span>
-                          );
-                        })}
-                      </small>
-                    )}
-                  </section>
-                );
-                return section.id === "operation" ? (
-                  body
-                ) : (
+              {article.sections
+                .filter((s) => s.id !== "operation")
+                .map((section) => (
                   <details key={section.id}>
                     <summary>{section.title}</summary>
-                    {body}
+                    <ApparatusSection article={article} section={section} />
                   </details>
-                );
-              })}
+                ))}
             </div>
-            {article.taskCodes.length > 0 && (
-              <section className="knowledge-next">
-                <h2>Zadania z tym aparatem</h2>
-                <div className="knowledge-related">
-                  {article.taskCodes.map((code) => (
-                    <a
-                      key={code}
-                      href={`#/wiedza/${referenceIsReady(examAvailability.find((r) => r.taskId === `ELE.02-${code}`)) ? "uklady" : "zadania"}/ele02-${code.toLowerCase()}`}
-                    >
-                      ELE.02-{code} ·{" "}
-                      {referenceIsReady(
-                        examAvailability.find(
-                          (r) => r.taskId === `ELE.02-${code}`,
-                        ),
-                      )
-                        ? "Możesz uruchomić"
-                        : "Schemat i teoria"}
-                    </a>
-                  ))}
-                </div>
-              </section>
-            )}
 
             <div className="knowledge-next">
               <h2>Układy z obecnych arkuszy</h2>
