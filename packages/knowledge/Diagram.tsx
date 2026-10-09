@@ -160,7 +160,37 @@ export function FunctionalDiagram({
         </g>
       ))}
       {scope.ports.map((pt) => (
-        <g key={`${pt.designation}:${pt.terminalId}`}>
+        <g
+          key={`${pt.designation}:${pt.terminalId}`}
+          data-terminal={`${pt.designation}:${pt.terminalId}`}
+          role="button"
+          tabIndex={0}
+          aria-label={`Zacisk ${pt.designation}:${pt.terminalId}`}
+          onClick={() =>
+            onHighlight({
+              deviceIds: [deviceByName(p, pt.designation).id],
+              terminals: [
+                {
+                  deviceId: deviceByName(p, pt.designation).id,
+                  terminalId: pt.terminalId,
+                },
+              ],
+            })
+          }
+          onKeyDown={(e) =>
+            keyAction(e, () =>
+              onHighlight({
+                deviceIds: [deviceByName(p, pt.designation).id],
+                terminals: [
+                  {
+                    deviceId: deviceByName(p, pt.designation).id,
+                    terminalId: pt.terminalId,
+                  },
+                ],
+              }),
+            )
+          }
+        >
           <circle cx={pt.x} cy={pt.y} r="4" fill="white" stroke={ink} />
           <text
             x={pt.x}
@@ -183,15 +213,33 @@ export function FunctionalDiagram({
           highlight.terminals.some((r) =>
             refs.some((t) => terminalKey(r) === terminalKey(t)),
           );
+        const owner =
+          mechanismOwner(p, s.d.id) ??
+          (catalog[s.d.productId].topology.coil ? s.d.id : undefined);
+        const mechanismSelected = highlight.mechanismDeviceIds?.includes(
+          s.d.id,
+        );
         const choose = () =>
-          onHighlight({ deviceIds: [s.d.id], terminals: refs });
-        const owner = mechanismOwner(p, s.d.id);
+          onHighlight({
+            deviceIds: [s.d.id],
+            terminals: refs,
+            mechanismDeviceIds:
+              s.c.kind === "coil" && owner
+                ? p.circuit.devices
+                    .filter(
+                      (d) =>
+                        d.id === owner || mechanismOwner(p, d.id) === owner,
+                    )
+                    .map((d) => d.id)
+                : undefined,
+          });
         return (
           <g
             key={`${s.designation}:${s.fragmentId}`}
             data-device-id={s.d.id}
             data-symbol-fragment={s.c.id}
             data-closed={closed(s.c, p, rt, s.d.id, live)}
+            data-mechanism-highlight={!!mechanismSelected}
             data-state-view={
               !live
                 ? "documentary"
@@ -213,7 +261,11 @@ export function FunctionalDiagram({
               width="120"
               height="104"
               fill={selected ? "#ffefcf" : "white"}
-              stroke={selected ? "#b05a10" : "none"}
+              stroke={
+                mechanismSelected ? "#68458b" : selected ? "#b05a10" : "none"
+              }
+              strokeWidth={mechanismSelected ? 3 : 1}
+              strokeDasharray={mechanismSelected ? "6 4" : undefined}
               rx="5"
             />
             <text
@@ -239,10 +291,61 @@ export function FunctionalDiagram({
                 }
               />
             </g>
-            <text x="0" y="24" fontSize="17" fill={ink}>
+            <text
+              x="0"
+              y="24"
+              fontSize="17"
+              fill={ink}
+              data-terminal={terminalKey(s.reverse ? refs[1] : refs[0])}
+              role="button"
+              tabIndex={0}
+              aria-label={`Zacisk ${terminalKey(s.reverse ? refs[1] : refs[0])}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                onHighlight({
+                  deviceIds: [s.d.id],
+                  terminals: [s.reverse ? refs[1] : refs[0]],
+                });
+              }}
+              onKeyDown={(e) => {
+                e.stopPropagation();
+                keyAction(e, () =>
+                  onHighlight({
+                    deviceIds: [s.d.id],
+                    terminals: [s.reverse ? refs[1] : refs[0]],
+                  }),
+                );
+              }}
+            >
               {s.reverse ? s.c.to : s.c.from}
             </text>
-            <text x="120" y="24" textAnchor="end" fontSize="17" fill={ink}>
+            <text
+              x="120"
+              y="24"
+              textAnchor="end"
+              fontSize="17"
+              fill={ink}
+              data-terminal={terminalKey(s.reverse ? refs[0] : refs[1])}
+              role="button"
+              tabIndex={0}
+              aria-label={`Zacisk ${terminalKey(s.reverse ? refs[0] : refs[1])}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                onHighlight({
+                  deviceIds: [s.d.id],
+                  terminals: [s.reverse ? refs[0] : refs[1]],
+                });
+              }}
+              onKeyDown={(e) => {
+                e.stopPropagation();
+                keyAction(e, () =>
+                  onHighlight({
+                    deviceIds: [s.d.id],
+                    terminals: [s.reverse ? refs[0] : refs[1]],
+                  }),
+                );
+              }}
+            >
               {s.reverse ? s.c.from : s.c.to}
             </text>
             {owner && (
@@ -333,11 +436,26 @@ export function PhysicalDiagram({
       ).map((w, i) => {
         const a = point(w.from),
           b = point(w.to),
-          selected = w.id === highlight.wireId;
+          selected =
+            w.id === highlight.wireId || !!highlight.wireIds?.includes(w.id);
         const y = Math.min(a.y, b.y) - 25 - (i % 7) * 8;
         return (
           <path
             key={w.id}
+            data-wire-id={w.id}
+            data-highlighted={selected}
+            role="button"
+            tabIndex={0}
+            aria-label={`Żyła ${w.id}: ${terminalKey(w.from)} → ${terminalKey(w.to)}`}
+            onKeyDown={(e) =>
+              keyAction(e, () =>
+                onHighlight({
+                  wireId: w.id,
+                  deviceIds: [w.from.deviceId, w.to.deviceId],
+                  terminals: [w.from, w.to],
+                }),
+              )
+            }
             d={
               routes[w.id]?.length
                 ? routes[w.id]

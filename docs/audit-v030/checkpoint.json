@@ -3,7 +3,7 @@
   "auditBaseline": "c0b5ea49b370cfb5a681bfc5abf5d9d9dfd56e57",
   "branch": "fix/audit-v0.3.0-learning",
   "publicationAuthorized": false,
-  "currentStage": "3",
+  "currentStage": "4",
   "stages": {
     "0": {
       "status": "tested",
@@ -74,10 +74,28 @@
       ]
     },
     "3": {
-      "status": "in-progress"
+      "status": "tested",
+      "targetUnitTests": 25,
+      "browserScenarios": 8,
+      "checks": [
+        "typecheck",
+        "lint"
+      ],
+      "evidence": [
+        "tests/e2e/audit-learning.spec.ts",
+        "tests/e2e/reference-examples.spec.ts",
+        "tests/e2e/reference-108.spec.ts",
+        "tests/lesson-definitions.test.ts"
+      ],
+      "limitations": [
+        "Drawings keep horizontal/vertical panning on narrow screens so terminal labels remain readable.",
+        "Lesson progress is preserved within this tab; reload starts a fresh isolated lesson."
+      ]
     },
     "4": {
-      "status": "pending"
+      "status": "in-progress",
+      "completed": "Typed controls, indicators, probes and independent trials; validated references.",
+      "next": "Demand-load content and preserve legacy training without factory imports."
     },
     "5": {
       "status": "pending"

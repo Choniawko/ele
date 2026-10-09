@@ -87,6 +87,7 @@ test("101: równoległe oprawy i tabela wskazują rzeczywistą żyłę w obu wid
 }) => {
   const before = await documents(page);
   await page.goto("./#/wiedza/uklady/ele02-101");
+  await k(page).locator(".reference-wire-table > summary").click();
   await k(page).getByRole("button", { name: "Śledź W27", exact: true }).click();
   await expect(
     k(page).locator('.reference-connections tr[aria-selected="true"]'),

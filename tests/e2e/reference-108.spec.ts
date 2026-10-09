@@ -112,7 +112,7 @@ test("01b: source, isolated solver, independent START/STOP, NC block and return 
   const before = await documents(page);
   const control = (name: string) =>
     page.getByRole("button", { name, exact: true });
-  const status = page.locator(".reference-lesson > p[role=status]").last();
+  const status = page.locator(".reference-result").last();
   await expect(status).toContainText("Q2.AUX: zamknięty");
   await control("Przełącz Q2 w lekcji").click();
   await expect(
@@ -181,7 +181,7 @@ test("01b: source, isolated solver, independent START/STOP, NC block and return 
   await expect(
     page.locator(".reference-connections").nth(1).locator("tbody tr"),
   ).toHaveCount(15);
-  await expect(page.locator(".reference-lesson > details")).toHaveCount(11);
+  await expect(page.locator(".reference-profiles > details")).toHaveCount(11);
   const hiddenBypasses = await page
     .locator(".reference-lesson")
     .evaluate((host) => {
@@ -219,6 +219,7 @@ test("01b: source, isolated solver, independent START/STOP, NC block and return 
       return [...new Set(hits)];
     });
   expect(hiddenBypasses).toEqual([]);
+  await page.locator(".reference-wire-table > summary").click();
   await control("Śledź W35").click();
   await expect(
     page.locator(".reference-connections tr[aria-selected=true]"),

@@ -35,3 +35,13 @@ Wyszukiwarka uwzględnia nazwę, producenta, SKU, aliasy, zaciski i zweryfikowan
 W 108 parametry arkusza, założenia modelu i propozycje zakupu są osobnymi polami. Nieznana moc/tabliczka nie została zastąpiona wartością kategorii 113. Model 3 kW i Q2 4,35 A pozostają założeniami. Pozostałe zadania zachowują własne lokalizatory źródła i osobno opisaną kategorię zakupową; nie dopisano nieodczytanych parametrów.
 
 Odbiór: 21 testów jednostkowych wiedzy/kart; 18 różnych scenariuszy przeglądarkowych po aktualizacji testów do nowej strony startowej i rozwijanych kart. Sprawdzono wszystkie 25 dawnych adresów kart oraz 60 kategorii. Po zmianie adresu karta resetuje rozwinięte sekcje. Typecheck, lint, walidacja wiedzy i build przeszły. Początkowy JS nadal 1666,21 kB/gzip 474,14 kB; ładowanie na żądanie jest osobnym etapem 4.
+
+## Etap 3 — lekcje 101 i 108
+
+Trzy kroki „Zrozum / Połącz / Sprawdź” prowadzą do panelu sterowania, wyniku i przewijanego schematu. Przełączenie tablicy zachowuje wybrany zacisk. Cały tor podświetla wszystkie żyły i mostki; pojedyncza żyła pozostaje dostępna w rozwijanej tabeli. Kliknięcie cewki wyróżnia wspólny mechanizm fioletowym przerywanym obramowaniem, bez dodawania połączenia elektrycznego. Pełne źródło/ograniczenia/profile są rozwijane.
+
+Działają krótkie próby przewidywania z faktycznym wynikiem solvera. Instrukcje i wyniki pochodzą z małych typowanych deklaracji; walidator odrzuca brak urządzenia/zacisku. W niezależnym teście skorygowano akcję próby Q1: po resecie zmiana pozycji oznacza `true`, a nie ponowne ustawienie `false`.
+
+Momentary controls zwalniają po keyup, blur, utracie pointer capture, anulowaniu, ukryciu karty i opuszczeniu lekcji. Pauza blokuje nowe sterowanie, pozwalając zwolnić przycisk. Reduced motion wyłącza przejścia. Nie dodano strzałek sugerujących przepływ DC. Stan rozpoczętej lekcji wraca po lekturze karty; zamknięcie/odświeżenie karty rozpoczyna nową sesję. To nie zapis do biblioteki użytkownika.
+
+Odbiór: 25 testów jednostkowych kontaktów i wzorców/deklaracji, 3 istniejące scenariusze 101/108 oraz 5 nowych scenariuszy, w tym 1366×768 i 390×844, wszystkie właściwe żyły, identyczny zacisk, cewka i 6 fragmentów K1, brak podświetlenia K2, lewy trzymany/zwolniony, utrata focusu i powrót do pracującej lekcji. Zrzuty sprawdzono; panel i skutek na schemacie są widoczne razem. Ekran mobilny wymaga przewijania rysunku, zachowując czytelne numery. Dowody lokalne: `release/audit-v030/proofs/` (ignorowane).

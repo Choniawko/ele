@@ -21,6 +21,7 @@ import {
   readContext,
   readProductSelection,
   returnToWorkbench,
+  readLessonReturn,
 } from "./knowledge-navigation";
 import { useApp } from "./store";
 import "./knowledge.css";
@@ -150,6 +151,11 @@ function CoreKnowledge({ route }: { route: string }) {
         </button>
       </header>
       <main className="knowledge-main">
+        {readLessonReturn() && (
+          <a href={`#/wiedza/uklady/${readLessonReturn()}`}>
+            Wróć do rozpoczętej lekcji
+          </a>
+        )}
         {context && (
           <aside className="knowledge-context">
             <p>{contextExplanation(project, context)}</p>

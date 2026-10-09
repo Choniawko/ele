@@ -13,6 +13,11 @@ const key = "ele.knowledge.context.v1";
 const productKey = "ele.knowledge.product.v1";
 let currentContext: KnowledgeContext | null | undefined;
 let currentProduct: string | null | undefined;
+let lessonReturn: string | null = null;
+export const readLessonReturn = () => lessonReturn;
+export const rememberLessonReturn = (id: string) => {
+  lessonReturn = id;
+};
 export function readProductSelection() {
   try {
     return sessionStorage.getItem(productKey);
@@ -51,6 +56,7 @@ export async function openKnowledge(
   )
     return true;
   const s = useApp.getState();
+  lessonReturn = null;
   try {
     await s.flushSave();
   } catch {

@@ -127,12 +127,13 @@ test("01a: source card, isolated solver lesson, real wire ends, profiles and unk
   await expect(
     page.locator(".reference-connections").first().locator("tbody tr"),
   ).toHaveCount(33);
+  await page.locator(".reference-wire-table > summary").click();
   await page.getByRole("button", { name: "Śledź W21", exact: true }).click();
   const row = page.locator(".reference-connections tr[aria-selected=true]");
   await expect(row).toContainText("P1.T1:2");
   await expect(row).toContainText("P2.T1:1");
   await expect(page.locator(".physical path[stroke='#b05a10']")).toHaveCount(1);
-  await expect(page.locator(".reference-lesson > details")).toHaveCount(12);
+  await expect(page.locator(".reference-profiles > details")).toHaveCount(12);
   expect(await documents(page)).toEqual(before);
   await page.goto("./#/wiedza/uklady/nie-istnieje");
   await expect(

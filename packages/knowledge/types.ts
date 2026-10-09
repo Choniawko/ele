@@ -114,6 +114,8 @@ export interface Highlight {
   terminals: TerminalRef[];
   deviceIds: string[];
   wireId?: string;
+  wireIds?: string[];
+  mechanismDeviceIds?: string[];
 }
 export type DiagramScope = {
   title: string;
