@@ -93,12 +93,35 @@
       ]
     },
     "4": {
-      "status": "in-progress",
-      "completed": "Typed controls, indicators, probes and independent trials; validated references.",
-      "next": "Demand-load content and preserve legacy training without factory imports."
+      "status": "awaiting-final-browser-acceptance",
+      "completed": [
+        "Typed lesson declarations and validated device/terminal references",
+        "Demand-loaded knowledge, contextual help, projects and examples",
+        "Lightweight reference identity with exact topology/revision/binding coverage",
+        "Legacy training checks and descriptions separated from historical factories",
+        "Sources assigned to the claims they support; stale product context hides SKU map"
+      ],
+      "unitTests": 313,
+      "unitFiles": 25,
+      "checks": [
+        "typecheck",
+        "lint",
+        "catalog:validate",
+        "knowledge:validate",
+        "build",
+        "dist:validate"
+      ],
+      "reproducerExit": 0,
+      "browserAcceptance": "Previous full production run: 47 passed, 5 failed (one stale SKU map and four outdated collapsed-panel/view selectors), 1 local-fixture skip. Corrections implemented; final suite pending.",
+      "bundleEvidence": "bundle-comparison.json",
+      "limitations": [
+        "Initial JS remains 1329.33 kB with a Vite warning; warning threshold unchanged.",
+        "Two accepted references only. Historical factories remain regression fixtures and do not load in the workbench."
+      ]
     },
     "5": {
-      "status": "pending"
+      "status": "pending",
+      "nextUnit": "02a / ELE.02-105"
     }
   },
   "openDecisions": [
@@ -109,5 +132,6 @@
   "evidence": [
     "tests/audit/reproduce-contact-state.mjs",
     "tests/contact-state.test.tsx"
-  ]
+  ],
+  "nextAction": "Finish production browser acceptance for stage 4; then implement one source-verified 105 pattern using docs/ele-exams/plan/etapy/02_schodowe_105.md."
 }

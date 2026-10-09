@@ -54,7 +54,11 @@ import {
   type RuntimeSnapshot,
   type RuntimeAction,
 } from "@simulation/index";
-import { colors, checkScenario, type CheckResult } from "@training/index";
+import { colors } from "../../../packages/training/builder";
+import {
+  checkScenario,
+  type CheckResult,
+} from "../../../packages/training/checks";
 import type {
   MeasurementRequest,
   MeasurementRecord,

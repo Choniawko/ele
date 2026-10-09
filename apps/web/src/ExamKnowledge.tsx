@@ -353,7 +353,9 @@ function Task({ task }: { task: ExamTask }) {
                   return (
                     <tr key={`${b.componentId}-${i}`}>
                       <th scope="row">
-                        <a href={componentHref(c.id)}>{c.name}</a>
+                        <a href={componentHref(c.id)}>
+                          {b.sourceName ?? c.name}
+                        </a>
                       </th>
                       <td>
                         {b.quantity} {b.unit}

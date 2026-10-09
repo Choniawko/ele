@@ -414,10 +414,12 @@ test("01b: source/model distinction, expanded drawing zoom and context at four v
   ]) {
     await page.setViewportSize({ width, height });
     await page.goto("./#/wiedza/uklady/ele02-108");
-    const heading = page.getByRole("heading", {
-      name: "Schemat z projektu — fragmenty jednego obwodu",
-    });
-    await heading.scrollIntoViewIfNeeded();
+    const workspace = page.locator(".reference-workspace");
+    await expect(workspace).toBeVisible();
+    await page
+      .getByRole("button", { name: "Schemat lekcji", exact: true })
+      .click();
+    await workspace.scrollIntoViewIfNeeded();
     expect(
       await page
         .locator(".knowledge-page")
@@ -494,6 +496,7 @@ test("01b: public launches preserve previous projects, source template and OFF e
   await openModel(page);
   const first = await documents(page);
   await page.goto("./#/wiedza/uklady/ele02-108");
+  await page.locator(".reference-wire-table > summary").click();
   await page
     .getByRole("button", { name: "Kopia z żyłą W35", exact: true })
     .click();

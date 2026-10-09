@@ -1,7 +1,7 @@
 import { schematicProjection } from "./schematic-projection";
 import { DeviceFragment } from "@renderers/fragment";
 import { auxiliaryMechanism, mechanismOwner } from "@simulation/mechanisms";
-import { boundReference } from "../knowledge/reference-examples";
+import { boundReferenceIdentity as boundReference } from "../knowledge/reference-identity";
 import {
   boardCameras,
   openKnowledge,

@@ -12,6 +12,45 @@ const headings = [
   ["practice", "Przykład krok po kroku"],
   ["limits", "Dane produktu i granice modelu"],
 ] as const;
+// A source supports a particular claim, rather than every section of its card.
+const sectionSources: Record<
+  string,
+  Partial<Record<(typeof headings)[number][0], string[]>>
+> = {
+  laczniki: {
+    appearance: ["button"],
+    terminals: ["button", "model"],
+    parameters: ["button"],
+    practice: ["task108"],
+  },
+  stycznik: {
+    appearance: ["tesys"],
+    terminals: ["contactor", "tesys", "task108"],
+    parameters: ["contactor"],
+    practice: ["task108"],
+  },
+  "blok-pomocniczy": {
+    terminals: ["auxiliary", "model"],
+    appearance: ["auxiliary"],
+  },
+  przekaznik: { appearance: ["finder"], parameters: ["finder"] },
+  bistabilny: { terminals: ["bistable", "model"], parameters: ["bistable"] },
+  czasowe: {
+    terminals: ["timer", "stairs", "model"],
+    parameters: ["timer", "stairs"],
+  },
+  mcb: {
+    appearance: ["mcb"],
+    terminals: ["mcb", "model"],
+    parameters: ["mcb"],
+    practice: ["task101"],
+  },
+  rcd: { appearance: ["rcd"], practice: ["task101"] },
+  "zabezpieczenia-silnikowe": { terminals: ["thermal", "model"] },
+  zlaczki: { appearance: ["wago"] },
+  zasilacze: { terminals: ["supply", "model"], parameters: ["supply"] },
+  silnik: { terminals: ["motor", "model"], parameters: ["motor", "model"] },
+};
 function article(
   id: string,
   title: string,
@@ -45,9 +84,7 @@ function article(
       id: sectionId,
       title: heading,
       paragraphs: text[sectionId].split("\n"),
-      sourceIds: ["appearance", "terminals", "parameters"].includes(sectionId)
-        ? refs.filter((r) => r.id !== "model").map((r) => r.id)
-        : refs.filter((r) => r.id === "model").map((r) => r.id),
+      sourceIds: sectionSources[id]?.[sectionId] ?? ["model"],
     })),
     sources: refs,
     related,
@@ -70,7 +107,7 @@ export const articles: Article[] = [
     ],
     "schneider-xb5aa35",
     "start-stop",
-    [s.button, s.model],
+    [s.button, s.task108, s.model],
     {
       function:
         "Łącznik utrzymuje wybrane położenie. Przycisk chwilowy wraca po puszczeniu. NO zamyka obwód po naciśnięciu, NC go przerywa. STOP w klasycznym sterowaniu wykorzystuje NC, aby naciśnięcie usunęło zasilanie cewki.",
@@ -102,7 +139,7 @@ export const articles: Article[] = [
     ["kontaktor", "K1", "cewka", "A1", "A2", "TeSys", "LC1D09P7"],
     "schneider-lc1d09p7",
     "start-stop",
-    [s.contactor, s.tesys, s.coil, s.model],
+    [s.contactor, s.tesys, s.coil, s.task108, s.model],
     {
       function:
         "Stycznik pozwala małym obwodem sterowania załączać oddzielny obwód odbiornika. Cewka uruchamia styki główne; styki pomocnicze przekazują informację o położeniu mechanizmu albo uczestniczą w logice sterowania.",
@@ -153,7 +190,7 @@ export const articles: Article[] = [
       mistakes:
         "Przypisanie KA1 do K2 zamiast K1 zmienia logikę. Przewód od cewki do „mechanizmu” jest błędem pojęciowym. Nie mostkuj obu zacisków NO, bo wtedy styk nie ma możliwości przerwania obwodu.",
       practice:
-        "Wybierz KA1:53–54. Znajdź oba końce gałęzi równoległej do S1. Załącz START i obserwuj zamknięcie KA1. Puść START: ścieżka przez KA1 pozostaje. STOP odbiera napięcie cewce, która otwiera także ten styk.",
+        "W ogólnym układzie START/STOP dodatkowy NO 53–54 może podtrzymać cewkę, jeżeli jest połączony równolegle do START i sprzężony z właściwym stycznikiem. W zweryfikowanej lekcji ELE.02-108 tę rolę pełni własny K1:13–14; nie ma tam osobnego KA1.",
       limits:
         "Model edukacyjny ma sprawdzone odniesienie numeracji, lecz nie geometrię pełnego SKU. Własna instalacja może nadać tym stykowym torom inne role; pomoc ogólna opisuje NO/NC, a funkcję podtrzymania opisuje tylko wzorzec.",
     },
@@ -262,7 +299,7 @@ export const articles: Article[] = [
     ["eska", "bezpiecznik", "B16", "C", "MBN116E"],
     "hager-mbn116e",
     "lampa",
-    [s.mcb, s.model],
+    [s.mcb, s.task101, s.model],
     {
       function:
         "MCB rozłącza obwód przy nadmiernym prądzie. Część cieplna reaguje na przeciążenie, a elektromagnetyczna na duży prąd zwarciowy. Nie zastępuje ochrony różnicowoprądowej.",
@@ -281,7 +318,7 @@ export const articles: Article[] = [
       mistakes:
         "Większy prąd znamionowy nie naprawia powtarzającego się wyzwalania. MCB nie wykrywa dowolnego małego upływu. Oznaczenie C nie jest ogólnie „lepsze” od B.",
       practice:
-        "W układzie lampy znajdź QF1 przed S1. Przy QF1 ON zamknięcie S1 zasila obie gałęzie lamp. Przy QF1 OFF S1 nie ma skąd doprowadzić fazy. Prześledź drogę do H1 i H2 w tabeli.",
+        "W zweryfikowanej lekcji ELE.02-101 wyłącz B6: obie oprawy i kontrolka H2 gasną, a gniazdo i H1 pozostają zasilone przez B10. Włącz B6 i wyłącz B10: gaśnie H1 i zanika napięcie gniazda, lecz oświetlenie nadal działa. Prześledź osobne gałęzie w tabeli żył.",
       limits:
         "Parametry MBN116E są katalogowe; wyzwalanie w solverze ma jawne przybliżenie B/C i nagrzewania. Wynik nie odtwarza katalogowej krzywej ani nie potwierdza samoczynnego wyłączenia rzeczywistej instalacji.",
     },
@@ -294,7 +331,7 @@ export const articles: Article[] = [
     ["roznicowka", "RCCB", "RCBO", "TEST", "30 mA"],
     "edu-rcd",
     "bistabilny",
-    [s.rcd, s.model],
+    [s.rcd, s.task101, s.model],
     {
       function:
         "RCCB wykrywa różnicę prądów płynących przez kontrolowane tory. RCBO łączy funkcję różnicowoprądową z nadprądową. Prąd znamionowy RCCB opisuje dopuszczalny prąd toru, nie próg ochrony przeciążeniowej.",
@@ -313,7 +350,7 @@ export const articles: Article[] = [
       mistakes:
         "Połączenie N i PE za RCD tworzy nieprawidłową drogę powrotu. Wspólny N z innego RCD może wyzwalać aparat. Przycisk TEST nie zastępuje pełnych pomiarów instalacji.",
       practice:
-        "W przykładzie bistabilnym znajdź FI1 i osobny XPE1. Prześledź L i N przez FI1, a PE bezpośrednio od źródła. Zasilanie lampki zależy od wyjścia bistabilnego, ale jej PE pozostaje połączony także przy wyłączonym świetle.",
+        "W zweryfikowanej lekcji ELE.02-101 prześledź L i N przez RCD do dwóch gałęzi B6/B10, a PE poza rozłączanymi torami. Przy obecnym zasilaniu użyj TEST: obie gałęzie tracą zasilanie. Zmiana Q1/Q2 nie przywraca wyzwolonego RCD.",
       limits:
         "Przykład używa edu-rcd. Solver upraszcza sumowanie prądów i orientację torów, bez pełnego modelu przekładnika i wszystkich przebiegów. Odczyt w demonstracji nie jest protokołem ochrony przeciwporażeniowej.",
     },

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { useApp } from "./store";
-import { boundReference } from "../../../packages/knowledge/reference-examples";
+import { boundReferenceIdentity as boundReference } from "../../../packages/knowledge/reference-identity";
 import type { TerminalRef } from "@model/index";
 
 interface ReferenceContext {

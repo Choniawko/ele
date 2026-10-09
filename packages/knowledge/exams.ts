@@ -55,6 +55,7 @@ const taskSchema = z.object({
       sourceLocator: text,
       sourceKind: text,
       note: z.string(),
+      sourceName: text.optional(),
       sourceParameters: text.optional(),
       modelAssumptions: text.optional(),
       purchaseVariant: text.optional(),

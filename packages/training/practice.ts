@@ -9,11 +9,8 @@ import { Builder } from "./builder";
 import type { Scenario } from "./index";
 
 export type ExerciseVariant = "reference" | "assembly" | "diagnosis";
-export const practiceIds = [
-  "exam-bistable",
-  "exam-start-stop",
-  "exam-reversing",
-] as const;
+import { practiceIds } from "./practice-identity";
+export { practiceIds, isPractice } from "./practice-identity";
 const pair = (deviceId: string, terminalId: string): TerminalRef => ({
   deviceId,
   terminalId,
@@ -307,9 +304,6 @@ export function practiceVariant(
     };
   p.faults.push({ ...fault, id: newId("fault"), hidden: true, activeAtMs: 0 });
   return p;
-}
-export function isPractice(p: ProjectDocument) {
-  return (practiceIds as readonly string[]).includes(p.scenarioId ?? "");
 }
 export const behaviorOf = (p: ProjectDocument, id: string) =>
   catalog[p.circuit.devices.find((d) => d.id === id)!.productId].behaviorId;

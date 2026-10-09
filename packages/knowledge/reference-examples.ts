@@ -1,3 +1,4 @@
+import { boundReferenceIdentity } from "./reference-identity";
 import fixture from "../../examples/physical/ELE02_101_stanowisko.json";
 import { catalog } from "@catalog/index";
 import { validateProjectDocument } from "@catalog/project-validation";
@@ -16,7 +17,6 @@ export interface DeviceProfile {
   productId: string;
   productRevision: string;
   topologyId: string;
-  principle: string;
   symbol: string;
   referenceState: string;
   states: string[];
@@ -95,83 +95,74 @@ const role = (id: string) => {
   return roles[id];
 };
 // This is explanatory data; the only netlist is the existing ProjectDocument.
-const profileText: Record<
-  string,
-  [string, string, string, string[], string, string]
-> = {
-  "edu-source-ac": [
-    "Źródło jednofazowe 230 V, układ TN-S.",
-    "L, N i PE źródła.",
-    "Energia globalna OFF.",
-    [
-      "OFF: brak napięcia roboczego.",
-      "ON: źródło wymusza napięcie L–N; PE pozostaje torem ochronnym.",
+const profileText: Record<string, [string, string, string[], string, string]> =
+  {
+    "edu-source-ac": [
+      "L, N i PE źródła.",
+      "Energia globalna OFF.",
+      [
+        "OFF: brak napięcia roboczego.",
+        "ON: źródło wymusza napięcie L–N; PE pozostaje torem ochronnym.",
+      ],
+      "Zmierz L–N po załączeniu; ciągłość PE badaj bez energii.",
+      "n-pe-wezly",
     ],
-    "Zmierz L–N po załączeniu; ciągłość PE badaj bez energii.",
-    "n-pe-wezly",
-  ],
-  "edu-rcd": [
-    "Różnicówka porównuje prądy L i N; mechanizm rozłącza oba bieguny.",
-    "Dwa sprzężone styki 1–2 oraz N-in–N-out.",
-    "Dźwignia ON, brak energii.",
-    [
-      "ON: oba bieguny zamknięte.",
-      "OFF/TRIPPED: oba bieguny otwarte.",
-      "TEST przy zasilaniu wyzwala mechanizm.",
+    "edu-rcd": [
+      "Dwa sprzężone styki 1–2 oraz N-in–N-out.",
+      "Dźwignia ON, brak energii.",
+      [
+        "ON: oba bieguny zamknięte.",
+        "OFF/TRIPPED: oba bieguny otwarte.",
+        "TEST przy zasilaniu wyzwala mechanizm.",
+      ],
+      "Załącz źródło i użyj TEST: H1, H2, OP1, OP2 i GW tracą zasilanie.",
+      "rcd",
     ],
-    "Załącz źródło i użyj TEST: H1, H2, OP1, OP2 i GW tracą zasilanie.",
-    "rcd",
-  ],
-  "edu-mcb-adjustable": [
-    "Wyłącznik nadprądowy w jednej gałęzi; nastawa 6 A albo 10 A.",
-    "Styk 1–2 sprzężony z mechanizmem zabezpieczenia.",
-    "Dźwignia ON, brak energii.",
-    ["ON: 1–2 połączone.", "OFF/TRIPPED: 1–2 rozłączone."],
-    "Wyłącz B6 i B10 osobno; druga gałąź ma pozostać zasilana.",
-    "mcb",
-  ],
-  "edu-indicator-green-230": [
-    "Lampka dwuzaciskowa pobiera prąd między L i N (model 0,6 W / 230 V).",
-    "Odbiornik między L i N.",
-    "Brak energii: zgaszona.",
-    ["Zasilanie L–N: świeci.", "Przerwa L lub N: nie świeci."],
-    "H2 świeci także po przełączeniu Q1 tak, aby OP1/OP2 zgasły.",
-    "lampy",
-  ],
-  "edu-bulkhead-40": [
-    "Oprawa klasy I; odbiornik 40 W / 230 V między L i N; osobny PE.",
-    "Symbol lampy L–N; PE poza obwodem roboczym.",
-    "Brak energii: zgaszona.",
-    [
-      "Q1 i Q2 wybierają tę samą korespondencję: świeci.",
-      "Wybierają różne korespondencje: zgaszona.",
+    "edu-mcb-adjustable": [
+      "Styk 1–2 sprzężony z mechanizmem zabezpieczenia.",
+      "Dźwignia ON, brak energii.",
+      ["ON: 1–2 połączone.", "OFF/TRIPPED: 1–2 rozłączone."],
+      "Wyłącz B6 i B10 osobno; druga gałąź ma pozostać zasilana.",
+      "mcb",
     ],
-    "Przełącz każdy łącznik w obu pozycjach drugiego; obie oprawy zmieniają stan razem.",
-    "lampy",
-  ],
-  "edu-changeover": [
-    "Jeden mechanizm przełącza COM między dwoma torami; nie ma cewki.",
-    "Dwa fragmenty COM–1 i COM–2 jednego łącznika.",
-    "Pozycja false: COM–1.",
-    [
-      "false: COM–1 zamknięty, COM–2 otwarty.",
-      "true: COM–2 zamknięty, COM–1 otwarty.",
+    "edu-indicator-green-230": [
+      "Odbiornik między L i N.",
+      "Brak energii: zgaszona.",
+      ["Zasilanie L–N: świeci.", "Przerwa L lub N: nie świeci."],
+      "H2 świeci także po przełączeniu Q1 tak, aby OP1/OP2 zgasły.",
+      "lampy",
     ],
-    "Sprawdź wszystkie cztery kombinacje Q1/Q2 i brak zwarcia korespondencji.",
-    "laczniki",
-  ],
-  "edu-socket": [
-    "Gniazdo udostępnia L, N i PE; punkty testowe są połączone z odpowiadającymi zaciskami.",
-    "Trzy niezależne połączenia do test-L, test-N i test-PE.",
-    "Bez energii: brak napięcia L–N.",
-    [
-      "B10 ON i źródło ON: około 230 V L–N.",
-      "B10 OFF: brak napięcia roboczego; PE pozostaje ciągły.",
+    "edu-bulkhead-40": [
+      "Symbol lampy L–N; PE poza obwodem roboczym.",
+      "Brak energii: zgaszona.",
+      [
+        "Q1 i Q2 wybierają tę samą korespondencję: świeci.",
+        "Wybierają różne korespondencje: zgaszona.",
+      ],
+      "Przełącz każdy łącznik w obu pozycjach drugiego; obie oprawy zmieniają stan razem.",
+      "lampy",
     ],
-    "Zmierz test-L–test-N; osobno sprawdź ciągłość PE bez zasilania.",
-    "gniazda",
-  ],
-};
+    "edu-changeover": [
+      "Dwa fragmenty COM–1 i COM–2 jednego łącznika.",
+      "Pozycja false: COM–1.",
+      [
+        "false: COM–1 zamknięty, COM–2 otwarty.",
+        "true: COM–2 zamknięty, COM–1 otwarty.",
+      ],
+      "Sprawdź wszystkie cztery kombinacje Q1/Q2 i brak zwarcia korespondencji.",
+      "laczniki",
+    ],
+    "edu-socket": [
+      "Trzy niezależne połączenia do test-L, test-N i test-PE.",
+      "Bez energii: brak napięcia L–N.",
+      [
+        "B10 ON i źródło ON: około 230 V L–N.",
+        "B10 OFF: brak napięcia roboczego; PE pozostaje ciągły.",
+      ],
+      "Zmierz test-L–test-N; osobno sprawdź ciągłość PE bez zasilania.",
+      "gniazda",
+    ],
+  };
 for (const id of [
   "edu-phase-distribution",
   "edu-splice-3",
@@ -180,7 +171,6 @@ for (const id of [
   "edu-junction-terminal",
 ])
   profileText[id] = [
-    "Stała złączka: jej zaciski należą do jednego węzła, niezależnie od obudowy.",
     "Mostki wewnętrzne z topologii katalogu; nie są dodatkowymi żyłami.",
     "Zaciski złączki zawsze połączone.",
     [
@@ -194,13 +184,11 @@ const profiles: DeviceProfile[] = [
   ...new Set(project.circuit.devices.map((d) => d.productId)),
 ].map((id) => {
   const p = catalog[id],
-    [principle, symbol, referenceState, states, test, articleId] =
-      profileText[id];
+    [symbol, referenceState, states, test, articleId] = profileText[id];
   return {
     productId: id,
     productRevision: p.revision,
     topologyId: p.topology.id,
-    principle,
     symbol,
     referenceState,
     states,
@@ -448,33 +436,9 @@ export function referenceCopy(id: string): ProjectDocument {
   p.userMetadata.examReferenceRevision = r.referenceRevision;
   return validateProjectDocument(p);
 }
-const topology = (p: ProjectDocument) =>
-  JSON.stringify({
-    devices: p.circuit.devices.map(({ id, productId, productRevision }) => ({
-      id,
-      productId,
-      productRevision,
-    })),
-    conductors: p.circuit.conductors.map(({ id, from, to }) => ({
-      id,
-      from,
-      to,
-    })),
-    bridges: p.circuit.bridges,
-    cables: p.circuit.cables,
-    couplings: p.circuit.mechanicalCouplings,
-    supplies: p.circuit.supplySystems,
-  });
-const referenceTopologies = new Map(
-  referenceExamples.map((r) => [r.id, topology(r.create())]),
-);
 export function boundReference(p: ProjectDocument) {
-  const r = referenceById(p.userMetadata.examReference);
-  return r &&
-    p.userMetadata.examReferenceRevision === r.referenceRevision &&
-    topology(p) === referenceTopologies.get(r.id)
-    ? r
-    : undefined;
+  const identity = boundReferenceIdentity(p);
+  return identity ? referenceById(identity.id) : undefined;
 }
 export function validateReference(r: ReferenceExample) {
   const p = r.create(),

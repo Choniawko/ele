@@ -167,19 +167,31 @@ test("audit: one apparatus card from SKU search, catalog and legacy addresses", 
   await expect(page).toHaveURL(/#\/wiedza\/aparaty\/zabezpieczenia-silnikowe$/);
 });
 
-test("audit: reading help and returning preserves the started lesson", async ({page}) => {
+test("audit: reading help and returning preserves the started lesson", async ({
+  page,
+}) => {
   await page.goto("./#/wiedza/uklady/ele02-108");
   const lesson = page.locator(".reference-lesson");
-  await lesson.getByRole("button", {name: "Załącz energię lekcji", exact: true}).click();
-  await lesson.getByRole("button", {name: "S1 START — przytrzymaj", exact: true}).focus();
+  await lesson
+    .getByRole("button", { name: "Załącz energię lekcji", exact: true })
+    .click();
+  await lesson
+    .getByRole("button", { name: "S1 START — przytrzymaj", exact: true })
+    .focus();
   await page.keyboard.press("Space");
   await expect(lesson.locator(".reference-result")).toContainText("M: prawy");
   await lesson.locator(".reference-profiles > summary").click();
-  const profile = lesson.locator(".reference-profiles > details").filter({has: page.locator('a[href="#/wiedza/aparaty/stycznik"]')});
+  const profile = lesson
+    .locator(".reference-profiles > details")
+    .filter({ has: page.locator('a[href="#/wiedza/aparaty/stycznik"]') });
   await profile.locator("summary").click();
-  await profile.getByRole("link", {name: "Przeczytaj teorię i źródła", exact: true}).click();
+  await profile
+    .getByRole("link", { name: "Przeczytaj teorię i źródła", exact: true })
+    .click();
   await expect(page).toHaveURL(/#\/wiedza\/aparaty\/stycznik$/);
-  await page.getByRole("link", {name: "Wróć do rozpoczętej lekcji", exact: true}).click();
+  await page
+    .getByRole("link", { name: "Wróć do rozpoczętej lekcji", exact: true })
+    .click();
   await expect(lesson.locator(".reference-result")).toContainText("M: prawy");
 });
 
@@ -272,4 +284,69 @@ test("audit UX-01: reading-schematics entry and old address reach the active 101
     .getByRole("button", { name: "Załącz energię lekcji", exact: true })
     .click();
   await expect(page.getByText(/OP1: świeci · OP2: świeci/)).toBeVisible();
+});
+
+test("audit: workbench loads knowledge content only when opened", async ({
+  page,
+}) => {
+  const requested: string[] = [];
+  page.on("request", (r) => {
+    if (r.resourceType() === "script")
+      requested.push(new URL(r.url()).pathname);
+  });
+  await page.goto("./");
+  await expect(
+    page.getByText("Zapisano lokalnie", { exact: true }),
+  ).toBeVisible();
+  expect(
+    requested.filter((p) =>
+      /\/(Knowledge|ExamKnowledge|MyProjects|ReferenceHelp|reference-examples|cards|exams)(?:-|\.tsx?(?:$|\?))/.test(
+        p,
+      ),
+    ),
+  ).toEqual([]);
+  await page.getByRole("button", { name: "Baza wiedzy", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "Baza wiedzy", exact: true }),
+  ).toBeVisible();
+  expect(requested.some((p) => /\/Knowledge(?:-|\.tsx(?:$|\?))/.test(p))).toBe(
+    true,
+  );
+});
+
+test("audit: 108 unknown nameplate stays separate from model and purchase", async ({
+  page,
+}) => {
+  await page.goto("./#/wiedza/zadania/ele02-108");
+  await page.getByRole("tab", { name: "Aparaty", exact: true }).click();
+  const motor = page.getByRole("row").filter({
+    has: page.getByRole("link", {
+      name: "Silnik trójfazowy — tabliczka niepodana w arkuszu",
+      exact: true,
+    }),
+  });
+  await expect(motor).toBeVisible();
+  const visibleText = await motor.innerText();
+  expect(visibleText).toContain("nie określa");
+  expect(visibleText).not.toMatch(/1,5|113|230\/400|3 kW/);
+  await motor.locator("details > summary").click();
+  await expect(motor).toContainText("3 kW");
+  await expect(motor).toContainText("1,5");
+});
+
+test("audit: remaining legacy lesson and circuit addresses resolve to appropriate material", async ({
+  page,
+}) => {
+  for (const [old, target] of [
+    ["knowledge/lesson/moc-i-sterowanie", "/wiedza/uklady/ele02-108"],
+    ["knowledge/circuit/schodowy", "/wiedza/uklady/ele02-101"],
+    ["knowledge/circuit/bistabilny", "/wiedza/aparaty/bistabilny"],
+  ]) {
+    await page.goto(`./#${old}`);
+    await expect(page).toHaveURL(new RegExp(`#${target}$`));
+    await expect(page.locator(".knowledge-page h1")).toBeVisible();
+    await expect(
+      page.getByText("Nie znaleziono materiału", { exact: true }),
+    ).toHaveCount(0);
+  }
 });

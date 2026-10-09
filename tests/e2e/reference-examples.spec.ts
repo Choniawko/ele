@@ -275,16 +275,12 @@ test("01a: responsive source/model distinction, native scrolling and gallery at 
   ]) {
     await page.setViewportSize({ width, height });
     await page.goto("./#/wiedza/uklady/ele02-101");
-    await expect(
-      page.getByRole("heading", {
-        name: "Schemat z projektu — fragmenty jednego obwodu",
-      }),
-    ).toBeVisible();
+    const workspace = page.locator(".reference-workspace");
+    await expect(workspace).toBeVisible();
     await page
-      .getByRole("heading", {
-        name: "Schemat z projektu — fragmenty jednego obwodu",
-      })
-      .scrollIntoViewIfNeeded();
+      .getByRole("button", { name: "Schemat lekcji", exact: true })
+      .click();
+    await workspace.scrollIntoViewIfNeeded();
     const overflow = await page
       .locator(".knowledge-page")
       .evaluate((el) => ({ scroll: el.scrollWidth, client: el.clientWidth }));
@@ -305,6 +301,9 @@ test("01a: responsive source/model distinction, native scrolling and gallery at 
         .locator(".reference-lesson .knowledge-diagram")
         .nth(1)
         .screenshot({ path: info.outputPath("101-lighting-diagram.png") });
+      await page
+        .getByRole("button", { name: "Tablica lekcji", exact: true })
+        .click();
       await page
         .locator(".reference-lesson .knowledge-diagram.physical")
         .screenshot({ path: info.outputPath("101-physical-diagram.png") });
@@ -345,7 +344,7 @@ test("01a: responsive source/model distinction, native scrolling and gallery at 
     page.locator('[aria-label="Gotowe wzorce"] .knowledge-card'),
   ).toHaveCount(readyCount);
   await expect(
-    page.getByText(new RegExp(`${readyCount}/17 gotowych układów`)),
+    page.getByText(new RegExp(`${readyCount}/17 układów możesz uruchomić`)),
   ).toBeVisible();
 });
 test("01a: two gallery launches preserve earlier projects and canonical template", async ({
@@ -362,6 +361,7 @@ test("01a: two gallery launches preserve earlier projects and canonical template
   const first = await documents(page);
   expect(first.length).toBe(initial.length + 1);
   await page.goto("./#/wiedza/uklady/ele02-101");
+  await page.locator(".reference-wire-table > summary").click();
   await page
     .getByRole("button", { name: "Kopia z żyłą W21", exact: true })
     .click();

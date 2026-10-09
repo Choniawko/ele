@@ -8,6 +8,10 @@ import {
   cardHref,
   canonicalCardId,
 } from "../../../packages/knowledge/card-routes";
+import {
+  examAvailability,
+  referenceIsReady,
+} from "../../../packages/knowledge/exams";
 import { ProductIllustration } from "../../../packages/knowledge/Diagram";
 import {
   contextExplanation,
@@ -15,7 +19,10 @@ import {
   bindings,
   validContext,
 } from "../../../packages/knowledge/bindings";
-import { progressKey, readProgress } from "../../../packages/knowledge";
+import {
+  progressKey,
+  readProgress,
+} from "../../../packages/knowledge/progress";
 import type { KnowledgeSource } from "../../../packages/knowledge/types";
 import {
   readContext,
@@ -32,7 +39,13 @@ const legacyLearningRoutes: Record<string, string> = {
   "knowledge/lesson/stan-odniesienia": "#/wiedza/uklady/ele02-108",
   "knowledge/lesson/jeden-aparat-wiele-symboli": "#/wiedza/uklady/ele02-108",
   "knowledge/lesson/szeregowo-rownolegle": "#/wiedza/uklady/ele02-108",
+  "knowledge/lesson/moc-i-sterowanie": "#/wiedza/uklady/ele02-108",
   "knowledge/circuit/start-stop": "#/wiedza/uklady/ele02-108",
+  "knowledge/circuit/lampa": "#/wiedza/uklady/ele02-101",
+  "knowledge/circuit/schodowy": "#/wiedza/uklady/ele02-101",
+  "knowledge/circuit/bistabilny": "#/wiedza/aparaty/bistabilny",
+  "knowledge/circuit/dwa-miejsca": "#/wiedza/uklady/ele02-108",
+  "knowledge/circuit/prawo-lewo": "#/wiedza/uklady/ele02-108",
 };
 export function Knowledge({ route }: { route: string }) {
   const [, kind, slug] = route.split("/");
@@ -112,6 +125,11 @@ function CoreKnowledge({ route }: { route: string }) {
     canonicalCardId(resolveKnowledge(pickedId)?.articleId ?? "") === article?.id
       ? catalog[pickedId]
       : undefined;
+  const displayedProduct =
+    pickedProduct ??
+    (!context && article?.illustrationProductId
+      ? catalog[article.illustrationProductId]
+      : undefined);
   useEffect(() => {
     titleRef.current?.focus();
     document.querySelector(".knowledge-page")?.scrollTo(0, 0);
@@ -204,31 +222,34 @@ function CoreKnowledge({ route }: { route: string }) {
                 productId={pickedProduct?.id ?? article.illustrationProductId}
               />
             )}
-            {pickedProduct && (
+            {displayedProduct && (
               <section className="knowledge-prose knowledge-product-map">
-                <h2>Wybrany model: {pickedProduct.displayNamePl}</h2>
+                <h2>
+                  {pickedProduct ? "Wybrany model" : "Ilustrowany profil"}:{" "}
+                  {displayedProduct.displayNamePl}
+                </h2>
                 <p>
-                  {pickedProduct.educational
+                  {displayedProduct.educational
                     ? "Jawny profil dydaktyczny; nie dane przemysłowego SKU."
-                    : `Produkt katalogowy: ${pickedProduct.manufacturer} ${pickedProduct.manufacturerPartNumber}.`}
+                    : `Produkt katalogowy: ${displayedProduct.manufacturer} ${displayedProduct.manufacturerPartNumber}.`}
                 </p>
-                {pickedProduct.topology.coil && (
+                {displayedProduct.topology.coil && (
                   <p>
                     Cewka tego modelu:{" "}
                     <strong>
-                      {pickedProduct.topology.coil.voltageV} V{" "}
-                      {pickedProduct.topology.coil.kind}
+                      {displayedProduct.topology.coil.voltageV} V{" "}
+                      {displayedProduct.topology.coil.kind}
                     </strong>{" "}
-                    · zaciski {pickedProduct.topology.coil.plus}/
-                    {pickedProduct.topology.coil.minus}.
+                    · zaciski {displayedProduct.topology.coil.plus}/
+                    {displayedProduct.topology.coil.minus}.
                   </p>
                 )}
                 <p>
                   Profil:{" "}
-                  {pickedProduct.published ? "opublikowany" : "oczekujący"} ·
-                  rewizja {pickedProduct.revision} · topologia{" "}
-                  {pickedProduct.topology.revision}.{" "}
-                  {resolveKnowledge(pickedProduct.id)?.exact
+                  {displayedProduct.published ? "opublikowany" : "oczekujący"} ·
+                  rewizja {displayedProduct.revision} · topologia{" "}
+                  {displayedProduct.topology.revision}.{" "}
+                  {resolveKnowledge(displayedProduct.id)?.exact
                     ? "Zweryfikowane powiązanie zacisków z wiedzą."
                     : "Mapa modelu katalogowego; pomoc ogólna, bez mapy źródłowej realnego SKU."}
                 </p>
@@ -249,12 +270,12 @@ function CoreKnowledge({ route }: { route: string }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {pickedProduct.topology.terminals.map((t) => (
+                        {displayedProduct.topology.terminals.map((t) => (
                           <tr key={t.id}>
                             <th scope="row">{t.label}</th>
                             <td>
                               {bindings.find(
-                                (b) => b.productId === pickedProduct.id,
+                                (b) => b.productId === displayedProduct.id,
                               )?.terminals[t.id]?.explanation ?? t.role}
                             </td>
                           </tr>
@@ -263,7 +284,7 @@ function CoreKnowledge({ route }: { route: string }) {
                     </table>
                   </div>
                   <ul>
-                    {pickedProduct.limitations.map((text, i) => (
+                    {displayedProduct.limitations.map((text, i) => (
                       <li key={i}>{text}</li>
                     ))}
                   </ul>
@@ -323,10 +344,14 @@ function CoreKnowledge({ route }: { route: string }) {
                   {article.taskCodes.map((code) => (
                     <a
                       key={code}
-                      href={`#/wiedza/${["101", "108"].includes(code) ? "uklady" : "zadania"}/ele02-${code.toLowerCase()}`}
+                      href={`#/wiedza/${referenceIsReady(examAvailability.find((r) => r.taskId === `ELE.02-${code}`)) ? "uklady" : "zadania"}/ele02-${code.toLowerCase()}`}
                     >
                       ELE.02-{code} ·{" "}
-                      {["101", "108"].includes(code)
+                      {referenceIsReady(
+                        examAvailability.find(
+                          (r) => r.taskId === `ELE.02-${code}`,
+                        ),
+                      )
                         ? "Możesz uruchomić"
                         : "Schemat i teoria"}
                     </a>

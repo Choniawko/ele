@@ -267,6 +267,7 @@ test("porządek aplikacji: pusty start i wyłącznie 17 obecnych arkuszy we wszy
   for (const entry of ["Przykłady", "Ćwiczenia"]) {
     await page.getByRole("button", { name: entry, exact: true }).click();
     const dialog = page.getByRole("dialog");
+    await expect(dialog.locator("[data-exam-task]")).toHaveCount(scope.length);
     expect(
       await dialog
         .locator("[data-exam-task]")
@@ -297,7 +298,7 @@ test("porządek aplikacji: pusty start i wyłącznie 17 obecnych arkuszy we wszy
   await page.getByRole("button", { name: "Anuluj", exact: true }).click();
   await page.getByRole("button", { name: "Zamknij", exact: true }).click();
   await page.getByRole("button", { name: "Baza wiedzy", exact: true }).click();
-  await k(page).getByRole("link", {name: "Zadania", exact: true}).click();
+  await k(page).getByRole("link", { name: "Zadania", exact: true }).click();
   await expect(k(page).locator(".exam-task-card")).toHaveCount(17);
   await expect(k(page).locator(".knowledge-demo")).toHaveCount(0);
 });
