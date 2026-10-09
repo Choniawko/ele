@@ -1,0 +1,15 @@
+{
+  "commit": "1131bbe86f7b1d785739ee13c7a6563ad4944a02",
+  "version": {
+    "schemaVersion": 1,
+    "version": "0.2.0",
+    "tag": null,
+    "commit": "1131bbe86f7b1d785739ee13c7a6563ad4944a02",
+    "base": "/ele/",
+    "builtAt": "2026-10-08T21:55:42.723Z"
+  },
+  "command": "pnpm exec playwright test --config playwright.production.config.ts tests/e2e/reference-108.spec.ts",
+  "result": "3 passed, 1 skipped (public copy intentionally gated), 1.2m",
+  "notice": "Draft production acceptance via real import precedes public launch. Final full production acceptance will test public copies.",
+  "manualVisualResult": "failed: common return crossed the Q1/STOP row and suggested a bypass. Corrected with an orthogonal trunk; needs a new production run. This snapshot does not authorize promotion."
+}

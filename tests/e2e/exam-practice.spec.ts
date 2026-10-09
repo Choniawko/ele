@@ -1,3 +1,4 @@
+import { importLegacy } from "./legacy-project";
 import { test, expect, type Page } from "@playwright/test";
 import { readFile } from "node:fs/promises";
 const board = (page: Page) => page.getByTestId("board-physical");
@@ -9,19 +10,7 @@ async function openPractice(
   variant = "reference",
   diagnosticCase = 0,
 ) {
-  await page.getByRole("button", { name: "Ćwiczenia", exact: true }).click();
-  await page
-    .getByLabel("Nowe zestawy ELE.02 / ELE.05 — tryb")
-    .selectOption(variant);
-  if (variant === "diagnosis")
-    await page
-      .getByLabel("Wariant diagnostyczny")
-      .selectOption(String(diagnosticCase));
-  await page.locator(`[data-scenario="${id}"]`).click();
-  await expect(page.getByRole("dialog")).toHaveCount(0);
-  await expect(
-    page.getByText("Zapisano lokalnie", { exact: true }),
-  ).toBeVisible();
+  await importLegacy(page, id, true, variant, diagnosticCase);
 }
 async function press(page: Page, name: string) {
   await page
@@ -49,6 +38,9 @@ async function measurePe(page: Page, a: string, b: string) {
   await expect(page.getByTestId("meter-value")).not.toContainText("—");
 }
 test.beforeEach(async ({ page }) => {
+  // These compatibility cases now include a complete JSON import and reload,
+  // rather than selecting a retired card in the app.
+  test.setTimeout(90000);
   page.on("pageerror", (error) => {
     throw error;
   });
@@ -57,9 +49,9 @@ test.beforeEach(async ({ page }) => {
     page.getByText("Zapisano lokalnie", { exact: true }),
   ).toBeVisible();
 });
-test("bistabilny: dwa przyciski, RCD, pomiary PE i pełna ocena na produkcji", async ({
+test("zgodność starszego zapisu — bistabilny: dwa przyciski, RCD, pomiary PE i pełna ocena na produkcji", async ({
   page,
-}) => {
+}, info) => {
   await openPractice(page, "exam-bistable");
   await page
     .getByRole("button", { name: "Włącz zasilanie", exact: true })
@@ -89,11 +81,14 @@ test("bistabilny: dwa przyciski, RCD, pomiary PE i pełna ocena na produkcji", a
     0,
   );
   await page.getByLabel("Tryb pracy").selectOption("training");
-  await page.screenshot({ path: "docs/qa/exam-bistable.png", fullPage: true });
+  await page.screenshot({
+    path: info.outputPath("legacy-exam-bistable.png"),
+    fullPage: true,
+  });
 });
 test("silnik: START/STOP, blok pomocniczy, widoczne mostki, autosave i odświeżenie", async ({
   page,
-}) => {
+}, info) => {
   await openPractice(page, "exam-start-stop");
   await expect(board(page).locator("[data-bridge]")).toHaveCount(2);
   await page
@@ -125,13 +120,13 @@ test("silnik: START/STOP, blok pomocniczy, widoczne mostki, autosave i odśwież
   await press(page, "S1");
   await expect(device(page, "M1")).toHaveAttribute("data-powered", "true");
   await page.screenshot({
-    path: "docs/qa/exam-start-stop.png",
+    path: info.outputPath("legacy-exam-start-stop.png"),
     fullPage: true,
   });
 });
 test("prawo/lewo: blokada przeciwnego START, STOP i przeciwny kierunek wynikający z faz", async ({
   page,
-}) => {
+}, info) => {
   await openPractice(page, "exam-reversing");
   await page
     .getByRole("button", { name: "Włącz zasilanie", exact: true })
@@ -146,7 +141,10 @@ test("prawo/lewo: blokada przeciwnego START, STOP i przeciwny kierunek wynikają
   await expect(device(page, "M1")).toHaveAttribute("data-direction", "132");
   await expect(device(page, "H2")).toHaveAttribute("data-powered", "true");
   await expect(device(page, "H1")).toHaveAttribute("data-powered", "false");
-  await page.screenshot({ path: "docs/qa/exam-reversing.png", fullPage: true });
+  await page.screenshot({
+    path: info.outputPath("legacy-exam-reversing.png"),
+    fullPage: true,
+  });
 });
 test("samodzielny montaż: brak połączeń, możliwość przypisania bloku i wstawienia mostków", async ({
   page,

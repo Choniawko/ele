@@ -1,3 +1,4 @@
+import { layout108 } from "../packages/circuit-model/expanded-108";
 import { writeFileSync } from "node:fs";
 import { emptyProject, type DeviceSettings, type Role } from "@model/index";
 import { catalog } from "@catalog/index";
@@ -62,8 +63,9 @@ add("K1", "schneider-lc1d09p7", 410, 570);
 add("K2", "schneider-lc1d09p7", 520, 570);
 add("S1", "edu-start-stop-din", 635, 570);
 add("S2", "edu-push-no-din", 725, 570);
-add("S3", "edu-start-stop-panel", 880, 540);
-add("S4", "edu-push-no-panel", 980, 540);
+// Leave a clear wiring gutter above ZS.RES2 for the local 2–3/3–3 connections.
+add("S3", "edu-start-stop-panel", 880, 508);
+add("S4", "edu-push-no-panel", 980, 508);
 add("ZS.RES2", "edu-rail-terminal", 880, 745);
 p.circuit.supplySystems = [{ id: "supply-PZ", kind: "TN-S", sourceId: "PZ" }];
 p.circuit.mechanicalCouplings = [
@@ -174,6 +176,7 @@ remote.forEach(
     ][i]),
 );
 cable("C.R2", "YLY 5×1,5 mm²", remote);
+layout108(p);
 writeFileSync(
   "examples/physical/ELE02_108_stanowisko.json",
   JSON.stringify(validateProjectDocument(p), null, 2) + "\n",

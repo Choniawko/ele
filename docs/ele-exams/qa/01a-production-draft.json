@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "commit": "2b02a7ce711c667fa13d68139436a59ed3792a2f",
+  "base": "/ele/",
+  "command": "pnpm test:e2e:production tests/e2e/reference-examples.spec.ts",
+  "result": {
+    "passed": 4,
+    "skipped": 1,
+    "failed": 0
+  },
+  "notice": "Draft uses explicit canonical import; no public launch before evidence. Final gated public launch is checked again on the final dist.",
+  "viewports": [
+    "1366x768",
+    "1920x1080",
+    "390x844",
+    "844x390"
+  ]
+}

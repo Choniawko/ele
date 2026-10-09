@@ -1,0 +1,1389 @@
+{
+  "format": "ele-shopping-analysis",
+  "version": 1,
+  "policy": "Max ilości aparatów przy jednym zadaniu naraz, bez zapasu. Materiały zużywane: max jednego zadania i znana suma 16 plików z tabelami; 108 nie podaje długości. Nie scala się automatycznie różnych napięć, konstrukcji i wariantów montażu.",
+  "components": [
+    {
+      "componentId": "rcd2",
+      "quantity": 1,
+      "usedBy": [
+        "101",
+        "103",
+        "104",
+        "106",
+        "107",
+        "115",
+        "117",
+        "L02"
+      ],
+      "basisTasks": [
+        "101",
+        "103",
+        "104",
+        "106",
+        "107",
+        "115",
+        "117",
+        "L02"
+      ]
+    },
+    {
+      "componentId": "b6",
+      "quantity": 2,
+      "usedBy": [
+        "101",
+        "103",
+        "104",
+        "105",
+        "106",
+        "107",
+        "108",
+        "109",
+        "110",
+        "113",
+        "115",
+        "116",
+        "117",
+        "L01",
+        "L02"
+      ],
+      "basisTasks": [
+        "103"
+      ]
+    },
+    {
+      "componentId": "b10",
+      "quantity": 3,
+      "usedBy": [
+        "101",
+        "103",
+        "106",
+        "110",
+        "114",
+        "115",
+        "117",
+        "L02"
+      ],
+      "basisTasks": [
+        "103"
+      ]
+    },
+    {
+      "componentId": "indicator-green",
+      "quantity": 2,
+      "usedBy": [
+        "101",
+        "107",
+        "109",
+        "114",
+        "115"
+      ],
+      "basisTasks": [
+        "101",
+        "109"
+      ]
+    },
+    {
+      "componentId": "case8",
+      "quantity": 1,
+      "usedBy": [
+        "101",
+        "104",
+        "105",
+        "106",
+        "107",
+        "117",
+        "L02"
+      ],
+      "basisTasks": [
+        "101",
+        "104",
+        "105",
+        "106",
+        "107",
+        "117",
+        "L02"
+      ]
+    },
+    {
+      "componentId": "lamp-pe",
+      "quantity": 2,
+      "usedBy": [
+        "101",
+        "104",
+        "105",
+        "106",
+        "107",
+        "110",
+        "112",
+        "114",
+        "115",
+        "117",
+        "L02"
+      ],
+      "basisTasks": [
+        "101",
+        "105",
+        "115"
+      ]
+    },
+    {
+      "componentId": "junction-box",
+      "quantity": 3,
+      "usedBy": [
+        "101",
+        "105",
+        "112",
+        "115",
+        "117",
+        "L02"
+      ],
+      "basisTasks": [
+        "112"
+      ]
+    },
+    {
+      "componentId": "changeover",
+      "quantity": 2,
+      "usedBy": [
+        "101",
+        "105",
+        "107",
+        "115"
+      ],
+      "basisTasks": [
+        "101",
+        "105",
+        "115"
+      ]
+    },
+    {
+      "componentId": "socket1",
+      "quantity": 1,
+      "usedBy": [
+        "101",
+        "103",
+        "106",
+        "110",
+        "115",
+        "117",
+        "L02"
+      ],
+      "basisTasks": [
+        "101",
+        "103",
+        "106",
+        "110",
+        "115",
+        "117",
+        "L02"
+      ]
+    },
+    {
+      "componentId": "rcd4",
+      "quantity": 1,
+      "usedBy": [
+        "103",
+        "110"
+      ],
+      "basisTasks": [
+        "103",
+        "110"
+      ]
+    },
+    {
+      "componentId": "b20",
+      "quantity": 1,
+      "usedBy": [
+        "103"
+      ],
+      "basisTasks": [
+        "103"
+      ]
+    },
+    {
+      "componentId": "case12",
+      "quantity": 1,
+      "usedBy": [
+        "103",
+        "110",
+        "114",
+        "115"
+      ],
+      "basisTasks": [
+        "103",
+        "110",
+        "114",
+        "115"
+      ]
+    },
+    {
+      "componentId": "lamp-no-pe",
+      "quantity": 1,
+      "usedBy": [
+        "103"
+      ],
+      "basisTasks": [
+        "103"
+      ]
+    },
+    {
+      "componentId": "bus-n",
+      "quantity": 2,
+      "usedBy": [
+        "103",
+        "109",
+        "113",
+        "115",
+        "116",
+        "L01"
+      ],
+      "basisTasks": [
+        "103"
+      ]
+    },
+    {
+      "componentId": "bus-pe",
+      "quantity": 1,
+      "usedBy": [
+        "103",
+        "109",
+        "113",
+        "115",
+        "116",
+        "L01"
+      ],
+      "basisTasks": [
+        "103",
+        "109",
+        "113",
+        "115",
+        "116",
+        "L01"
+      ]
+    },
+    {
+      "componentId": "twilight",
+      "quantity": 1,
+      "usedBy": [
+        "104"
+      ],
+      "basisTasks": [
+        "104"
+      ]
+    },
+    {
+      "componentId": "staircase",
+      "quantity": 1,
+      "usedBy": [
+        "104"
+      ],
+      "basisTasks": [
+        "104"
+      ]
+    },
+    {
+      "componentId": "wall-no",
+      "quantity": 3,
+      "usedBy": [
+        "104",
+        "106",
+        "107",
+        "112",
+        "117"
+      ],
+      "basisTasks": [
+        "112"
+      ]
+    },
+    {
+      "componentId": "crossover",
+      "quantity": 1,
+      "usedBy": [
+        "105"
+      ],
+      "basisTasks": [
+        "105"
+      ]
+    },
+    {
+      "componentId": "bistable-din",
+      "quantity": 1,
+      "usedBy": [
+        "106",
+        "107"
+      ],
+      "basisTasks": [
+        "106",
+        "107"
+      ]
+    },
+    {
+      "componentId": "indicator-red",
+      "quantity": 1,
+      "usedBy": [
+        "107",
+        "114",
+        "115"
+      ],
+      "basisTasks": [
+        "107",
+        "114",
+        "115"
+      ]
+    },
+    {
+      "componentId": "indicator-yellow",
+      "quantity": 1,
+      "usedBy": [
+        "107",
+        "113",
+        "115"
+      ],
+      "basisTasks": [
+        "107",
+        "113",
+        "115"
+      ]
+    },
+    {
+      "componentId": "case4",
+      "quantity": 1,
+      "usedBy": [
+        "107"
+      ],
+      "basisTasks": [
+        "107"
+      ]
+    },
+    {
+      "componentId": "motor-protection",
+      "quantity": 1,
+      "usedBy": [
+        "108",
+        "116",
+        "L01"
+      ],
+      "basisTasks": [
+        "108",
+        "116",
+        "L01"
+      ]
+    },
+    {
+      "componentId": "motor-aux",
+      "quantity": 1,
+      "usedBy": [
+        "108",
+        "116",
+        "L01"
+      ],
+      "basisTasks": [
+        "108",
+        "116",
+        "L01"
+      ]
+    },
+    {
+      "componentId": "contactor",
+      "quantity": 2,
+      "usedBy": [
+        "108",
+        "109",
+        "113",
+        "116",
+        "L01"
+      ],
+      "basisTasks": [
+        "108",
+        "113"
+      ]
+    },
+    {
+      "componentId": "start-stop-din",
+      "quantity": 1,
+      "usedBy": [
+        "108",
+        "116"
+      ],
+      "basisTasks": [
+        "108",
+        "116"
+      ]
+    },
+    {
+      "componentId": "start-stop-panel",
+      "quantity": 1,
+      "usedBy": [
+        "108"
+      ],
+      "basisTasks": [
+        "108"
+      ]
+    },
+    {
+      "componentId": "no-din",
+      "quantity": 1,
+      "usedBy": [
+        "108",
+        "113"
+      ],
+      "basisTasks": [
+        "108",
+        "113"
+      ]
+    },
+    {
+      "componentId": "no-panel",
+      "quantity": 1,
+      "usedBy": [
+        "108"
+      ],
+      "basisTasks": [
+        "108"
+      ]
+    },
+    {
+      "componentId": "case-r2",
+      "quantity": 1,
+      "usedBy": [
+        "108"
+      ],
+      "basisTasks": [
+        "108"
+      ]
+    },
+    {
+      "componentId": "rail-n",
+      "quantity": 1,
+      "usedBy": [
+        "108"
+      ],
+      "basisTasks": [
+        "108"
+      ]
+    },
+    {
+      "componentId": "rail-pe",
+      "quantity": 1,
+      "usedBy": [
+        "108"
+      ],
+      "basisTasks": [
+        "108"
+      ]
+    },
+    {
+      "componentId": "motor3-y",
+      "quantity": 1,
+      "usedBy": [
+        "108",
+        "113"
+      ],
+      "basisTasks": [
+        "108",
+        "113"
+      ]
+    },
+    {
+      "componentId": "motor1",
+      "quantity": 1,
+      "usedBy": [
+        "109"
+      ],
+      "basisTasks": [
+        "109"
+      ]
+    },
+    {
+      "componentId": "c-motor",
+      "quantity": 1,
+      "usedBy": [
+        "109"
+      ],
+      "basisTasks": [
+        "109"
+      ]
+    },
+    {
+      "componentId": "no-nc-maintained",
+      "quantity": 1,
+      "usedBy": [
+        "109",
+        "114"
+      ],
+      "basisTasks": [
+        "109",
+        "114"
+      ]
+    },
+    {
+      "componentId": "rail-end",
+      "quantity": 3,
+      "usedBy": [
+        "109"
+      ],
+      "basisTasks": [
+        "109"
+      ]
+    },
+    {
+      "componentId": "plug1",
+      "quantity": 1,
+      "usedBy": [
+        "109"
+      ],
+      "basisTasks": [
+        "109"
+      ]
+    },
+    {
+      "componentId": "b16-3",
+      "quantity": 1,
+      "usedBy": [
+        "110"
+      ],
+      "basisTasks": [
+        "110"
+      ]
+    },
+    {
+      "componentId": "socket3",
+      "quantity": 1,
+      "usedBy": [
+        "110",
+        "116"
+      ],
+      "basisTasks": [
+        "110",
+        "116"
+      ]
+    },
+    {
+      "componentId": "wall-switch",
+      "quantity": 1,
+      "usedBy": [
+        "110",
+        "L02"
+      ],
+      "basisTasks": [
+        "110",
+        "L02"
+      ]
+    },
+    {
+      "componentId": "gland5",
+      "quantity": 2,
+      "usedBy": [
+        "110"
+      ],
+      "basisTasks": [
+        "110"
+      ]
+    },
+    {
+      "componentId": "gland3-25",
+      "quantity": 1,
+      "usedBy": [
+        "110"
+      ],
+      "basisTasks": [
+        "110"
+      ]
+    },
+    {
+      "componentId": "gland3-15",
+      "quantity": 1,
+      "usedBy": [
+        "110"
+      ],
+      "basisTasks": [
+        "110"
+      ]
+    },
+    {
+      "componentId": "junction-box4",
+      "quantity": 1,
+      "usedBy": [
+        "110"
+      ],
+      "basisTasks": [
+        "110"
+      ]
+    },
+    {
+      "componentId": "bistable-box",
+      "quantity": 1,
+      "usedBy": [
+        "112"
+      ],
+      "basisTasks": [
+        "112"
+      ]
+    },
+    {
+      "componentId": "junction-plate",
+      "quantity": 1,
+      "usedBy": [
+        "112"
+      ],
+      "basisTasks": [
+        "112"
+      ]
+    },
+    {
+      "componentId": "contactor-block",
+      "quantity": 2,
+      "usedBy": [
+        "113",
+        "116"
+      ],
+      "basisTasks": [
+        "113"
+      ]
+    },
+    {
+      "componentId": "aux-relay",
+      "quantity": 1,
+      "usedBy": [
+        "113",
+        "114"
+      ],
+      "basisTasks": [
+        "113",
+        "114"
+      ]
+    },
+    {
+      "componentId": "nc-din",
+      "quantity": 1,
+      "usedBy": [
+        "113"
+      ],
+      "basisTasks": [
+        "113"
+      ]
+    },
+    {
+      "componentId": "no-nc-momentary",
+      "quantity": 2,
+      "usedBy": [
+        "113"
+      ],
+      "basisTasks": [
+        "113"
+      ]
+    },
+    {
+      "componentId": "limit-switch",
+      "quantity": 2,
+      "usedBy": [
+        "113"
+      ],
+      "basisTasks": [
+        "113"
+      ]
+    },
+    {
+      "componentId": "plug3",
+      "quantity": 1,
+      "usedBy": [
+        "113",
+        "116",
+        "L01"
+      ],
+      "basisTasks": [
+        "113",
+        "116",
+        "L01"
+      ]
+    },
+    {
+      "componentId": "timer",
+      "quantity": 1,
+      "usedBy": [
+        "114"
+      ],
+      "basisTasks": [
+        "114"
+      ]
+    },
+    {
+      "componentId": "energy-meter",
+      "quantity": 1,
+      "usedBy": [
+        "115",
+        "L02"
+      ],
+      "basisTasks": [
+        "115",
+        "L02"
+      ]
+    },
+    {
+      "componentId": "motor3-d",
+      "quantity": 1,
+      "usedBy": [
+        "116",
+        "L01"
+      ],
+      "basisTasks": [
+        "116",
+        "L01"
+      ]
+    },
+    {
+      "componentId": "dimmer",
+      "quantity": 1,
+      "usedBy": [
+        "117"
+      ],
+      "basisTasks": [
+        "117"
+      ]
+    },
+    {
+      "componentId": "phase-monitor",
+      "quantity": 1,
+      "usedBy": [
+        "L01"
+      ],
+      "basisTasks": [
+        "L01"
+      ]
+    },
+    {
+      "componentId": "thermostat",
+      "quantity": 1,
+      "usedBy": [
+        "L01"
+      ],
+      "basisTasks": [
+        "L01"
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "id": "DY-2.5-czarny lub brązowy",
+      "name": "DY 2.5 mm² — czarny lub brązowy",
+      "unit": "m",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 5,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "101",
+        "L02"
+      ]
+    },
+    {
+      "id": "DY-2.5-niebieski",
+      "name": "DY 2.5 mm² — niebieski",
+      "unit": "m",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 5,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "101",
+        "L02"
+      ]
+    },
+    {
+      "id": "DY-2.5-żółto-zielony",
+      "name": "DY 2.5 mm² — żółto-zielony",
+      "unit": "m",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 5,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "101",
+        "L02"
+      ]
+    },
+    {
+      "id": "DY-1.5-czarny lub brązowy",
+      "name": "DY 1.5 mm² — czarny lub brązowy",
+      "unit": "m",
+      "largestSingleTask": 9,
+      "knownConsumedSeries": 36,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "105"
+      ]
+    },
+    {
+      "id": "DY-1.5-niebieski",
+      "name": "DY 1.5 mm² — niebieski",
+      "unit": "m",
+      "largestSingleTask": 3,
+      "knownConsumedSeries": 20,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "105",
+        "106",
+        "112",
+        "113"
+      ]
+    },
+    {
+      "id": "DY-1.5-żółto-zielony",
+      "name": "DY 1.5 mm² — żółto-zielony",
+      "unit": "m",
+      "largestSingleTask": 3,
+      "knownConsumedSeries": 16,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "105",
+        "106"
+      ]
+    },
+    {
+      "id": "LgY-2.5-czarny lub brązowy",
+      "name": "LgY 2.5 mm² — czarny lub brązowy",
+      "unit": "m",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 13.5,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "101",
+        "103",
+        "110",
+        "115",
+        "117",
+        "L02"
+      ]
+    },
+    {
+      "id": "LgY-2.5-niebieski",
+      "name": "LgY 2.5 mm² — niebieski",
+      "unit": "m",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 8,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "115",
+        "117"
+      ]
+    },
+    {
+      "id": "LgY-2.5-żółto-zielony",
+      "name": "LgY 2.5 mm² — żółto-zielony",
+      "unit": "m",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 5,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "117"
+      ]
+    },
+    {
+      "id": "ferrule-2.5",
+      "name": "Tulejki 2,5/10",
+      "unit": "szt.",
+      "largestSingleTask": 100,
+      "knownConsumedSeries": 360,
+      "knownStationPreparationSeries": 20,
+      "basisTasks": [
+        "103",
+        "110"
+      ]
+    },
+    {
+      "id": "splice3",
+      "name": "Złączka 3-portowa do właściwego rodzaju żył",
+      "unit": "szt.",
+      "largestSingleTask": 8,
+      "knownConsumedSeries": 20,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "105"
+      ],
+      "knownReusableProvisionSeries": 9
+    },
+    {
+      "id": "trunk25x15",
+      "name": "Listwa 25×15",
+      "unit": "m",
+      "largestSingleTask": 4,
+      "knownConsumedSeries": 19,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "101",
+        "105",
+        "107",
+        "L02"
+      ]
+    },
+    {
+      "id": "screws",
+      "name": "Wkręty do grubości płyty",
+      "unit": "szt.",
+      "largestSingleTask": 50,
+      "knownConsumedSeries": 419,
+      "knownStationPreparationSeries": 22,
+      "basisTasks": [
+        "105"
+      ]
+    },
+    {
+      "id": "YDYżo-5x2.5",
+      "name": "YDYżo 5×2.5 mm²",
+      "unit": "m",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 4,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "110"
+      ]
+    },
+    {
+      "id": "YDYżo-3x2.5",
+      "name": "YDYżo 3×2.5 mm²",
+      "unit": "m",
+      "largestSingleTask": 1,
+      "knownConsumedSeries": 2,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "103",
+        "110"
+      ]
+    },
+    {
+      "id": "YDY-2x1.5",
+      "name": "YDY 2×1.5 mm²",
+      "unit": "m",
+      "largestSingleTask": 1.5,
+      "knownConsumedSeries": 3.5,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "110"
+      ]
+    },
+    {
+      "id": "YDYżo-3x1.5",
+      "name": "YDYżo 3×1.5 mm²",
+      "unit": "m",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 3,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "110"
+      ]
+    },
+    {
+      "id": "LgY-1.5-czarny lub brązowy",
+      "name": "LgY 1.5 mm² — czarny lub brązowy",
+      "unit": "m",
+      "largestSingleTask": 11,
+      "knownConsumedSeries": 14,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "107"
+      ]
+    },
+    {
+      "id": "LgY-1.5-niebieski",
+      "name": "LgY 1.5 mm² — niebieski",
+      "unit": "m",
+      "largestSingleTask": 4,
+      "knownConsumedSeries": 11,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "107",
+        "114"
+      ]
+    },
+    {
+      "id": "ferrule-1.5",
+      "name": "Tulejki 1,5/10",
+      "unit": "szt.",
+      "largestSingleTask": 50,
+      "knownConsumedSeries": 150,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "107"
+      ]
+    },
+    {
+      "id": "clips",
+      "name": "Uchwyty paskowe",
+      "unit": "szt.",
+      "largestSingleTask": 20,
+      "knownConsumedSeries": 29,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "110"
+      ]
+    },
+    {
+      "id": "LgY-1.5-żółto-zielony",
+      "name": "LgY 1.5 mm² — żółto-zielony",
+      "unit": "m",
+      "largestSingleTask": 3,
+      "knownConsumedSeries": 6,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "107",
+        "114"
+      ]
+    },
+    {
+      "id": "trunk-angle25x15",
+      "name": "Narożnik do listwy 25×15",
+      "unit": "szt.",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 2,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "107"
+      ]
+    },
+    {
+      "id": "LY-0.75-czarny lub brązowy",
+      "name": "LY 0.75 mm² — czarny lub brązowy",
+      "unit": "m",
+      "largestSingleTask": 3,
+      "knownConsumedSeries": 3,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "109"
+      ]
+    },
+    {
+      "id": "LY-0.75-niebieski",
+      "name": "LY 0.75 mm² — niebieski",
+      "unit": "m",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 2,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "109"
+      ]
+    },
+    {
+      "id": "LY-2.5-czarny lub brązowy",
+      "name": "LY 2.5 mm² — czarny lub brązowy",
+      "unit": "m",
+      "largestSingleTask": 1,
+      "knownConsumedSeries": 1,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "109"
+      ]
+    },
+    {
+      "id": "LY-2.5-niebieski",
+      "name": "LY 2.5 mm² — niebieski",
+      "unit": "m",
+      "largestSingleTask": 1,
+      "knownConsumedSeries": 1,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "109"
+      ]
+    },
+    {
+      "id": "OWYżo-3x2.5",
+      "name": "OWYżo 3×2.5 mm²",
+      "unit": "m",
+      "largestSingleTask": 3,
+      "knownConsumedSeries": 3,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "109"
+      ]
+    },
+    {
+      "id": "ferrule-0.75",
+      "name": "Tulejki 0,75",
+      "unit": "szt.",
+      "largestSingleTask": 20,
+      "knownConsumedSeries": 20,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "109"
+      ]
+    },
+    {
+      "id": "ring",
+      "name": "Końcówki oczkowe dopasowane do śrub i przekroju",
+      "unit": "szt.",
+      "largestSingleTask": 5,
+      "knownConsumedSeries": 13,
+      "knownStationPreparationSeries": 4,
+      "basisTasks": [
+        "116",
+        "L01"
+      ]
+    },
+    {
+      "id": "slot25x25",
+      "name": "Korytko grzebieniowe 25×25",
+      "unit": "m",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 0,
+      "knownStationPreparationSeries": 2,
+      "basisTasks": [
+        "109"
+      ]
+    },
+    {
+      "id": "rail-th35",
+      "name": "Szyna TH35",
+      "unit": "m",
+      "largestSingleTask": 0.6,
+      "knownConsumedSeries": 0,
+      "knownStationPreparationSeries": 1.75,
+      "basisTasks": [
+        "113"
+      ]
+    },
+    {
+      "id": "DY-1.5-czarny",
+      "name": "DY 1.5 mm² — czarny",
+      "unit": "m",
+      "largestSingleTask": 18,
+      "knownConsumedSeries": 27,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "113"
+      ]
+    },
+    {
+      "id": "trunk25x25",
+      "name": "Listwa 25×25",
+      "unit": "m",
+      "largestSingleTask": 4,
+      "knownConsumedSeries": 10,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "112"
+      ]
+    },
+    {
+      "id": "splice2",
+      "name": "Złączka 2-portowa",
+      "unit": "szt.",
+      "largestSingleTask": 4,
+      "knownConsumedSeries": 4,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "112"
+      ]
+    },
+    {
+      "id": "splice4",
+      "name": "Złączka 4-portowa",
+      "unit": "szt.",
+      "largestSingleTask": 1,
+      "knownConsumedSeries": 1,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "112"
+      ]
+    },
+    {
+      "id": "slot25x40",
+      "name": "Korytko grzebieniowe 25×40",
+      "unit": "m",
+      "largestSingleTask": 1.5,
+      "knownConsumedSeries": 1.5,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "113"
+      ]
+    },
+    {
+      "id": "OWYżo-4x1.5",
+      "name": "OWYżo 4×1.5 mm²",
+      "unit": "m",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 0,
+      "knownStationPreparationSeries": 2,
+      "basisTasks": [
+        "113"
+      ]
+    },
+    {
+      "id": "OWYżo-5x1.5",
+      "name": "OWYżo 5×1.5 mm²",
+      "unit": "m",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 0,
+      "knownStationPreparationSeries": 2,
+      "basisTasks": [
+        "113"
+      ]
+    },
+    {
+      "id": "ferrule-1.5-12",
+      "name": "Tulejki 1,5/12",
+      "unit": "szt.",
+      "largestSingleTask": 14,
+      "knownConsumedSeries": 0,
+      "knownStationPreparationSeries": 14,
+      "basisTasks": [
+        "113"
+      ]
+    },
+    {
+      "id": "LgY-1.5-czarny",
+      "name": "LgY 1.5 mm² — czarny",
+      "unit": "m",
+      "largestSingleTask": 6,
+      "knownConsumedSeries": 6,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "114"
+      ]
+    },
+    {
+      "id": "blank6",
+      "name": "Zaślepka rozdzielnicy na 6 modułów",
+      "unit": "szt.",
+      "largestSingleTask": 1,
+      "knownConsumedSeries": 1,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "114"
+      ]
+    },
+    {
+      "id": "OWYżo-4x2.5",
+      "name": "OWYżo 4×2.5 mm²",
+      "unit": "m",
+      "largestSingleTask": 1,
+      "knownConsumedSeries": 2,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "116",
+        "L01"
+      ]
+    },
+    {
+      "id": "LgY-1-niebieski",
+      "name": "LgY 1 mm² — niebieski",
+      "unit": "m",
+      "largestSingleTask": 0.5,
+      "knownConsumedSeries": 0.5,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "116"
+      ]
+    },
+    {
+      "id": "LgY-1-czarny lub brązowy",
+      "name": "LgY 1 mm² — czarny lub brązowy",
+      "unit": "m",
+      "largestSingleTask": 1.5,
+      "knownConsumedSeries": 1.5,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "116"
+      ]
+    },
+    {
+      "id": "ferrule-double-2.5",
+      "name": "Tulejki podwójne 2×2,5/10",
+      "unit": "szt.",
+      "largestSingleTask": 5,
+      "knownConsumedSeries": 9,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "L01"
+      ]
+    },
+    {
+      "id": "ferrule-double-1",
+      "name": "Tulejki podwójne 2×1/10",
+      "unit": "szt.",
+      "largestSingleTask": 3,
+      "knownConsumedSeries": 3,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "116"
+      ]
+    },
+    {
+      "id": "ferrule-1",
+      "name": "Tulejki 1/10",
+      "unit": "szt.",
+      "largestSingleTask": 15,
+      "knownConsumedSeries": 15,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "116"
+      ]
+    },
+    {
+      "id": "OWYżo-5x2.5",
+      "name": "OWYżo 5×2.5 mm²",
+      "unit": "m",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 0,
+      "knownStationPreparationSeries": 3.5,
+      "basisTasks": [
+        "116"
+      ]
+    },
+    {
+      "id": "LgY-1.5-czarny. szary lub brązowy",
+      "name": "LgY 1.5 mm² — czarny, szary lub brązowy",
+      "unit": "m",
+      "largestSingleTask": 2.5,
+      "knownConsumedSeries": 2.5,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "L01"
+      ]
+    },
+    {
+      "id": "LgY-2.5-czarny. szary lub brązowy",
+      "name": "LgY 2.5 mm² — czarny, szary lub brązowy",
+      "unit": "m",
+      "largestSingleTask": 1,
+      "knownConsumedSeries": 1,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "L01"
+      ]
+    },
+    {
+      "id": "ferrule-double-1.5",
+      "name": "Tulejki podwójne 2×1,5",
+      "unit": "szt.",
+      "largestSingleTask": 2,
+      "knownConsumedSeries": 2,
+      "knownStationPreparationSeries": 0,
+      "basisTasks": [
+        "L01"
+      ]
+    }
+  ],
+  "unknownLengthsTask": "108",
+  "scope": "Nie uwzględnia wspólnego zasilania stanowiska, aparatury pomiarowej i narzędzi — opisane osobno w liście zakupowej.",
+  "conditionalPurchases": [
+    {
+      "componentId": "motor-protection",
+      "baseQuantity": 1,
+      "possibleQuantity": 2,
+      "condition": "Jeżeli jeden regulowany zakres nie obejmuje prądów obu zakupionych motorów, potrzebne dwa odpowiednie wyłączniki; pomocnicze styki dobrać do każdego."
+    },
+    {
+      "materialId": "splice2",
+      "baseQuantity": 4,
+      "alternativeQuantity": 6,
+      "condition": "Tylko gdy w 112 płytkę 5 torów zastąpisz dopuszczonymi dodatkowymi 2 złączkami podwójnymi i 2 potrójnymi. Wtedy nie kupuj płytki."
+    },
+    {
+      "componentId": "thermostat",
+      "baseQuantity": 1,
+      "condition": "Regulator i zgodna sonda to komplet zakupowy; sprawdzić zawartość opakowania."
+    },
+    {
+      "componentId": "junction-box4",
+      "baseQuantity": 1,
+      "condition": "Może być jedną z trzech puszek 80×80, jeśli spełnia także wymaganie czterech wylotów."
+    }
+  ]
+}

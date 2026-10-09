@@ -1,3 +1,4 @@
+import { importLegacy } from "./legacy-project";
 import { test, expect, type Page } from "@playwright/test";
 
 async function editor(page: Page, action?: string) {
@@ -50,6 +51,7 @@ test.beforeEach(async ({ page }) => {
   await expect(
     page.getByText("Zapisano lokalnie", { exact: true }),
   ).toBeVisible();
+  await importLegacy(page, "lamp");
 });
 
 test("Ponów usunięcie aparatu podczas prowadzenia przewodu nie blokuje zacisków", async ({

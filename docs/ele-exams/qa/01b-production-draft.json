@@ -1,0 +1,14 @@
+{
+  "version": {
+    "schemaVersion": 1,
+    "version": "0.2.0",
+    "tag": null,
+    "commit": "2768c4f5b59bbe66bd9a8c40347b2cc85894aa48",
+    "base": "/ele/",
+    "builtAt": "2026-10-08T22:03:25.740Z"
+  },
+  "command": "pnpm exec playwright test --config playwright.production.config.ts tests/e2e/reference-108.spec.ts",
+  "result": "3 passed, 1 skipped (public copy intentionally gated), 54.9s",
+  "manualVisualResult": "Corrected return after STOP and checked for symbol-crossing paths; final screenshots to be inspected again.",
+  "notice": "Corrected draft production acceptance via real import precedes public launch. Final full production acceptance will test public copies."
+}

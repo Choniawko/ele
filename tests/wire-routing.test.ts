@@ -3,7 +3,10 @@ import { dia, g } from "@joint/core";
 import { catalog } from "@catalog/index";
 import type { Conductor, ProjectDocument, TerminalRef } from "@model/index";
 import { scenarios, scenarioProject } from "@training/index";
-import { physicalWireRouters } from "@editor/wire-routing";
+import { physicalWireRouters, physicalWirePaths } from "@editor/wire-routing";
+import example101 from "../examples/physical/ELE02_101_stanowisko.json";
+import example108 from "../examples/physical/ELE02_108_stanowisko.json";
+import { validateProjectDocument } from "@catalog/project-validation";
 
 function fixture(project: ProjectDocument) {
   const graph = new dia.Graph();
@@ -116,6 +119,34 @@ function verify(project: ProjectDocument, wire: Conductor, points: g.Point[]) {
 }
 
 describe("prowadzenie przewodów poza obudowami", () => {
+  it("108: current catalog and shared routing preserve every conductor and its exact endpoints", () => {
+    const p = validateProjectDocument(example108),
+      before = structuredClone(p);
+    const paths = physicalWirePaths(p),
+      f = fixture(p);
+    expect(Object.keys(paths)).toHaveLength(p.circuit.conductors.length);
+    for (const w of p.circuit.conductors) {
+      const points = paths[w.id].map((p) => new g.Point(p));
+      expect(points[0]).toEqual(f.anchor(w.from));
+      expect(points.at(-1)).toEqual(f.anchor(w.to));
+      verify(p, w, points);
+    }
+    expect(p).toEqual(before);
+  });
+  it("101 / R7: lesson projection uses board routing for all 33 wires, including automatic internal routes", () => {
+    const p = validateProjectDocument(example101),
+      before = structuredClone(p);
+    const paths = physicalWirePaths(p),
+      f = fixture(p);
+    expect(Object.keys(paths)).toHaveLength(33);
+    for (const w of p.circuit.conductors) {
+      const points = paths[w.id].map((p) => new g.Point(p));
+      expect(points[0]).toEqual(f.anchor(w.from));
+      expect(points.at(-1)).toEqual(f.anchor(w.to));
+      verify(p, w, points);
+    }
+    expect(p).toEqual(before);
+  });
   it.each(scenarios)(
     "$title: prostokątne trasy bez nawrotów i przechodzenia przez aparaty",
     (scenario) => {

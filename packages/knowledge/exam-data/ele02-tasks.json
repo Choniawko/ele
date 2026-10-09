@@ -1,0 +1,5415 @@
+{
+  "format": "ele-knowledge-content",
+  "version": 1,
+  "generatedAt": "2026-10-08",
+  "repositoryCommit": "9c4895a817b5f5869d17b3cf23a3e9695d49f6cf",
+  "scope": "17 dostarczonych zadań ELE.02; nie jest kompletnym zakresem ELE.02/ELE.05 ani paczką ele-folder.",
+  "missingTaskCodes": [
+    "102",
+    "111"
+  ],
+  "sources": [
+    {
+      "id": "pdf-ele02-110",
+      "fileName": "Zadanie-nr-10-obwod-z-gniazdem-3-fazowym-1-fazowe-lampa-ele_02_110-pfucniz.pdf",
+      "sha256": "4526fccafdfdc15f607c517f3ad1b87e0c9faccc6970dcd40e57c59687cec070",
+      "pageCount": 9,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-103",
+      "fileName": "Zadanie-nr-3-2-wylaczniki-RCD-ele_02_103-utzoqdu.pdf",
+      "sha256": "91ef5f1414b55d3361fe6534ce5948da230c11345a9dc851907620c30068f08e",
+      "pageCount": 9,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-105",
+      "fileName": "Zadanie-nr-5-2-schodowe-krzyzowy-ele_02_105-xf7wriq.pdf",
+      "sha256": "e2b61c727d164ee7bf6dd7d5371fa2be2b75dae001fdedc3bdd16985e2d4146b",
+      "pageCount": 7,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-106",
+      "fileName": "Zadanie-nr-6-bistabilny-gniazdo-ele_02_106-5qkp144.pdf",
+      "sha256": "4e2c26dda5d85225004fa9f7852f7b3885bd4875a7992a94aea49d729a0cb811",
+      "pageCount": 8,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-107",
+      "fileName": "Zadanie-nr-7-bistabilny-schodowy-ele_02_107-kmthtif.pdf",
+      "sha256": "31bcda01c06e4030a11ebf4e499d30c3e6a005d270ac7c5d31405772d7e28350",
+      "pageCount": 7,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-108",
+      "fileName": "Zadanie-nr-8-silnik-3-fazowy-sterowany-z-2-miejsc-ele_02_108-shhsg9e(1).pdf",
+      "sha256": "3118380813dae4b626663c5421823b294760d4d26ed8c20ae166142524f7772d",
+      "pageCount": 2,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-109",
+      "fileName": "Zadanie-nr-9-silnik-1-fazowy-ele_02_109-mojxeoc.pdf",
+      "sha256": "60c8622dce4552da1a0bb6d3af922e2e1309dabc9455571759815b8fe5d3a9dd",
+      "pageCount": 8,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-101",
+      "fileName": "ele_02_101-4d8xp0x.pdf",
+      "sha256": "a4dbf727cf0ffb60b8a42281e3e67e6ca4e8b9a75cffe53b03256b6581898e80",
+      "pageCount": 8,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-104",
+      "fileName": "ele_02_104-e70oexx.pdf",
+      "sha256": "731752e02b883a4cf2aeb8fa1b6f6d01d9b8404c5add8d881d595e4d9a8d4782",
+      "pageCount": 8,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-112",
+      "fileName": "ele_02_112-c7eifoe.pdf",
+      "sha256": "0c0c6b32eac0d8c9a90413a986e3bc28a7c43f694a4e73c2e2e312a8db46ebf5",
+      "pageCount": 7,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-113",
+      "fileName": "ele_02_113-1n1aoek.pdf",
+      "sha256": "4a0272ccccf10834bda67d5283ec3b3f3621f1a13d0b36a03e057f03761f9f6d",
+      "pageCount": 8,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-114",
+      "fileName": "ele_02_114-6qpfu03.pdf",
+      "sha256": "a82ed47f1fd46dc15f8872c90b590b67e275ce15ac5e605fdb881c3be29aca0b",
+      "pageCount": 8,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-115",
+      "fileName": "ele_02_115-iv3dsc5.pdf",
+      "sha256": "9aad25bff9513617771c15811348548854d38d8f6d7a55857d821f8526da03da",
+      "pageCount": 8,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-116",
+      "fileName": "ele_02_116-mmi4qgk.pdf",
+      "sha256": "fafe654cd5c167e8bf6604f3d102cda8ed9ef7c3a4a8ce544c3279a8b84252f4",
+      "pageCount": 7,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-117",
+      "fileName": "ele_02_117-a45ks2p.pdf",
+      "sha256": "115d236a0345aa125e0d248a4dffe6dbc8ff97f66e68579e8aa1d7bdd975cf05",
+      "pageCount": 7,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-L01",
+      "fileName": "ele_02_L01-61435kp.pdf",
+      "sha256": "bb5ff53a968b3e71529bbb8b85fcf795ceff91078619e73bf868aa3bfd336e6d",
+      "pageCount": 8,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    },
+    {
+      "id": "pdf-ele02-L02",
+      "fileName": "ele_02_L02-gmbx8jw.pdf",
+      "sha256": "ea5203dde54d92089c7337bc792cea90f29a5ce1319423674c29ab1a23a2962c",
+      "pageCount": 8,
+      "pageNumbering": "Strony PDF liczone od 1; numer drukowany może być inny."
+    }
+  ],
+  "manufacturerSources": [
+    {
+      "id": "ff-bis413",
+      "title": "F&F BIS-413 230 V, instrukcja E220128",
+      "url": "https://www.fif.com.pl/pl/index.php?controller=attachment&id_attachment=102",
+      "checkedAt": "2026-10-08",
+      "scope": "Mapa 1/3 zasilanie, 6 impuls, 10 NC, 11 COM, 12 NO; wyłączenie czasowe i długie naciśnięcie.",
+      "notice": "Dotyczy tej wersji; nie jest BIS-411, BIS-412 ani wariant 24 V."
+    },
+    {
+      "id": "ff-bis402",
+      "title": "F&F BIS-402, instrukcja E240610",
+      "url": "https://www.fif.com.pl/pl/index.php?controller=attachment&id_attachment=68",
+      "checkedAt": "2026-10-08",
+      "scope": "L 6, N 5, impuls 4, COM 1, NO 2, NC 3; brak przycisków podświetlanych."
+    },
+    {
+      "id": "ff-sco815",
+      "title": "F&F SCO-815, instrukcja E230329",
+      "url": "https://www.fif.com.pl/pl/index.php?controller=attachment&id_attachment=121",
+      "checkedAt": "2026-10-08",
+      "scope": "L 10, N 7/8/9, wyjście 12, wejście sterujące 1–3; krótkie i długie naciśnięcie.",
+      "notice": "Różnica opisu regulacji na stronie produktu i w instrukcji; model opierać na jawnej wersji instrukcji."
+    },
+    {
+      "id": "ff-rt820",
+      "title": "F&F RT-820, instrukcja E211220",
+      "url": "https://www.fif.com.pl/pl/index.php?controller=attachment&id_attachment=767",
+      "checkedAt": "2026-10-08",
+      "scope": "L 3, N 4, sonda 5–6, COM 2, NO 1, NC 8; dla wentylacji powyżej progu zamknięty tor 2–8."
+    },
+    {
+      "id": "hager-svn351",
+      "title": "Hager SVN351 — jeden przycisk chwilowy NO+NC",
+      "url": "https://hager.com/pl/katalog/produkt/svn351-przycisk-sterowniczy-1no-1nc-16a",
+      "checkedAt": "2026-10-08",
+      "scope": "Wariant przycisku wskazany w zadaniu 113."
+    },
+    {
+      "id": "hager-svn352",
+      "title": "Hager SVN352 — przełącznik przyciskowy NO+NC",
+      "url": "https://hager.com/pl/katalog/produkt/svn352-przelacznik-przyciskowy-1no-1nc-16a",
+      "checkedAt": "2026-10-08",
+      "scope": "Wariant z utrzymywaniem pozycji wskazany w zadaniu 114."
+    },
+    {
+      "id": "hager-svn391",
+      "title": "Hager SVN391 — zespół dwóch przycisków NO i NC",
+      "url": "https://hager.com/pl/katalog/produkt/svn391-przycisk-ster-2x-1no-nc-ziel-czerw-16a",
+      "checkedAt": "2026-10-08",
+      "scope": "Wariant niezależnego START/STOP wskazany w 116; funkcjonalnie odpowiada wymaganiu 108."
+    }
+  ],
+  "components": [
+    {
+      "id": "rcd2",
+      "name": "RCD 2P",
+      "parameters": "IΔn 30 mA; w schematach P302 25 A / 30 mA; napięcie 230 V",
+      "purchaseNotes": "Typ różnicowy i prąd znamionowy dobrać do odbiorników, zabezpieczenia i instrukcji. Arkusze nie podają typu A/AC. RCD nie zastępuje MCB."
+    },
+    {
+      "id": "rcd4",
+      "name": "RCD 4P",
+      "parameters": "IΔn 30 mA; P304 25 A / 30 mA na schematach; 3 fazy + N",
+      "purchaseNotes": "Tory N za dwoma RCD muszą pozostać rozdzielone."
+    },
+    {
+      "id": "b6",
+      "name": "Wyłącznik nadprądowy B6 1P",
+      "parameters": "TH35, 6 A, charakterystyka B",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "b10",
+      "name": "Wyłącznik nadprądowy B10 1P",
+      "parameters": "TH35, 10 A, charakterystyka B",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "b20",
+      "name": "Wyłącznik nadprądowy B20 1P",
+      "parameters": "TH35, 20 A, charakterystyka B",
+      "purchaseNotes": "Wymaganie arkusza 103; nie jest uniwersalnym zaleceniem ochrony gniazda domowego."
+    },
+    {
+      "id": "b16-3",
+      "name": "Wyłącznik nadprądowy B16 3P",
+      "parameters": "TH35, 16 A, 3 sprzężone tory, charakterystyka B",
+      "purchaseNotes": "Nie kupować C16 jako tego samego wariantu."
+    },
+    {
+      "id": "c-motor",
+      "name": "Wyłącznik nadprądowy 1P, charakterystyka C",
+      "parameters": "Prąd znamionowy odpowiedni do silnika jednofazowego 109",
+      "purchaseNotes": "Arkusz nie określa jednej wartości In. Wybór po odczycie tabliczki i doborze ochrony."
+    },
+    {
+      "id": "motor-protection",
+      "name": "Wyłącznik silnikowy 3P",
+      "parameters": "Regulowany zakres obejmujący potrzebne prądy silników; TH35; co najmniej jeden styk pomocniczy",
+      "purchaseNotes": "Rozłączne zakupy silników mogą wymagać dwóch zakresów zabezpieczenia. Nie przyjmować 4,35 A z modelu symulatora jako nastawy rzeczywistego silnika."
+    },
+    {
+      "id": "motor-aux",
+      "name": "Styk pomocniczy wyłącznika silnikowego",
+      "parameters": "NO co najmniej 1; zgodny mechanicznie z wyłącznikiem",
+      "purchaseNotes": "Może być w komplecie z wyłącznikiem; nie kupować drugi raz. Nie zamieniać na blok do stycznika."
+    },
+    {
+      "id": "contactor",
+      "name": "Stycznik trójfazowy",
+      "parameters": "3NO, co najmniej 8 A według arkuszy, cewka 230 V AC, TH35; właściwa kategoria pracy silnikowej",
+      "purchaseNotes": "Do 108 potrzebne NO do podtrzymania i NC do blokady, wbudowane albo przez kompatybilny blok."
+    },
+    {
+      "id": "contactor-block",
+      "name": "Blok pomocniczy do stycznika",
+      "parameters": "2NO + 2NC, pasujący do wybranego stycznika",
+      "purchaseNotes": "Wymieniony w tabelach 113 i 116. Dobierać w jednej kompatybilnej rodzinie aparatów."
+    },
+    {
+      "id": "aux-relay",
+      "name": "Stycznik pomocniczy / przekaźnik instalacyjny",
+      "parameters": "1NO + 1NC, min. 8 A według arkuszy, cewka 230 V AC, TH35",
+      "purchaseNotes": "W 114 potrzebny tor NC sterowany cewką KP; numer zacisku nie określa tu sam funkcji."
+    },
+    {
+      "id": "start-stop-din",
+      "name": "Zespół START/STOP na TH35",
+      "parameters": "DWA NIEZALEŻNE przyciski chwilowe: START NO i STOP NC; przykład źródłowy SVN391",
+      "purchaseNotes": "Inna konstrukcja niż jeden przycisk przełączający jednocześnie NO i NC."
+    },
+    {
+      "id": "start-stop-panel",
+      "name": "Zespół START/STOP w obudowie R2",
+      "parameters": "DWA NIEZALEŻNE przyciski chwilowe NO i NC; odpowiednia obudowa / mocowanie",
+      "purchaseNotes": "W 108 ma takie same funkcje jak zespół w R1, lecz inne miejsce montażu."
+    },
+    {
+      "id": "no-din",
+      "name": "Przycisk chwilowy NO na TH35",
+      "parameters": "Jeden niezależny NO, powrót sprężynowy",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "no-panel",
+      "name": "Przycisk chwilowy NO w obudowie R2",
+      "parameters": "Jeden niezależny NO, powrót sprężynowy",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "nc-din",
+      "name": "Przycisk chwilowy NC na TH35",
+      "parameters": "Jeden NC, otwiera przy naciśnięciu",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "no-nc-momentary",
+      "name": "Pojedynczy przycisk chwilowy 1NO + 1NC",
+      "parameters": "Oba tory sterowane TYM SAMYM przyciskiem; TH35; przykład źródłowy SVN351",
+      "purchaseNotes": "Dwa takie przyciski S3/S4 w 113. Nie zastępować zespołem dwóch niezależnych klawiszy."
+    },
+    {
+      "id": "no-nc-maintained",
+      "name": "Przycisk / przełącznik bistabilny 1NO + 1NC",
+      "parameters": "Dwa tory, jeden operator utrzymujący pozycję, TH35; przykład źródłowy SVN352",
+      "purchaseNotes": "To przycisk utrzymujący pozycję, nie elektroniczny przekaźnik bistabilny."
+    },
+    {
+      "id": "limit-switch",
+      "name": "Łącznik krańcowy",
+      "parameters": "1NO + 1NC; 230 V; zaciski do żył 1,5 mm²",
+      "purchaseNotes": "W 113 używany NC danego kierunku; konstrukcja do montażu na płycie."
+    },
+    {
+      "id": "wall-no",
+      "name": "Przycisk dzwonkowy natynkowy",
+      "parameters": "NO chwilowy, bez podświetlenia jako wspólny wariant zakupowy",
+      "purchaseNotes": "Brak podświetlenia pozwala wykorzystać go z BIS-402, który nie dopuszcza podświetlanych przycisków."
+    },
+    {
+      "id": "wall-switch",
+      "name": "Łącznik jednobiegunowy natynkowy",
+      "parameters": "Utrzymywane ON/OFF, jeden tor",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "changeover",
+      "name": "Łącznik schodowy natynkowy",
+      "parameters": "Jeden COM + dwa przełączane tory",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "crossover",
+      "name": "Łącznik krzyżowy natynkowy",
+      "parameters": "Cztery zaciski; prosto / krzyżowo",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "bistable-din",
+      "name": "Przekaźnik bistabilny DIN z czasem",
+      "parameters": "230 V, styk min. 10 A, regulacja czasu; przykład BIS-413 230 V",
+      "purchaseNotes": "BIS-413 ma automatyczne wyłączenie po czasie. Nie jest identyczny z BIS-411. Potrzebna instrukcja dokładnej wersji."
+    },
+    {
+      "id": "bistable-box",
+      "name": "Przekaźnik bistabilny dopuszkowy",
+      "parameters": "230 V, co najmniej 10 A, mieści się w zamkniętej puszce; przykład BIS-402",
+      "purchaseNotes": "BIS-402: inna numeracja zacisków niż BIS-411/413; przyciski bez podświetlenia."
+    },
+    {
+      "id": "twilight",
+      "name": "Automat zmierzchowy z czujką",
+      "parameters": "230 V, TH35, ZEWNĘTRZNA czujka; wyjście zgodne z automatem schodowym",
+      "purchaseNotes": "Kupować jako zgodny zestaw aparatu i sondy; numeracja zależy od modelu."
+    },
+    {
+      "id": "staircase",
+      "name": "Automat schodowy",
+      "parameters": "230 V, TH35, możliwość nastawy 60 s, wejście NO i odpowiednie wyjście do oprawy",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "timer",
+      "name": "Przekaźnik czasowy",
+      "parameters": "230 V AC, jeden separowany styk przełączny, opóźnione załączenie, nastawa 5 s",
+      "purchaseNotes": "Zadanie 114 ma niespójności kryteriów; przed pełnym ćwiczeniem potwierdzić także zachowanie po zaniku/powrocie zasilania."
+    },
+    {
+      "id": "thermostat",
+      "name": "Regulator temperatury z sondą",
+      "parameters": "230 V, TH35, styk przełączny, zakres obejmuje 4–30°C; nastawa 28°C; przykład RT-820",
+      "purchaseNotes": "Sonda pasująca do regulatora. RT-820 według strony producenta ma sondę w komplecie; nie kupować podwójnie."
+    },
+    {
+      "id": "phase-monitor",
+      "name": "Czujnik kolejności faz",
+      "parameters": "TH35; napięcie odpowiednie do 3×400 V; styk pozwolenia w obwodzie sterowania",
+      "purchaseNotes": "Instrukcja potrzebna do dopasowania zacisków i sposobu zasilania."
+    },
+    {
+      "id": "energy-meter",
+      "name": "Jednofazowy licznik energii",
+      "parameters": "230 V, montaż TH35, bezpośredni pomiar energii układu; instrukcja podłączenia",
+      "purchaseNotes": "Maksymalny prąd, szerokość i wejście/wyjście według konkretnego modelu. Nie pomylić z miernikiem napięcia."
+    },
+    {
+      "id": "dimmer",
+      "name": "Ściemniacz DIN sterowany przyciskiem",
+      "parameters": "230 V, TH35, wejście przycisku chwilowego; przykład SCO-815",
+      "purchaseNotes": "Dobrać lampę do ściemniacza. W arkuszu jest żarówka 40 W; zamiana na dowolny LED nie jest równoważna."
+    },
+    {
+      "id": "indicator-green",
+      "name": "Lampka sygnalizacyjna zielona DIN",
+      "parameters": "230 V AC",
+      "purchaseNotes": "W 109 kolor nie jest wskazany w tabeli; wybór zielonego w BOM jest wariantem zakupowym, nie przypisaniem koloru źródłu."
+    },
+    {
+      "id": "indicator-red",
+      "name": "Lampka sygnalizacyjna czerwona DIN",
+      "parameters": "230 V AC",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "indicator-yellow",
+      "name": "Lampka sygnalizacyjna żółta DIN",
+      "parameters": "230 V AC",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "lamp-pe",
+      "name": "Oprawa klasy I E27 z żarówką",
+      "parameters": "Zacisk PE, źródło światła 40 W / 230 V",
+      "purchaseNotes": "Dwie oprawy można używać kolejno między zadaniami."
+    },
+    {
+      "id": "lamp-no-pe",
+      "name": "Oprawka E27 bez zacisku PE + żarówka",
+      "parameters": "Żarówka do 40 W; wariant wskazany w 103",
+      "purchaseNotes": "Nie przedstawiać oprawy klasy I z pominiętym PE jako odpowiednika."
+    },
+    {
+      "id": "socket1",
+      "name": "Gniazdo natynkowe 1-fazowe",
+      "parameters": "230 V, styk ochronny; typ i obciążalność do stanowiska",
+      "purchaseNotes": "Wymaganie B20 w 103 nie rozstrzyga obciążalności rzeczywistego gniazda. Dobór obwodu do uruchomienia trzeba zweryfikować."
+    },
+    {
+      "id": "socket3",
+      "name": "Gniazdo trójfazowe natynkowe CEE",
+      "parameters": "16 A, 3P+N+PE, napięcie do sieci 400 V",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "plug3",
+      "name": "Wtyczka trójfazowa CEE",
+      "parameters": "16 A, 3P+N+PE, pasująca do gniazda",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "plug1",
+      "name": "Wtyczka jednofazowa ze stykiem ochronnym",
+      "parameters": "Do zasilania układu 109; odpowiednia do przewodu OWY 3×2,5 mm²",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "motor1",
+      "name": "Silnik jednofazowy z kondensatorem",
+      "parameters": "230 V / 50 Hz, do 1,5 kW, faza pomocnicza kondensatorowa, dostępne U1/U2/Z1/Z2",
+      "purchaseNotes": "Musi pozwalać na zmianę kierunku według własnej instrukcji; kondensator dopasowany do silnika, nie dobierany z samej mocy."
+    },
+    {
+      "id": "motor3-y",
+      "name": "Silnik trójfazowy 230/400 V",
+      "parameters": "Do 1,5 kW; tabliczka Δ230/Y400; w 113 fabrycznie przygotowany w gwiazdę",
+      "purchaseNotes": "Do dokładnego odtworzenia 113. Może służyć także 108, jeśli dobór zabezpieczenia i dane stanowiska są zgodne."
+    },
+    {
+      "id": "motor3-d",
+      "name": "Silnik trójfazowy 400/690 V",
+      "parameters": "Do 2,2 kW; tabliczka Δ400/Y690; sześć zacisków; montaż na łapach",
+      "purchaseNotes": "Dla 116/L01: praca w trójkącie przy 400 V. Nie zamieniać na Δ230/Y400 z mostkami w trójkąt przy 400 V."
+    },
+    {
+      "id": "case8",
+      "name": "Rozdzielnica natynkowa 8M",
+      "parameters": "Szyna TH35, listwy N/PE i pokrywa odpowiednie do aparatury",
+      "purchaseNotes": "12M może zastąpić 8M w wariancie funkcjonalnym, ale zmienia plan montażowy źródła."
+    },
+    {
+      "id": "case12",
+      "name": "Rozdzielnica natynkowa 12M",
+      "parameters": "Szyna TH35; pojemność sprawdzona dla rzeczywistych szerokości urządzeń",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "case4",
+      "name": "Obudowa izolacyjna 4M",
+      "parameters": "Do dodatkowych aparatów 107; odpowiedni front",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "case-r2",
+      "name": "Obudowa przycisków R2",
+      "parameters": "Na niezależny START/STOP i osobny NO z zadania 108",
+      "purchaseNotes": "Nie przyjmować, że każda obudowa 4M pasuje do przycisków panelowych."
+    },
+    {
+      "id": "junction-box",
+      "name": "Puszka rozgałęźna natynkowa",
+      "parameters": "80×80 mm; pojemność dla aparatu, przewodów i złączek; pokrywa",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "junction-box4",
+      "name": "Puszka rozgałęźna natynkowa",
+      "parameters": "Co najmniej 4 wyloty; do 110",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "junction-plate",
+      "name": "Płytka rozgałęźna",
+      "parameters": "5 niezależnych torów do 4 mm²; mieści się w zamkniętej puszce",
+      "purchaseNotes": "W 112 dopuszczona zamiana na dodatkowe 2 złączki podwójne i 2 potrójne."
+    },
+    {
+      "id": "bus-n",
+      "name": "Listwa N",
+      "parameters": "Co najmniej 6 zacisków do 4 mm², izolowana, TH35 lub dostarczona z rozdzielnicą",
+      "purchaseNotes": "W 103 potrzebne dwa niezależne tory N za różnymi RCD. Nie mostkować ich razem."
+    },
+    {
+      "id": "bus-pe",
+      "name": "Listwa PE",
+      "parameters": "Co najmniej 6 zacisków do 4 mm²; prawidłowe oznaczenie",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "rail-n",
+      "name": "Złączka szynowa toru N",
+      "parameters": "Do 4 mm², dwie strony jednego toru, izolowana; TH35",
+      "purchaseNotes": "Ilość w 108 odczytana funkcjonalnie z rysunku; pozostałe rozgałęzienia zależą od aparatu i sposobu realizacji."
+    },
+    {
+      "id": "rail-pe",
+      "name": "Złączka szynowa PE",
+      "parameters": "Do 4 mm², właściwe mocowanie i oznaczenie PE; TH35",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "rail-end",
+      "name": "Blokada końcowa szyny",
+      "parameters": "Do wybranej szyny TH35",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "gland5",
+      "name": "Dławnica do kabla 5×2,5 mm²",
+      "parameters": "Zakres zacisku zgodny z rzeczywistą średnicą kabla i otworem obudowy",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "gland3-25",
+      "name": "Dławnica do kabla 3×2,5 mm²",
+      "parameters": "Zakres zgodny z rzeczywistą średnicą",
+      "purchaseNotes": ""
+    },
+    {
+      "id": "gland3-15",
+      "name": "Dławnica do kabla 3×1,5 mm²",
+      "parameters": "Zakres zgodny z rzeczywistą średnicą",
+      "purchaseNotes": ""
+    }
+  ],
+  "tasks": [
+    {
+      "id": "ELE.02-101",
+      "code": "101",
+      "qualification": "ELE.02",
+      "title": "Dwie oprawy z dwóch miejsc i gniazdo",
+      "category": "Oświetlenie i rozdzielnice",
+      "summary": "Wspólne sterowanie dwiema oprawami przez dwa łączniki schodowe; gniazdo ma oddzielny obwód B10. RCD 2P zasila oba obwody. Lampki DIN pokazują obecność zasilania odpowiednich gałęzi.",
+      "sourceId": "pdf-ele02-101",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        7
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "existing-repo-example-validated",
+      "bom": [
+        {
+          "componentId": "rcd2",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b10",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "indicator-green",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "case8",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "lamp-pe",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "junction-box",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "changeover",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "socket1",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Rozwinąć schemat jednokreskowy na osobne żyły L, N, PE i przewody korespondencyjne.",
+        "Rozpoznać COM obu łączników i dwie drogi korespondencyjne.",
+        "Wyjaśnić, dlaczego dwie oprawy są połączone równolegle."
+      ],
+      "readingSteps": [
+        "Najpierw odszukaj RCD i oddziel B10 gniazda od B6 oświetlenia.",
+        "Śledź fazę od B6 do COM pierwszego łącznika, następnie wybraną żyłę korespondencyjną do drugiego COM i obu opraw.",
+        "N opraw wraca do listwy za RCD; PE prowadzi osobno do każdej oprawy i gniazda.",
+        "Lampka gałęzi oświetlenia jest przed łącznikami. Jej świecenie nie oznacza, że OP1/OP2 są włączone."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "101-QA-01",
+          "action": "Przełącz Q1 przy obu ustawieniach Q2.",
+          "expected": "Każde przełączenie Q1 odwraca stan obu opraw; oprawy zawsze działają razem.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "101-QA-02",
+          "action": "Wyłącz B6, pozostaw B10.",
+          "expected": "Oprawy nie działają; gniazdo pozostaje zasilane.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "101-QA-03",
+          "action": "Wyłącz B10, pozostaw B6.",
+          "expected": "Gniazdo bez napięcia; sterowanie opraw pozostaje możliwe.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "101-QA-04",
+          "action": "Sprawdź ciągłość PE bez zasilania.",
+          "expected": "Istnieją połączenia PZ–PE rozdzielnicy–PE gniazda oraz obu opraw.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "101-QA-05",
+          "action": "Użyj TEST RCD przy odpowiednim zasilaniu.",
+          "expected": "RCD wyłącza oba obwody; próbę traktować osobno od pełnego pomiaru RCD.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Połączenie dwóch opraw szeregowo.",
+        "Pomylenie COM z korespondencją.",
+        "Połączenie N lamp do strony przed RCD.",
+        "Traktowanie jednego kreskowego połączenia jako jednej żyły."
+      ],
+      "openQuestions": [
+        "Przykład aplikacji ma geometrię dydaktyczną; długości żył i wymiary trzeba dopasować do realnej płyty."
+      ],
+      "catalogGaps": [],
+      "manufacturerSources": [],
+      "schematics": [
+        {
+          "id": "ELE02_101_p1_ideowy",
+          "kind": "ideowy",
+          "png": "assets/schematy/ELE02_101_p1_ideowy.png",
+          "svg": "assets/schematy/ELE02_101_p1_ideowy.svg",
+          "sourcePage": 1,
+          "sourceCropPt": [
+            30,
+            355,
+            570,
+            610
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-101: ideowy; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_101_p2_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_101_p2_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_101_p2_rozmieszczenie.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            28,
+            570,
+            508
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-101: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "DY-2.5-czarny lub brązowy",
+          "name": "DY 2.5 mm² — czarny lub brązowy",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-2.5-niebieski",
+          "name": "DY 2.5 mm² — niebieski",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-2.5-żółto-zielony",
+          "name": "DY 2.5 mm² — żółto-zielony",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-czarny lub brązowy",
+          "name": "DY 1.5 mm² — czarny lub brązowy",
+          "quantity": 6,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-niebieski",
+          "name": "DY 1.5 mm² — niebieski",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-żółto-zielony",
+          "name": "DY 1.5 mm² — żółto-zielony",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-czarny lub brązowy",
+          "name": "LgY 2.5 mm² — czarny lub brązowy",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-niebieski",
+          "name": "LgY 2.5 mm² — niebieski",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-żółto-zielony",
+          "name": "LgY 2.5 mm² — żółto-zielony",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-2.5",
+          "name": "Tulejki 2,5/10",
+          "quantity": 20,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": "Tabela: 0,2 opakowania po 100 szt. = 20 szt."
+        },
+        {
+          "id": "splice3",
+          "name": "Złączka 3-portowa do właściwego rodzaju żył",
+          "quantity": 3,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "trunk25x15",
+          "name": "Listwa 25×15",
+          "quantity": 4,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": "2 odcinki po 2000 mm."
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 40,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-103",
+      "code": "103",
+      "qualification": "ELE.02",
+      "title": "Rozdzielnica z dwoma RCD i rozdziałem faz",
+      "category": "Oświetlenie i rozdzielnice",
+      "summary": "RCD 4P zasila gałęzie gniazdowe, RCD 2P gałęzie oświetleniowe. Arkusz wymaga równomiernego obciążenia faz. B20 jest elementem przygotowania stanowiska, a nie pozycją w głównej tabeli aparatów.",
+      "sourceId": "pdf-ele02-103",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "rcd2",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "rcd4",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b6",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b10",
+          "quantity": 3,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b20",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3b, PDF 8",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "case12",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "socket1",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 8",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "lamp-no-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a/3b, PDF 8",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "bus-n",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2, PDF 3",
+          "sourceKind": "diagram-inference",
+          "note": "Dwa niezależne potencjały N za RCD; liczba i forma listew nie są podane w tabeli."
+        },
+        {
+          "componentId": "bus-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2, PDF 3",
+          "sourceKind": "diagram-inference",
+          "note": "Wspólny tor PE; listwa może być w komplecie z rozdzielnicą."
+        }
+      ],
+      "learningGoals": [
+        "Rozróżnić prąd znamionowy RCD od jego prądu różnicowego.",
+        "Rozpoznać strony wejścia/wyjścia dwóch RCD i osobne tory N.",
+        "Zaplanować przydział faz na podstawie odbiorników; liczba obwodów nie jest sama miarą obciążenia."
+      ],
+      "readingSteps": [
+        "Na schemacie zaznacz osobno źródło 3 faz + N + PE, RCD4 i RCD2.",
+        "Zbuduj dwa obszary N po stronie odbiorczej; każdy wraca wyłącznie przez swój RCD.",
+        "Prześledź obwód B20 do fizycznego gniazda i wybrany B6 do oprawki kontrolnej.",
+        "Pozostałe wyjścia B10/B6 są częścią rozdzielnicy; trzy B10 nie oznaczają trzech dodatkowych gniazd w wyposażeniu."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "103-QA-01",
+          "action": "Użyj TEST każdego RCD osobno.",
+          "expected": "Rozłączają się wyłącznie jego własne tory odbiorcze.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "103-QA-02",
+          "action": "Zasil gniazdo z B20 według arkusza.",
+          "expected": "Odbiornik próbny działa przy poprawnym L/N/PE i doborze stanowiska.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "103-QA-03",
+          "action": "Dołącz oprawkę do jednego B6.",
+          "expected": "Oprawka świeci po załączeniu właściwego RCD i B6.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "103-QA-04",
+          "action": "Sprawdź przypisanie faz i torów N.",
+          "expected": "Brak wspólnego N za różnymi RCD; podział faz zapisany jawnie.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "103-QA-05",
+          "action": "Sprawdź PE PZ–rozdzielnica–gniazdo.",
+          "expected": "Zachowana ciągłość; oprawka bez PE nie jest oprawą klasy I z odłączonym PE.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Zmostkowanie obu listew N.",
+        "Pominięcie B20, bo znajduje się w tabeli przygotowania.",
+        "Zakup trzech dodatkowych gniazd na podstawie trzech B10.",
+        "Przenoszenie B20 do instalacji domowej bez sprawdzenia gniazda, kabla i ochrony."
+      ],
+      "openQuestions": [
+        "Brak mocy docelowych odbiorników: równomiernego obciążenia faz nie da się dowieść wyłącznie z liczby zabezpieczeń.",
+        "Arkusz nie określa typu różnicowego A/AC."
+      ],
+      "catalogGaps": [
+        "RCD 4P",
+        "Pełny model równoważenia obciążeń; dla nauki wystarcza jawny plan przydziału faz."
+      ],
+      "manufacturerSources": [],
+      "schematics": [
+        {
+          "id": "ELE02_103_p3_ideowy",
+          "kind": "ideowy",
+          "png": "assets/schematy/ELE02_103_p3_ideowy.png",
+          "svg": "assets/schematy/ELE02_103_p3_ideowy.svg",
+          "sourcePage": 3,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            368
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-103: ideowy; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_103_p2_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_103_p2_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_103_p2_rozmieszczenie.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            531
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-103: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "YDYżo-5x2.5",
+          "name": "YDYżo 5×2.5 mm²",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "YDYżo-3x2.5",
+          "name": "YDYżo 3×2.5 mm²",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "YDY-2x1.5",
+          "name": "YDY 2×1.5 mm²",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-czarny lub brązowy",
+          "name": "LgY 2.5 mm² — czarny lub brązowy",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-niebieski",
+          "name": "LgY 2.5 mm² — niebieski",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-2.5",
+          "name": "Tulejki 2,5/10",
+          "quantity": 100,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 10,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-104",
+      "code": "104",
+      "qualification": "ELE.02",
+      "title": "Automat schodowy sterowany warunkiem zmierzchu",
+      "category": "Automatyka oświetlenia",
+      "summary": "Automat zmierzchowy AZ ze zewnętrzną sondą umożliwia zasilenie automatu schodowego AS po zasłonięciu czujki. AS po impulsie przycisku załącza oprawę na 1 minutę. Schemat montażowy należy uzupełnić z instrukcji dwóch konkretnych aparatów.",
+      "sourceId": "pdf-ele02-104",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "rcd2",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "twilight",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "staircase",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "case8",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "lamp-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "wall-no",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Oddzielić warunek zezwolenia od impulsu wyzwolenia i czasu świecenia.",
+        "Odczytać L/N, wyjście i zaciski sondy z instrukcji właściwego modelu.",
+        "Pokazać, że przy jasnej czujce AS nie ma zasilania w tym konkretnym układzie."
+      ],
+      "readingSteps": [
+        "Zaczynaj od RCD/B6 i oddzielnego toru PE.",
+        "Odszukaj wyjście AZ, które podaje fazę na zasilanie AS i obwód sterowania przyciskiem.",
+        "Prześledź impuls przycisku do wejścia AS i wyjście AS do L oprawy; N wraca oddzielnie.",
+        "Przy 60 s opisuj stan licznika czasu i rzeczywiste przełączenie wyjścia; sam obraz żarówki nie dowodzi odliczania."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "104-QA-01",
+          "action": "Oświetl czujkę i naciśnij przycisk.",
+          "expected": "AS nie jest zasilony według wymagania arkusza; oprawa nie załącza się.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "104-QA-02",
+          "action": "Zasłoń czujkę.",
+          "expected": "AZ dopuszcza zasilenie AS, z uwzględnieniem opóźnień konkretnego urządzenia.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "104-QA-03",
+          "action": "Przy ciemnej czujce podaj krótki impuls.",
+          "expected": "Oprawa świeci i gaśnie po nastawionych 60 s.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "104-QA-04",
+          "action": "Wyłącz B6 lub RCD.",
+          "expected": "Układ traci zasilanie; PE pozostaje ciągły.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Pozostawienie AS stale pod napięciem mimo wymagania arkusza.",
+        "Zamiana zacisków sondy i wejścia przycisku.",
+        "Dopisanie numerów AZ/AS z innego modelu."
+      ],
+      "openQuestions": [
+        "W przesłanym arkuszu nie wskazano modeli AZ i AS. Dokładne zaciski oraz restart/ponowne wyzwolenie wymagają instrukcji dobranych egzemplarzy."
+      ],
+      "catalogGaps": [
+        "Automat zmierzchowy i wejście natężenia światła",
+        "Zweryfikowane powiązanie dwóch aparatów z ich instrukcjami"
+      ],
+      "manufacturerSources": [],
+      "schematics": [
+        {
+          "id": "ELE02_104_p1_ideowy",
+          "kind": "ideowy",
+          "png": "assets/schematy/ELE02_104_p1_ideowy.png",
+          "svg": "assets/schematy/ELE02_104_p1_ideowy.svg",
+          "sourcePage": 1,
+          "sourceCropPt": [
+            30,
+            380,
+            570,
+            760
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-104: ideowy; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_104_p3_montazowy",
+          "kind": "montazowy",
+          "png": "assets/schematy/ELE02_104_p3_montazowy.png",
+          "svg": "assets/schematy/ELE02_104_p3_montazowy.svg",
+          "sourcePage": 3,
+          "sourceCropPt": [
+            30,
+            20,
+            570,
+            527
+          ],
+          "isIncompleteInSource": true,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-104: montazowy; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
+        },
+        {
+          "id": "ELE02_104_p2_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_104_p2_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_104_p2_rozmieszczenie.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            387
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-104: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "YDYżo-3x1.5",
+          "name": "YDYżo 3×1.5 mm²",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "YDY-2x1.5",
+          "name": "YDY 2×1.5 mm²",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-1.5-czarny lub brązowy",
+          "name": "LgY 1.5 mm² — czarny lub brązowy",
+          "quantity": 3,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-1.5-niebieski",
+          "name": "LgY 1.5 mm² — niebieski",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-1.5",
+          "name": "Tulejki 1,5/10",
+          "quantity": 30,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "clips",
+          "name": "Uchwyty paskowe",
+          "quantity": 6,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 20,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-105",
+      "code": "105",
+      "qualification": "ELE.02",
+      "title": "Dwie oprawy sterowane z trzech miejsc",
+      "category": "Oświetlenie i rozdzielnice",
+      "summary": "Dwa łączniki schodowe na końcach oraz krzyżowy między nimi sterują dwiema oprawami równolegle. Zadanie obejmuje badanie styków łączników jeszcze przed montażem i ciągłość PE po montażu.",
+      "sourceId": "pdf-ele02-105",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "case8",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "lamp-pe",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "changeover",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "crossover",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "junction-box",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Rozpoznać pary wejściowe i wyjściowe krzyżowego w obu położeniach.",
+        "Zidentyfikować COM schodowego miernikiem, bez zakładania położenia śruby.",
+        "Rozróżnić badanie samego łącznika od pomiaru gotowej instalacji."
+      ],
+      "readingSteps": [
+        "Śledź L z B6 do pierwszego COM.",
+        "Dwie żyły korespondencyjne biegną przez dwa tory krzyżowego do drugiego schodowego.",
+        "Z drugiego COM zasila się L obu opraw; N oraz PE idą osobnymi drogami.",
+        "W tabeli styków wpisuj ciągłość albo przerwę na podstawie pomiaru, a nie nazwy aparatu."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "105-QA-01",
+          "action": "Zbadaj schodowe i krzyżowy przed montażem.",
+          "expected": "Schodowy przełącza COM między dwoma torami; krzyżowy zmienia sparowanie torów.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "105-QA-02",
+          "action": "Dla wszystkich 8 kombinacji trzech łączników zmień pojedynczą pozycję.",
+          "expected": "Każda taka zmiana odwraca stan obu opraw.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "105-QA-03",
+          "action": "Zmierz RN:PE–PE każdej oprawy.",
+          "expected": "Ciągłość obu dróg PE przy wyłączonym zasilaniu.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "105-QA-04",
+          "action": "Wyłącz B6.",
+          "expected": "Obie oprawy gasną niezależnie od łączników.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Wstawienie trzeciego schodowego zamiast krzyżowego.",
+        "Połączenie obu torów korespondencyjnych w jednej złączce.",
+        "Wpisanie zmyślonej rezystancji jako wyniku rzeczywistego pomiaru."
+      ],
+      "openQuestions": [
+        "Arkusz pokazuje tylko B6 w rozdzielnicy zadania; zasilanie stanowiska ma osobną ochronę opisaną w przygotowaniu. Nie usuwać kontekstu stanowiska."
+      ],
+      "catalogGaps": [],
+      "manufacturerSources": [],
+      "schematics": [
+        {
+          "id": "ELE02_105_p1_ideowy",
+          "kind": "ideowy",
+          "png": "assets/schematy/ELE02_105_p1_ideowy.png",
+          "svg": "assets/schematy/ELE02_105_p1_ideowy.svg",
+          "sourcePage": 1,
+          "sourceCropPt": [
+            30,
+            337,
+            570,
+            585
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-105: ideowy; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_105_p2_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_105_p2_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_105_p2_rozmieszczenie.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            20,
+            10,
+            570,
+            508
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-105: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "DY-1.5-czarny lub brązowy",
+          "name": "DY 1.5 mm² — czarny lub brązowy",
+          "quantity": 9,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-niebieski",
+          "name": "DY 1.5 mm² — niebieski",
+          "quantity": 3,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-żółto-zielony",
+          "name": "DY 1.5 mm² — żółto-zielony",
+          "quantity": 3,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "trunk25x15",
+          "name": "Listwa 25×15",
+          "quantity": 4,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 50,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "splice3",
+          "name": "Złączka 3-portowa",
+          "quantity": 8,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-106",
+      "code": "106",
+      "qualification": "ELE.02",
+      "title": "Przekaźnik bistabilny z dwóch miejsc i gniazdo",
+      "category": "Automatyka oświetlenia",
+      "summary": "Dwa przyciski dzwonkowe sterują oświetleniem przez przekaźnik bistabilny; gniazdo ma oddzielny B10. Rysunek montażowy jest celowo niekompletny. W tabeli jako przykład podano BIS-413.",
+      "sourceId": "pdf-ele02-106",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "rcd2",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b10",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "case8",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "lamp-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "socket1",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "wall-no",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 8",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "bistable-din",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 8",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Oddzielić stałe zasilanie przekaźnika, wejście impulsu i separowany styk obciążenia.",
+        "Połączyć przyciski równolegle, a nie szeregowo.",
+        "Sprawdzić funkcje wybranego BIS-413 i różnice wobec modelu BIS-411."
+      ],
+      "readingSteps": [
+        "Rozpoznaj gotową gałąź B10–gniazdo; nie wykorzystuj jej N przed RCD.",
+        "Według instrukcji uzupełnij stałe L/N przekaźnika, wspólny styk i wyjście do oprawy.",
+        "Wariant BIS-413 z impulsem L: L na 3, N na 1, przyciski między L a 6, doprowadzenie L na COM 11 i wyjście 12 do oprawy.",
+        "Pozostaw NC 10 nieużyty, jeśli schemat danego wariantu go nie wymaga. PE oprawy pozostaje niezależny od styku."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "106-QA-01",
+          "action": "Podaj krótki impuls z pierwszego, potem drugiego przycisku.",
+          "expected": "Oba mogą przełączać ten sam styk oświetlenia.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "106-QA-02",
+          "action": "Sprawdź czas i długie przytrzymanie dla BIS-413.",
+          "expected": "Wyłączenie czasowe oraz tryb długiego naciśnięcia muszą zgadzać się z instrukcją tego modelu.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "106-QA-03",
+          "action": "Wyłącz tylko B6.",
+          "expected": "Oświetlenie bez zasilania, gniazdo nadal działa przez B10.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "106-QA-04",
+          "action": "Zmierz PE gniazda i oprawy.",
+          "expected": "Ciągłość do PZ przy wyłączonym zasilaniu.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Sterowanie dwoma przyciskami szeregowymi.",
+        "Nadanie BIS-413 zachowania samego BIS-411.",
+        "Przeniesienie numeracji BIS-402 na aparat DIN."
+      ],
+      "openQuestions": [
+        "Arkusz wymaga DY 1,5 mm² dla wszystkich połączeń, także gałęzi gniazda. Zachować to jako wymaganie tego stanowiska, nie ogólne zalecenie instalacji domowej.",
+        "Wariant ćwiczenia exam-bistable w repo używa profilu BIS-411; to adaptacja, a nie dokładny model przykładowego BIS-413."
+      ],
+      "catalogGaps": [
+        "BIS-413: czas wyłączenia i obsługa długiego naciśnięcia"
+      ],
+      "manufacturerSources": [
+        "ff-bis413"
+      ],
+      "schematics": [
+        {
+          "id": "ELE02_106_p3_montazowy",
+          "kind": "montazowy",
+          "png": "assets/schematy/ELE02_106_p3_montazowy.png",
+          "svg": "assets/schematy/ELE02_106_p3_montazowy.svg",
+          "sourcePage": 3,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            782
+          ],
+          "isIncompleteInSource": true,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-106: montazowy; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
+        },
+        {
+          "id": "ELE02_106_p2_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_106_p2_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_106_p2_rozmieszczenie.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            473
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-106: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "DY-1.5-czarny lub brązowy",
+          "name": "DY 1.5 mm² — czarny lub brązowy",
+          "quantity": 8,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-niebieski",
+          "name": "DY 1.5 mm² — niebieski",
+          "quantity": 3,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-żółto-zielony",
+          "name": "DY 1.5 mm² — żółto-zielony",
+          "quantity": 3,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "trunk25x15",
+          "name": "Listwa 25×15",
+          "quantity": 3,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 30,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-107",
+      "code": "107",
+      "qualification": "ELE.02",
+      "title": "Bistabilny z przełączaniem aktywności przycisku",
+      "category": "Automatyka oświetlenia",
+      "summary": "Łącznik schodowy Ł wybiera, czy P1 jest aktywny. P2 pozostaje aktywny. L1 świeci razem z oprawą, a L2 i L3 wskazują tryb z wyłączonym P1. Tabela wymienia przekaźnik bistabilny z regulacją czasu; treść opisuje przełączanie krótkimi impulsami.",
+      "sourceId": "pdf-ele02-107",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "rcd2",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "bistable-din",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "indicator-red",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "indicator-green",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "indicator-yellow",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "case8",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "case4",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "lamp-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "wall-no",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "changeover",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Odczytać COM Ł jako zacisk 2 na tym rysunku, nie domyślnie numer 1.",
+        "Rozróżnić wskazanie trybu od wskazania włączonej oprawy.",
+        "Wytłumaczyć wyłączenie wejścia P1 bez wyłączania całego przekaźnika."
+      ],
+      "readingSteps": [
+        "F zasila cały układ, w tym sterowanie i sygnalizację.",
+        "Przy Ł 2–3 doprowadzona jest faza do P1; P2 ma stałe doprowadzenie fazy.",
+        "Przy Ł 1–2 P1 traci fazę, a L2/L3 otrzymują zasilanie; P2 pozostaje dostępny.",
+        "Wyjście BIS zasila równolegle OO i L1. N sygnalizacji i oprawy wraca za właściwym RCD."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "107-QA-01",
+          "action": "Ustaw Ł 2–3 i kolejno naciśnij P1/P2.",
+          "expected": "Każdy krótki impuls przełącza OO/L1; L2/L3 nie świecą.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "107-QA-02",
+          "action": "Ustaw Ł 1–2 i naciśnij P1.",
+          "expected": "P1 nie zmienia OO/L1; L2/L3 świecą.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "107-QA-03",
+          "action": "Pozostaw Ł 1–2 i naciśnij P2.",
+          "expected": "P2 nadal przełącza OO/L1.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "107-QA-04",
+          "action": "Zmień pozycję Ł bez impulsu.",
+          "expected": "Sama zmiana trybu nie powinna udawać impulsu wejścia BIS; sprawdzić rzeczywisty stan toru.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "107-QA-05",
+          "action": "Wyłącz F.",
+          "expected": "Gaśnie OO i cała sygnalizacja.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Nazwanie aparatu automatem schodowym na podstawie nazwy pliku.",
+        "Włączenie L2/L3 w szereg z OO.",
+        "Założenie, że obie lampki trybu wskazują pracę oprawy."
+      ],
+      "openQuestions": [
+        "Wymagany jest wybrany model BIS z regulacją czasu i jego instrukcja. Nie podano nastawy czasowej, więc nie dopisywać arbitralnego czasu do oceny zadania."
+      ],
+      "catalogGaps": [
+        "Kolory sygnalizacji czerwony/żółty",
+        "Bistabilny z regulacją czasu"
+      ],
+      "manufacturerSources": [],
+      "schematics": [
+        {
+          "id": "ELE02_107_p2_ideowy",
+          "kind": "ideowy",
+          "png": "assets/schematy/ELE02_107_p2_ideowy.png",
+          "svg": "assets/schematy/ELE02_107_p2_ideowy.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            417,
+            570,
+            747
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-107: ideowy; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_107_p2_rozdzielnice",
+          "kind": "rozdzielnice",
+          "png": "assets/schematy/ELE02_107_p2_rozdzielnice.png",
+          "svg": "assets/schematy/ELE02_107_p2_rozdzielnice.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            412
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-107: rozdzielnice; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_107_p1_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_107_p1_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_107_p1_rozmieszczenie.svg",
+          "sourcePage": 1,
+          "sourceCropPt": [
+            30,
+            413,
+            570,
+            762
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-107: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "LgY-1.5-czarny lub brązowy",
+          "name": "LgY 1.5 mm² — czarny lub brązowy",
+          "quantity": 11,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-1.5-niebieski",
+          "name": "LgY 1.5 mm² — niebieski",
+          "quantity": 4,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-1.5-żółto-zielony",
+          "name": "LgY 1.5 mm² — żółto-zielony",
+          "quantity": 3,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-1.5",
+          "name": "Tulejki 1,5/10",
+          "quantity": 50,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "trunk25x15",
+          "name": "Listwa 25×15",
+          "quantity": 4,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "trunk-angle25x15",
+          "name": "Narożnik do listwy 25×15",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "splice3",
+          "name": "Złączka 3-portowa do żył wielodrutowych",
+          "quantity": 4,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "reusable",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 40,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-108",
+      "code": "108",
+      "qualification": "ELE.02",
+      "title": "Prawo z podtrzymaniem, lewo chwilowe z dwóch miejsc",
+      "category": "Napędy",
+      "summary": "Dwa stanowiska sterowania: prawe obroty z podtrzymaniem K1, lewe wyłącznie podczas naciskania S2/S4. Q2 jest wyłącznikiem silnikowym ze stykiem pomocniczym NO, a Q1 B6 zabezpiecza sterowanie.",
+      "sourceId": "pdf-ele02-108",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "existing-repo-example-validated",
+      "bom": [
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2, PDF 2",
+          "sourceKind": "diagram-inference",
+          "note": ""
+        },
+        {
+          "componentId": "motor-protection",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2, PDF 2",
+          "sourceKind": "diagram-inference",
+          "note": ""
+        },
+        {
+          "componentId": "motor-aux",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2, PDF 2",
+          "sourceKind": "diagram-inference",
+          "note": ""
+        },
+        {
+          "componentId": "contactor",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2, PDF 2",
+          "sourceKind": "diagram-inference",
+          "note": "Potrzebne NO 13–14 i NC 21–22; dobrać wyposażenie pomocnicze."
+        },
+        {
+          "componentId": "start-stop-din",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2, PDF 2",
+          "sourceKind": "diagram-inference",
+          "note": ""
+        },
+        {
+          "componentId": "start-stop-panel",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2, PDF 2",
+          "sourceKind": "diagram-inference",
+          "note": ""
+        },
+        {
+          "componentId": "no-din",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2, PDF 2",
+          "sourceKind": "diagram-inference",
+          "note": ""
+        },
+        {
+          "componentId": "no-panel",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2, PDF 2",
+          "sourceKind": "diagram-inference",
+          "note": ""
+        },
+        {
+          "componentId": "case-r2",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 1, PDF 1",
+          "sourceKind": "diagram-inference",
+          "note": ""
+        },
+        {
+          "componentId": "rail-n",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2, PDF 2",
+          "sourceKind": "diagram-inference",
+          "note": "Minimalny tor N odczytany z rysunku; liczba złączek do innych rozgałęzień zależy od realizacji."
+        },
+        {
+          "componentId": "rail-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2, PDF 2",
+          "sourceKind": "diagram-inference",
+          "note": ""
+        },
+        {
+          "componentId": "motor3-y",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2, PDF 2",
+          "sourceKind": "diagram-inference",
+          "note": "W arkuszu nie ma tabliczki ani napięcia Y/Δ; 230/400 V w gwieździe to wariant zakupowy, nie wartość podana przez źródło."
+        }
+      ],
+      "learningGoals": [
+        "Pokazać różnicę pomiędzy podtrzymaniem a sterowaniem podczas trzymania.",
+        "Rozpoznać niezależny STOP/START w S1 i S3.",
+        "Powiązać NO Q2 z mechanizmem zabezpieczenia, bez fikcyjnej cewki Q2."
+      ],
+      "readingSteps": [
+        "Obwód główny: L1/L2/L3 przez Q2 do K1/K2 i M; K2 krzyżuje dwie fazy.",
+        "Sterowanie: Q1 → Q2 NO 13–14 → oba STOP-y NC w szeregu → wspólny punkt.",
+        "Gałąź K1: równolegle START S1, START S3 i NO K1; potem NC K2 i cewka K1.",
+        "Gałąź K2: równoległe S2/S4, potem NC K1 i cewka K2; nie ma własnego styku podtrzymania.",
+        "N obu cewek i PE silnika pozostają odrębnymi torami."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "108-QA-01",
+          "action": "Naciśnij i zwolnij START S1 lub S3.",
+          "expected": "K1 pozostaje załączony dzięki własnemu NO; silnik pracuje w prawym kierunku.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "108-QA-02",
+          "action": "Naciśnij dowolny STOP.",
+          "expected": "K1/K2 tracą zasilanie cewek.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "108-QA-03",
+          "action": "Naciśnij S2 lub S4 przy spoczynku, a następnie zwolnij.",
+          "expected": "K2 pracuje tylko podczas trzymania przycisku.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "108-QA-04",
+          "action": "Trzymaj oba lewe przyciski i zwolnij tylko jeden.",
+          "expected": "K2 pozostaje zasilany przez drugi; wyłącza się po zwolnieniu obu.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "108-QA-05",
+          "action": "Podczas pracy K1 zażądaj K2 i odwrotnie.",
+          "expected": "NC przeciwnego stycznika blokuje drugą cewkę.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "108-QA-06",
+          "action": "Wyłącz lub wyzwól Q2.",
+          "expected": "Wszystkie tory mocy i pomocniczy NO otwierają się; silnik staje.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "108-QA-07",
+          "action": "Przy zwolnionych przyciskach odłącz i przywróć zasilanie.",
+          "expected": "Podtrzymanie nie odtwarza się samo; przy trzymanym żądaniu możliwy restart zgodnie z topologią.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Dodanie podtrzymania K2, którego nie ma w zadaniu.",
+        "Zamiana niezależnych STOP/START na jeden przycisk NO+NC.",
+        "Użycie 6 A z Q1 jako nastawy Q2.",
+        "Ukryte dodanie blokady mechanicznej zmieniającej wariant źródłowy."
+      ],
+      "openQuestions": [
+        "Przesłany PDF ma tylko 2 strony: brak tabel wyposażenia, długości i tabliczki silnika. Ilości aparatów są odczytem rysunku; nastawy i długości nie są ustalonymi danymi egzaminu.",
+        "W istniejącym JSON repo nastawa Q2 4,35 A i długości 0,4/1 m są jawnie dydaktycznymi założeniami.",
+        "Rysunek nie definiuje kolejności zadziałania przy jednoczesnym żądaniu dwóch kierunków. Zachowanie solvera nie jest gwarancją rzeczywistych styczników."
+      ],
+      "catalogGaps": [],
+      "manufacturerSources": [],
+      "schematics": [
+        {
+          "id": "ELE02_108_p2_moc-i-sterowanie",
+          "kind": "moc-i-sterowanie",
+          "png": "assets/schematy/ELE02_108_p2_moc-i-sterowanie.png",
+          "svg": "assets/schematy/ELE02_108_p2_moc-i-sterowanie.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            537
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-108: moc-i-sterowanie; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_108_p1_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_108_p1_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_108_p1_rozmieszczenie.svg",
+          "sourcePage": 1,
+          "sourceCropPt": [
+            30,
+            455,
+            570,
+            717
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-108: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "OWY-5x2.5",
+          "name": "OWY 5×2,5 mm² zasilania",
+          "quantity": null,
+          "unit": "m",
+          "sourceLocator": "Treść / rys. 2, PDF 1–2",
+          "scope": "unknown",
+          "note": "Brak długości w dostarczonym dwustronicowym PDF. Zmierzyć trasę i przewidzieć zapas."
+        },
+        {
+          "id": "OWY-4x2.5",
+          "name": "OWY 4×2,5 mm² silnika",
+          "quantity": null,
+          "unit": "m",
+          "sourceLocator": "Treść / rys. 2, PDF 1–2",
+          "scope": "unknown",
+          "note": "Brak długości w dostarczonym dwustronicowym PDF. Zmierzyć trasę i przewidzieć zapas."
+        },
+        {
+          "id": "YLY-5x1.5",
+          "name": "YLY 5×1,5 mm² do R2",
+          "quantity": null,
+          "unit": "m",
+          "sourceLocator": "Treść / rys. 2, PDF 1–2",
+          "scope": "unknown",
+          "note": "Brak długości w dostarczonym dwustronicowym PDF. Zmierzyć trasę i przewidzieć zapas."
+        },
+        {
+          "id": "LgY-2.5-fazowe",
+          "name": "LgY 2,5 mm² — obwód główny",
+          "quantity": null,
+          "unit": "m",
+          "sourceLocator": "Treść / rys. 2, PDF 1–2",
+          "scope": "unknown",
+          "note": "Brak długości w dostarczonym dwustronicowym PDF. Zmierzyć trasę i przewidzieć zapas."
+        },
+        {
+          "id": "LgY-1.5-sterowanie",
+          "name": "LgY 1,5 mm² — obwód sterowania",
+          "quantity": null,
+          "unit": "m",
+          "sourceLocator": "Treść / rys. 2, PDF 1–2",
+          "scope": "unknown",
+          "note": "Brak długości w dostarczonym dwustronicowym PDF. Zmierzyć trasę i przewidzieć zapas."
+        },
+        {
+          "id": "rail-th35",
+          "name": "Szyna TH35 stanowiska R1",
+          "quantity": null,
+          "unit": "m",
+          "sourceLocator": "Treść, PDF 1",
+          "scope": "unknown",
+          "note": "Szyna i zaciskanie żył wielodrutowych są wymagane; brak długości / liczby sztuk. Typ tulejki wynika z żyły i dopuszczeń zacisku."
+        },
+        {
+          "id": "ferrule-1.5",
+          "name": "Tulejki do żył 1,5 mm² — typ dopasować do zacisku",
+          "quantity": null,
+          "unit": "szt.",
+          "sourceLocator": "Treść, PDF 1",
+          "scope": "unknown",
+          "note": "Szyna i zaciskanie żył wielodrutowych są wymagane; brak długości / liczby sztuk. Typ tulejki wynika z żyły i dopuszczeń zacisku."
+        },
+        {
+          "id": "ferrule-2.5",
+          "name": "Tulejki do żył 2,5 mm² — typ dopasować do zacisku",
+          "quantity": null,
+          "unit": "szt.",
+          "sourceLocator": "Treść, PDF 1",
+          "scope": "unknown",
+          "note": "Szyna i zaciskanie żył wielodrutowych są wymagane; brak długości / liczby sztuk. Typ tulejki wynika z żyły i dopuszczeń zacisku."
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-109",
+      "code": "109",
+      "qualification": "ELE.02",
+      "title": "Silnik jednofazowy: pomiary i zmiana kierunku",
+      "category": "Napędy",
+      "summary": "Stycznik włącza jednofazowy silnik kondensatorowy; S1 utrzymuje pozycję. H1/H2 sygnalizują zasilanie gałęzi, nie oba stan obracania wału. Zmiana kierunku odbywa się przez przełączenie na tabliczce silnika zgodnie z jego instrukcją.",
+      "sourceId": "pdf-ele02-109",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "motor1",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "contactor",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": "3NO; wykorzystane dwa tory główne."
+        },
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "c-motor",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "no-nc-maintained",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "indicator-green",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": "Źródło: dwie lampki 230 V, bez wskazania koloru; zielony jest propozycją wspólnego zakupu."
+        },
+        {
+          "componentId": "rail-end",
+          "quantity": 3,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "bus-n",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "bus-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "plug1",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Rozpoznać uzwojenie główne U1/U2 i pomocnicze Z1/Z2.",
+        "Oddzielić pomiar rezystancji uzwojeń od pomiaru izolacji.",
+        "Wyjaśnić zmianę względnego podłączenia uzwojeń zamiast zamiany L/N."
+      ],
+      "readingSteps": [
+        "Q1 o charakterystyce C chroni obwód główny i zasila H1.",
+        "Q2 B6 zasila obwód sterowania oraz H2 przed S1.",
+        "S1 zasila cewkę K1; K1 przełącza dwa tory prowadzące do silnika.",
+        "Na tabliczce silnika numeracja i mostki wynikają z instrukcji konkretnego silnika; sam symbol M1 nie podaje konfiguracji kierunku."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "109-QA-01",
+          "action": "Załącz Q2 przy wyłączonym S1.",
+          "expected": "H2 może świecić mimo wyłączonego stycznika i nieruchomego silnika.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "109-QA-02",
+          "action": "Przełącz S1 przy gotowym zasilaniu.",
+          "expected": "Cewka K1 i tory główne przechodzą w stan zgodny z pozycją S1.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "109-QA-03",
+          "action": "Wykonaj pomiary U1–U2 i Z1–Z2 bez zasilania.",
+          "expected": "Wyniki wpisane osobno z jednostkami; nie zakładać równych rezystancji obu uzwojeń.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "109-QA-04",
+          "action": "Zbadaj izolację według instrukcji przyrządu i przygotowania silnika.",
+          "expected": "Pomiar obejmuje U1–PE, Z1–PE i U1–Z1; nie zastępuje go zwykły test ciągłości.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "109-QA-05",
+          "action": "Po odłączeniu napięcia wykonaj zmianę podłączenia według instrukcji silnika.",
+          "expected": "Po kolejnym uruchomieniu kierunek wału jest przeciwny, zapisany w tabeli.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Zmiana kierunku przez zamianę L/N.",
+        "Zamiana S1 na chwilowy START bez podtrzymania.",
+        "Uznać H2 za lampkę pracy silnika.",
+        "Pominięcie przygotowania kondensatora przed pomiarem izolacji."
+      ],
+      "openQuestions": [
+        "Brak instrukcji konkretnego silnika i kondensatora. Nie przygotowano numerowanej tabeli mostków kierunku.",
+        "Prąd zabezpieczenia C wynika z dobranego silnika, nie z wartości B6.",
+        "Treść 109 wskazuje LgY, a tabela materiałów LY dla 0,75 i 2,5 mm². Zachowano nazwę LY w zestawieniu źródłowym; wybór przewodu do stanowiska trzeba uzgodnić z treścią i zaciskami, nie uznać obu typów za identyczne."
+      ],
+      "catalogGaps": [
+        "Silnik jednofazowy kondensatorowy z uzwojeniem pomocniczym",
+        "Bistabilny przycisk 1NO+1NC",
+        "Wyłącznik C 1P z dobranym prądem",
+        "Pomiary uzwojeń i izolacji tego modelu"
+      ],
+      "manufacturerSources": [],
+      "schematics": [
+        {
+          "id": "ELE02_109_p2_moc-i-sterowanie",
+          "kind": "moc-i-sterowanie",
+          "png": "assets/schematy/ELE02_109_p2_moc-i-sterowanie.png",
+          "svg": "assets/schematy/ELE02_109_p2_moc-i-sterowanie.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            25,
+            580,
+            424
+          ],
+          "isIncompleteInSource": true,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-109: moc-i-sterowanie; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
+        },
+        {
+          "id": "ELE02_109_p2_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_109_p2_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_109_p2_rozmieszczenie.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            435,
+            580,
+            790
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-109: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "LY-0.75-czarny lub brązowy",
+          "name": "LY 0.75 mm² — czarny lub brązowy",
+          "quantity": 3,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LY-0.75-niebieski",
+          "name": "LY 0.75 mm² — niebieski",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LY-2.5-czarny lub brązowy",
+          "name": "LY 2.5 mm² — czarny lub brązowy",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LY-2.5-niebieski",
+          "name": "LY 2.5 mm² — niebieski",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "OWYżo-3x2.5",
+          "name": "OWYżo 3×2.5 mm²",
+          "quantity": 3,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-0.75",
+          "name": "Tulejki 0,75",
+          "quantity": 20,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-2.5",
+          "name": "Tulejki 2,5",
+          "quantity": 20,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ring",
+          "name": "Końcówki oczkowe dopasowane do śrub i przekroju",
+          "quantity": 3,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "slot25x25",
+          "name": "Korytko grzebieniowe 25×25",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "station-stock",
+          "note": ""
+        },
+        {
+          "id": "rail-th35",
+          "name": "Szyna TH35",
+          "quantity": 0.4,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "station-stock",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 16,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "station-stock",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-110",
+      "code": "110",
+      "qualification": "ELE.02",
+      "title": "Gniazdo 3-fazowe, 1-fazowe i oświetlenie",
+      "category": "Oświetlenie i rozdzielnice",
+      "summary": "Za RCD 4P są trzy niezależnie załączane gałęzie: B16 3P do gniazda CEE, B10 do gniazda jednofazowego i B6 z łącznikiem do oprawy. Pomiar rozróżnia napięcia fazowe i międzyfazowe.",
+      "sourceId": "pdf-ele02-110",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        8
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "rcd4",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b10",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b16-3",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "case12",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "socket3",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "lamp-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "wall-switch",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 8",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "socket1",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 8",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "gland5",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 8",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "gland3-25",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 8",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "gland3-15",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 8",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "junction-box4",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3, PDF 8",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Rozwinąć kreskę 5-żyłową do L1/L2/L3/N/PE.",
+        "Rozróżnić 3P wyłącznika od 3P+N+PE gniazda.",
+        "Wyjaśnić odczyty L–N i L–L w tym samym źródle."
+      ],
+      "readingSteps": [
+        "RCD4 obejmuje L1/L2/L3 i N; PE nie jest przełączany przez RCD.",
+        "Za B16 3P prowadź trzy fazy do CEE, N od listwy za RCD i PE od listwy ochronnej.",
+        "Gniazdo 1-fazowe i lampę przypisz do własnych MCB i zachowaj wspólny właściwy N.",
+        "Karta pomiarów dotyczy rzeczywistych par zacisków gniazda, nie tylko koloru przewodu na rysunku."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "110-QA-01",
+          "action": "Wyłącz kolejno B16 3P, B10 i B6.",
+          "expected": "Znika zasilanie odpowiedniej gałęzi, pozostałe mogą pracować.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "110-QA-02",
+          "action": "Zmierz L1/L2/L3 względem N oraz pary faz CEE.",
+          "expected": "Nominalnie około 230 V L–N i 400 V L–L; w obecnym modelu źródła 230 V fazowego około 398,4 V międzyfazowego.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "110-QA-03",
+          "action": "Przełącz łącznik oświetlenia.",
+          "expected": "Zmienia się stan tylko oprawy.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "110-QA-04",
+          "action": "Sprawdź PE wszystkich odbiorników.",
+          "expected": "Ciągłość PZ–PE rozdzielnicy–PE obu gniazd i oprawy.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Pominięcie N w 5-pinowym gnieździe.",
+        "Nazwanie C16 B16 przez samo oznaczenie urządzenia.",
+        "Wpięcie PE przez RCD lub MCB.",
+        "Zakup dławnic tylko po rozmiarze otworu, bez zakresu średnicy kabla."
+      ],
+      "openQuestions": [
+        "Jedno gniazdo CEE może służyć także 116, o ile jest zgodne z przygotowaniem stanowiska."
+      ],
+      "catalogGaps": [
+        "RCD 4P",
+        "MCB 3P o charakterystyce B",
+        "Gniazdo CEE 3P+N+PE i jego punkty pomiarowe"
+      ],
+      "manufacturerSources": [],
+      "schematics": [
+        {
+          "id": "ELE02_110_p2_ideowy",
+          "kind": "ideowy",
+          "png": "assets/schematy/ELE02_110_p2_ideowy.png",
+          "svg": "assets/schematy/ELE02_110_p2_ideowy.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            495
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-110: ideowy; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_110_p1_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_110_p1_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_110_p1_rozmieszczenie.svg",
+          "sourcePage": 1,
+          "sourceCropPt": [
+            30,
+            304,
+            570,
+            697
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-110: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "YDYżo-5x2.5",
+          "name": "YDYżo 5×2.5 mm²",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 8",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "YDYżo-3x2.5",
+          "name": "YDYżo 3×2.5 mm²",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 8",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "YDYżo-3x1.5",
+          "name": "YDYżo 3×1.5 mm²",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 8",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "YDY-2x1.5",
+          "name": "YDY 2×1.5 mm²",
+          "quantity": 1.5,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 8",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-czarny lub brązowy",
+          "name": "LgY 2.5 mm² — czarny lub brązowy",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 8",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-niebieski",
+          "name": "LgY 2.5 mm² — niebieski",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 8",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-2.5",
+          "name": "Tulejki 2,5/10",
+          "quantity": 100,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 8",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "clips",
+          "name": "Uchwyty paskowe UP-22",
+          "quantity": 20,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 8",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "splice3",
+          "name": "Złączki 3-portowe do właściwego rodzaju żył",
+          "quantity": 5,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 8",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 40,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 8",
+          "scope": "consumed",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-112",
+      "code": "112",
+      "qualification": "ELE.02",
+      "title": "Bistabilny w puszce, trzy przyciski",
+      "category": "Automatyka oświetlenia",
+      "summary": "Trzy przyciski równoległe sterują oprawą przez dopuszkowy przekaźnik PB umieszczony w P3. Schemat wymaga uzupełnienia z instrukcji; tabela podaje BIS-402 jako przykład.",
+      "sourceId": "pdf-ele02-112",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "bistable-box",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "junction-plate",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "lamp-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "wall-no",
+          "quantity": 3,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "junction-box",
+          "quantity": 3,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Rozpoznać różnicę pomiędzy puszką jako obudową a elektrycznym węzłem.",
+        "Odczytać oddzielne L/N zasilania, wejście przycisku i styk COM/NO.",
+        "Zinterpretować spodziewaną przerwę jako poprawny wynik w punktach kontrolnych."
+      ],
+      "readingSteps": [
+        "L idzie do wszystkich przycisków i stałego zasilania PB.",
+        "Wspólny powrót wszystkich NO trafia do wejścia wyzwalającego PB.",
+        "Dla BIS-402 E240610: L 6, N 5, wejście 4, COM 1, NO 2, NC 3; do oświetlenia używane COM i NO.",
+        "N lampy i PE lampy pozostają własnymi torami. Nie łącz wszystkich pięciu niezależnych torów płytki w jeden potencjał."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "112-QA-01",
+          "action": "Podaj impuls kolejno z S1, S2 i S3.",
+          "expected": "Każdy przycisk przełącza tę samą oprawę.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "112-QA-02",
+          "action": "Sprawdź PZ:L–S1/S2/S3:L i zasilanie PB.",
+          "expected": "Ciągłość do właściwych zacisków zgodnie z tabelą.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "112-QA-03",
+          "action": "Bez żarówki sprawdź PZ:L–OP:N oraz PZ:PE–OP:L.",
+          "expected": "Spodziewana przerwa przy prawidłowej instalacji; nie każdy pomiar ma wykazać ciągłość.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "112-QA-04",
+          "action": "Sprawdź PZ:PE–OP:PE.",
+          "expected": "Ciągłość ochronna.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "112-QA-05",
+          "action": "Zamknij puszkę P3.",
+          "expected": "Aparat i złączki mieszczą się bez zgniatania przewodów; ocena gabarytowa poza samą siecią połączeń.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Użycie BIS-411 DIN zamiast dopuszkowego bez oznaczenia adaptacji.",
+        "Brak fazy na COM separowanego styku.",
+        "Przyciski podświetlane z BIS-402.",
+        "Zwarcie niezależnych torów płytki."
+      ],
+      "openQuestions": [
+        "Jeśli płytka nie mieści się w puszce, arkusz dopuszcza dodatkowe 2 złączki podwójne i 2 potrójne. To wariant zamiast płytki, nie obowiązkowy dodatkowy zakup."
+      ],
+      "catalogGaps": [
+        "BIS-402: dopuszkowy obrys i topologia",
+        "Złączki 4-portowe / płytka niezależnych torów"
+      ],
+      "manufacturerSources": [
+        "ff-bis402"
+      ],
+      "schematics": [
+        {
+          "id": "ELE02_112_p1_ideowy",
+          "kind": "ideowy",
+          "png": "assets/schematy/ELE02_112_p1_ideowy.png",
+          "svg": "assets/schematy/ELE02_112_p1_ideowy.svg",
+          "sourcePage": 1,
+          "sourceCropPt": [
+            30,
+            280,
+            570,
+            603
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-112: ideowy; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_112_p2_montazowy",
+          "kind": "montazowy",
+          "png": "assets/schematy/ELE02_112_p2_montazowy.png",
+          "svg": "assets/schematy/ELE02_112_p2_montazowy.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            413
+          ],
+          "isIncompleteInSource": true,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-112: montazowy; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
+        },
+        {
+          "id": "ELE02_112_p3_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_112_p3_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_112_p3_rozmieszczenie.svg",
+          "sourcePage": 3,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            420
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-112: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "DY-1.5-czarny",
+          "name": "DY 1.5 mm² — czarny",
+          "quantity": 9,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-niebieski",
+          "name": "DY 1.5 mm² — niebieski",
+          "quantity": 3,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-żółto-zielony",
+          "name": "DY 1.5 mm² — żółto-zielony",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "trunk25x25",
+          "name": "Listwa 25×25",
+          "quantity": 4,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 30,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "splice2",
+          "name": "Złączka 2-portowa",
+          "quantity": 4,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "splice3",
+          "name": "Złączka 3-portowa",
+          "quantity": 4,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "splice4",
+          "name": "Złączka 4-portowa",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-113",
+      "code": "113",
+      "qualification": "ELE.02",
+      "title": "Podnośnik: gotowość, kierunki i krańcówki",
+      "category": "Napędy",
+      "summary": "K1 podtrzymuje gotowość po S2. K2 i K3 realizują dwa kierunki tylko podczas trzymania S3/S4. Każdy kierunek ma własną krańcówkę NC i blokadę NC przeciwnego stycznika. S3/S4 to pojedyncze przyciski ze wspólnym mechanizmem NO+NC.",
+      "sourceId": "pdf-ele02-113",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "motor3-y",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "contactor",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "contactor-block",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "aux-relay",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "no-din",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "nc-din",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "no-nc-momentary",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "limit-switch",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "indicator-yellow",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "bus-n",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "bus-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "plug3",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Oddzielić podtrzymanie gotowości K1 od braku podtrzymania kierunków K2/K3.",
+        "Prześledzić zarówno NO własnego żądania, jak i NC drugiego przycisku.",
+        "Odczytać funkcję krańcówki jako blokadę tylko odpowiedniego kierunku."
+      ],
+      "readingSteps": [
+        "S1 NC jest przed całym sterowaniem. S2 NO i styk podtrzymania K1 są równoległe.",
+        "Po gotowości K1/H1 gałąź K2 przechodzi przez NO S3, NC S4, NC Wk1 i NC K3.",
+        "Gałąź K3 przechodzi przez NC S3, NO S4, NC Wk2 i NC K2.",
+        "W obwodzie mocy K3 zamienia dwie fazy. Uzwojenia silnika 230/400 V są przygotowane w gwiazdę.",
+        "Cewki i styk K1 na rysunku to elementy jednego mechanizmu, nie trzy niezależne aparaty o nazwie K1."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "113-QA-01",
+          "action": "Naciśnij S2 i zwolnij.",
+          "expected": "K1 utrzymuje gotowość, H1 świeci, silnik nie musi pracować.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "113-QA-02",
+          "action": "Naciśnij i zwolnij S3, potem S4.",
+          "expected": "K2/K3 pracują tylko podczas trzymania właściwego przycisku.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "113-QA-03",
+          "action": "Zadziałaj Wk1 podczas podnoszenia.",
+          "expected": "K2 odpadnie; przeciwny kierunek może być dostępny.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "113-QA-04",
+          "action": "Zadziałaj Wk2 podczas opuszczania.",
+          "expected": "K3 odpadnie; sama krańcówka nie zrywa podtrzymania K1 według schematu.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "113-QA-05",
+          "action": "Naciśnij jednocześnie S3 i S4 od spoczynku.",
+          "expected": "NC każdego przycisku blokuje żądanie drugiego; schemat nie nakazuje natychmiastowego uruchomienia.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "113-QA-06",
+          "action": "Naciśnij S1.",
+          "expected": "Gaśnie gotowość i wyłączają się cewki kierunków; ponowne S2 jest potrzebne do gotowości.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Dodanie podtrzymania K2/K3.",
+        "Zamiana S3/S4 na przyciski wyłącznie NO.",
+        "Wpisanie TAK w każdą linijkę protokołu: niektóre zdania testują błędne zachowanie.",
+        "Uznanie, że Wk2 kasuje K1, mimo że nie leży w torze jego cewki."
+      ],
+      "openQuestions": [
+        "Tabela materiałów podaje korytko 25×40×200, ale instrukcja cięcia wymaga łącznie 1500 mm. Zachować rozbieżność, przy zakupie odnieść się do rzeczywistych odcinków.",
+        "Płyta 300×300 mm ma 0,09 m², lecz tabela wpisuje 0,9 m². Nie przenosić tej wartości do zakupów bez korekty jednostek.",
+        "K1 ma cewkę 230 V; dostępny edu-relay jest 24 V DC i nie jest zamiennikiem 1:1."
+      ],
+      "catalogGaps": [
+        "Krańcówka 1NO+1NC",
+        "Stycznik pomocniczy 230 V",
+        "Blok 2NO+2NC",
+        "Przyciski NO+NC chwilowe na DIN w źródłowym wariancie"
+      ],
+      "manufacturerSources": [],
+      "schematics": [
+        {
+          "id": "ELE02_113_p3_moc-i-sterowanie",
+          "kind": "moc-i-sterowanie",
+          "png": "assets/schematy/ELE02_113_p3_moc-i-sterowanie.png",
+          "svg": "assets/schematy/ELE02_113_p3_moc-i-sterowanie.svg",
+          "sourcePage": 3,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            481
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-113: moc-i-sterowanie; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_113_p2_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_113_p2_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_113_p2_rozmieszczenie.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            648
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-113: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "DY-1.5-czarny",
+          "name": "DY 1.5 mm² — czarny",
+          "quantity": 18,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-niebieski",
+          "name": "DY 1.5 mm² — niebieski",
+          "quantity": 3,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "slot25x40",
+          "name": "Korytko grzebieniowe 25×40",
+          "quantity": 1.5,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 8",
+          "scope": "consumed",
+          "note": "Długość obliczona z instrukcji cięcia: 2×300 + 2×450 mm. Tabela na PDF 7 podaje 1 szt. 25×40×200 — rozbieżność pozostaje w rejestrze; 1,5 m nie jest odpisem ilości z tabeli.",
+          "quantityBasis": "calculated-from-cut-plan",
+          "originalTableEntry": {
+            "quantity": 1,
+            "unit": "szt.",
+            "description": "Korytko grzebieniowe 25×40×200",
+            "sourcePage": 7
+          }
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 30,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty szyn przygotowania",
+          "quantity": 4,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "station-stock",
+          "note": ""
+        },
+        {
+          "id": "OWYżo-4x1.5",
+          "name": "OWYżo 4×1.5 mm²",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "station-stock",
+          "note": ""
+        },
+        {
+          "id": "OWYżo-5x1.5",
+          "name": "OWYżo 5×1.5 mm²",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "station-stock",
+          "note": ""
+        },
+        {
+          "id": "rail-th35",
+          "name": "Szyna TH35",
+          "quantity": 0.6,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "station-stock",
+          "note": ""
+        },
+        {
+          "id": "ferrule-1.5-12",
+          "name": "Tulejki 1,5/12",
+          "quantity": 14,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "station-stock",
+          "note": ""
+        },
+        {
+          "id": "ring",
+          "name": "Końcówki oczkowe dopasowane do silnika",
+          "quantity": 4,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "station-stock",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-114",
+      "code": "114",
+      "qualification": "ELE.02",
+      "title": "Oświetlenie: faza podstawowa i rezerwowa po 5 s",
+      "category": "Automatyka i pomiary",
+      "summary": "KP nadzoruje zasilanie L1; po jego zaniku tor NC dopuszcza zasilanie KT z L2. KT po 5 s przełącza tor oprawy na L2. Schemat, wymagany tryb czasowy i część kryteriów w karcie są niespójne — treść do publikacji z widocznym opisem, oceniane ćwiczenie zablokowane do rozstrzygnięcia.",
+      "sourceId": "pdf-ele02-114",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "source-review-required",
+      "bom": [
+        {
+          "componentId": "aux-relay",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b10",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "no-nc-maintained",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "timer",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "case12",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "lamp-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "indicator-green",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2/3, PDF 2",
+          "sourceKind": "diagram-inference",
+          "note": "Lampka na schemacie; pominięta w tabeli urządzeń."
+        },
+        {
+          "componentId": "indicator-red",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Rys. 2/3, PDF 2",
+          "sourceKind": "diagram-inference",
+          "note": "Lampka na schemacie; pominięta w tabeli urządzeń."
+        }
+      ],
+      "learningGoals": [
+        "Prześledzić separowane przełączenie COM między fazami bez zwarcia L1–L2.",
+        "Rozpoznać tor NC KP mimo opisanych numerów 3/4.",
+        "Porównać rysunek, tryb przekaźnika i kartę działania zamiast założyć ich zgodność."
+      ],
+      "readingSteps": [
+        "Przy L1 obecnej KP jest zasilony, H1 świeci, tor NC KP odcina KT oraz H2.",
+        "L1 dochodzi do spoczynkowego toru KT; po zamknięciu S oprawa ma zasilanie podstawowe.",
+        "Po zaniku L1 KP odpadnie; z L2 przez Q2 i NC KP zasilane są KT oraz H2.",
+        "Po 5 s opóźnionego załączenia KT przełącza COM na L2.",
+        "Powrót na L1 trzeba ustalić według instrukcji konkretnego KT; zwykłe opóźnienie załączenia nie definiuje opóźnienia powrotu."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "114-QA-01",
+          "action": "Sprawdź źródłowy rysunek z KP zasilonym z L1.",
+          "expected": "NC KP otwarty: KT/H2 bez zasilania. To jest sprzeczne z kryterium 2 karty.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "114-QA-02",
+          "action": "Wyłącz Q1 przy gotowym Q2 i zamkniętym S.",
+          "expected": "KT/H2 dostają zasilanie; po 5 s pojawia się zasilanie oprawy z L2.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "114-QA-03",
+          "action": "Przywróć Q1.",
+          "expected": "Wynik powrotu zależy od zweryfikowanego KT; nie przypisywać automatycznie 5 s.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "114-QA-04",
+          "action": "Przełącz S.",
+          "expected": "Zgodnie ze schematem S przełącza oprawę, nie zasilanie H1/H2; porównać z kryterium 8.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "114-QA-05",
+          "action": "Sprawdź brak wspólnego połączenia obu faz.",
+          "expected": "L1 i L2 nie są zwarte przez COM/styki KT w żadnym stanie.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Zastosowanie NO KP zamiast NC na podstawie numerów 3/4.",
+        "Zwieranie L1 i L2 w złączce.",
+        "Uznanie wszystkich zdań karty za opis poprawnego układu.",
+        "Symulowanie dwóch faz jako dwóch niezależnych źródeł bez wspólnego N i przesunięcia fazowego."
+      ],
+      "openQuestions": [
+        "Kryterium 2 mówi o czerwonej lampce przy obu Q1/Q2 ON; rysunek umieszcza H2 za NC KP, więc przy aktywnej cewce KP H2 jest wyłączona.",
+        "Kryterium 6 wymaga powrotu po 5 s; tabela sprzętu wymaga tylko opóźnionego załączania. Brak instrukcji KT rozstrzygającej funkcję powrotu.",
+        "Kryterium 8 wiąże wciskanie S ze zmianą lampek kontrolnych; H1/H2 są przed S.",
+        "Nie wiadomo, które linie są celowo fałszywymi zdaniami TAK/NIE, a które rozbieżnością źródła. Brak oficjalnego klucza."
+      ],
+      "catalogGaps": [
+        "Przekaźnik pomocniczy 230 V ze stykiem NC",
+        "Zweryfikowany profil czasowy przełączenia/powrotu",
+        "Kolorowa sygnalizacja"
+      ],
+      "manufacturerSources": [],
+      "schematics": [
+        {
+          "id": "ELE02_114_p2_ideowy",
+          "kind": "ideowy",
+          "png": "assets/schematy/ELE02_114_p2_ideowy.png",
+          "svg": "assets/schematy/ELE02_114_p2_ideowy.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            342,
+            570,
+            778
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-114: ideowy; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_114_p2_rozdzielnica",
+          "kind": "rozdzielnica",
+          "png": "assets/schematy/ELE02_114_p2_rozdzielnica.png",
+          "svg": "assets/schematy/ELE02_114_p2_rozdzielnica.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            335
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-114: rozdzielnica; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "LgY-1.5-czarny",
+          "name": "LgY 1.5 mm² — czarny",
+          "quantity": 6,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-1.5-niebieski",
+          "name": "LgY 1.5 mm² — niebieski",
+          "quantity": 4,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-1.5-żółto-zielony",
+          "name": "LgY 1.5 mm² — żółto-zielony",
+          "quantity": 3,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-1.5",
+          "name": "Tulejki 1,5/10",
+          "quantity": 40,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "trunk25x25",
+          "name": "Listwa 25×25",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 20,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "blank6",
+          "name": "Zaślepka rozdzielnicy na 6 modułów",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-115",
+      "code": "115",
+      "qualification": "ELE.02",
+      "title": "Licznik energii, schodowe, dwie oprawy i gniazdo",
+      "category": "Automatyka i pomiary",
+      "summary": "Licznik przed RCD mierzy cały układ. B10 zasila gniazdo, B6 dwie oprawy sterowane schodowo. Trzy lampki wskazują zasilanie za RCD oraz obu MCB. Instrukcja licznika jest dostarczana na stanowisku.",
+      "sourceId": "pdf-ele02-115",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "rcd2",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b10",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "energy-meter",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "indicator-red",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "indicator-green",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "indicator-yellow",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "case12",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "bus-n",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": "Niepotrzebna jako osobny zakup, jeśli jest w rozdzielnicy."
+        },
+        {
+          "componentId": "bus-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": "Jak wyżej."
+        },
+        {
+          "componentId": "lamp-pe",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "changeover",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "socket1",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "junction-box",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Rozróżnić energię kWh, moc W i napięcie V.",
+        "Wskazać mierzoną część instalacji na podstawie pozycji licznika.",
+        "Wyjaśnić, dlaczego H3 świeci także przy wyłączonych oprawach."
+      ],
+      "readingSteps": [
+        "Najpierw odczytaj zaciski wejścia i wyjścia licznika z jego instrukcji.",
+        "Licznik jest przed RCD i dwiema gałęziami, więc przepływa przez niego energia obu odbiorów.",
+        "H1 czerwona jest za RCD, H2 zielona za B10, H3 żółta za B6 przed schodowymi.",
+        "Sterowanie opraw i drogi N/PE są takie jak w 101; nowy element to pomiar energii i dodatkowa sygnalizacja."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "115-QA-01",
+          "action": "Włącz RCD i użyj TEST.",
+          "expected": "H1 świeci po ON i gaśnie po wyzwoleniu RCD.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "115-QA-02",
+          "action": "Wyłącz B10 przy włączonym B6.",
+          "expected": "H2 gaśnie, H3 i sterowanie opraw pozostają dostępne.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "115-QA-03",
+          "action": "Przełącz dowolny schodowy w każdym stanie drugiego.",
+          "expected": "Obie oprawy przełączają się razem.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "115-QA-04",
+          "action": "Zasil odbiornik próbny w gnieździe.",
+          "expected": "Licznik rejestruje przyrost energii; przy znanej mocy i czasie można porównać przyrost.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "115-QA-05",
+          "action": "Zmierz drogi PE do gniazda i obu opraw.",
+          "expected": "Wyniki zapisane z jednostką przy wyłączonym zasilaniu.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Podłączenie licznika tylko jako woltomierza równolegle.",
+        "Pominięcie jednej gałęzi w mierzonym torze.",
+        "Pomieszanie kolorów H1/H2/H3.",
+        "Przyrost kWh liczony bez uwzględnienia czasu."
+      ],
+      "openQuestions": [
+        "Brak modelu licznika; jego numery zacisków, liczba modułów i dopuszczalny prąd nie są ustalone przez ten arkusz."
+      ],
+      "catalogGaps": [
+        "Licznik energii i kumulowanie energii w czasie",
+        "Czerwona/żółta lampka z odpowiednim opisem"
+      ],
+      "manufacturerSources": [],
+      "schematics": [
+        {
+          "id": "ELE02_115_p2_ideowy",
+          "kind": "ideowy",
+          "png": "assets/schematy/ELE02_115_p2_ideowy.png",
+          "svg": "assets/schematy/ELE02_115_p2_ideowy.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            213,
+            570,
+            461
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-115: ideowy; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_115_p2_rozdzielnica",
+          "kind": "rozdzielnica",
+          "png": "assets/schematy/ELE02_115_p2_rozdzielnica.png",
+          "svg": "assets/schematy/ELE02_115_p2_rozdzielnica.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            207
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-115: rozdzielnica; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_115_p1_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_115_p1_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_115_p1_rozmieszczenie.svg",
+          "sourcePage": 1,
+          "sourceCropPt": [
+            30,
+            470,
+            570,
+            758
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-115: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "DY-2.5-czarny lub brązowy",
+          "name": "DY 2.5 mm² — czarny lub brązowy",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-2.5-niebieski",
+          "name": "DY 2.5 mm² — niebieski",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-2.5-żółto-zielony",
+          "name": "DY 2.5 mm² — żółto-zielony",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-czarny lub brązowy",
+          "name": "DY 1.5 mm² — czarny lub brązowy",
+          "quantity": 6,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-niebieski",
+          "name": "DY 1.5 mm² — niebieski",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-żółto-zielony",
+          "name": "DY 1.5 mm² — żółto-zielony",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-czarny lub brązowy",
+          "name": "LgY 2.5 mm² — czarny lub brązowy",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-niebieski",
+          "name": "LgY 2.5 mm² — niebieski",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-żółto-zielony",
+          "name": "LgY 2.5 mm² — żółto-zielony",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-2.5",
+          "name": "Tulejki 2,5/10",
+          "quantity": 35,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "trunk25x25",
+          "name": "Listwa 25×25",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 40,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "splice3",
+          "name": "Złączka 3-portowa do żył wielodrutowych",
+          "quantity": 5,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "reusable",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-116",
+      "code": "116",
+      "qualification": "ELE.02",
+      "title": "Pomiary silnika i zasilanie w trójkącie",
+      "category": "Napędy",
+      "summary": "Silnik 400/690 V jest łączony w trójkąt i sterowany przez wyłącznik silnikowy, stycznik oraz niezależny START/STOP. Zadanie wymaga pomiarów trzech uzwojeń i izolacji, odczytu prądów z tabliczki oraz zapisania nastaw ochrony.",
+      "sourceId": "pdf-ele02-116",
+      "sourcePages": [
+        1,
+        2,
+        4,
+        5,
+        6,
+        7
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "motor3-d",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 4",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "contactor",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 4",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "contactor-block",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 4",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "motor-protection",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 4",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "motor-aux",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 4",
+          "sourceKind": "pdf-table",
+          "note": "Co najmniej jeden zestyk pomocniczy; może być w komplecie."
+        },
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 4",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "start-stop-din",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 4",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "bus-n",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "bus-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "socket3",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "plug3",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Odczytać Δ400/Y690 i prawidłową konfigurację przy zasilaniu 400 V.",
+        "Rozpoznać każdą parę U1/U2, V1/V2, W1/W2 oraz oddzielić rezystancję uzwojeń od izolacji.",
+        "Powiązać nastawę ochrony z rzeczywistą tabliczką i instrukcją zabezpieczenia."
+      ],
+      "readingSteps": [
+        "Rysunek montażowy pokazuje rzeczywiste prowadzenie przewodów, lecz zaznacza możliwość innego układu zacisków.",
+        "Trójkąt wymaga połączeń końca każdego uzwojenia z początkiem następnego zgodnie z tabliczką; nie kopiować pozycji śrub z innego motoru.",
+        "Układ sterowania ma osobny B6, mechanizm zabezpieczenia i podtrzymanie stycznika; niezależny STOP nie jest NC tego samego klawisza START.",
+        "A1/A2 cewki AC na rysunku nie należy traktować jako stałej polaryzacji plus/minus cewki DC."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "116-QA-01",
+          "action": "Przed połączeniem uzwojeń zmierz trzy pary uzwojeń.",
+          "expected": "Wyniki osobno z jednostkami, bez zmyślonej wartości wspólnej.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "116-QA-02",
+          "action": "Wykonaj badanie izolacji odpowiednio przygotowanego silnika.",
+          "expected": "Sprawdzane uzwojenia względem PE oraz między uzwojeniami; napięcie próby zgodne z wymaganiem/instrukcją.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "116-QA-03",
+          "action": "Odczytaj tabliczkę i nastawy Y/Δ.",
+          "expected": "Wartości z konkretnej tabliczki, a nie z mocy ani fikcyjnej stałej 6 A.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "116-QA-04",
+          "action": "Zmontuj Δ i sprawdź START/STOP.",
+          "expected": "Silnik startuje i daje się zatrzymać; zgodność mechanizmu pomocniczego z zabezpieczeniem.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "116-QA-05",
+          "action": "Sprawdź prawy kierunek; w razie potrzeby korekta po odłączeniu.",
+          "expected": "Zmiana dwóch faz daje przeciwny kierunek w silniku trójfazowym.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Użycie 230/400 V w trójkącie przy 400 V.",
+        "Nastawa wyłącznika z przykładowego symulatora.",
+        "Pomiary izolacji z pozostawionymi mostkami bez planu badania.",
+        "Zamiana niezależnego START/STOP na wspólny przycisk NO+NC."
+      ],
+      "openQuestions": [
+        "Wskazanie wyposażenia wymaga zakresu obejmującego 1,1 In. Nie jest to samodzielna uniwersalna reguła ustawiania rzeczywistego zabezpieczenia; potrzebne tabliczka, lokalizacja ochrony i instrukcja.",
+        "Obecny edu-motor-six nosi profil 230Δ/400Y; do dokładnego wariantu trzeba dodać nowy profil 400Δ/690Y, nie zmieniać po cichu starej rewizji."
+      ],
+      "catalogGaps": [
+        "Silnik 400Δ/690Y: odrębny profil",
+        "Blok 2NO+2NC",
+        "Napięcia znamionowe i pomiary izolacji zgodne z nowym profilem"
+      ],
+      "manufacturerSources": [],
+      "schematics": [
+        {
+          "id": "ELE02_116_p1_montazowy",
+          "kind": "montazowy",
+          "png": "assets/schematy/ELE02_116_p1_montazowy.png",
+          "svg": "assets/schematy/ELE02_116_p1_montazowy.svg",
+          "sourcePage": 1,
+          "sourceCropPt": [
+            30,
+            438,
+            570,
+            727
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-116: montazowy; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_116_p1_gniazdo",
+          "kind": "gniazdo",
+          "png": "assets/schematy/ELE02_116_p1_gniazdo.png",
+          "svg": "assets/schematy/ELE02_116_p1_gniazdo.svg",
+          "sourcePage": 1,
+          "sourceCropPt": [
+            30,
+            158,
+            570,
+            341
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-116: gniazdo; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "YDYżo-5x2.5",
+          "name": "YDYżo 5×2.5 mm²",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "OWYżo-4x2.5",
+          "name": "OWYżo 4×2.5 mm²",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-czarny lub brązowy",
+          "name": "LgY 2.5 mm² — czarny lub brązowy",
+          "quantity": 1.5,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-1-niebieski",
+          "name": "LgY 1 mm² — niebieski",
+          "quantity": 0.5,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-1-czarny lub brązowy",
+          "name": "LgY 1 mm² — czarny lub brązowy",
+          "quantity": 1.5,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-2.5",
+          "name": "Tulejki 2,5/10",
+          "quantity": 15,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-double-2.5",
+          "name": "Tulejki podwójne 2×2,5/10",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-double-1",
+          "name": "Tulejki podwójne 2×1/10",
+          "quantity": 3,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-1",
+          "name": "Tulejki 1/10",
+          "quantity": 15,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "clips",
+          "name": "Uchwyty UP-22",
+          "quantity": 3,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ring",
+          "name": "Końcówki oczkowe do zacisków silnika",
+          "quantity": 5,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 7,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "rail-th35",
+          "name": "Szyna TH35",
+          "quantity": 0.25,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "station-stock",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty szyny",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "station-stock",
+          "note": ""
+        },
+        {
+          "id": "ferrule-2.5",
+          "name": "Tulejki 2,5/10 przygotowania",
+          "quantity": 10,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "station-stock",
+          "note": ""
+        },
+        {
+          "id": "OWYżo-5x2.5",
+          "name": "OWYżo 5×2.5 mm²",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "station-stock",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-117",
+      "code": "117",
+      "qualification": "ELE.02",
+      "title": "Ściemniacz sterowany przyciskiem i gniazdo",
+      "category": "Automatyka oświetlenia",
+      "summary": "B6 chroni gałąź regulatora SCO i oprawy; B10 zasila osobne gniazdo. Krótki impuls przycisku przełącza oświetlenie, długie naciśnięcie reguluje jasność według instrukcji SCO-815 lub innego wybranego modelu.",
+      "sourceId": "pdf-ele02-117",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "rcd2",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b10",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "case8",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "lamp-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "wall-no",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "dimmer",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "socket1",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "junction-box",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 5",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Rozróżnić przełączanie ON/OFF od regulacji mocy i jasności.",
+        "Odczytać stałe zasilanie SCO, oddzielone wejście sterujące i wyjście do oprawy.",
+        "Wybrać źródło światła zgodne z wybranym ściemniaczem."
+      ],
+      "readingSteps": [
+        "Niekompletny rysunek ma już gotową gałąź RCD–B10–gniazdo i tor PE.",
+        "Dla SCO-815 E230329: L z B6 do 10, N do 8 (7/9 są wspólnym N), wyjście 12 do L lampy.",
+        "Wariant sterowania 230 V: przycisk między L a 1, powrót wejścia 3 do N. To wejście jest odrębnym obwodem, nie stykiem wyjściowym.",
+        "N lampy wraca do N za RCD, PE lampy pozostaje ciągły niezależnie od jasności."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "117-QA-01",
+          "action": "Podaj kolejne krótkie naciśnięcia.",
+          "expected": "Lampa włącza się i wyłącza.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "117-QA-02",
+          "action": "Przytrzymaj przycisk zgodnie z instrukcją SCO.",
+          "expected": "Jasność zmienia się; sprawdzić zmianę kierunku regulacji przy kolejnych przytrzymaniach według wybranej rewizji instrukcji.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "117-QA-03",
+          "action": "Wyłącz tylko B6.",
+          "expected": "SCO i oprawa bez zasilania; gniazdo może działać przez B10.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "117-QA-04",
+          "action": "Wyłącz tylko B10.",
+          "expected": "Gaśnie zasilanie gniazda, regulator działa przez B6.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "117-QA-05",
+          "action": "Zmierz ciągłość PE oprawy i gniazda.",
+          "expected": "Dwie prawidłowe drogi ochronne.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Przekaźnik zwykły opisany jako ściemniacz.",
+        "Regulacja jasności samą zmianą powerW lampy zamiast modelem wyjścia SCO.",
+        "LED bez potwierdzonej możliwości ściemniania.",
+        "Pominięcie przewodu powrotnego izolowanego wejścia 3."
+      ],
+      "openQuestions": [
+        "Strona produktu opisuje regulację w pętli; instrukcja E230329 precyzuje zmianę kierunku kolejnych długich naciśnięć. Dla modelu aplikacji przyjąć i zacytować konkretną instrukcję, zamiast łączyć opisy różnych wersji."
+      ],
+      "catalogGaps": [
+        "Ściemniacz z krótkim/długim naciśnięciem",
+        "Model jasności i obciążenia; odpowiedni zakres pomiarów"
+      ],
+      "manufacturerSources": [
+        "ff-sco815"
+      ],
+      "schematics": [
+        {
+          "id": "ELE02_117_p2_montazowy",
+          "kind": "montazowy",
+          "png": "assets/schematy/ELE02_117_p2_montazowy.png",
+          "svg": "assets/schematy/ELE02_117_p2_montazowy.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            180,
+            570,
+            650
+          ],
+          "isIncompleteInSource": true,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-117: montazowy; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
+        },
+        {
+          "id": "ELE02_117_p1_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_117_p1_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_117_p1_rozmieszczenie.svg",
+          "sourcePage": 1,
+          "sourceCropPt": [
+            30,
+            409,
+            570,
+            806
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-117: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "LgY-2.5-czarny lub brązowy",
+          "name": "LgY 2.5 mm² — czarny lub brązowy",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-niebieski",
+          "name": "LgY 2.5 mm² — niebieski",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-żółto-zielony",
+          "name": "LgY 2.5 mm² — żółto-zielony",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-czarny lub brązowy",
+          "name": "DY 1.5 mm² — czarny lub brązowy",
+          "quantity": 4,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-niebieski",
+          "name": "DY 1.5 mm² — niebieski",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-żółto-zielony",
+          "name": "DY 1.5 mm² — żółto-zielony",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-2.5",
+          "name": "Tulejki na żyłę 2,5",
+          "quantity": 25,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-double-2.5",
+          "name": "Tulejki podwójne 2×2,5",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "trunk25x25",
+          "name": "Listwa 25×25",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 30,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "consumed",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-L01",
+      "code": "L01",
+      "qualification": "ELE.02",
+      "title": "Silnik z regulatorem temperatury i kontrolą faz",
+      "category": "Napędy",
+      "summary": "Silnik 400/690 V połączony w trójkąt załącza się dla temperatury powyżej nastawy 28°C. Sterowanie przechodzi przez styk wyłącznika silnikowego, pozwolenie czujnika kolejności faz CKF i właściwy styk regulatora RT.",
+      "sourceId": "pdf-ele02-L01",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "motor3-d",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "contactor",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "motor-protection",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "motor-aux",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": "Co najmniej jeden styk może być w komplecie."
+        },
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "phase-monitor",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "thermostat",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": "Regulator i pasująca sonda tworzą jeden komplet zakupowy; w źródle to pozycje 6 i 7."
+        },
+        {
+          "componentId": "bus-n",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "bus-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "plug3",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Odczytać układ jednokreskowy z rozdzielonymi funkcjami mocy, zabezpieczenia, kontroli faz i temperatury.",
+        "Wybrać styk wentylacji zamiast ogrzewania na podstawie instrukcji RT.",
+        "Rozumieć histerezę i stan odniesienia NO/NC niezależnie od progu temperatury."
+      ],
+      "readingSteps": [
+        "Obwód mocy: trzy fazy przez Q1 i stycznik K do M; PE pozostaje bezpośredni.",
+        "Tor cewki K ma szeregowo Q1, CKF i styk RT uzupełniany w miejscu czerwonej strzałki.",
+        "Dla RT-820 E211220 COM to 2; powyżej progu tor 2–8 jest zamknięty. Producent opisuje 8 jako NC w stanie biernym; nie zgadywać tylko z hasła „temperatura wyższa = NO”.",
+        "Zasilanie i sondę RT podłącz zgodnie z instrukcją wybranego modelu; do silnika idą trzy fazy i PE, nie N."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "L01-QA-01",
+          "action": "Ustaw 28°C i prawidłową kolejność faz; ogrzej sondę ponad próg.",
+          "expected": "Styk wentylacyjny RT dopuszcza cewkę K i silnik rusza.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "L01-QA-02",
+          "action": "Ochłodź sondę poniżej progu przełączenia uwzględniającego histerezę.",
+          "expected": "K odpadnie i silnik się zatrzyma.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "L01-QA-03",
+          "action": "Otwórz Q1 lub odbierz pozwolenie CKF.",
+          "expected": "Żądanie temperatury nie wystarcza do uruchomienia.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "L01-QA-04",
+          "action": "Sprawdź kierunek i ciągłość PE wtyczka–silnik.",
+          "expected": "Prawy kierunek i pomiar ochronny zapisany z jednostką i modelem przyrządu.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Wybór toru grzania 2–1 zamiast toru wentylacji 2–8 dla wskazanego RT-820.",
+        "Pomijanie CKF lub styku ochrony, aby przykład się uruchomił.",
+        "Trójkąt przy 400 V na silniku 230/400 V.",
+        "Porównanie temperatury do dokładnie 28,000°C bez histerezy i tolerancji."
+      ],
+      "openQuestions": [
+        "Brak modelu CKF w źródle; jego zaciski i dodatkowe warunki kontroli muszą wynikać z dobranej instrukcji.",
+        "Instrukcja regulatora i tabliczka silnika pozostają obowiązkowym kontekstem dokładnego wykonania."
+      ],
+      "catalogGaps": [
+        "Regulator temperatury z sondą i histerezą",
+        "Czujnik kolejności faz ze stykiem pozwolenia",
+        "Profil silnika 400Δ/690Y"
+      ],
+      "manufacturerSources": [
+        "ff-rt820"
+      ],
+      "schematics": [
+        {
+          "id": "ELE02_L01_p3_jednokreskowy",
+          "kind": "jednokreskowy",
+          "png": "assets/schematy/ELE02_L01_p3_jednokreskowy.png",
+          "svg": "assets/schematy/ELE02_L01_p3_jednokreskowy.svg",
+          "sourcePage": 3,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            488
+          ],
+          "isIncompleteInSource": true,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-L01: jednokreskowy; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
+        },
+        {
+          "id": "ELE02_L01_p2_rozdzielnica",
+          "kind": "rozdzielnica",
+          "png": "assets/schematy/ELE02_L01_p2_rozdzielnica.png",
+          "svg": "assets/schematy/ELE02_L01_p2_rozdzielnica.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            389,
+            570,
+            698
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-L01: rozdzielnica; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_L01_p2_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_L01_p2_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_L01_p2_rozmieszczenie.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            390
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-L01: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "LgY-1.5-czarny. szary lub brązowy",
+          "name": "LgY 1.5 mm² — czarny, szary lub brązowy",
+          "quantity": 2.5,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-1.5-niebieski",
+          "name": "LgY 1.5 mm² — niebieski",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-czarny. szary lub brązowy",
+          "name": "LgY 2.5 mm² — czarny, szary lub brązowy",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "OWYżo-4x2.5",
+          "name": "OWYżo 4×2.5 mm²",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": "Bez niebieskiej żyły według tabeli źródła."
+        },
+        {
+          "id": "ferrule-1.5",
+          "name": "Tulejki 1,5",
+          "quantity": 30,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-2.5",
+          "name": "Tulejki 2,5",
+          "quantity": 15,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-double-2.5",
+          "name": "Tulejki podwójne 2×2,5",
+          "quantity": 5,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-double-1.5",
+          "name": "Tulejki podwójne 2×1,5",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ring",
+          "name": "Końcówki oczkowe 2,5 do silnika",
+          "quantity": 5,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty szyny",
+          "quantity": 2,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "OWYżo-5x2.5",
+          "name": "OWYżo 5×2.5 mm²",
+          "quantity": 1.5,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "station-stock",
+          "note": ""
+        },
+        {
+          "id": "ferrule-2.5",
+          "name": "Tulejki 2,5 przygotowania",
+          "quantity": 10,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "station-stock",
+          "note": ""
+        },
+        {
+          "id": "rail-th35",
+          "name": "Szyna TH35",
+          "quantity": 0.5,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 6",
+          "scope": "station-stock",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "id": "ELE.02-L02",
+      "code": "L02",
+      "qualification": "ELE.02",
+      "title": "Licznik energii, gniazdo i jeden łącznik",
+      "category": "Automatyka i pomiary",
+      "summary": "Licznik jednofazowy przed RCD mierzy energię obwodu gniazda B10 i oprawy B6 sterowanej jednym łącznikiem. Schemat montażowy należy uzupełnić o podłączenie i oznaczenia zacisków dobranego licznika.",
+      "sourceId": "pdf-ele02-L02",
+      "sourcePages": [
+        1,
+        2,
+        3,
+        4,
+        6,
+        7,
+        8
+      ],
+      "timeMinutes": 180,
+      "referenceProjectStatus": "requires-project-authoring",
+      "bom": [
+        {
+          "componentId": "rcd2",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b6",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "b10",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "energy-meter",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "case8",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "lamp-pe",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "junction-box",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 2, PDF 6",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "wall-switch",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 8",
+          "sourceKind": "pdf-table",
+          "note": ""
+        },
+        {
+          "componentId": "socket1",
+          "quantity": 1,
+          "unit": "szt.",
+          "sourceLocator": "Tabela 3a, PDF 8",
+          "sourceKind": "pdf-table",
+          "note": ""
+        }
+      ],
+      "learningGoals": [
+        "Rozpoznać fizyczne wejście i wyjście licznika na podstawie instrukcji.",
+        "Wyjaśnić, dlaczego pomiar obejmuje oba odbiory.",
+        "Porównać energię z mocą i czasem obserwacji."
+      ],
+      "readingSteps": [
+        "Na rysunku ideowym licznik jest przed RCD i obiema gałęziami.",
+        "Uzupełnij brakujące tory licznika dopiero po odczycie jego instrukcji i numerów zacisków.",
+        "Wyłącznik B10 zasila gniazdo, B6 zasila łącznik i oprawę; powroty N są za właściwym RCD.",
+        "Do sprawdzania licznika źródło przewiduje odbiornik rezystancyjny około 1000 W; jego prąd i czas wchodzą do interpretacji wyniku."
+      ],
+      "acceptanceChecks": [
+        {
+          "id": "L02-QA-01",
+          "action": "Włącz łącznik przy aktywnym B6.",
+          "expected": "Oprawa świeci, B10 nie jest warunkiem pracy oprawy.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "L02-QA-02",
+          "action": "Dołącz i uruchom odbiornik w gnieździe.",
+          "expected": "Licznik wykazuje przyrost energii.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "L02-QA-03",
+          "action": "Wyłącz B10, następnie B6 osobno.",
+          "expected": "Wyłącza się tylko odpowiednia gałąź; licznik pozostaje przed RCD.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        },
+        {
+          "id": "L02-QA-04",
+          "action": "Sprawdź TEST RCD i drogi PE.",
+          "expected": "Zasilanie obu gałęzi znika po TEST, ciągłość PE sprawdzana bez napięcia.",
+          "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE."
+        }
+      ],
+      "typicalMistakes": [
+        "Wymyślenie uniwersalnych numerów 1–4 licznika.",
+        "Pominięcie N wskutek odczytania jednokreskowego jako jednej żyły.",
+        "Zliczanie kWh niezależnie od aktualnego prądu odbiorników."
+      ],
+      "openQuestions": [
+        "Model licznika nie jest wskazany w arkuszu. Pełna mapa zacisków wymaga wybranej instrukcji."
+      ],
+      "catalogGaps": [
+        "Licznik energii jednofazowy"
+      ],
+      "manufacturerSources": [],
+      "schematics": [
+        {
+          "id": "ELE02_L02_p2_ideowy",
+          "kind": "ideowy",
+          "png": "assets/schematy/ELE02_L02_p2_ideowy.png",
+          "svg": "assets/schematy/ELE02_L02_p2_ideowy.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            495,
+            570,
+            770
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-L02: ideowy; rysunek źródłowy."
+        },
+        {
+          "id": "ELE02_L02_p3_montazowy",
+          "kind": "montazowy",
+          "png": "assets/schematy/ELE02_L02_p3_montazowy.png",
+          "svg": "assets/schematy/ELE02_L02_p3_montazowy.svg",
+          "sourcePage": 3,
+          "sourceCropPt": [
+            30,
+            205,
+            570,
+            760
+          ],
+          "isIncompleteInSource": true,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-L02: montazowy; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
+        },
+        {
+          "id": "ELE02_L02_p2_rozmieszczenie",
+          "kind": "rozmieszczenie",
+          "png": "assets/schematy/ELE02_L02_p2_rozmieszczenie.png",
+          "svg": "assets/schematy/ELE02_L02_p2_rozmieszczenie.svg",
+          "sourcePage": 2,
+          "sourceCropPt": [
+            30,
+            25,
+            570,
+            465
+          ],
+          "isIncompleteInSource": false,
+          "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
+          "alt": "ELE.02-L02: rozmieszczenie; rysunek źródłowy."
+        }
+      ],
+      "materials": [
+        {
+          "id": "DY-2.5-czarny lub brązowy",
+          "name": "DY 2.5 mm² — czarny lub brązowy",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-2.5-niebieski",
+          "name": "DY 2.5 mm² — niebieski",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-2.5-żółto-zielony",
+          "name": "DY 2.5 mm² — żółto-zielony",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-czarny lub brązowy",
+          "name": "DY 1.5 mm² — czarny lub brązowy",
+          "quantity": 3,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-niebieski",
+          "name": "DY 1.5 mm² — niebieski",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "DY-1.5-żółto-zielony",
+          "name": "DY 1.5 mm² — żółto-zielony",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-czarny lub brązowy",
+          "name": "LgY 2.5 mm² — czarny lub brązowy",
+          "quantity": 2,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-niebieski",
+          "name": "LgY 2.5 mm² — niebieski",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "LgY-2.5-żółto-zielony",
+          "name": "LgY 2.5 mm² — żółto-zielony",
+          "quantity": 1,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "ferrule-2.5",
+          "name": "Tulejki 2,5/10",
+          "quantity": 30,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "trunk25x15",
+          "name": "Listwa 25×15",
+          "quantity": 4,
+          "unit": "m",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        },
+        {
+          "id": "screws",
+          "name": "Wkręty do grubości płyty",
+          "quantity": 30,
+          "unit": "szt.",
+          "sourceLocator": "Tabela materiałów / przygotowania, PDF 7",
+          "scope": "consumed",
+          "note": ""
+        }
+      ]
+    }
+  ],
+  "currentCatalog": {
+    "publishedProductCount": 45,
+    "commit": "9c4895a817b5f5869d17b3cf23a3e9695d49f6cf"
+  },
+  "validation": {
+    "sourceDiagrams": "Wszystkie główne schematy obejrzane; wycinki bez uzupełniania braków.",
+    "existingProjects": [
+      {
+        "task": "101",
+        "file": "examples/physical/ELE02_101_stanowisko.json",
+        "status": "validated-current-project-contract",
+        "devices": 24,
+        "conductors": 33,
+        "bridges": 0
+      },
+      {
+        "task": "108",
+        "file": "examples/physical/ELE02_108_stanowisko.json",
+        "status": "validated-current-project-contract",
+        "devices": 15,
+        "conductors": 37,
+        "bridges": 0
+      }
+    ],
+    "tests": {
+      "ele02-108.test.ts": 24,
+      "physical-installation.test.ts": 16,
+      "result": "40 passed"
+    },
+    "scope": "Testy istniejących przykładów 101/108 i walidacja kontraktu. Nie potwierdzają działania pozostałych 15 układów ani instalacji rzeczywistych."
+  }
+}

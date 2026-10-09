@@ -17,7 +17,6 @@ import {
 } from "@model/physical";
 import type { PhysicalEnclosure, PhysicalTrunk } from "@model/index";
 import { diagnosticWitness } from "@training/assessment";
-import type { ExerciseVariant } from "@training/index";
 import { create } from "zustand";
 import {
   mountingRails,
@@ -55,12 +54,7 @@ import {
   type RuntimeSnapshot,
   type RuntimeAction,
 } from "@simulation/index";
-import {
-  scenarioProject,
-  colors,
-  checkScenario,
-  type CheckResult,
-} from "@training/index";
+import { colors, checkScenario, type CheckResult } from "@training/index";
 import type {
   MeasurementRequest,
   MeasurementRecord,
@@ -94,6 +88,7 @@ interface AppState {
   mode: Mode;
   view: View;
   selection: string[];
+  knowledgeHighlight: TerminalRef[];
   wireStart: TerminalRef | null;
   waypoints: Point[];
   adding: string | null;
@@ -175,6 +170,7 @@ interface AppState {
     view: "physical" | "schematic",
     points: Point[],
   ) => void;
+  moveSchematicFragment: (id: string, point: Point) => void;
   moveDevices: (
     positions: Record<string, Point>,
     view: "physical" | "schematic",
@@ -241,12 +237,6 @@ interface AppState {
     skipPreviousSave?: boolean,
   ) => void;
   newProject: () => void;
-  loadScenario: (
-    id: string,
-    training?: boolean,
-    variant?: ExerciseVariant,
-    diagnosticCase?: number,
-  ) => void;
   setMotorLinks: (id: string, connection: "star" | "delta" | "none") => void;
   attachAuxiliary: (id: string, parentId?: string) => void;
   setMechanicalInterlock: (id: string, otherId?: string) => void;
@@ -262,7 +252,7 @@ interface AppState {
 let worker: Worker | undefined,
   saveTimer: ReturnType<typeof setTimeout> | undefined,
   saveGeneration = 0;
-const startProject = scenarioProject("lamp");
+const startProject = emptyProject();
 function request(action?: RuntimeAction, measurement?: MeasurementRequest) {
   const s = useApp.getState(),
     sequence = s.sequence + 1;
@@ -534,6 +524,7 @@ export const useApp = create<AppState>((set, get) => ({
   mode: "build",
   view: "physical",
   selection: [],
+  knowledgeHighlight: [],
   wireStart: null,
   waypoints: [],
   adding: null,
@@ -872,11 +863,12 @@ export const useApp = create<AppState>((set, get) => ({
   },
   select: (id, multi = false) => {
     if (!id) {
-      set({ selection: [] });
+      set({ selection: [], knowledgeHighlight: [] });
       return;
     }
     const current = get().selection;
     set({
+      knowledgeHighlight: [],
       selection: multi
         ? current.includes(id)
           ? current.filter((x) => x !== id)
@@ -1132,7 +1124,31 @@ export const useApp = create<AppState>((set, get) => ({
     }
     transaction(
       "Przesuń aparaty",
-      (p) => Object.assign(p[view].devices, nextPositions),
+      (p) => {
+        if (view === "schematic")
+          for (const [id, pos] of Object.entries(nextPositions))
+            for (const f of Object.values(
+              p.schematic.symbolFragments?.placements ?? {},
+            ))
+              if (f.deviceId === id) {
+                f.position.x += pos.x - p.schematic.devices[id].x;
+                f.position.y += pos.y - p.schematic.devices[id].y;
+              }
+        Object.assign(p[view].devices, nextPositions);
+      },
+      false,
+    );
+  },
+  moveSchematicFragment: (id, point) => {
+    if (!get().project.schematic.symbolFragments?.placements[id]) return;
+    transaction(
+      "Przesuń symbol schematu",
+      (p) => {
+        p.schematic.symbolFragments!.placements[id].position = {
+          x: Math.round(point.x / 10) * 10,
+          y: Math.round(point.y / 10) * 10,
+        };
+      },
       false,
     );
   },
@@ -1350,13 +1366,23 @@ export const useApp = create<AppState>((set, get) => ({
         for (const t of p.physical.trunking ?? [])
           t.conductorIds = t.conductorIds.filter((id) => !removed.includes(id));
         for (const l of [p.physical, p.schematic]) {
+          if (l.symbolFragments)
+            for (const [key, f] of Object.entries(l.symbolFragments.placements))
+              if (ids.includes(f.deviceId))
+                delete l.symbolFragments.placements[key];
           for (const id of ids) delete l.devices[id];
           for (const id of removed) delete l.routes[id];
         }
       },
       electrical,
     );
-    if (accepted) set({ selection: [], wireStart: null, waypoints: [] });
+    if (accepted)
+      set({
+        selection: [],
+        knowledgeHighlight: [],
+        wireStart: null,
+        waypoints: [],
+      });
   },
   duplicateSelection: () => {
     const ids = get().selection,
@@ -1660,6 +1686,7 @@ export const useApp = create<AppState>((set, get) => ({
             : "training"
         : "build",
       selection: [],
+      knowledgeHighlight: [],
       wireStart: null,
       waypoints: [],
       adding: null,
@@ -1686,12 +1713,6 @@ export const useApp = create<AppState>((set, get) => ({
     scheduleSave();
   },
   newProject: () => get().load(emptyProject()),
-  loadScenario: (
-    id,
-    training = false,
-    variant = "reference",
-    diagnosticCase = 0,
-  ) => get().load(scenarioProject(id, training, variant, diagnosticCase)),
   setMotorLinks: (id, connection) =>
     transaction("Zmień mostki zaciskowe silnika", (p) => {
       const d = p.circuit.devices.find((d) => d.id === id);
@@ -1812,6 +1833,14 @@ export const useApp = create<AppState>((set, get) => ({
   },
   runChecks: () => {
     const s = get();
+    if (s.project.userMetadata.examReference) {
+      set({
+        checks: [],
+        notice:
+          "Ten wzorzec nie ma automatycznej oceny montażu. Wykonaj próby działania i pomiary opisane na karcie arkusza.",
+      });
+      return;
+    }
     const checks = checkScenario(s.project, s.runtime, s.measurements);
     if (s.project.training)
       transaction(

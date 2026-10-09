@@ -1,6 +1,17 @@
+import { ReferenceHelp } from "./ReferenceHelp";
+import { openReferenceHelp, useReferenceHelp } from "./reference-navigation";
+import { boundReference } from "../../../packages/knowledge/reference-examples";
+import { createPortal } from "react-dom";
+import { Knowledge } from "./Knowledge";
+import {
+  openKnowledge,
+  useKnowledgeRoute,
+  isKnowledgeHash,
+} from "./knowledge-navigation";
+import { resolveKnowledge } from "../../../packages/knowledge/bindings";
 import { motorConnection } from "@simulation/motor";
 import { mechanismOwner } from "@simulation/mechanisms";
-import type { ExerciseVariant } from "@training/index";
+import { ExamExamples } from "./ExamExamples";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import {
   Activity,
@@ -267,6 +278,15 @@ const CatalogPanel = memo(function CatalogPanel({
                   <CircleHelp size={16} />
                 )}
               </button>
+              {resolveKnowledge(p.id) && (
+                <button
+                  className="product-knowledge"
+                  aria-label={`Poznaj ${p.manufacturerPartNumber || p.displayNamePl}`}
+                  onClick={() => void openKnowledge(p.id)}
+                >
+                  <BookOpen size={14} />
+                </button>
+              )}
               <button
                 className="product-info"
                 onClick={() => onProduct(p)}
@@ -700,6 +720,17 @@ function Inspector() {
               <p>{product.displayNamePl}</p>
             </div>
           </div>
+          {(resolveKnowledge(product.id) || boundReference(p)) && (
+            <div className="device-knowledge-help">
+              <p className="small-help">
+                Poznaj działanie, symbole i mapę zacisków. Rola aparatu zależy
+                od połączeń Twojego projektu.
+              </p>
+              <button onClick={() => void openKnowledge(product.id, d.id)}>
+                Poznaj aparat
+              </button>
+            </div>
+          )}
           <div className="device-state">
             <span
               className={
@@ -859,29 +890,62 @@ function Inspector() {
               </p>
               <div className="terminal-list">
                 {product.topology.terminals.map((t) => (
-                  <button
-                    key={t.id}
-                    onClick={() =>
-                      useApp
-                        .getState()
-                        .terminalClick({ deviceId: d.id, terminalId: t.id })
-                    }
-                  >
-                    <span className="terminal-number">{t.label}</span>
-                    <span>
-                      {t.role}
-                      <small>
-                        {t.maxConductors
-                          ? t.maxConductors === 1
-                            ? "1 miejsce na przewód"
-                            : `${t.maxConductors} miejsca (profil)`
-                          : "Punkt pomiarowy"}
-                      </small>
-                    </span>
-                    <Plus size={14} />
-                  </button>
+                  <div className="terminal-help-row" key={t.id}>
+                    <button
+                      onClick={() =>
+                        useApp
+                          .getState()
+                          .terminalClick({ deviceId: d.id, terminalId: t.id })
+                      }
+                    >
+                      <span className="terminal-number">{t.label}</span>
+                      <span>
+                        {t.role}
+                        <small>
+                          {t.maxConductors
+                            ? t.maxConductors === 1
+                              ? "1 miejsce na przewód"
+                              : `${t.maxConductors} miejsca (profil)`
+                            : "Punkt pomiarowy"}
+                        </small>
+                      </span>
+                      <Plus size={14} />
+                    </button>
+                    {(resolveKnowledge(product.id, t.id) ||
+                      boundReference(p)) && (
+                      <button
+                        className="terminal-explain"
+                        aria-label={`Wyjaśnij zacisk ${d.designation}:${t.id}`}
+                        onClick={() =>
+                          void openKnowledge(product.id, d.id, t.id)
+                        }
+                      >
+                        <CircleHelp size={15} />
+                      </button>
+                    )}
+                  </div>
                 ))}
               </div>
+              {(resolveKnowledge(product.id) || boundReference(p)) && (
+                <details className="symbol-help">
+                  <summary>Wyjaśnij symbol</summary>
+                  {product.topology.connections.map((c) => (
+                    <button
+                      key={c.id}
+                      onClick={() =>
+                        void openKnowledge(product.id, d.id, undefined, c.id)
+                      }
+                    >
+                      {c.kind === "coil"
+                        ? "Cewka"
+                        : c.kind === "contact"
+                          ? "Styk"
+                          : "Fragment"}{" "}
+                      {c.from}–{c.to}
+                    </button>
+                  ))}
+                </details>
+              )}
             </>
           )}
           {tab === "data" && (
@@ -1101,6 +1165,11 @@ function Inspector() {
             {p.circuit.devices.find((d) => d.id === w.to.deviceId)?.designation}
             /{w.to.terminalId}
           </p>
+          {boundReference(p) && (
+            <button onClick={() => openReferenceHelp({ wireId: w.id })}>
+              Wyjaśnij żyłę {w.id}
+            </button>
+          )}
           <div className="form-field">
             <label>Rola zadeklarowana</label>
             <select
@@ -1531,6 +1600,7 @@ function readLayoutPreference(key: string, fallback: boolean): boolean {
   }
 }
 function App() {
+  const knowledgeRoute = useKnowledgeRoute();
   const project = useApp((s) => s.project),
     rt = useApp((s) => s.runtime),
     mode = useApp((s) => s.mode),
@@ -1548,10 +1618,6 @@ function App() {
     wireLength = useApp((s) => s.length),
     wireStart = useApp((s) => s.wireStart);
   const [modal, setModal] = useState<Modal>(null),
-    [exerciseVariant, setExerciseVariant] = useState<ExerciseVariant | null>(
-      null,
-    ),
-    [diagnosticCase, setDiagnosticCase] = useState(0),
     [info, setInfo] = useState<Product | null>(null),
     [hideCatalog, setHideCatalog] = useState(() =>
       readLayoutPreference("hideCatalog", window.innerWidth < 1280),
@@ -1605,13 +1671,24 @@ function App() {
   useEffect(() => {
     const id = setInterval(() => {
       const s = useApp.getState();
-      if (!s.paused && !s.busy && s.runtime.status === "valid")
+      if (
+        !isKnowledgeHash(location.hash) &&
+        !useReferenceHelp.getState().context &&
+        !s.paused &&
+        !s.busy &&
+        s.runtime.status === "valid"
+      )
         s.step(200 * s.speed);
     }, 200);
     return () => clearInterval(id);
   }, []);
   useEffect(() => {
     const listener = (e: KeyboardEvent) => {
+      if (
+        isKnowledgeHash(location.hash) ||
+        (e.target as HTMLElement)?.closest(".reference-help")
+      )
+        return;
       if ((e.target as HTMLElement)?.closest("input,textarea,select,dialog"))
         return;
       const s = useApp.getState();
@@ -1673,7 +1750,12 @@ function App() {
   const scenario = scenarios.find((s) => s.id === project.scenarioId),
     passed = project.training?.completedChecks.length ?? 0;
   return (
-    <div className={`app-shell ${focusBoard ? "board-focused" : ""}`}>
+    <div
+      inert={!!knowledgeRoute}
+      aria-hidden={knowledgeRoute ? true : undefined}
+      style={knowledgeRoute ? { visibility: "hidden" } : undefined}
+      className={`app-shell ${focusBoard ? "board-focused" : ""}`}
+    >
       <header className="app-header">
         <a
           className="brand"
@@ -1717,6 +1799,9 @@ function App() {
                 : "Zapisywanie…"}
         </span>
         <nav className="header-nav">
+          <button data-knowledge-nav onClick={() => void openKnowledge()}>
+            <BookOpen size={16} /> Baza wiedzy
+          </button>
           <button onClick={() => setModal("examples")}>
             <LayoutGrid size={16} />
             Przykłady
@@ -1994,7 +2079,9 @@ function App() {
                       key={role}
                       className={wireRole === role ? "selected" : ""}
                       style={
-                        { "--wire-color": colors[role] } as React.CSSProperties
+                        {
+                          "--wire-color": colors[role],
+                        } as React.CSSProperties
                       }
                       onClick={() => useApp.getState().setWireOptions({ role })}
                     >
@@ -2178,83 +2265,10 @@ function App() {
           }
           onClose={() => setModal(null)}
         >
-          <p className="modal-intro">
-            {modal === "examples"
-              ? "Sprawdź połączenia, włącz zasilanie i eksperymentuj z działającym układem."
-              : "Ćwicz montaż, uruchamianie i diagnozowanie. Ocena obejmuje funkcję obwodu, tor ochronny, oznaczenia i dowód pomiarowy."}
-          </p>
-          <div className="form-field">
-            <label htmlFor="practice-variant">
-              Nowe zestawy ELE.02 / ELE.05 — tryb
-            </label>
-            <select
-              id="practice-variant"
-              value={
-                exerciseVariant ??
-                (modal === "training" ? "assembly" : "reference")
-              }
-              onChange={(e) =>
-                setExerciseVariant(e.target.value as ExerciseVariant)
-              }
-            >
-              <option value="reference">Wzorzec — poprawnie zmontowany</option>
-              <option value="assembly">Montaż — samodzielne wykonanie</option>
-              <option value="diagnosis">Diagnoza — ukryta usterka</option>
-            </select>
-            {exerciseVariant === "diagnosis" && (
-              <select
-                aria-label="Wariant diagnostyczny"
-                value={diagnosticCase}
-                onChange={(e) => setDiagnosticCase(Number(e.target.value))}
-              >
-                {[0, 1, 2].map((i) => (
-                  <option value={i} key={i}>
-                    Wariant {i + 1}
-                  </option>
-                ))}
-              </select>
-            )}
-          </div>
-          <div className="scenario-grid">
-            {scenarios.map((s) => (
-              <button
-                className="scenario-card"
-                key={s.id}
-                data-scenario={s.id}
-                onClick={() => {
-                  const variant = s.practice
-                    ? (exerciseVariant ??
-                      (modal === "training" ? "assembly" : "reference"))
-                    : "reference";
-                  useApp
-                    .getState()
-                    .loadScenario(
-                      s.id,
-                      modal === "training" || variant !== "reference",
-                      variant,
-                      diagnosticCase,
-                    );
-                  setModal(null);
-                }}
-              >
-                <span className="scenario-top">
-                  <span>{String(s.number).padStart(2, "0")}</span>
-                  <small>{s.category}</small>
-                  <ChevronRight size={16} />
-                </span>
-                <strong>{s.title}</strong>
-                <p>{s.description}</p>
-                <span className="scenario-foot">
-                  {s.difficulty}
-                  <i /> {s.duration}
-                </span>
-              </button>
-            ))}
-          </div>
-          <p className="small-help">
-            Wybrane umiejętności ELE.02/ELE.05. Warianty dydaktyczne są
-            oznaczone; nie stanowią pełnego egzaminu.
-          </p>
+          <ExamExamples
+            training={modal === "training"}
+            onClose={() => setModal(null)}
+          />
         </ModalDialog>
       )}
       {modal === "export" && (
@@ -2601,6 +2615,9 @@ function App() {
           </tbody>
         </table>
       </div>
+      {!knowledgeRoute && <ReferenceHelp />}
+      {knowledgeRoute &&
+        createPortal(<Knowledge route={knowledgeRoute} />, document.body)}
     </div>
   );
 }

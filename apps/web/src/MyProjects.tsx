@@ -20,7 +20,17 @@ import {
   projectLimits,
   type ProjectDocument,
 } from "@model/index";
-import { scenarios, scenarioProject } from "@training/index";
+import {
+  referenceExamples,
+  referenceCopy,
+} from "../../../packages/knowledge/reference-examples";
+import {
+  examAvailability,
+  referenceIsReady,
+} from "../../../packages/knowledge/exams";
+const readyExamples = referenceExamples.filter((r) =>
+  referenceIsReady(examAvailability.find((a) => a.taskId === r.taskId)),
+);
 import {
   db,
   listProjects,
@@ -267,7 +277,7 @@ export function MyProjects({
     [error, setError] = useState("");
   const [preview, setPreview] = useState<SavedProject | null>(null),
     [form, setForm] = useState<Form | null>(null),
-    [exampleId, setExampleId] = useState(scenarios[0].id);
+    [exampleId, setExampleId] = useState(readyExamples[0]?.id ?? "");
   const [importing, setImporting] = useState(initialImport),
     [json, setJson] = useState(""),
     [plan, setPlan] = useState<ImportPlan | null>(null);
@@ -479,8 +489,12 @@ export function MyProjects({
             Importuj JSON
           </button>
           <button
+            disabled={!readyExamples.length}
             onClick={() => {
-              setForm({ kind: "example", name: "Kopia przykładu" });
+              setForm({
+                kind: "example",
+                name: "Kopia układu egzaminacyjnego",
+              });
               setPreview(null);
             }}
           >
@@ -516,11 +530,18 @@ export function MyProjects({
                     } else if (form.kind === "rename-folder")
                       await renameFolder(form.id!, form.name);
                     else if (form.kind === "new" || form.kind === "example") {
+                      if (
+                        form.kind === "example" &&
+                        !readyExamples.some((r) => r.id === exampleId)
+                      )
+                        throw new Error(
+                          "Wybierz sprawdzony wzorzec z obecnych arkuszy.",
+                        );
                       const row = await createProject(
                         form.name,
                         target,
                         form.kind === "example"
-                          ? scenarioProject(exampleId)
+                          ? referenceCopy(exampleId)
                           : undefined,
                       );
                       open(row);
@@ -567,9 +588,9 @@ export function MyProjects({
                       value={exampleId}
                       onChange={(e) => setExampleId(e.target.value)}
                     >
-                      {scenarios.map((s) => (
+                      {readyExamples.map((s) => (
                         <option value={s.id} key={s.id}>
-                          {s.title}
+                          {s.taskId} · {s.title}
                         </option>
                       ))}
                     </select>

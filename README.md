@@ -15,12 +15,20 @@ Otwórz http://127.0.0.1:5173. Do wersji produkcyjnej: `pnpm build`, następnie 
 
 ## Pierwsza próba
 
-1. Otwórz przykład „Lampa i łącznik”, włącz zasilanie i przełącz S1.
-2. Wybierz tryb Pomiary, kliknij zaciski H1:L i H1:N, wykonaj pomiar.
-3. W Przykładach sprawdź „Wentylator i łącznik”, START/STOP, DC, automat schodowy, czasówkę i trzy fazy.
-4. W Ćwiczeniach otwórz diagnozę. Zmierz ciągłość PE bez zasilania, zapisz hipotezę, zaznacz podejrzany przewód i napraw go. Powtórz pomiar i ocenę.
+1. Wybierz Baza wiedzy → Zadania ELE.02 i odszukaj arkusz 101.
+2. Otwórz „Gotowy układ i lekcja torów”. Przełącz Q1/Q2 w izolowanej lekcji i śledź żyłę w tabeli.
+3. Otwórz wzorzec jako nową kopię, wybierz Widok połączeń, włącz zasilanie i przełącz Q1/Q2.
+4. W trybie Pomiary sprawdź napięcie GW:test-L / GW:test-N; ciągłość PE sprawdzaj przy wyłączonym zasilaniu.
+
+Przykłady, Ćwiczenia i kopiowanie w bibliotece obejmują wyłącznie obecne 17 zadań. Obecnie gotowy jest wzorzec 101; pozostałe karty udostępniają materiały źródłowe i status przygotowania. Nowa instalacja zaczyna od pustego projektu, a wcześniejsze własne zapisy nadal można otwierać i importować.
 
 W Budowie kliknij aparat z katalogu i miejsce na tablicy. Dwa kliknięcia zacisków tworzą przewód; kliknięcie tła między końcami dodaje punkty trasy. Esc anuluje, Backspace usuwa ostatni punkt. Shift umożliwia wielokrotne zaznaczenie; dostępne są kopiowanie, wyrównanie, Delete i historia Ctrl/Cmd+Z. Ciasne zaciski można wybrać z listy w inspektorze albo po powiększeniu widoku. Przyciski START/STOP przytrzymuje się myszą lub spacją.
+
+## Baza wiedzy
+
+W nagłówku wybierz **Baza wiedzy**: 17 kart arkuszy, 25 artykułów, 60 kategorii BOM i 40 oryginalnych rysunków. Wyszukaj kod, aparat lub synonim. Wzorzec 101 ma schemat funkcjonalny, tablicę z rzeczywistymi trasami i tabelę wszystkich 33 żył, wyprowadzone z jednego CircuitModel. Stały adres: `/ele/#/wiedza/uklady/ele02-101`.
+
+„Poznaj aparat” i osobne wyjaśnienie zacisku otwierają pomoc z rolą w tym układzie. Zwykły gest zacisku nadal rozpoczyna łączenie. Powrót zachowuje kadr, zaznaczenie i rozpoczętą pracę; czytanie zawiesza automatyczny zegar. Pełne artykuły katalogowe zachowują istniejące adresy i lokalny progres. Dawne demonstracje oraz układy bazowe wycofano. [Zakres i dopisywanie materiałów](docs/KNOWLEDGE.md), [odbiór 01a](docs/ele-exams/QA_01.md).
 
 ## Moje projekty
 
@@ -45,7 +53,7 @@ Porównanie powierzchni, zrzuty i wyniki weryfikacji są w [opisie UX/UI](docs/U
 
 ## Rzeczywisty stan
 
-To działająca wersja testowa, **nie pełny odbiór v1 ani pełne pokrycie kwalifikacji**. Katalog ma 32 rzeczywiste SKU (31 z oryginalnego seed i nowy XB5AA35): 4 opublikowane — Hager MBN116E, Mean Well HDR-60-24, Schneider LC1D09P7 i XB5AA35 — oraz 28 oczekujących. Osobne 41 profili dydaktycznych ma jawne ograniczenia. Do 13 wcześniejszych scenariuszy dodano trzy zestawy z wzorcem, samodzielnym montażem i trzema ukrytymi wariantami diagnozy. Szczegółowe źródła i zakres: [pokrycie arkuszy](docs/exam-coverage.md) oraz [weryfikacja aparatów](docs/device-verification-stage-one.md).
+To działająca wersja testowa, **nie pełny odbiór v1 ani pełne pokrycie kwalifikacji**. Katalog ma 32 rzeczywiste SKU (31 z oryginalnego seed i nowy XB5AA35): 4 opublikowane — Hager MBN116E, Mean Well HDR-60-24, Schneider LC1D09P7 i XB5AA35 — oraz 28 oczekujących. Osobne 41 profili dydaktycznych ma jawne ograniczenia. Publiczne zestawy dotyczą 17 obecnych arkuszy; integracja 01a/01b daje 2/17 gotowych wzorców (101 i 108). Warianty montażu i diagnozy dla tych arkuszy pozostają w przygotowaniu. Aktualny zakres i dowody: [checkpoint](docs/ele-exams/implementation-state.json) i [QA_01](docs/ele-exams/QA_01.md). Historyczne zestawy pozostają wyłącznie w obsłudze starszych zapisów i testach regresji.
 
 Silnik jest rezystancyjny, quasi-statyczny. Ochrona, silnik, elektronika i pomiary specjalne mają jawne uproszczenia. Wyniki nie są protokołem odbioru realnej instalacji. Brak implementacji LLM jest zgodny z zakresem; dostępny jest tylko kontrakt przyszłego tutora.
 

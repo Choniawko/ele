@@ -8,6 +8,8 @@ export default tseslint.config(
       "test-results/**",
       "playwright-report/**",
       "Symulator_Elektryczny_Pakiet_Codex/**",
+      "ELE02_plan_wdrozenia_Codex_2026-10-08/**",
+      "release/**",
     ],
   },
   js.configs.recommended,

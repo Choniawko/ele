@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "taskId": "ELE.02-108",
+  "referenceRevision": "1",
+  "fidelity": "educational",
+  "implementationCommit": "8d8fa3bf37eba979e21cee7a20c94230b8e2308f",
+  "notice": "Executed solver/model checks, not measurements on a physical installation. Original 82 specifications remain unchanged.",
+  "checks": [
+    {
+      "id": "108-QA-01",
+      "action": "Naciśnij i zwolnij START S1 lub S3.",
+      "expected": "K1 pozostaje załączony dzięki własnemu NO; silnik pracuje w prawym kierunku.",
+      "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE.",
+      "status": "passed",
+      "implementedTestPath": "tests/ele02-108.test.ts",
+      "executionEvidence": {
+        "command": "pnpm test",
+        "result": "303 passed, 22 files, 28.17s, 2026-10-09 00:32 CEST",
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 44 passed, 1 missing local fixture skipped, unchanged /ele/ build 8d8fa3b; all four 108 integration scenarios passed, including public OFF copies. See QA_01b.md."
+      }
+    },
+    {
+      "id": "108-QA-02",
+      "action": "Naciśnij dowolny STOP.",
+      "expected": "K1/K2 tracą zasilanie cewek.",
+      "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE.",
+      "status": "passed",
+      "implementedTestPath": "tests/ele02-108.test.ts",
+      "executionEvidence": {
+        "command": "pnpm test",
+        "result": "303 passed, 22 files, 28.17s, 2026-10-09 00:32 CEST",
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 44 passed, 1 missing local fixture skipped, unchanged /ele/ build 8d8fa3b; all four 108 integration scenarios passed, including public OFF copies. See QA_01b.md."
+      }
+    },
+    {
+      "id": "108-QA-03",
+      "action": "Naciśnij S2 lub S4 przy spoczynku, a następnie zwolnij.",
+      "expected": "K2 pracuje tylko podczas trzymania przycisku.",
+      "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE.",
+      "status": "passed",
+      "implementedTestPath": "tests/ele02-108.test.ts",
+      "executionEvidence": {
+        "command": "pnpm test",
+        "result": "303 passed, 22 files, 28.17s, 2026-10-09 00:32 CEST",
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 44 passed, 1 missing local fixture skipped, unchanged /ele/ build 8d8fa3b; all four 108 integration scenarios passed, including public OFF copies. See QA_01b.md."
+      }
+    },
+    {
+      "id": "108-QA-04",
+      "action": "Trzymaj oba lewe przyciski i zwolnij tylko jeden.",
+      "expected": "K2 pozostaje zasilany przez drugi; wyłącza się po zwolnieniu obu.",
+      "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE.",
+      "status": "passed",
+      "implementedTestPath": "tests/ele02-108.test.ts",
+      "executionEvidence": {
+        "command": "pnpm test",
+        "result": "303 passed, 22 files, 28.17s, 2026-10-09 00:32 CEST",
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 44 passed, 1 missing local fixture skipped, unchanged /ele/ build 8d8fa3b; all four 108 integration scenarios passed, including public OFF copies. See QA_01b.md."
+      }
+    },
+    {
+      "id": "108-QA-05",
+      "action": "Podczas pracy K1 zażądaj K2 i odwrotnie.",
+      "expected": "NC przeciwnego stycznika blokuje drugą cewkę.",
+      "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE.",
+      "status": "passed",
+      "implementedTestPath": "tests/ele02-108.test.ts",
+      "executionEvidence": {
+        "command": "pnpm test",
+        "result": "303 passed, 22 files, 28.17s, 2026-10-09 00:32 CEST",
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 44 passed, 1 missing local fixture skipped, unchanged /ele/ build 8d8fa3b; all four 108 integration scenarios passed, including public OFF copies. See QA_01b.md."
+      }
+    },
+    {
+      "id": "108-QA-06",
+      "action": "Wyłącz lub wyzwól Q2.",
+      "expected": "Wszystkie tory mocy i pomocniczy NO otwierają się; silnik staje.",
+      "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE.",
+      "status": "passed",
+      "implementedTestPath": "tests/ele02-108.test.ts",
+      "executionEvidence": {
+        "command": "pnpm test",
+        "result": "303 passed, 22 files, 28.17s, 2026-10-09 00:32 CEST",
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 44 passed, 1 missing local fixture skipped, unchanged /ele/ build 8d8fa3b; all four 108 integration scenarios passed, including public OFF copies. See QA_01b.md."
+      }
+    },
+    {
+      "id": "108-QA-07",
+      "action": "Przy zwolnionych przyciskach odłącz i przywróć zasilanie.",
+      "expected": "Podtrzymanie nie odtwarza się samo; przy trzymanym żądaniu możliwy restart zgodnie z topologią.",
+      "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE.",
+      "status": "passed",
+      "implementedTestPath": "tests/ele02-108.test.ts",
+      "executionEvidence": {
+        "command": "pnpm test",
+        "result": "303 passed, 22 files, 28.17s, 2026-10-09 00:32 CEST",
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 44 passed, 1 missing local fixture skipped, unchanged /ele/ build 8d8fa3b; all four 108 integration scenarios passed, including public OFF copies. See QA_01b.md."
+      }
+    }
+  ],
+  "unsupported": [
+    "Physical motor startup, torque, nameplate parameters and exact mounting dimensions.",
+    "DC resistance of a healthy 230 V AC coil; VA ratings are not a resistance measurement.",
+    "Real protection curves and guaranteed priority of simultaneous direction requests."
+  ]
+}

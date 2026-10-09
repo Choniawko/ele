@@ -1,0 +1,25 @@
+{
+  "version": {
+    "schemaVersion": 1,
+    "version": "0.2.0",
+    "tag": null,
+    "commit": "8d8fa3bf37eba979e21cee7a20c94230b8e2308f",
+    "base": "/ele/",
+    "builtAt": "2026-10-08T22:15:06.886Z"
+  },
+  "stats": {
+    "total": 45,
+    "expected": 44,
+    "unexpected": 0,
+    "flaky": 0,
+    "skipped": 1,
+    "ok": true
+  },
+  "durationMs": 432313.105,
+  "command": "pnpm test:e2e:production",
+  "archive": "release/ele-preview-8d8fa3bf37eb.tar.gz",
+  "archiveSha256": "d3e9a2482de9ae12b8255802e77ab957717a469693f762557d6bc13d4ea3e77b",
+  "sameManifestBeforeAndAfter": true,
+  "inspectedScreenshotCount": 11,
+  "published": false
+}

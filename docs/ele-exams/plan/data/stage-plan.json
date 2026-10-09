@@ -1,0 +1,554 @@
+{
+  "format": "ele-codex-implementation-plan",
+  "version": 1,
+  "baselineCommit": "9c4895a817b5f5869d17b3cf23a3e9695d49f6cf",
+  "targetReadyTasks": 17,
+  "qualification": "ELE.02",
+  "stages": [
+    {
+      "id": "00",
+      "slug": "baza_wiedzy",
+      "title": "Baza wiedzy: wszystkie materiały",
+      "deps": [],
+      "tasks": [],
+      "units": [
+        "00a"
+      ],
+      "result": "17 kart zadań, 40 rysunków i 25 artykułów w aplikacji; jawne statusy układów.",
+      "focus": [
+        "Dodaj packages/knowledge z walidowanymi treściami, indeksem wyszukiwania i niezależnym rejestrem dostępności projektów.",
+        "Dodaj osobny widok Wiedza, routowanie hash oraz listy Zadania / Aparaty / Czytanie schematów / Zestaw stanowiska. Adaptuj zastany interfejs, nie przebudowuj całej pracowni.",
+        "Przenieś treści do własnych komponentów React. Sam iframe z index.html nie realizuje integracji, powrotu do projektu ani pomocy przy zacisku.",
+        "Obrazy ładuj na żądanie spod BASE_URL; do bundle nie wklejaj 8 MB podglądu HTML ani wszystkich obrazów base64.",
+        "Widok ELE.05 obsłuż jako rozszerzalny filtr z uczciwym komunikatem o nieprzekazanych materiałach. 102 i 111 nie należą do bieżącego zakresu."
+      ],
+      "qa": [
+        "Bezpośrednie wejście i odświeżenie #/wiedza/zadania/ele02-108 w buildzie /ele/.",
+        "Wszystkie 17 kart, 40 obrazów i 60 kategorii BOM mają działające odnośniki.",
+        "Wyszukiwanie RCD, różnicówka, BIS-402, podtrzymanie, krańcówka oraz L01; polskie znaki i ich zapis bez znaków.",
+        "Natywne powiększenie rysunku, klawiatura, Esc i powrót fokusu; realny Chrome, nie tylko jsdom."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {},
+      "prompt": "etapy/00_baza_wiedzy.md"
+    },
+    {
+      "id": "01",
+      "slug": "wzorce_101_108",
+      "title": "Gotowe wzorce 101/108 i pomoc w kontekście",
+      "deps": [
+        "00"
+      ],
+      "tasks": [
+        "101",
+        "108"
+      ],
+      "units": [
+        "01a",
+        "01b"
+      ],
+      "result": "Dwa układy dostępne z galerii i karty zadania; aparat → teoria → konkretny tor → powrót.",
+      "focus": [
+        "01a: zintegruj istniejący examples/physical/ELE02_101_stanowisko.json; 01b: istniejący ELE02_108_stanowisko.json. Zachowaj ID aparatów i przewodów.",
+        "Wprowadź rejestr ReferenceExample i sidecar lekcji. Powiąż taskId z projektem, rewizją, scenariuszem oraz statusem evidence. Nie kieruj nieznanego ID do pierwszego scenariusza.",
+        "Dodaj Poznaj aparat w inspektorze/katalogu oraz Wyjaśnij zacisk jako osobny przycisk. Zwykły gest zacisku nadal rozpoczyna łączenie.",
+        "Zbuduj tabelę połączeń z circuit.conductors i circuit.bridges, wybór wiersza podświetla odpowiednie końce i trasę w obu widokach.",
+        "Dodaj trwały w obrębie sesji stan kamery pracowni: obecny Board.tsx ma stan kamery wewnątrz komponentu. Samo zachowanie Zustand nie wystarczy, jeśli trasa odmontuje tablicę.",
+        "W 01b rozwiń schemat 108: oddzielne symbole cewki, torów mocy i pomocniczych z tym samym oznaczeniem oraz referencjami. To fragmenty jednego aparatu/mechanizmu, nie dodatkowe urządzenia solvera. Projektowanie projekcji opisano w wymaganiach wspólnych.",
+        "101 i 108 są działającymi modelami dydaktycznymi. Nie przemianuj ich na dokładne odwzorowanie SKU lub geometrii stanowiska. Szczególnie 108: tabliczka, 4,35 A i długości są założeniami."
+      ],
+      "qa": [
+        "Otwórz teorię podczas rozpoczętej pracy; powrót zachowuje projectId, revision, selekcję, zoom, pan i stan sesji zgodnie z polityką pauzy.",
+        "Otwórz wzorzec jako nową kopię; dokument wzorca i poprzedni zapis pozostają odtwarzalne; energia OFF.",
+        "Uruchom istniejące ele02-108 i physical-installation oraz nowe testy integracji pomocy, kamery i galerii.",
+        "W 108 sprawdź prawe podtrzymanie, lewy chwilowy, dwa niezależne START/STOP i assembly Q2.AUX."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {},
+      "prompt": "etapy/01_wzorce_101_108.md"
+    },
+    {
+      "id": "02",
+      "slug": "schodowe_105",
+      "title": "Zadanie 105: pierwszy nowy kompletny układ",
+      "deps": [
+        "01"
+      ],
+      "tasks": [
+        "105"
+      ],
+      "units": [
+        "02a"
+      ],
+      "result": "Gotowy układ z trzema miejscami sterowania, czytelnymi puszkami i lekcją korespondencji.",
+      "focus": [
+        "Użyj dwóch schodowych i jednego krzyżowego oraz dwóch równoległych opraw. Aparaty funkcjonalne już istnieją; uzupełnij właściwą mechanikę i złączki, jeśli bieżące profile nie wystarczają.",
+        "Umieść każdy elektrycznie niezależny węzeł w osobnej złączce. Puszka sama nie łączy przewodów, przecięcie tras nie tworzy węzła.",
+        "Zachowaj B6 z zadania i odrębny opis ochrony stanowiska. Nie dopisuj RCD do źródłowego rysunku jako rzekomo obecnego elementu.",
+        "Dodaj lekcję COM, dwóch żył korespondencyjnych i dwóch pozycji krzyżowego; powiąż symbole z właściwymi zaciskami."
+      ],
+      "qa": [
+        "Tablica prawdy wszystkich 8 kombinacji i każda zmiana jednego łącznika.",
+        "Obie oprawy zawsze zgodne, B6 OFF wyłącza obie, drogi PE ciągłe.",
+        "Ruch puszki, otwieranie pokrywy, edycja jednej korespondencji i undo aktualizują widoki bez zmiany ukrytej kopii obwodu."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {},
+      "prompt": "etapy/02_schodowe_105.md"
+    },
+    {
+      "id": "03",
+      "slug": "rozdzielnice_103_110",
+      "title": "Ochrona i trzy fazy: 103/110",
+      "deps": [
+        "01"
+      ],
+      "tasks": [
+        "103",
+        "110"
+      ],
+      "units": [
+        "03a",
+        "03b",
+        "03c"
+      ],
+      "result": "Dwa nowe układy z RCD 4P, rozdziałem N i prawdziwymi pięcioma torami CEE.",
+      "focus": [
+        "03a: wspólne profile RCD 4P, B16 3P, CEE 5P, listew o wymaganej pojemności, oprawki bez PE, czerwonej/żółtej lampki i przycisku natynkowego NO; osobne ID i dowody. 03b: układ 103. 03c: układ 110.",
+        "RCD 4P musi mieć wspólny mechanizm i detekcję sumy prądów wszystkich czynnych torów. Nie składaj go z niezależnych RCD 2P.",
+        "103: wspólny N może występować przed RCD, dwa osobne N występują za RCD. Jedna oprawka bez PE wymaga właściwego profilu L/N, nie odpięcia PE z oprawy klasy I.",
+        "110: CEE 3P+N+PE, B16 3P o charakterystyce B, osobno B10 i B6. edu-mcb3 C16 nie spełnia tego opisu.",
+        "Wymiarów, charakterystyki i typu A/AC nie wywodź z nazwy artykułu. Model sinusoidalny RCD oznacz jako taki; źródło 103 nie określa typu."
+      ],
+      "qa": [
+        "Kontrolowane próby każdego RCD i rozłączenia poszczególnych gałęzi.",
+        "Błędny N między grupami wykrywa próba zachowania w odpowiednim modelu; samo source-schema jest niewystarczające.",
+        "Napięcia CEE: tolerancje do modelu fazowego, około 398,4 V przy 230 V fazowym; nie wymuszaj dokładnego 400.",
+        "103 ma źródłowe B20, ale karta nie podaje go jako uniwersalnego doboru gniazda."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {},
+      "prompt": "etapy/03_rozdzielnice_103_110.md"
+    },
+    {
+      "id": "04",
+      "slug": "liczniki_L02_115",
+      "title": "Energia i pomiar: L02/115",
+      "deps": [
+        "01",
+        "03"
+      ],
+      "tasks": [
+        "L02",
+        "115"
+      ],
+      "units": [
+        "04a",
+        "04b",
+        "04c"
+      ],
+      "result": "Dwa układy z działającym licznikiem energii i wyjaśnieniem zakresu pomiaru.",
+      "focus": [
+        "04a: licznik jednofazowy; czerwony/żółty wariant lampki wykorzystaj z profili 03a. 04b: L02. 04c: 115.",
+        "Najpierw dobierz i udokumentuj profil licznika: wejścia/wyjścia, wspólne N, liczba modułów i limit prądu. Źródło nie podaje numerów, więc nie kopiuj ich z przypadkowego produktu.",
+        "Obliczaj moc czynną z przepływu przez licznik i całkuj po czasie solvera. Nie sumuj tabliczek wszystkich istniejących odbiorników.",
+        "KWh jest stanem sesji aparatu, nie przewodem ani ręcznie ustawioną odpowiedzią. Zdefiniuj reset/odświeżenie/powrót z teorii i nie sugeruj pamięci realnego licznika, gdy runtime jej nie ma.",
+        "W obu zadaniach licznik jest przed RCD i obejmuje obie gałęzie. W 115 H3 jest przed łącznikami, nie jest wskaźnikiem świecenia opraw."
+      ],
+      "qa": [
+        "Niezależny test liczbowy na znanej mocy i czasie, tolerancja solvera; brak przyrostu od odłączonej gałęzi.",
+        "Uwzględnij rzeczywisty pobór lampek kontrolnych, jeśli należą do mierzonej strony.",
+        "Pauza zatrzymuje czas i przyrost, x5/x20 zachowuje energię względem czasu symulacji.",
+        "L02: około 1000 W odbiornik próbny; 115: wszystkie stany schodowych i kolory lampek."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {
+        "03": [
+          "03a"
+        ]
+      },
+      "prompt": "etapy/04_liczniki_L02_115.md"
+    },
+    {
+      "id": "05",
+      "slug": "bistabilne_106_107",
+      "title": "Bistabilny z czasem: 106/107",
+      "deps": [
+        "01",
+        "03"
+      ],
+      "tasks": [
+        "106",
+        "107"
+      ],
+      "units": [
+        "05a",
+        "05b",
+        "05c"
+      ],
+      "result": "Dwa układy z nowym zachowaniem BIS-413 i rzeczywistą obsługą przytrzymania.",
+      "focus": [
+        "05a: nowy profil BIS-413 230 V według E220128. 05b: 106. 05c: 107 wraz z jawnym wyborem modelu z czasem.",
+        "BIS-413 jest nowym modelem; edu-bistable BIS-411 i istniejące exam-bistable zachowują dotychczasowe znaczenie.",
+        "Wersja źródła: 1=N, 3=L, 6=impuls, 10=NC, 11=COM, 12=NO. Testuj krótki impuls, czas, długi impuls i utratę zasilania zgodnie z pełną instrukcją.",
+        "107: źródłowy Ł ma COM=2, a model changeover COM. Mapuj jawnie 2↔COM; P2 działa zawsze, P1 zależnie od pozycji Ł.",
+        "Czas demo w 107 oznacz jako przyjęty parametr, bo źródło nie ustala nastawy. Zmiana Ł bez impulsu nie może sztucznie przełączać BIS."
+      ],
+      "qa": [
+        "Impuls z każdego przycisku, oba naraz, trzymany wejściowy sygnał: bez przełączenia co klatkę.",
+        "Granice krótkiego/długiego naciśnięcia i końca czasu; przerwane zasilanie odcina funkcję.",
+        "107: oba położenia Ł × oba przyciski × wyjście BIS; L1/OO razem, L2/L3 zgodnie z trybem.",
+        "Pointerup poza przyciskiem, pointercancel i obsługa klawiatury kończą żądanie; zmiana trybu nie zostawia wciśniętego klawisza."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {
+        "03": [
+          "03a"
+        ]
+      },
+      "prompt": "etapy/05_bistabilne_106_107.md"
+    },
+    {
+      "id": "06",
+      "slug": "dopuszkowy_112",
+      "title": "Zadanie 112: aparat i złączki w puszce",
+      "deps": [
+        "01",
+        "03"
+      ],
+      "tasks": [
+        "112"
+      ],
+      "units": [
+        "06a",
+        "06b"
+      ],
+      "result": "Gotowy układ BIS-402 w trzech puszkach, z wariantem płytki lub złączek.",
+      "focus": [
+        "06a: BIS-402 według E240610, przycisk natynkowy NO, czteroportowa wspólna złączka i płytka z pięcioma niezależnymi torami. 06b: układ 112.",
+        "BIS-402: L 6, N 5, impuls 4, COM 1, NO 2, NC 3. Zachowaj dopuszkową geometrię i właściwe styki, nie montuj profilu DIN z innym napisem.",
+        "Płytka pięciu torów nie jest pięcioportową złączką o wspólnym potencjale. Profile dwójki/trójki/czwórki mają jawne grupy wspólne i pojemności.",
+        "Przygotuj wariant domyślny z płytką oraz dozwolony wariant alternatywny z dodatkowymi złączkami. Drugi wariant nie jest osobnym zadaniem ani obligatoryjnym podwójnym zakupem.",
+        "Zgodność 2D gabarytów nie dowodzi możliwości zamknięcia realnej puszki z przewodami, głębokości ani siły zacisku. Opisz zakres modelu."
+      ],
+      "qa": [
+        "Każdy z trzech przycisków zmienia tę samą oprawę, stały potencjał wejścia nie daje wielokrotnego toggla.",
+        "Bez źródła światła wskazane pomiary L–N/PE–L mają przerwę, natomiast PE–PE ciągłość.",
+        "Brak przypadkowego zwarcia pięciu niezależnych torów; poprawność obu wariantów połączeń.",
+        "P3 można otworzyć, znaleźć PB i zaciski oraz odczytać ich rolę bez utraty kontekstu."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {
+        "03": [
+          "03a"
+        ]
+      },
+      "prompt": "etapy/06_dopuszkowy_112.md"
+    },
+    {
+      "id": "07",
+      "slug": "zmierzch_104",
+      "title": "Zadanie 104: współpraca AZ i AS",
+      "deps": [
+        "01",
+        "03"
+      ],
+      "tasks": [
+        "104"
+      ],
+      "units": [
+        "07a",
+        "07b"
+      ],
+      "result": "Układ sterowany światłem z minutowym czasem i kontekstową lekcją współpracy dwóch aparatów.",
+      "focus": [
+        "07a: dobierz rzeczywiste instrukcje AZ z zewnętrzną sondą i AS albo opisz ograniczony model dydaktyczny z własnymi terminalId. 07b: kompletny układ.",
+        "Światło jest jawnym bodźcem środowiska, a nie ręcznym nakazem załączania cewki. Zdefiniuj RuntimeAction i przepływ worker/store dla bodźca.",
+        "W źródle AZ warunkuje zasilanie AS. AS ma być pozbawiony zasilania przy jasnej sondzie, nie tylko mieć dodatkowy styk na wyjściu lampy.",
+        "Zdefiniuj próg, histerezę/opóźnienie AZ oraz reakcję AS na ponowny impuls i powrót zasilania według dobranych instrukcji. Nastawa AS = 60 s.",
+        "edu-staircase ma profil AS-212; jego użycie wymaga potwierdzenia instrukcji i zgodności całego wariantu, nie samego parametru timeS."
+      ],
+      "qa": [
+        "Jasno + przycisk: AS bez zasilania i lampa OFF; ciemno + impuls: lampa ON przez 60 s.",
+        "Rozjaśnienie w trakcie czasu, ponowne zasłonięcie, retrigger i zanik zasilania.",
+        "Przyspieszenie symulacji testuje ten sam czas; brak zegara setTimeout w React sterującego aparatem.",
+        "Kliknięcie AZ wyjaśnia wpływ jego wyjścia na zasilanie AS, a nie tylko ogólny artykuł o lampie."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {
+        "03": [
+          "03a"
+        ]
+      },
+      "prompt": "etapy/07_zmierzch_104.md"
+    },
+    {
+      "id": "08",
+      "slug": "silnik_116",
+      "title": "Zadanie 116: sześć zacisków, trójkąt i pomiary",
+      "deps": [
+        "01",
+        "03"
+      ],
+      "tasks": [
+        "116"
+      ],
+      "units": [
+        "08a",
+        "08b"
+      ],
+      "result": "Gotowy układ Δ400/Y690 z widocznymi mostkami, START/STOP i przygotowaniem pomiarów.",
+      "focus": [
+        "08a: nowy profil sześciokońcówkowego silnika 400Δ/690Y oraz blok 2NO+2NC, poprawne profile listw i CEE z poprzednich etapów. 08b: 116.",
+        "edu-motor-six 230Δ/400Y pozostaje bez zmiany; mapy końców uzwojeń i nominalne napięcie wynikają z nowego profilu.",
+        "Trójkąt jest widocznymi circuit.bridges albo równoważnymi conductors; renderer i solver analizują rzeczywiste połączenia, nie ustawienie answer=delta.",
+        "Rozdziel próbę bez mostków/odłączonego motoru od kompletnego układu pracującego. Wzorzec jest kompletny, przycisk Przygotuj pomiar tworzy odrębną kopię, jeżeli ma usuwać połączenia.",
+        "Odczyt In i nastawa ochrony mają pochodzić z jawnie wybranego profilu/tabliczki, nie z 3 kW starego modelu ani arbitralnego 6 A. Wymóg zakresu 1,1 In nie jest uniwersalną instrukcją nastawy."
+      ],
+      "qa": [
+        "Trzy osobne uzwojenia, izolacja po odpowiednim przygotowaniu, mostki Δ i prawo/lewo po zamianie dwóch faz.",
+        "Usunięty i błędny mostek, brak jednej fazy, niezgodne napięcie uzwojenia: mierzone/wyjaśnione zachowanie, bez fałszywego RUN.",
+        "START/STOP, podtrzymanie oraz OFF/trip zabezpieczenia i assembly bloku.",
+        "Każdy wynik ma jednostkę, stan przygotowania i informację o danych profilu; nieznany parametr daje unsupported zamiast fikcyjnej liczby."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {
+        "03": [
+          "03a"
+        ]
+      },
+      "prompt": "etapy/08_silnik_116.md"
+    },
+    {
+      "id": "09",
+      "slug": "podnosnik_113",
+      "title": "Zadanie 113: gotowość, kierunki, krańcówki",
+      "deps": [
+        "01",
+        "08"
+      ],
+      "tasks": [
+        "113"
+      ],
+      "units": [
+        "09a",
+        "09b"
+      ],
+      "result": "Układ podnośnika z elektrycznymi blokadami i rozróżnieniem gotowości od ruchu.",
+      "focus": [
+        "09a: pomocniczy stycznik 230 V, chwilowy wspólny NO+NC w wariancie DIN, NC DIN i krańcówka NO+NC. 09b: 113.",
+        "K1 podtrzymuje gotowość przez S2; K2/K3 są chwilowe. Nie dodawaj własnego podtrzymania do obu kierunków.",
+        "S3/S4 mają po jednym operatorze dla NO+NC. Styk NC przeciwnego przycisku jest częścią blokady, a nie drugim niezależnym przyciskiem.",
+        "Wk1 blokuje podnoszenie, Wk2 opuszczanie; Wk2 sam nie przerywa K1. Krańcówki można jawnie zadziałać ręcznie; automatyczna pozycja windy wymaga osobnego modelu ruchu.",
+        "Motor 113 ma profil 230Δ/400Y w Y przy sieci 400 V, do 1,5 kW w źródle. Zweryfikuj/dodaj odrębny profil mocy; istniejący 3 kW nie jest dokładnym odwzorowaniem."
+      ],
+      "qa": [
+        "Gotowość bez obrotów, kierunek podczas trzymania, zwolnienie operatora, obie krańcówki osobno.",
+        "Oba S3/S4 wciśnięte od spoczynku: brak żądania obu cewek zgodnie z szeregowymi NC.",
+        "STOP zrywa gotowość; Wk2 nie zrywa gotowości K1; powrót zasilania ze zwolnionymi przyciskami.",
+        "Brak dopisanego interlock maskującego brak elektrycznej blokady; schemat i pomiary odzwierciedlają obwód."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {
+        "08": [
+          "08a"
+        ]
+      },
+      "prompt": "etapy/09_podnosnik_113.md"
+    },
+    {
+      "id": "10",
+      "slug": "jednofazowy_109",
+      "title": "Zadanie 109: silnik kondensatorowy",
+      "deps": [
+        "01",
+        "03"
+      ],
+      "tasks": [
+        "109"
+      ],
+      "units": [
+        "10a",
+        "10b"
+      ],
+      "result": "Gotowy układ silnika jednofazowego z jawną mapą uzwojeń i osobnym wariantem kierunku.",
+      "focus": [
+        "10a: profil silnika jednofazowego z uzwojeniem U/Z i kondensatorem, C 1P oraz przycisk NO+NC utrzymujący pozycję. 10b: 109.",
+        "Dobierz konkretną instrukcję silnika i kondensatora. Zapisz źródło napięcia, mocy, prądu, rezystancji lub ich nieznanego statusu. Brak dokumentu blokuje twierdzenie o odwzorowaniu 1:1.",
+        "Stycznik 3NO wykorzystuje w zadaniu dwa tory L/N. S1 utrzymuje pozycję, H2 jest przed S1 i może świecić przy nieruchomym motorze.",
+        "Zmiana kierunku to zmiana względnego połączenia uzwojenia pomocniczego według instrukcji. Zamiana L i N nie jest rozwiązaniem.",
+        "Przygotuj kompletny wariant podstawowy oraz kopię kierunku przeciwnego z udokumentowanymi mostkami. Nie zapisuj fikcyjnej mapy śrub na podstawie samego symbolu M1."
+      ],
+      "qa": [
+        "S1 ON/OFF, dwa tory główne stycznika i obie gałęzie zabezpieczenia.",
+        "U1–U2 oraz Z1–Z2 dają wyniki z wybranego profilu, nie wspólną stałą bez dowodu.",
+        "Izolacja U–PE, Z–PE, U–Z i odłączony kondensator zgodnie z instrukcją; prawidłowa klasyfikacja unsupported.",
+        "Zmiana kierunku według instrukcji; wariant z samą zamianą L/N nie zalicza tej próby."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {
+        "03": [
+          "03a"
+        ]
+      },
+      "prompt": "etapy/10_jednofazowy_109.md"
+    },
+    {
+      "id": "11",
+      "slug": "temperatura_L01",
+      "title": "Zadanie L01: temperatura, fazy, silnik",
+      "deps": [
+        "01",
+        "08"
+      ],
+      "tasks": [
+        "L01"
+      ],
+      "units": [
+        "11a",
+        "11b"
+      ],
+      "result": "Gotowy układ wentylacji, bodziec temperatury i pozwolenie fazowe odczytywane z obwodu.",
+      "focus": [
+        "11a: RT-820 według E211220, sonda i histereza oraz udokumentowany CKF. 11b: L01.",
+        "RT-820: 3=L, 4=N, sonda 5/6, COM=2, NO=1, NC=8 w stanie odniesienia. Tor wentylacji powyżej progu to 2–8; użyj pełnej instrukcji dla histerezy i stanów po utracie sondy.",
+        "Nastawa zadania 28°C. Parametry histerezy, opóźnienia i prógów CKF wynikają z wybranego modelu, nie z samego skrótu CKF.",
+        "Tor cewki jest szeregowo warunkowany przez zabezpieczenie, CKF i RT. Obrót silnika wynika z mocy i kolejności faz; nie z samej wartości suwaka.",
+        "Motor 400Δ/690Y z etapu 08 w Δ; nie zamieniaj go na silnik 113 w Y."
+      ],
+      "qa": [
+        "Temperatura powyżej/pod progiem i w paśmie histerezy; brak migotania od rozwiązywania kolejnych klatek.",
+        "Zanik fazy i zła kolejność odbierają zgodę w zakresie wybranego CKF; powrót zgodnie z instrukcją.",
+        "Temperatura wysoka nie omija OFF/trip zabezpieczenia ani braku pozwolenia CKF.",
+        "Sonda jest obiektem powiązanym z zaciskami; UI wyjaśnia tor szeregowy K."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {
+        "08": [
+          "08a"
+        ]
+      },
+      "prompt": "etapy/11_temperatura_L01.md"
+    },
+    {
+      "id": "12",
+      "slug": "rezerwa_114",
+      "title": "Zadanie 114: źródło rezerwowe i bramka rozstrzygnięcia",
+      "deps": [
+        "01",
+        "03",
+        "09"
+      ],
+      "tasks": [
+        "114"
+      ],
+      "units": [
+        "12a",
+        "12b"
+      ],
+      "result": "Złożony układ interpretacji rysunku; status zweryfikowany dopiero po rozstrzygnięciu funkcji KT i kryteriów.",
+      "focus": [
+        "12a: protokół interpretacji wszystkich czterech otwartych kwestii 114 i konkretna instrukcja KT. 12b: nowe zachowanie wymaganych styków/czasówki oraz układ.",
+        "Nie wymagaj, aby wszystkie zdania TAK/NIE w arkuszu były prawdziwe. Rozstrzygnięcie wskazuje osobno wymaganie, twierdzenie do oceny i dowód odpowiedzi. Oficjalny klucz jest potrzebny do deklaracji zgodności z jego odpowiedziami, nie do niezależnej analizy schematu.",
+        "KP ma tor NC mimo oznaczeń 3/4 na rysunku. Zmapuj sourceContactId do rzeczywistego terminalId; numer z innego produktu nie zmienia rodzaju styku.",
+        "L1 idzie na tor spoczynkowy KT, L2 na przełączony, COM do S/oprawy. H1 i H2 są przed S. Modeluj rozłączne przełączanie bez połączenia faz.",
+        "On-delay 5 s nie implikuje opóźnionego powrotu 5 s. Przyjmij zachowanie wybranej instrukcji i oznacz świadome różnice. Dopóki profil jest otwarty, projekt może być złożonym szkicem w galerii, z wyłączoną oceną egzaminacyjną i jasnym opisem."
+      ],
+      "qa": [
+        "L1 obecna, zanik L1 z L2, stan przed/po 5 s, powrót L1 i zanik L2; oczekiwania zgodne z rozstrzygniętym profilem.",
+        "KP NC, sygnalizacja przed S i odrębne przełączanie oprawy.",
+        "Brak zwarcia L1–L2 w stanach ustalonych i podczas przełączenia, także z krokiem czasu obejmującym zmianę.",
+        "Bez dowodu nie nadaj ready/graded ani nie podwyższaj licznika zweryfikowanych wzorców; publikacja szkicu nie zamyka zadania."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {
+        "03": [
+          "03a"
+        ],
+        "09": [
+          "09a"
+        ]
+      },
+      "prompt": "etapy/12_rezerwa_114.md"
+    },
+    {
+      "id": "13",
+      "slug": "sciemniacz_117",
+      "title": "Zadanie 117: regulacja jasności",
+      "deps": [
+        "01",
+        "03"
+      ],
+      "tasks": [
+        "117"
+      ],
+      "units": [
+        "13a",
+        "13b"
+      ],
+      "result": "Gotowy układ SCO-815, krótki/długi impuls i widoczna jasność oprawy.",
+      "focus": [
+        "Etap zależy od 01 i 03 (wystarczają zweryfikowane wspólne modele 03a); nie zależy od rozstrzygnięcia 114 ani termostatu L01. Kontynuuj 117 niezależnie od tych blokad.",
+        "13a: model SCO-815 według E230329 i odpowiedni renderer/obciążenie. 13b: 117.",
+        "SCO: L=10, N=7/8/9 zgodnie z topologią, wyjście=12, izolowane wejście 1–3. Nie zwieraj wejścia izolowanego z wyjściem w rendererze lub solverze.",
+        "Krótkie naciśnięcie ON/OFF, długie regulacja, zmiana kierunku kolejnych długich naciśnięć według tej wersji instrukcji. Prawidłowe reakcje na cancel i utratę zasilania.",
+        "Źródło zadania: żarówka 40 W. Nie zastępuj jej dowolnym LED. Objaśnij związek jasności i rzeczywistej mocy, zakres aproksymacji RMS oraz pomiary unsupported dla nieodtwarzanych przebiegów."
+      ],
+      "qa": [
+        "Krótkie i długie naciśnięcia, kolejne przytrzymania, limity jasności, pauza i restart.",
+        "Oddzielne B6/B10; gniazdo nie ściemnia się wraz z oprawą.",
+        "Zmiana jasności ma odpowiadający jej model obciążenia, nie sam CSS opacity.",
+        "Brak wymyślonych odczytów harmonicznych, THD i zachowania RCD typu A z modelu sinusoidalnego."
+      ],
+      "dependencyMode": "required-tested-capabilities",
+      "dependencyUnits": {
+        "03": [
+          "03a"
+        ]
+      },
+      "prompt": "etapy/13_sciemniacz_117.md"
+    },
+    {
+      "id": "14",
+      "slug": "odbior_i_rozszerzenia",
+      "title": "Odbiór całego zestawu i rozbudowa nauki",
+      "deps": [
+        "00",
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "tasks": [],
+      "units": [
+        "14a"
+      ],
+      "result": "Zweryfikowane pokrycie 17 zadań, pełne powiązania teorii i praktyki oraz kontrakt dalszych materiałów.",
+      "focus": [
+        "Porównaj rejestr dostępności z listą dokładnie 17 dostarczonych zadań. Ready oznacza działający kompletny projekt i dowody, nie sam obraz ani istniejący wpis scenariusza.",
+        "Rozszerz 25 artykułów o profile wszystkich dodanych modeli, 60 kategorii BOM i lekcje układów. Brakujący profil lub wyjaśnienie zacisku jest otwartym kryterium danego zadania.",
+        "Wprowadź ścieżkę nauki od schodowych przez ochronę, bistabilne i podtrzymanie do rezerwy, temperatury i regulacji. Kolejność dydaktyczna może różnić się od kolejności wdrażania.",
+        "Dodaj bezpieczny dla projektu przełącznik Oglądaj wzorzec / Pracuj na kopii. Przygotuj kontrakt TutorialStep do późniejszych lekcji, a nie fikcyjne gotowe ćwiczenia diagnozy bez testów.",
+        "Dodatkowe arkusze ELE.05 i blog są kolejnym zakresem: wykorzystują istniejące articleId/taskId/referenceId, wersjonowany content i te same procedury QA."
+      ],
+      "qa": [
+        "Pełny pipeline repo dla jednego zbudowanego dist oraz E2E pod /ele/.",
+        "Przejdź ręcznie każdy wzorzec: otwarcie, energia OFF, schemat, wyjaśnienie, próba, edycja, eksport/import, powrót.",
+        "Macierz źródłowych 82 prób: wynik passed / blocked / unsupported / manual z dowodem, bez zbiorowego OK.",
+        "Nie podpisuj 17/17 zweryfikowanych, jeżeli 114 lub którykolwiek dokładny profil pozostaje otwarty."
+      ],
+      "dependencyMode": "all-stage-gates",
+      "dependencyUnits": {},
+      "prompt": "etapy/14_odbior_i_rozszerzenia.md"
+    }
+  ]
+}

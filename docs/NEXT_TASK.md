@@ -1,5 +1,7 @@
 # Kontynuacja bez przebudowy projektu
 
+Aktualna kolejność: **01b — integracja wzorca ELE.02-108** według [planu](ele-exams/plan/etapy/01_wzorce_101_108.md), [checkpointu](ele-exams/implementation-state.json) i [QA_01](ele-exams/QA_01.md). Poniższa starsza lista techniczna jest zapleczem; nie zastępuje kolejności jednostek planu.
+
 Projekt `/Users/pawelchoniawko/Projekty/ele`. `pnpm dev`; dane użytkownika w IndexedDB profilu przeglądarki. Zależności i lockfile są gotowe. Zachowaj pakiet wejściowy i obecne moduły.
 
 1. Uzupełnij geometrię i źródła F&F BIS-411/AS-212/PCU-510. Nie wracaj do błędnej numeracji seed: korekty w DEVICE_DATA_POLICY. Opublikuj SKU po przeglądzie renderera i testach rewizji.

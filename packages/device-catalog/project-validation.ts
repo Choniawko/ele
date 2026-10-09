@@ -53,6 +53,59 @@ export function validateProjectDocument(input: unknown): ProjectDocument {
   try {
     const project = projectSchema.parse(input);
     assertProjectCatalog(project);
+    const terminals = new Set<string>(),
+      fragments = new Set<string>(),
+      circuitIds = new Set(
+        [
+          ...project.circuit.devices,
+          ...project.circuit.conductors,
+          ...project.circuit.bridges,
+        ].map((o) => o.id),
+      );
+    for (const [id, placement] of Object.entries(
+      project.schematic.symbolFragments?.placements ?? {},
+    )) {
+      if (circuitIds.has(id))
+        throw new Error("Identyfikator symbolu koliduje z obiektem obwodu.");
+      const device = project.circuit.devices.find(
+        (d) => d.id === placement.deviceId,
+      );
+      const connection =
+        device &&
+        catalog[device.productId].topology.connections.find(
+          (c) => c.id === placement.fragmentId,
+        );
+      if (!device || !connection || connection.kind === "bridge")
+        throw new Error(
+          "Symbol schematu nie wskazuje istniejącego fragmentu aparatu.",
+        );
+      const key = `${device.id}:${connection.id}`;
+      if (fragments.has(key))
+        throw new Error("Powtórzony fragment symbolu aparatu.");
+      fragments.add(key);
+      for (const terminal of [connection.from, connection.to]) {
+        const port = `${device.id}:${terminal}`;
+        if (terminals.has(port))
+          throw new Error("Zacisk ma więcej niż jedną pozycję w schemacie.");
+        terminals.add(port);
+      }
+    }
+    for (const device of project.circuit.devices) {
+      if (
+        !Object.values(
+          project.schematic.symbolFragments?.placements ?? {},
+        ).some((p) => p.deviceId === device.id)
+      )
+        continue;
+      if (
+        catalog[device.productId].topology.terminals.some(
+          (t) => !terminals.has(`${device.id}:${t.id}`),
+        )
+      )
+        throw new Error(
+          "Rozwinięte symbole nie obejmują wszystkich zacisków aparatu.",
+        );
+    }
     for (const [id, revision] of Object.entries(project.productRevisions))
       if (!catalog[id]?.published || catalog[id].revision !== revision)
         throw new Error(

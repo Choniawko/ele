@@ -142,6 +142,13 @@ export interface PhysicalTrunk {
 export interface Layout {
   devices: Record<string, Point>;
   routes: Record<string, Point[]>;
+  symbolFragments?: {
+    version: "1";
+    placements: Record<
+      string,
+      { deviceId: string; fragmentId: string; position: Point }
+    >;
+  };
   rails?: MountingRail[];
   enclosures?: PhysicalEnclosure[];
   trunking?: PhysicalTrunk[];
@@ -436,7 +443,25 @@ export const projectSchema = z
       trunking: z.array(trunkSchema).max(projectLimits.trunking).optional(),
       presentation: z.enum(["external", "connections"]).optional(),
     }),
-    schematic: layout,
+    schematic: layout.extend({
+      symbolFragments: z
+        .object({
+          version: z.literal("1"),
+          placements: z
+            .record(
+              id,
+              z
+                .object({ deviceId: id, fragmentId: id, position: point })
+                .strict(),
+            )
+            .refine(
+              (p) => Object.keys(p).length <= projectLimits.devices * 12,
+              "Zbyt wiele symboli.",
+            ),
+        })
+        .strict()
+        .optional(),
+    }),
     faults: z
       .array(
         z.object({

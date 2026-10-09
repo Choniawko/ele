@@ -1,3 +1,4 @@
+import { importLegacy } from "./legacy-project";
 import { test, expect, type Page } from "@playwright/test";
 import type { ProjectDocument } from "../../packages/circuit-model/index";
 import { wireGeometry } from "./wire-geometry";
@@ -36,6 +37,7 @@ test.beforeEach(async ({ page }) => {
     throw error;
   });
   await page.goto("./");
+  await importLegacy(page, "lamp");
   await expect(board(page).locator('[data-device="G1"]')).toBeVisible();
 });
 
@@ -103,8 +105,7 @@ test("tablica zajmuje większość okna, skupienie chowa panele, telefon zachowu
 test("RCD można przenieść na trzecią szynę i przeciągać podczas pracy; zajęte miejsce odrzuca gest", async ({
   page,
 }) => {
-  await page.getByRole("button", { name: "Przykłady", exact: true }).click();
-  await page.getByRole("button", { name: /Mała rozdzielnica/ }).click();
+  await importLegacy(page, "distribution");
   await page
     .getByRole("button", { name: "Włącz zasilanie", exact: true })
     .click();
@@ -215,11 +216,7 @@ test("trasa przewodu ma edytowalne punkty i zachowuje zaciski, rewizję oraz dzi
 test("automatyczne przewody omijają obudowy i pozostają przy zaciskach po przesunięciu silnika", async ({
   page,
 }) => {
-  await page.getByRole("button", { name: "Przykłady", exact: true }).click();
-  await page
-    .getByRole("dialog")
-    .getByRole("button", { name: /Trzy fazy i termik/ })
-    .click();
+  await importLegacy(page, "three-phase");
   await expect(board(page).locator('[data-device="M1"]')).toBeVisible();
   const before = await state(page),
     motor = before.project.circuit.devices.find((d) => d.designation === "M1")!;

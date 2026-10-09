@@ -337,7 +337,7 @@ const defs: [string, string, string, string, () => ProjectDocument][] = [
     () => basic("fan"),
   ],
 ];
-function arrangeProject(project: ProjectDocument): ProjectDocument {
+export function arrangeProject(project: ProjectDocument): ProjectDocument {
   const p = project,
     occupied: { x: number; y: number; w: number; h: number }[] = [];
   let schematicY = 80;
@@ -458,8 +458,9 @@ export function scenarioProject(
   variant: ExerciseVariant = "reference",
   diagnosticCase = 0,
 ): ProjectDocument {
-  const scenario = scenarios.find((s) => s.id === id) ?? scenarios[0],
-    p = scenario.create();
+  const scenario = scenarios.find((s) => s.id === id);
+  if (!scenario) throw new Error(`Nieznany zapisany scenariusz: ${id}`);
+  const p = scenario.create();
   p.scenarioId = scenario.id;
   p.name = scenario.title;
   if (training)

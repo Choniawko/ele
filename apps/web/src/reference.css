@@ -1,0 +1,84 @@
+.reference-help {
+  position: fixed;
+  right: 14px;
+  top: 70px;
+  bottom: 14px;
+  z-index: 80;
+  width: min(380px, calc(100vw - 28px));
+  overflow: auto;
+  padding: 18px;
+  background: #fffefa;
+  color: #253f43;
+  border: 1px solid #78958d;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px #142e3544;
+}
+.reference-help header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.reference-help h2 {
+  margin: 0;
+}
+.reference-help button,
+.reference-help a {
+  margin: 5px 5px 5px 0;
+  min-height: 36px;
+}
+.reference-help a {
+  display: inline-block;
+}
+.reference-help p,
+.reference-help dd {
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+.reference-help dl > div {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  margin: 5px 0;
+}
+.reference-help dd {
+  margin: 0;
+}
+.reference-lesson .knowledge-diagram {
+  min-width: 720px;
+  width: calc(100% * var(--diagram-scale, 1));
+  height: auto;
+  max-height: none;
+}
+.reference-scroll {
+  overflow: auto;
+  max-width: 100%;
+  border: 1px solid #b6c8c0;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+.reference-connections {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+.reference-connections td,
+.reference-connections th {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #cedad5;
+}
+.reference-connections tr[aria-selected="true"] {
+  background: #ffedc5;
+}
+.reference-fragments {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+@media (max-height: 500px) {
+  .reference-help {
+    top: 8px;
+    bottom: 8px;
+  }
+}

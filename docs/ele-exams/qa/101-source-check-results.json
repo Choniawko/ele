@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "taskId": "ELE.02-101",
+  "referenceRevision": "1",
+  "fidelity": "educational",
+  "implementationCommit": "280b194cd1c6b71ecdc04d178b38a0ba5d225e65",
+  "notice": "Executed solver/model checks, not measurements on a physical installation. Original 82 specifications remain unchanged.",
+  "checks": [
+    {
+      "id": "101-QA-01",
+      "action": "Przełącz Q1 przy obu ustawieniach Q2.",
+      "expected": "Każde przełączenie Q1 odwraca stan obu opraw; oprawy zawsze działają razem.",
+      "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE.",
+      "status": "passed",
+      "implementedTestPath": "tests/reference-examples.test.ts",
+      "executionEvidence": {
+        "command": "pnpm test",
+        "result": "295 passed, 21 files (18:49 CEST); these five source checks passed",
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 40 passed, 1 local fixture skipped on /ele/ build 280b194; all five reference-example scenarios passed, including public OFF copies. See QA_01.md."
+      }
+    },
+    {
+      "id": "101-QA-02",
+      "action": "Wyłącz B6, pozostaw B10.",
+      "expected": "Oprawy nie działają; gniazdo pozostaje zasilane.",
+      "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE.",
+      "status": "passed",
+      "implementedTestPath": "tests/reference-examples.test.ts",
+      "executionEvidence": {
+        "command": "pnpm test",
+        "result": "295 passed, 21 files (18:49 CEST); these five source checks passed",
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 40 passed, 1 local fixture skipped on /ele/ build 280b194; all five reference-example scenarios passed, including public OFF copies. See QA_01.md."
+      }
+    },
+    {
+      "id": "101-QA-03",
+      "action": "Wyłącz B10, pozostaw B6.",
+      "expected": "Gniazdo bez napięcia; sterowanie opraw pozostaje możliwe.",
+      "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE.",
+      "status": "passed",
+      "implementedTestPath": "tests/reference-examples.test.ts",
+      "executionEvidence": {
+        "command": "pnpm test",
+        "result": "295 passed, 21 files (18:49 CEST); these five source checks passed",
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 40 passed, 1 local fixture skipped on /ele/ build 280b194; all five reference-example scenarios passed, including public OFF copies. See QA_01.md."
+      }
+    },
+    {
+      "id": "101-QA-04",
+      "action": "Sprawdź ciągłość PE bez zasilania.",
+      "expected": "Istnieją połączenia PZ–PE rozdzielnicy–PE gniazda oraz obu opraw.",
+      "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE.",
+      "status": "passed",
+      "implementedTestPath": "tests/reference-examples.test.ts",
+      "executionEvidence": {
+        "command": "pnpm test",
+        "result": "295 passed, 21 files (18:49 CEST); these five source checks passed",
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 40 passed, 1 local fixture skipped on /ele/ build 280b194; all five reference-example scenarios passed, including public OFF copies. See QA_01.md."
+      }
+    },
+    {
+      "id": "101-QA-05",
+      "action": "Użyj TEST RCD przy odpowiednim zasilaniu.",
+      "expected": "RCD wyłącza oba obwody; próbę traktować osobno od pełnego pomiaru RCD.",
+      "basis": "Wniosek z treści i schematu; nie jest odpisem klucza CKE.",
+      "status": "passed",
+      "implementedTestPath": "tests/reference-examples.test.ts",
+      "executionEvidence": {
+        "command": "pnpm test",
+        "result": "295 passed, 21 files (18:49 CEST); these five source checks passed",
+        "additionalBrowserEvidence": "pnpm test:e2e:production: 40 passed, 1 local fixture skipped on /ele/ build 280b194; all five reference-example scenarios passed, including public OFF copies. See QA_01.md."
+      }
+    }
+  ],
+  "unsupported": [
+    "Full physical RCD trip-current/time measurement is not established by TEST.",
+    "Real mounting quality, wire lengths and 1:1 geometry remain outside this model."
+  ]
+}
