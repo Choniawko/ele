@@ -25,3 +25,13 @@ Dowody jednostkowe: rzeczywiste SVG fragmentu, całego aparatu oraz diagramu fun
 Pozostałe części audytu nie są zaliczone na podstawie tej poprawki. Nie zmieniono wartości znamionowych, źródłowych rysunków ani dostępności pozostałych 15 wzorców.
 
 Odbiór etapu 1: 35 testów w 4 plikach (styki/wiedza/101/108), 3 scenariusze przeglądarkowe, typecheck, lint i build. QA-01 obejmuje także naprawę: 0,005 Ω/zamknięty → OL/otwarty. W teście poprawiono wybór inspektora i usunięto zbędne kliknięcie fragmentu przykrytego innym symbolem. Nie stosowano wymuszonego kliknięcia. Wynik reprodukcera po zmianie: exit 0. Sekcje istniejących 12 artykułów przepisano na nazwane pola jako pierwszy mały krok etapu 2.
+
+## Etap 2 — jedna karta i odnajdywanie informacji
+
+Kanoniczny model `cards.ts` scala istniejące materiały, zachowując identyfikatory i mapy sekcji. Dla nakładających się kart usunięto drugi opis teorii z JSON; pozostała metadana o zadaniach. Katalog, pomoc i pełna karta używają tej samej zasady działania oraz adresu `/wiedza/aparaty/...`. Dawne adresy i aliasy przekierowują. Szczegóły, mapy oraz źródła są rozwijane; progres i bezpieczny powrót zostały zachowane. Dodano tylko dwie krótkie karty brakujących obciążeń dydaktycznych, bez deklaracji realnego SKU.
+
+Wyszukiwarka uwzględnia nazwę, producenta, SKU, aliasy, zaciski i zweryfikowane powiązania wzorców. Wyniki grupuje na aparaty, układy i zadania. Start zawiera trzy ścieżki; dostępność jest opisana językiem ucznia. Bramki odbioru pozostają w szczegółach.
+
+W 108 parametry arkusza, założenia modelu i propozycje zakupu są osobnymi polami. Nieznana moc/tabliczka nie została zastąpiona wartością kategorii 113. Model 3 kW i Q2 4,35 A pozostają założeniami. Pozostałe zadania zachowują własne lokalizatory źródła i osobno opisaną kategorię zakupową; nie dopisano nieodczytanych parametrów.
+
+Odbiór: 21 testów jednostkowych wiedzy/kart; 18 różnych scenariuszy przeglądarkowych po aktualizacji testów do nowej strony startowej i rozwijanych kart. Sprawdzono wszystkie 25 dawnych adresów kart oraz 60 kategorii. Po zmianie adresu karta resetuje rozwinięte sekcje. Typecheck, lint, walidacja wiedzy i build przeszły. Początkowy JS nadal 1666,21 kB/gzip 474,14 kB; ładowanie na żądanie jest osobnym etapem 4.

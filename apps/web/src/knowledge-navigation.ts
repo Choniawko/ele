@@ -6,6 +6,7 @@ import {
 } from "../../../packages/knowledge/bindings";
 import type { KnowledgeContext } from "../../../packages/knowledge/types";
 import { openReferenceHelp } from "./reference-navigation";
+import { cardHref } from "../../../packages/knowledge/card-routes";
 export const boardCameras: KnowledgeContext["cameras"] = {};
 let originFocus: HTMLElement | null = null;
 const key = "ele.knowledge.context.v1";
@@ -89,7 +90,7 @@ export async function openKnowledge(
     ? resolveKnowledge(productId, terminalId, fragmentId)
     : undefined;
   location.hash = resolution
-    ? `knowledge/article/${resolution.articleId}`
+    ? cardHref(resolution.articleId).slice(1)
     : "knowledge";
   return true;
 }

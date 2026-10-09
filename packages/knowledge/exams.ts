@@ -1,7 +1,14 @@
-import { referenceByTask, validateReference } from "./reference-examples";
+import {
+  referenceByTask,
+  referenceExamples,
+  validateReference,
+} from "./reference-examples";
 import { z } from "zod";
 import { catalog } from "@catalog/index";
-import { normalizeSearch } from "./index";
+import { normalizeSearch } from "./search";
+import { apparatusCards, apparatusCard, cardSection } from "./cards";
+import { canonicalCardId, cardHref } from "./card-routes";
+import { resolveKnowledge } from "./bindings";
 import taskData from "./exam-data/ele02-tasks.json";
 import articleData from "./exam-data/device-knowledge.json";
 import mappingData from "./exam-data/component-catalog-map.json";
@@ -48,6 +55,9 @@ const taskSchema = z.object({
       sourceLocator: text,
       sourceKind: text,
       note: z.string(),
+      sourceParameters: text.optional(),
+      modelAssumptions: text.optional(),
+      purchaseVariant: text.optional(),
     }),
   ),
   learningGoals: strings,
@@ -133,7 +143,17 @@ export const examComponents = z
     }),
   )
   .parse(taskData.components);
-export const examArticles = z.array(articleSchema).parse(articleData.articles);
+export const examArticles = z.array(articleSchema).parse(
+  articleData.articles.map((a) => ({
+    ...a,
+    title: apparatusCard(a.id)!.title,
+    principle: cardSection(a.id, "operation"),
+    howToRead: cardSection(a.id, "appearance"),
+    classicUse: cardSection(a.id, "applications"),
+    practiceCheck: cardSection(a.id, "practice"),
+    commonMistake: cardSection(a.id, "mistakes"),
+  })),
+);
 export const examMappings = z.array(mappingSchema).parse(mappingData.mappings);
 export const examIssues = z
   .array(
@@ -167,7 +187,7 @@ export const examAvailability = z
 export const shoppingKit = kitData;
 export const taskHref = (code: string) =>
   `#/wiedza/zadania/ele02-${code.toLowerCase()}`;
-export const examArticleHref = (id: string) => `#/wiedza/aparaty/${id}`;
+export const examArticleHref = cardHref;
 export const componentHref = (id: string) => `#/wiedza/zestaw/${id}`;
 export const examTaskBySlug = (slug: string) =>
   examTasks.find((t) => `ele02-${t.code.toLowerCase()}` === slug);
@@ -207,7 +227,7 @@ const aliases: Record<string, string> = {
 };
 export function searchExamKnowledge(query: string, qualification = "ELE.02") {
   if (qualification !== "ELE.02")
-    return { tasks: [], articles: [], components: [] };
+    return { tasks: [], articles: [], components: [], models: [] };
   const words = normalizeSearch(query).split(" ").filter(Boolean);
   const match = (parts: unknown[]) => {
     const haystack = normalizeSearch(parts.join(" ")).replace(
@@ -216,6 +236,34 @@ export function searchExamKnowledge(query: string, qualification = "ELE.02") {
     );
     return words.every((word) => haystack.includes(word));
   };
+  const names = (id: string) =>
+    Object.values(catalog)
+      .filter(
+        (p) =>
+          p.published &&
+          canonicalCardId(resolveKnowledge(p.id)?.articleId ?? "") ===
+            canonicalCardId(id),
+      )
+      .map(
+        (p) =>
+          `${p.displayNamePl} ${p.manufacturer} ${p.manufacturerPartNumber} ${p.topology.terminals.map((t) => t.id).join(" ")}`,
+      );
+  const cardMatches = (id: string) => {
+    const a = apparatusCard(id);
+    return (
+      !!a &&
+      match([
+        a.title,
+        a.summary,
+        ...a.synonyms,
+        ...a.sections.flatMap((s) => s.paragraphs),
+        aliases[a.id] ?? "",
+        ...a.taskCodes,
+        ...names(id),
+      ])
+    );
+  };
+  const matchingCards = apparatusCards.filter((a) => cardMatches(a.id));
   return {
     tasks: examTasks.filter((t) =>
       match([
@@ -224,23 +272,33 @@ export function searchExamKnowledge(query: string, qualification = "ELE.02") {
         t.title,
         t.summary,
         ...t.readingSteps,
+        ...(referenceByTask(t.id)?.profiles.map((p) => {
+          const product = catalog[p.productId];
+          return `${product.displayNamePl} ${product.manufacturer} ${product.manufacturerPartNumber} ${product.topology.terminals.map((t) => t.id).join(" ")}`;
+        }) ?? []),
         ...t.bom.map((b) => {
           const c = examComponents.find((c) => c.id === b.componentId),
             a = componentArticle(b.componentId);
-          return `${c?.name} ${c?.parameters} ${a ? (aliases[a.id] ?? "") : ""}`;
+          return `${c?.name} ${b.sourceParameters} ${a ? `${aliases[a.id] ?? ""} ` : ""}`;
         }),
       ]),
     ),
-    articles: examArticles.filter((a) =>
-      match([
-        a.title,
-        a.principle,
-        a.howToRead,
-        a.classicUse,
-        a.commonMistake,
-        aliases[a.id] ?? "",
-        ...a.taskCodes,
-      ]),
+    articles: matchingCards.map((a) => ({
+      ...a,
+      principle: cardSection(a.id, "operation"),
+    })),
+    models: referenceExamples.filter(
+      (r) =>
+        match([r.title, r.taskId]) ||
+        r.profiles.some((p) => {
+          const sku = catalog[p.productId];
+          return match([
+            sku.displayNamePl,
+            sku.manufacturer,
+            sku.manufacturerPartNumber,
+            ...sku.topology.terminals.map((t) => t.id),
+          ]);
+        }),
     ),
     components: examComponents.filter((c) =>
       match([
@@ -248,6 +306,7 @@ export function searchExamKnowledge(query: string, qualification = "ELE.02") {
         c.parameters,
         c.purchaseNotes,
         aliases[componentArticle(c.id)?.id ?? ""] ?? "",
+        ...names(componentArticle(c.id)?.id ?? ""),
       ]),
     ),
   };

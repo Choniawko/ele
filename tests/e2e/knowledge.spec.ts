@@ -36,14 +36,14 @@ test("wiedza: synonimy, progres, klawiatura i odświeżenie stałego adresu", as
 }) => {
   await page.getByRole("button", { name: "Baza wiedzy", exact: true }).click();
   await expect(
-    k(page).getByRole("heading", { name: "Zadania ELE.02", exact: true }),
+    k(page).getByRole("heading", { name: "Baza wiedzy", exact: true }),
   ).toBeFocused();
   await k(page)
     .getByLabel("Szukaj w materiałach źródłowych")
     .fill("roznicowka");
   await expect(k(page).locator(".exam-article-card").first()).toBeVisible();
   await k(page)
-    .getByRole("link", { name: /Wyłącznik różnicowoprądowy — RCD/ })
+    .getByRole("link", { name: /RCD i RCBO/ })
     .click();
   await expect(page).toHaveURL(/#\/wiedza\/aparaty\/rcd$/);
   // Existing product article URLs and reading progress remain compatible.
@@ -296,6 +296,7 @@ test("porządek aplikacji: pusty start i wyłącznie 17 obecnych arkuszy we wszy
   await page.getByRole("button", { name: "Anuluj", exact: true }).click();
   await page.getByRole("button", { name: "Zamknij", exact: true }).click();
   await page.getByRole("button", { name: "Baza wiedzy", exact: true }).click();
+  await k(page).getByRole("link", {name: "Zadania", exact: true}).click();
   await expect(k(page).locator(".exam-task-card")).toHaveCount(17);
   await expect(k(page).locator(".knowledge-demo")).toHaveCount(0);
 });

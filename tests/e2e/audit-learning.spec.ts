@@ -1,5 +1,25 @@
 import { test, expect } from "@playwright/test";
 
+test("audit: one apparatus card from SKU search, catalog and legacy addresses", async ({page}) => {
+  await page.goto("./#knowledge");
+  for (const name of ["Zacznij od podstaw", "Poznaj aparat", "Ćwicz zadanie"]) {
+    await expect(page.getByRole("link", {name: new RegExp(name)})).toBeVisible();
+  }
+  const search = page.getByLabel("Szukaj w materiałach źródłowych");
+  await search.fill("LC1D09P7");
+  await page.locator(".exam-article-card").filter({has: page.getByRole("heading", {name: "Stycznik", exact: true})}).click();
+  await expect(page).toHaveURL(/#\/wiedza\/aparaty\/stycznik$/);
+  await expect(page.getByRole("heading", {name: "Co zmienia się po zadziałaniu", exact: true})).toBeVisible();
+  await page.goto("./#knowledge/article/stycznik");
+  await expect(page).toHaveURL(/#\/wiedza\/aparaty\/stycznik$/);
+  await page.goto("./#/wiedza/aparaty");
+  await search.fill("XB5AA35");
+  await page.locator(".exam-article-card").filter({has: page.getByRole("heading", {name: "Łączniki i przyciski NO/NC", exact: true})}).click();
+  await expect(page).toHaveURL(/#\/wiedza\/aparaty\/laczniki$/);
+  await page.goto("./#/wiedza/aparaty/ochrona-silnika");
+  await expect(page).toHaveURL(/#\/wiedza\/aparaty\/zabezpieczenia-silnikowe$/);
+});
+
 test("audit QA-01: selected welded contact, real SVG, compensated continuity and repair agree", async ({
   page,
 }, info) => {
@@ -14,7 +34,9 @@ test("audit QA-01: selected welded contact, real SVG, compensated continuity and
     .getByRole("button", { name: "Otwórz kopię ELE.02-108", exact: true })
     .click();
   await expect(page.getByRole("dialog")).toHaveCount(0);
-  await page.getByRole("button", {name: "Pokaż lub ukryj inspektor", exact: true}).click();
+  await page
+    .getByRole("button", { name: "Pokaż lub ukryj inspektor", exact: true })
+    .click();
   await page
     .getByTestId("board-physical")
     .locator('[data-device="K1"]')
@@ -24,9 +46,7 @@ test("audit QA-01: selected welded contact, real SVG, compensated continuity and
   await page
     .getByRole("button", { name: "Wprowadź usterkę", exact: true })
     .click();
-  await page
-    .getByRole("button", { name: "Schemat", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Schemat", exact: true }).click();
   const svg = page.getByTestId("board-schematic");
   const pole = svg.locator('[data-device="K1"][data-symbol-fragment="pole1"]');
   await expect(pole).toHaveAttribute("data-closed", "true");
@@ -49,8 +69,12 @@ test("audit QA-01: selected welded contact, real SVG, compensated continuity and
     path: info.outputPath("welded-contact-and-continuity.png"),
   });
   await page.getByLabel("Tryb pracy").selectOption("build");
-  const inspector = page.getByRole("button", {name: "Pokaż lub ukryj inspektor", exact: true});
-  if (await inspector.getAttribute("aria-pressed") !== "true") await inspector.click();
+  const inspector = page.getByRole("button", {
+    name: "Pokaż lub ukryj inspektor",
+    exact: true,
+  });
+  if ((await inspector.getAttribute("aria-pressed")) !== "true")
+    await inspector.click();
   await page
     .getByRole("button", {
       name: "Usuń usterki zaznaczonego elementu",

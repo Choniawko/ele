@@ -3,7 +3,7 @@
   "auditBaseline": "c0b5ea49b370cfb5a681bfc5abf5d9d9dfd56e57",
   "branch": "fix/audit-v0.3.0-learning",
   "publicationAuthorized": false,
-  "currentStage": "2",
+  "currentStage": "3",
   "stages": {
     "0": {
       "status": "tested",
@@ -52,11 +52,29 @@
       "limitations": "Hidden faults use a uniform labelled mechanism view; measurement remains actual continuity."
     },
     "2": {
-      "status": "in-progress",
-      "completed": "Named article fields; canonical card migration started."
+      "status": "tested",
+      "unitTests": 21,
+      "browserScenarios": 18,
+      "checks": [
+        "typecheck",
+        "lint",
+        "knowledge:validate",
+        "build"
+      ],
+      "changes": [
+        "Canonical apparatus cards and legacy aliases",
+        "SKU/manufacturer/terminal search",
+        "Educational theory fallbacks for all published profiles",
+        "Three entry paths and learner statuses",
+        "108 source/model/purchase parameters separated"
+      ],
+      "limitations": [
+        "Remaining source parameters outside 108 retain source locators; generic purchase categories are labelled separately.",
+        "Catalog/theory coverage is not proof of all SKU accuracy."
+      ]
     },
     "3": {
-      "status": "pending"
+      "status": "in-progress"
     },
     "4": {
       "status": "pending"

@@ -21,6 +21,9 @@ import {
 } from "../../../packages/knowledge/exams";
 import type { Highlight } from "../../../packages/knowledge/types";
 import { useApp } from "./store";
+import { cardSection } from "../../../packages/knowledge/cards";
+import { resolveKnowledge } from "../../../packages/knowledge/bindings";
+import { cardHref } from "../../../packages/knowledge/card-routes";
 import "./reference.css";
 
 export async function openReferenceCopy(id: string, wireId?: string) {
@@ -115,7 +118,7 @@ export function ReferenceLesson({
       <p>
         Opracowanie modelu dydaktycznego · wersja {r.referenceRevision}.{" "}
         <a href={`#/wiedza/zadania/${r.id}`}>
-          Porównaj z oryginałem arkusza i źródłowym BOM
+          Porównaj z oryginałem arkusza i listą elementów arkusza
         </a>
         .
       </p>
@@ -319,7 +322,7 @@ export function ReferenceLesson({
           </tbody>
         </table>
       </div>
-      <h2>Modelowy BOM — rzeczywiste instancje</h2>
+      <h2>Lista elementów modelu — rzeczywiste instancje</h2>
       <p>
         To wyposażenie modelu, oddzielone od ilości zakupowych w arkuszu.
         Złączki pomocnicze rozwijają węzły rysunku.
@@ -349,7 +352,7 @@ export function ReferenceLesson({
         <details key={profile.productId}>
           <summary>{catalog[profile.productId].displayNamePl}</summary>
           <p>{profile.modelLabel}</p>
-          <p>{profile.principle}</p>
+          <p>{cardSection(resolveKnowledge(profile.productId)?.articleId ?? profile.articleId, "operation")}</p>
           <p>{profile.mounting}</p>
           <p>{profile.measurements}</p>
           <p>Symbol: {profile.symbol}</p>
@@ -384,7 +387,7 @@ export function ReferenceLesson({
           {profile.limitations.map((l) => (
             <p key={l}>{l}</p>
           ))}
-          <a href={`#/wiedza/aparaty/${profile.articleId}`}>
+          <a href={cardHref(resolveKnowledge(profile.productId)?.articleId ?? profile.articleId)}>
             Przeczytaj teorię i źródła
           </a>
         </details>

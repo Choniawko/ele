@@ -1,6 +1,13 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { catalog } from "@catalog/index";
-import { articles } from "../../../packages/knowledge/articles";
+import {
+  apparatusCards,
+  apparatusCard,
+} from "../../../packages/knowledge/cards";
+import {
+  cardHref,
+  canonicalCardId,
+} from "../../../packages/knowledge/card-routes";
 import { ProductIllustration } from "../../../packages/knowledge/Diagram";
 import {
   contextExplanation,
@@ -27,7 +34,18 @@ const legacyLearningRoutes: Record<string, string> = {
   "knowledge/circuit/start-stop": "#/wiedza/uklady/ele02-108",
 };
 export function Knowledge({ route }: { route: string }) {
-  const redirect = legacyLearningRoutes[route];
+  const [, kind, slug] = route.split("/");
+  const cardRoute = route.startsWith("knowledge/exam/aparaty/");
+  const cardId = cardRoute
+    ? route.split("/")[3]
+    : kind === "article"
+      ? slug
+      : undefined;
+  const redirect =
+    legacyLearningRoutes[route] ??
+    (cardId && (kind === "article" || canonicalCardId(cardId) !== cardId)
+      ? cardHref(cardId)
+      : undefined);
   useEffect(() => {
     if (redirect) location.replace(redirect);
   }, [redirect]);
@@ -37,6 +55,8 @@ export function Knowledge({ route }: { route: string }) {
         Otwieranie lekcji na obecnym wzorcu…
       </div>
     );
+  if (cardRoute)
+    return <CoreKnowledge key={cardId} route={`knowledge/article/${cardId}`} />;
   return route === "knowledge" ||
     route === "knowledge/map" ||
     route.startsWith("knowledge/exam") ? (
@@ -49,7 +69,7 @@ export function Knowledge({ route }: { route: string }) {
     >
       <ExamKnowledge
         route={
-          route.startsWith("knowledge/exam") ? route : "knowledge/exam/zadania"
+          route.startsWith("knowledge/exam") ? route : "knowledge/exam/home"
         }
       />
     </Suspense>
@@ -81,16 +101,14 @@ function CoreKnowledge({ route }: { route: string }) {
   const context = readContext(),
     valid = validContext(project, context);
   const [, routeKind, slug] = route.split("/");
-  const article =
-    routeKind === "article" ? articles.find((a) => a.slug === slug) : undefined;
+  const article = routeKind === "article" ? apparatusCard(slug) : undefined;
   const item = article;
   const pickedId = context
     ? (valid?.productId ?? null)
     : readProductSelection();
   const pickedProduct =
     pickedId &&
-    resolveKnowledge(pickedId)?.exact &&
-    resolveKnowledge(pickedId)?.articleId === article?.id
+    canonicalCardId(resolveKnowledge(pickedId)?.articleId ?? "") === article?.id
       ? catalog[pickedId]
       : undefined;
   useEffect(() => {
@@ -145,7 +163,7 @@ function CoreKnowledge({ route }: { route: string }) {
         )}
         {article ? (
           <>
-            <a href="#knowledge">← Zadania egzaminacyjne</a>
+            <a href="#knowledge">← Baza wiedzy</a>
             <span className="knowledge-eyebrow">
               Aparat · {article.level} · {article.qualifications.join(" / ")}
             </span>
@@ -157,20 +175,29 @@ function CoreKnowledge({ route }: { route: string }) {
               {article.sections.map((s) => (
                 <button
                   key={s.id}
-                  onClick={() =>
-                    document.getElementById(`section-${s.id}`)?.scrollIntoView({
-                      behavior: "smooth",
+                  onClick={() => {
+                    const section = document.getElementById(`section-${s.id}`);
+                    const details = section?.closest("details");
+                    if (details) details.open = true;
+                    section?.scrollIntoView({
+                      behavior: matchMedia("(prefers-reduced-motion: reduce)")
+                        .matches
+                        ? "instant"
+                        : "smooth",
                       block: "start",
-                    })
-                  }
+                    });
+                  }}
                 >
                   {s.title}
                 </button>
               ))}
             </nav>
-            <ProductIllustration
-              productId={pickedProduct?.id ?? article.illustrationProductId}
-            />
+            <p className="knowledge-limit">{article.scope}</p>
+            {(pickedProduct || article.illustrationProductId) && (
+              <ProductIllustration
+                productId={pickedProduct?.id ?? article.illustrationProductId}
+              />
+            )}
             {pickedProduct && (
               <section className="knowledge-prose knowledge-product-map">
                 <h2>Wybrany model: {pickedProduct.displayNamePl}</h2>
@@ -190,64 +217,117 @@ function CoreKnowledge({ route }: { route: string }) {
                     {pickedProduct.topology.coil.minus}.
                   </p>
                 )}
-                <div className="knowledge-table-wrap">
-                  <table>
-                    <caption>
-                      Mapa wybranego modelu. Funkcja w Twoim układzie wynika z
-                      połączeń, nie z samego numeru.
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th>Zacisk</th>
-                        <th>Znaczenie</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {pickedProduct.topology.terminals.map((t) => (
-                        <tr key={t.id}>
-                          <th scope="row">{t.label}</th>
-                          <td>
-                            {bindings.find(
-                              (b) => b.productId === pickedProduct.id,
-                            )?.terminals[t.id]?.explanation ?? t.role}
-                          </td>
+                <p>
+                  Profil:{" "}
+                  {pickedProduct.published ? "opublikowany" : "oczekujący"} ·
+                  rewizja {pickedProduct.revision} · topologia{" "}
+                  {pickedProduct.topology.revision}.{" "}
+                  {resolveKnowledge(pickedProduct.id)?.exact
+                    ? "Zweryfikowane powiązanie zacisków z wiedzą."
+                    : "Mapa modelu katalogowego; pomoc ogólna, bez mapy źródłowej realnego SKU."}
+                </p>
+                <details>
+                  <summary>
+                    Mapa zacisków i ograniczenia wybranego profilu
+                  </summary>
+                  <div className="knowledge-table-wrap">
+                    <table>
+                      <caption>
+                        Mapa wybranego modelu. Funkcja w Twoim układzie wynika z
+                        połączeń, nie z samego numeru.
+                      </caption>
+                      <thead>
+                        <tr>
+                          <th>Zacisk</th>
+                          <th>Znaczenie</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <ul>
-                  {pickedProduct.limitations.map((text, i) => (
-                    <li key={i}>{text}</li>
-                  ))}
-                </ul>
+                      </thead>
+                      <tbody>
+                        {pickedProduct.topology.terminals.map((t) => (
+                          <tr key={t.id}>
+                            <th scope="row">{t.label}</th>
+                            <td>
+                              {bindings.find(
+                                (b) => b.productId === pickedProduct.id,
+                              )?.terminals[t.id]?.explanation ?? t.role}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <ul>
+                    {pickedProduct.limitations.map((text, i) => (
+                      <li key={i}>{text}</li>
+                    ))}
+                  </ul>
+                </details>
               </section>
             )}
             <div className="knowledge-prose">
-              {article.sections.map((section) => (
-                <section key={section.id} id={`section-${section.id}`}>
-                  <h2>{section.title}</h2>
-                  {section.paragraphs.map((text, i) => (
-                    <p key={i}>{text}</p>
-                  ))}
-                  <small>
-                    Źródła:{" "}
-                    {section.sourceIds.map((id, i) => (
-                      <span key={id}>
-                        {i > 0 ? " · " : ""}
-                        <a
-                          href={article.sources.find((s) => s.id === id)!.url}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          {article.sources.find((s) => s.id === id)!.title}
-                        </a>
-                      </span>
+              {article.sections.map((section) => {
+                const body = (
+                  <section key={section.id} id={`section-${section.id}`}>
+                    <h2>
+                      {section.id === "operation"
+                        ? "Co zmienia się po zadziałaniu"
+                        : section.title}
+                    </h2>
+                    {section.paragraphs.map((text, i) => (
+                      <p key={i}>{text}</p>
                     ))}
-                  </small>
-                </section>
-              ))}
+                    {section.sourceIds.length > 0 && (
+                      <small>
+                        Źródła:{" "}
+                        {section.sourceIds.map((id, i) => {
+                          const source = article.sources.find(
+                            (s) => s.id === id,
+                          )!;
+                          return (
+                            <span key={id}>
+                              {i > 0 ? " · " : ""}
+                              <a
+                                href={source.url}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                {source.title}
+                              </a>
+                            </span>
+                          );
+                        })}
+                      </small>
+                    )}
+                  </section>
+                );
+                return section.id === "operation" ? (
+                  body
+                ) : (
+                  <details key={section.id}>
+                    <summary>{section.title}</summary>
+                    {body}
+                  </details>
+                );
+              })}
             </div>
+            {article.taskCodes.length > 0 && (
+              <section className="knowledge-next">
+                <h2>Zadania z tym aparatem</h2>
+                <div className="knowledge-related">
+                  {article.taskCodes.map((code) => (
+                    <a
+                      key={code}
+                      href={`#/wiedza/${["101", "108"].includes(code) ? "uklady" : "zadania"}/ele02-${code.toLowerCase()}`}
+                    >
+                      ELE.02-{code} ·{" "}
+                      {["101", "108"].includes(code)
+                        ? "Możesz uruchomić"
+                        : "Schemat i teoria"}
+                    </a>
+                  ))}
+                </div>
+              </section>
+            )}
 
             <div className="knowledge-next">
               <h2>Układy z obecnych arkuszy</h2>
@@ -260,16 +340,20 @@ function CoreKnowledge({ route }: { route: string }) {
               <h2>Materiały powiązane</h2>
               <div className="knowledge-related">
                 {article.related.map((id) => {
-                  const a = articles.find((a) => a.id === id)!;
+                  const a = apparatusCards.find(
+                    (a) => a.id === canonicalCardId(id),
+                  )!;
                   return (
-                    <a key={id} href={`#knowledge/article/${a.slug}`}>
+                    <a key={id} href={cardHref(a.id)}>
                       {a.title}
                     </a>
                   );
                 })}
               </div>
-              <h2>Źródła i lokalizatory</h2>
-              <SourceList items={article.sources} />
+              <details>
+                <summary>Źródła i lokalizatory</summary>
+                <SourceList items={article.sources} />
+              </details>
               <button onClick={markRead}>
                 {progress.read[article.id]
                   ? "Przeczytano ✓"

@@ -33,6 +33,14 @@ export const theoryFallback: TheoryFallback = {
   "source-ac": "zasilacze",
   "source-dc": "zasilacze",
   "source-3ph": "zasilacze",
+  socket: "gniazda",
+};
+const loadTheory: Record<string, string> = {
+  "edu-lamp": "lampy",
+  "edu-bulkhead-40": "lampy",
+  "edu-indicator-green-230": "lampy",
+  "edu-heater": "grzalka",
+  "edu-fan": "wentylator",
 };
 export const bindings: ProductKnowledgeBinding[] =
   snapshot as unknown as ProductKnowledgeBinding[];
@@ -50,13 +58,14 @@ export function resolveKnowledge(
       b.topologyRevision === p.topology.revision,
   );
   if (!b) {
-    const articleId = theoryFallback[p.behaviorId];
+    const articleId = loadTheory[p.id] ?? theoryFallback[p.behaviorId];
     return articleId
       ? {
           articleId,
           exact: false,
-          explanation:
-            "Teoria ogólna — brak zweryfikowanego powiązania tej rewizji produktu.",
+          explanation: p.educational
+            ? "Teoria modelu dydaktycznego — brak zweryfikowanej mapy realnego SKU."
+            : "Teoria ogólna — brak zweryfikowanego powiązania tej rewizji produktu.",
         }
       : undefined;
   }
@@ -107,6 +116,9 @@ export function validContext(
 }
 export function contextExplanation(p: ProjectDocument, c: KnowledgeContext) {
   const d = validContext(p, c);
+  if (!d && p.circuit.projectId === c.projectId && p.circuit.revision === c.revision &&
+    p.circuit.devices.some(d => d.id === c.deviceId && d.productId === c.productId && d.productRevision === c.productRevision))
+    return `${c.deviceId} · ${resolveKnowledge(c.productId)?.explanation ?? "Teoria ogólna"} Powrót zachowa projekt; zaznaczanie zacisków wymaga zweryfikowanej mapy.`;
   if (!d)
     return "Kontekst jest nieaktualny. Czytasz teorię ogólną; zaznaczenie w projekcie jest wyłączone.";
   const owner = mechanismOwner(p, d.id);

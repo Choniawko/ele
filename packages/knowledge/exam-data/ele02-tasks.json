@@ -2079,7 +2079,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "TH35, 6 A, charakterystyka B"
         },
         {
           "componentId": "motor-protection",
@@ -2087,7 +2089,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "Regulowany zakres obejmujący potrzebne prądy silników; TH35; co najmniej jeden styk pomocniczy"
         },
         {
           "componentId": "motor-aux",
@@ -2095,7 +2099,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "NO co najmniej 1; zgodny mechanicznie z wyłącznikiem"
         },
         {
           "componentId": "contactor",
@@ -2103,7 +2109,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": "Potrzebne NO 13–14 i NC 21–22; dobrać wyposażenie pomocnicze."
+          "note": "Potrzebne NO 13–14 i NC 21–22; dobrać wyposażenie pomocnicze.",
+          "sourceParameters": "Potrzebne NO 13–14 i NC 21–22; dobrać wyposażenie pomocnicze.",
+          "purchaseVariant": "3NO, co najmniej 8 A według arkuszy, cewka 230 V AC, TH35; właściwa kategoria pracy silnikowej"
         },
         {
           "componentId": "start-stop-din",
@@ -2111,7 +2119,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "DWA NIEZALEŻNE przyciski chwilowe: START NO i STOP NC; przykład źródłowy SVN391"
         },
         {
           "componentId": "start-stop-panel",
@@ -2119,7 +2129,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "DWA NIEZALEŻNE przyciski chwilowe NO i NC; odpowiednia obudowa / mocowanie"
         },
         {
           "componentId": "no-din",
@@ -2127,7 +2139,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "Jeden niezależny NO, powrót sprężynowy"
         },
         {
           "componentId": "no-panel",
@@ -2135,7 +2149,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "Jeden niezależny NO, powrót sprężynowy"
         },
         {
           "componentId": "case-r2",
@@ -2143,7 +2159,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 1, PDF 1",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "Na niezależny START/STOP i osobny NO z zadania 108"
         },
         {
           "componentId": "rail-n",
@@ -2151,7 +2169,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": "Minimalny tor N odczytany z rysunku; liczba złączek do innych rozgałęzień zależy od realizacji."
+          "note": "Minimalny tor N odczytany z rysunku; liczba złączek do innych rozgałęzień zależy od realizacji.",
+          "sourceParameters": "Minimalny tor N odczytany z rysunku; liczba złączek do innych rozgałęzień zależy od realizacji.",
+          "purchaseVariant": "Do 4 mm², dwie strony jednego toru, izolowana; TH35"
         },
         {
           "componentId": "rail-pe",
@@ -2159,7 +2179,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "Do 4 mm², właściwe mocowanie i oznaczenie PE; TH35"
         },
         {
           "componentId": "motor3-y",
@@ -2167,7 +2189,10 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": "W arkuszu nie ma tabliczki ani napięcia Y/Δ; 230/400 V w gwieździe to wariant zakupowy, nie wartość podana przez źródło."
+          "note": "W arkuszu nie ma tabliczki ani napięcia Y/Δ; 230/400 V w gwieździe to wariant zakupowy, nie wartość podana przez źródło.",
+          "sourceParameters": "Arkusz nie określa mocy ani tabliczki Y/Δ silnika.",
+          "purchaseVariant": "Do 1,5 kW; tabliczka Δ230/Y400; w 113 fabrycznie przygotowany w gwiazdę",
+          "modelAssumptions": "Wzorzec 108: rezystancyjny model silnika 3 kW z ukrytą gwiazdą; Q2 4,35 A. Założenia opisane w QA_01b i reference-108, a nie dane tabliczki."
         }
       ],
       "learningGoals": [
