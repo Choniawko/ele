@@ -30,6 +30,8 @@ W nagłówku wybierz **Baza wiedzy**: 17 kart arkuszy, 25 artykułów, 60 katego
 
 **Nauka schematów** prowadzi od symboli przez ćwiczenia na oryginalnych arkuszach 101 i 108 do lekcji, w której schemat, tablica i przepływ prądu są zsynchronizowane. Wyniki audytu UX, kontroli połączeń i plan dalszych zmian: [docs/UX_AUDYT_NAUKA.md](docs/UX_AUDYT_NAUKA.md).
 
+**Układy sterowania** to osobny temat (`/ele/#/wiedza/sterowanie`): 36 układów stykowych z książki *Stykowe elektryczne układy sterowania* jako działające symulacje 24 V DC z animacją prądu i styków, prowadzeniem krok po kroku, zwolnionym tempem zmian, tabelą pomiarową oraz teorią samopodtrzymania, blokad i przekaźników czasowych. [Opis budowy](docs/KNOWLEDGE.md#układy-sterowania-stykowego-osobny-temat).
+
 „Poznaj aparat” i osobne wyjaśnienie zacisku otwierają pomoc z rolą w tym układzie. Zwykły gest zacisku nadal rozpoczyna łączenie. Powrót zachowuje kadr, zaznaczenie i rozpoczętą pracę; czytanie zawiesza automatyczny zegar. Pełne artykuły katalogowe zachowują istniejące adresy i lokalny progres. Dawne demonstracje oraz układy bazowe wycofano. [Zakres i dopisywanie materiałów](docs/KNOWLEDGE.md), [odbiór etapu 01](docs/ele-exams/QA_01.md) i [odbiór 108](docs/ele-exams/QA_01b.md).
 
 ## Moje projekty
