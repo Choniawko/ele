@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import { importLegacy } from "./legacy-project";
 
 test("diag: runtime device churn", async ({ page }) => {
@@ -12,7 +12,10 @@ test("diag: runtime device churn", async ({ page }) => {
     const { useApp } = await import(path);
     const changed: Record<string, number> = {};
     let updates = 0, prev = useApp.getState();
-    const unsub = useApp.subscribe((s: any) => {
+    type State = Record<string, unknown> & {
+      runtime: { devices: Record<string, Record<string, unknown>> };
+    };
+    const unsub = useApp.subscribe((s: State) => {
       updates++;
       for (const k of Object.keys(s)) if (s[k] !== prev[k]) changed[k] = (changed[k] ?? 0) + 1;
       if (s.runtime.devices !== prev.runtime.devices)

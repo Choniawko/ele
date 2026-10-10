@@ -12,6 +12,7 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "test:e2e:production": "playwright test --config playwright.production.config.ts",
+    "test:e2e:diag": "ELE_DIAG=1 playwright test zz-diag",
     "catalog:validate": "tsx scripts/catalog.ts validate",
     "catalog:report": "tsx scripts/catalog.ts report",
     "benchmark": "tsx scripts/benchmark.ts",

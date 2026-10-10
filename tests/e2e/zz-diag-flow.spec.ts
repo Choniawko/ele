@@ -46,7 +46,8 @@ test("diag: flowKey changes", async ({ page }) => {
     const { conductorFlow, flowSignature } = await import(flowPath);
     const seen: string[] = [];
     let runtimes = 0, devs = 0, prevDev = useApp.getState().runtime.devices;
-    const unsub = useApp.subscribe((s: any) => {
+    type State = { project: unknown; runtime: { devices: unknown } };
+    const unsub = useApp.subscribe((s: State) => {
       runtimes++;
       if (s.runtime.devices !== prevDev) { devs++; prevDev = s.runtime.devices; }
       const k = flowSignature(conductorFlow(s.project, s.runtime));

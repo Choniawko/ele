@@ -8,10 +8,36 @@ permissions:
   contents: read
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  # A newer PR push replaces the old check; a main run that may deploy is
+  # never cancelled half way.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   verify:
     uses: ./.github/workflows/verify.yml
+    with:
+      pages: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && github.repository == 'Choniawko/ele' }}
+  deploy-main:
+    name: Deploy main to Pages
+    needs: verify
+    if: >-
+      github.event_name == 'push' &&
+      github.ref == 'refs/heads/main' &&
+      github.repository == 'Choniawko/ele'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy the dist tested by Verify ELE in this run
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
   describe-pr-2:
     name: Describe PR 2
     needs: verify

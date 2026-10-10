@@ -5,6 +5,10 @@ on:
       release_tag:
         type: string
         default: ""
+      pages:
+        description: Upload the tested dist as the Pages artifact (main deploy).
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -74,8 +78,8 @@ jobs:
           path: release/
           if-no-files-found: error
           retention-days: 90
-      - name: Upload only the tested dist for the tag deployment
-        if: inputs.release_tag != ''
+      - name: Upload only the tested dist for the Pages deployment
+        if: inputs.release_tag != '' || inputs.pages
         uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
           path: dist

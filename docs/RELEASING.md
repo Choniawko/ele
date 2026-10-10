@@ -2,7 +2,7 @@
 
 Adres docelowy: **https://choniawko.github.io/ele/**. Build i preview używają `/ele/`; serwer developerski pozostaje przy `/`. Pierwsze wydanie obejmuje zakres [etapu ćwiczeń](exam-coverage.md), wraz z jego jawnymi ograniczeniami. Wersja 0.2.0 dodaje dotychczasowe rozszerzenia instalacji/konstruktora rozdzielnicy oraz [ELE.02-108](ELE02_108.md), w tym edukacyjny wyłącznik silnikowy i niezależne START/STOP. Wersja 0.3.0 dodaje bazę wiedzy z 17 kartami zadań i przyjęte wzorce/lekcje ELE.02-101 oraz ELE.02-108, pomoc kontekstową i rozwinięte symbole 108. Gotowe są 2/17 wzorców; ograniczenia i dowody opisują [QA_01](ele-exams/QA_01.md) oraz [QA_01b](ele-exams/QA_01b.md).
 
-Merge do `main` uruchamia wyłącznie `ELE CI`. Publikacja wymaga nowego anotowanego tagu zgodnego z wersją w `package.json`; tag uruchamia `ELE Release`, który po pełnej weryfikacji zapisuje archiwum wydania i wdraża je na Pages.
+Merge PR do `main` uruchamia `ELE CI`, a po zielonym `Verify ELE` job **Deploy main to Pages** wdraża przetestowany w tym przebiegu `dist` na Pages. Strona pokazuje wtedy bieżący `main`: `version.json` ma `tag: null` i SHA commita. Wersjonowane wydanie nadal wymaga anotowanego tagu zgodnego z `package.json`; tag uruchamia `ELE Release`, który po pełnej weryfikacji zapisuje archiwum w GitHub Releases i wdraża je na Pages.
 
 ## Kontrole i artefakt
 
@@ -20,6 +20,12 @@ Zestawy przeglądarkowe działają sekwencyjnie. CI nie używa istniejącego ser
 Testy Pages pobierają wszystkie pliki manifestu, porównują bajty/SHA-256 i typy JS/CSS. Sprawdzają właściwy adres Workera, rzeczywistą pracę lampy przez solver, poprawny link strony głównej, edycję, autosave, odświeżenie i ponowne uruchomienie solvera. Wcześniejsze testy produkcyjne nadal sprawdzają montaż, kierunki, pomiary, diagnozę, import i odzyskiwanie zapisów.
 
 `version.json` zawiera wersję z `package.json`, tag lub `null` dla builda weryfikacyjnego, SHA checkoutu, datę builda i base. Lokalny build przed commitem może zawierać niezatwierdzone zmiany; sam SHA nie potwierdza czystego checkoutu. Wydanie w Actions ma osobną bramkę czystego checkoutu/tagu przed testami. Manifest obejmuje pliki i metadane, bez własnego rekurencyjnego hasha.
+
+## Publikacja `main` po merge
+
+Dla `push` na `main` w `Choniawko/ele` `ELE CI` przekazuje do `verify.yml` `pages: true`. Po wszystkich kontrolach (typecheck, lint, testy, katalog, E2E developerskie, build `/ele/`, E2E produkcyjne, archiwum) ten sam `dist` trafia do artefaktu Pages. Job `Deploy main to Pages` ma `needs: verify`, uprawnienia wyłącznie `pages: write` i `id-token: write`, environment `github-pages` i concurrency `github-pages` bez przerywania. Nie robi checkoutu ani builda. Czerwona weryfikacja oznacza brak deploymentu — na stronie zostaje poprzednia wersja.
+
+PR-y nie dostają tego joba ani uprawnień zapisu. Przebiegi `main` nie są anulowane przez kolejny merge; nowy przebieg czeka, a GitHub pozostawia w kolejce tylko najnowszy. Archiwum przebiegu `main` (`ele-preview-<sha>.tar.gz`) jest zachowane jako artefakt Actions przez 90 dni, bez wpisu w GitHub Releases. Do przywrócenia konkretnej wersji służy rollback na tagu.
 
 ## Publikacja po tagu
 
@@ -46,7 +52,7 @@ Nie znaleziono wcześniejszej polityki wydawania w repozytorium ani dyskusji PR 
 | Rules → tags `v*` | Zezwól na tworzenie tagów tylko uprawnionym osobom wydającym; blokuj zmianę i usuwanie tagów. Nie dawaj tokenowi CI prawa omijania ochrony. |
 | General → Releases | **Enable release immutability** przed pierwszym wydaniem. Chroni przyszłe opublikowane archiwa i powiązane tagi. Workflow nie używa `--clobber`. |
 | Pages | Source: **GitHub Actions**, bez gałęzi publikacyjnej i bez custom domain dla tego adresu. |
-| Environments → github-pages | **Selected branches and tags**, reguła typu **Tag: `v*`**. Nie wybieraj „Protected branches only”: workflow tagowy i rollback na tagu potrzebują dostępu. Nie dodawaj reguły dla PR/main. Zachowaj wymaganą ręczną akceptację przez recenzenta, jeśli jest częścią ustalonej polityki. |
+| Environments → github-pages | **Selected branches and tags**: reguła **Branch: `main`** (deploy po merge) i **Tag: `v*`** (wydania i rollback). Nie wybieraj „Protected branches only”: workflow tagowy i rollback na tagu potrzebują dostępu. Nie dodawaj reguł dla gałęzi PR. Zachowaj wymaganą ręczną akceptację przez recenzenta, jeśli jest częścią ustalonej polityki. |
 
 Przed wydaniem należy zobaczyć zielony check aktualnego PR i push/merge na main, potwierdzić powyższe ustawienia, a dopiero potem utworzyć tag. Przykład dla wersji `0.3.0`, po połączeniu PR:
 
