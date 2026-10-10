@@ -7,14 +7,28 @@ import {
   type Conductor,
   type Bridge,
 } from "@model/index";
-import { DevicePhysical, DeviceSchematic, MM } from "@renderers/index";
+import {
+  DevicePhysical,
+  DeviceSchematic,
+  schematicGeometry,
+  MM,
+} from "@renderers/index";
 import { auxiliaryMechanism, mechanismOwner } from "@simulation/mechanisms";
 import type { RuntimeSnapshot } from "@simulation/index";
-import { deviceByName, permanentNets } from "./diagram-model";
+import {
+  conductorFlow,
+  terminalPotential,
+  LIVE_THRESHOLD_V,
+} from "@simulation/flow";
+import {
+  documentaryConnectionClosed,
+  resolveConnectionState,
+} from "@simulation/connections";
+import { deviceByName } from "./diagram-model";
+import { functionalDiagramGeometry } from "./diagram-geometry";
 import type { DiagramScope, Highlight } from "./types";
 import { physicalWirePaths } from "@editor/wire-routing";
 import { ElectricalSymbol } from "@renderers/electrical-symbol";
-import { routedNet } from "./diagram-routing";
 export { ElectricalSymbol } from "@renderers/electrical-symbol";
 const ink = "#253f43";
 const keyAction = (e: React.KeyboardEvent, action: () => void) => {
@@ -30,42 +44,10 @@ function closed(
   id: string,
   live: boolean,
 ) {
-  if (!live) {
-    const d = p.circuit.devices.find((d) => d.id === id)!;
-    const manual = !!d.settings.position;
-    if (c.condition === "manual") return manual;
-    if (c.condition === "manual-inverse") return !manual;
-    const owner = mechanismOwner(p, id);
-    if (owner && c.condition === "mechanism")
-      return !!p.circuit.devices.find((d) => d.id === owner)?.settings.position;
-    return [
-      "manual-inverse",
-      "stop-inverse",
-      "mechanism-inverse",
-      "healthy",
-    ].includes(c.condition ?? "");
-  }
-  const state = rt.devices[id],
-    owner = mechanismOwner(p, id),
-    mechanism = owner ? auxiliaryMechanism(p, rt, id) : state.mechanism;
-  switch (c.condition) {
-    case "manual":
-      return state.manual && !state.tripped;
-    case "manual-inverse":
-      return !state.manual;
-    case "stop-inverse":
-      return !state.stopPressed;
-    case "mechanism":
-      return !!mechanism;
-    case "mechanism-inverse":
-      return !mechanism;
-    case "healthy":
-      return !state.tripped;
-    case "tripped":
-      return state.tripped;
-    default:
-      return true;
-  }
+  const d = p.circuit.devices.find((d) => d.id === id)!;
+  return live
+    ? resolveConnectionState(p, rt, d, c).displayClosed
+    : documentaryConnectionClosed(p, d, c);
 }
 export function FunctionalDiagram({
   project: p,
@@ -82,71 +64,35 @@ export function FunctionalDiagram({
   highlight: Highlight;
   onHighlight: (h: Highlight) => void;
 }) {
-  const net = useMemo(() => permanentNets(p), [p]);
-  const symbols = scope.symbols.map((s) => {
-    const d = deviceByName(p, s.designation),
-      c = catalog[d.productId].topology.connections.find(
-        (c) => c.id === s.fragmentId,
-      )!;
-    return { ...s, d, c };
-  });
-  const ports = [
-    ...scope.ports.map((pt) => ({
-      ...pt,
-      ref: {
-        deviceId: deviceByName(p, pt.designation).id,
-        terminalId: pt.terminalId,
-      },
-    })),
-    ...symbols.flatMap((s) => [
-      {
-        x: s.x + (s.reverse ? 120 : 0),
-        y: s.y,
-        ref: { deviceId: s.d.id, terminalId: s.c.from },
-      },
-      {
-        x: s.x + (s.reverse ? 0 : 120),
-        y: s.y,
-        ref: { deviceId: s.d.id, terminalId: s.c.to },
-      },
-    ]),
-  ];
-  const groups = new Map<string, typeof ports>();
-  for (const port of ports) {
-    const k = net(port.ref);
-    groups.set(k, [...(groups.get(k) ?? []), port]);
-  }
-  const lines = [...groups.entries()].map(([k, pts]) => {
-    const anchor = scope.netAnchors?.find(
-      (a) =>
-        net({
-          deviceId: deviceByName(p, a.designation).id,
-          terminalId: a.terminalId,
-        }) === k,
-    );
-    const minX = Math.min(...pts.map((pt) => pt.x)),
-      maxX = Math.max(...pts.map((pt) => pt.x)),
-      minY = Math.min(...pts.map((pt) => pt.y)),
-      maxY = Math.max(...pts.map((pt) => pt.y));
-    const x =
-      anchor?.point.x ??
-      (pts.some((pt) => pt.x > scope.width - 180) ? maxX : minX);
-    const path =
-      minY === maxY
-        ? `M${minX} ${minY}H${maxX}`
-        : `M${x} ${minY}V${maxY} ${pts.map((pt) => `M${pt.x} ${pt.y}H${x}`).join(" ")}`;
-    const routed = anchor?.trunk
-      ? routedNet(pts, anchor.trunk)
-      : {
-          path,
-          junctions:
-            pts.length > 2 && minY !== maxY
-              ? [...new Set(pts.map((pt) => pt.y))].map((y) => ({ x, y }))
-              : [],
-        };
-    return { k, ...routed };
-  });
+  const { net, symbols, lines } = useMemo(
+    () => functionalDiagramGeometry(p, scope),
+    [p, scope],
+  );
   const selectedNets = new Set(highlight.terminals.map(net));
+  // Live picture: which nets sit at phase potential and which carry current.
+  const flow = useMemo(() => conductorFlow(p, rt), [p, rt]);
+  const netState = (line: (typeof lines)[number]) => {
+    if (!live || !rt.energized) return "idle";
+    const carrying = p.circuit.conductors.some(
+      (w) => flow[w.id] && (net(w.from) === line.k || net(w.to) === line.k),
+    );
+    const potential = Math.max(
+      ...line.ports.map((pt) => terminalPotential(p, rt, terminalKey(pt.ref))),
+    );
+    return potential >= LIVE_THRESHOLD_V
+      ? carrying
+        ? "live-current"
+        : "live"
+      : carrying
+        ? "return-current"
+        : "idle";
+  };
+  const netColor = {
+    idle: ink,
+    live: "#c2410c",
+    "live-current": "#c2410c",
+    "return-current": "#1d5fb0",
+  };
   return (
     <svg
       className="knowledge-diagram"
@@ -162,31 +108,76 @@ export function FunctionalDiagram({
       </desc>
       <text x="30" y="38" fill={ink} fontSize="24" fontWeight="600">
         {live
-          ? "WIDOK DZIAŁANIA — stan solvera"
-          : "STAN ODNIESIENIA — bez pobudzenia"}
+          ? p.faults.some((f) => f.hidden)
+            ? "POŁOŻENIE MECHANIZMÓW — ciągłość sprawdź pomiarem"
+            : "WIDOK DZIAŁANIA — rzeczywista ciągłość"
+          : "WIDOK DOKUMENTACYJNY — stan odniesienia, bez pobudzenia"}
       </text>
-      {lines.map((l) => (
-        <g key={l.k} data-functional-net={l.k}>
-          <path d={l.path} stroke="white" strokeWidth="8" fill="none" />
-          <path
-            d={l.path}
-            stroke={selectedNets.has(l.k) ? "#b05a10" : ink}
-            strokeWidth={selectedNets.has(l.k) ? 3 : 2}
-            fill="none"
-          />
-          {l.junctions.map((pt) => (
-            <circle
-              key={`${pt.x}:${pt.y}`}
-              cx={pt.x}
-              cy={pt.y}
-              r="4"
-              fill={ink}
+      {lines.map((l) => {
+        const state = netState(l);
+        return (
+          <g key={l.k} data-functional-net={l.k} data-net-state={state}>
+            <path d={l.path} stroke="white" strokeWidth="8" fill="none" />
+            {state.endsWith("current") && (
+              <path
+                className="net-current"
+                d={l.path}
+                stroke={netColor[state]}
+                strokeOpacity={0.22}
+                strokeWidth={11}
+                fill="none"
+              />
+            )}
+            <path
+              d={l.path}
+              stroke={selectedNets.has(l.k) ? "#b05a10" : netColor[state]}
+              strokeWidth={selectedNets.has(l.k) ? 3 : state === "idle" ? 2 : 3}
+              fill="none"
             />
-          ))}
-        </g>
-      ))}
+            {l.junctions.map((pt) => (
+              <circle
+                key={`${pt.x}:${pt.y}`}
+                cx={pt.x}
+                cy={pt.y}
+                r="4"
+                fill={netColor[state]}
+              />
+            ))}
+          </g>
+        );
+      })}
       {scope.ports.map((pt) => (
-        <g key={`${pt.designation}:${pt.terminalId}`}>
+        <g
+          key={`${pt.designation}:${pt.terminalId}`}
+          data-terminal={`${pt.designation}:${pt.terminalId}`}
+          role="button"
+          tabIndex={0}
+          aria-label={`Zacisk ${pt.designation}:${pt.terminalId}`}
+          onClick={() =>
+            onHighlight({
+              deviceIds: [deviceByName(p, pt.designation).id],
+              terminals: [
+                {
+                  deviceId: deviceByName(p, pt.designation).id,
+                  terminalId: pt.terminalId,
+                },
+              ],
+            })
+          }
+          onKeyDown={(e) =>
+            keyAction(e, () =>
+              onHighlight({
+                deviceIds: [deviceByName(p, pt.designation).id],
+                terminals: [
+                  {
+                    deviceId: deviceByName(p, pt.designation).id,
+                    terminalId: pt.terminalId,
+                  },
+                ],
+              }),
+            )
+          }
+        >
           <circle cx={pt.x} cy={pt.y} r="4" fill="white" stroke={ink} />
           <text
             x={pt.x}
@@ -209,15 +200,40 @@ export function FunctionalDiagram({
           highlight.terminals.some((r) =>
             refs.some((t) => terminalKey(r) === terminalKey(t)),
           );
+        const owner =
+          mechanismOwner(p, s.d.id) ??
+          (catalog[s.d.productId].topology.coil ? s.d.id : undefined);
+        const mechanismSelected = highlight.mechanismDeviceIds?.includes(
+          s.d.id,
+        );
         const choose = () =>
-          onHighlight({ deviceIds: [s.d.id], terminals: refs });
-        const owner = mechanismOwner(p, s.d.id);
+          onHighlight({
+            deviceIds: [s.d.id],
+            terminals: refs,
+            mechanismDeviceIds:
+              s.c.kind === "coil" && owner
+                ? p.circuit.devices
+                    .filter(
+                      (d) =>
+                        d.id === owner || mechanismOwner(p, d.id) === owner,
+                    )
+                    .map((d) => d.id)
+                : undefined,
+          });
         return (
           <g
             key={`${s.designation}:${s.fragmentId}`}
             data-device-id={s.d.id}
             data-symbol-fragment={s.c.id}
             data-closed={closed(s.c, p, rt, s.d.id, live)}
+            data-mechanism-highlight={!!mechanismSelected}
+            data-state-view={
+              !live
+                ? "documentary"
+                : p.faults.some((f) => f.hidden)
+                  ? "mechanism"
+                  : "continuity"
+            }
             transform={`translate(${s.x} ${s.y})`}
             role="button"
             tabIndex={0}
@@ -232,7 +248,11 @@ export function FunctionalDiagram({
               width="120"
               height="104"
               fill={selected ? "#ffefcf" : "white"}
-              stroke={selected ? "#b05a10" : "none"}
+              stroke={
+                mechanismSelected ? "#68458b" : selected ? "#b05a10" : "none"
+              }
+              strokeWidth={mechanismSelected ? 3 : 1}
+              strokeDasharray={mechanismSelected ? "6 4" : undefined}
               rx="5"
             />
             <text
@@ -258,10 +278,61 @@ export function FunctionalDiagram({
                 }
               />
             </g>
-            <text x="0" y="24" fontSize="17" fill={ink}>
+            <text
+              x="0"
+              y="24"
+              fontSize="17"
+              fill={ink}
+              data-terminal={terminalKey(s.reverse ? refs[1] : refs[0])}
+              role="button"
+              tabIndex={0}
+              aria-label={`Zacisk ${terminalKey(s.reverse ? refs[1] : refs[0])}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                onHighlight({
+                  deviceIds: [s.d.id],
+                  terminals: [s.reverse ? refs[1] : refs[0]],
+                });
+              }}
+              onKeyDown={(e) => {
+                e.stopPropagation();
+                keyAction(e, () =>
+                  onHighlight({
+                    deviceIds: [s.d.id],
+                    terminals: [s.reverse ? refs[1] : refs[0]],
+                  }),
+                );
+              }}
+            >
               {s.reverse ? s.c.to : s.c.from}
             </text>
-            <text x="120" y="24" textAnchor="end" fontSize="17" fill={ink}>
+            <text
+              x="120"
+              y="24"
+              textAnchor="end"
+              fontSize="17"
+              fill={ink}
+              data-terminal={terminalKey(s.reverse ? refs[0] : refs[1])}
+              role="button"
+              tabIndex={0}
+              aria-label={`Zacisk ${terminalKey(s.reverse ? refs[0] : refs[1])}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                onHighlight({
+                  deviceIds: [s.d.id],
+                  terminals: [s.reverse ? refs[0] : refs[1]],
+                });
+              }}
+              onKeyDown={(e) => {
+                e.stopPropagation();
+                keyAction(e, () =>
+                  onHighlight({
+                    deviceIds: [s.d.id],
+                    terminals: [s.reverse ? refs[0] : refs[1]],
+                  }),
+                );
+              }}
+            >
               {s.reverse ? s.c.from : s.c.to}
             </text>
             {owner && (
@@ -288,6 +359,7 @@ export function PhysicalDiagram({
   onHighlight: (h: Highlight) => void;
 }) {
   const routes = useMemo(() => physicalWirePaths(p), [p]);
+  const flow = useMemo(() => conductorFlow(p, rt), [p, rt]);
   const bounds = {
     width: Math.max(
       1100,
@@ -352,11 +424,26 @@ export function PhysicalDiagram({
       ).map((w, i) => {
         const a = point(w.from),
           b = point(w.to),
-          selected = w.id === highlight.wireId;
+          selected =
+            w.id === highlight.wireId || !!highlight.wireIds?.includes(w.id);
         const y = Math.min(a.y, b.y) - 25 - (i % 7) * 8;
         return (
           <path
             key={w.id}
+            data-wire-id={w.id}
+            data-highlighted={selected}
+            role="button"
+            tabIndex={0}
+            aria-label={`Żyła ${w.id}: ${terminalKey(w.from)} → ${terminalKey(w.to)}`}
+            onKeyDown={(e) =>
+              keyAction(e, () =>
+                onHighlight({
+                  wireId: w.id,
+                  deviceIds: [w.from.deviceId, w.to.deviceId],
+                  terminals: [w.from, w.to],
+                }),
+              )
+            }
             d={
               routes[w.id]?.length
                 ? routes[w.id]
@@ -372,8 +459,8 @@ export function PhysicalDiagram({
                   ? w.insulationColor
                   : ink
             }
-            opacity={selected ? 1 : 0.55}
-            strokeWidth={selected ? 5 : 2}
+            opacity={selected ? 1 : 0.8}
+            strokeWidth={selected ? 5 : 2.5}
             onClick={() =>
               onHighlight({
                 wireId: w.id,
@@ -384,6 +471,22 @@ export function PhysicalDiagram({
           />
         );
       })}
+      {Object.entries(flow).map(([id, direction]) =>
+        routes[id]?.length ? (
+          <path
+            key={`flow-${id}`}
+            data-flow-wire={id}
+            className={`wire-flow${direction < 0 ? " reverse" : ""}`}
+            d={routes[id]
+              .map((pt, i) => `${i ? "L" : "M"}${pt.x} ${pt.y}`)
+              .join(" ")}
+            fill="none"
+            stroke="#ffd34d"
+            strokeWidth={4}
+            pointerEvents="none"
+          />
+        ) : null,
+      )}
       {p.circuit.devices.map((d) => (
         <g
           key={d.id}
@@ -414,6 +517,7 @@ export function PhysicalDiagram({
 }
 export function ProductIllustration({ productId }: { productId: string }) {
   const product = catalog[productId],
+    geometry = schematicGeometry(product),
     device = {
       id: "illustration",
       productId,
@@ -435,14 +539,11 @@ export function ProductIllustration({ productId }: { productId: string }) {
             showTerminals={false}
           />
         </svg>
-        <figcaption>
-          {product.displayNamePl} ·{" "}
-          {product.educational ? "profil dydaktyczny" : "produkt katalogowy"}
-        </figcaption>
+        <figcaption>Wygląd profilu</figcaption>
       </figure>
       <figure>
         <svg
-          viewBox="-10 -20 180 430"
+          viewBox={`-10 -20 ${geometry.width + 20} ${geometry.height + 30}`}
           role="img"
           aria-label="Symbole aparatu w stanie odniesienia"
         >
@@ -452,7 +553,7 @@ export function ProductIllustration({ productId }: { productId: string }) {
             showTerminals={false}
           />
         </svg>
-        <figcaption>Stan odniesienia; symbole funkcjonalne modelu.</figcaption>
+        <figcaption>Symbol — stan odniesienia</figcaption>
       </figure>
     </div>
   );

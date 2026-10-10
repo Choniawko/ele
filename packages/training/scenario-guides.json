@@ -1,0 +1,263 @@
+[
+  {
+    "id": "lamp",
+    "description": "Zbuduj obwód oświetlenia z ochroną nadprądową. Sprawdź działanie łącznika i zmierz napięcie na lampie.",
+    "fidelity": "Rzeczywisty MBN116E lub HDR-60-24 oraz elementy dydaktyczne.",
+    "goals": [
+      "Sprawny obwód i poprawne stany",
+      "Ciągłość toru PE oraz identyfikacja żył",
+      "Pomiar z zapisanym wynikiem"
+    ],
+    "hints": [
+      "Sprawdź połączenia zacisków i prześledź tor roboczy od źródła do odbiornika.",
+      "Dobierz pomiar napięcia na odbiorniku, następnie porównaj obie strony elementu łączeniowego.",
+      "Przy odłączonych wszystkich źródłach zbadaj ciągłość toru powrotnego oraz osobno PE.",
+      "Napraw przyczynę potwierdzoną pomiarem i powtórz test. Świecenie lampy nie potwierdza ciągłości PE."
+    ]
+  },
+  {
+    "id": "two-way",
+    "description": "Steruj jedną lampą z dwóch miejsc. Każde przełączenie ma zmienić stan odbiornika.",
+    "fidelity": "Rzeczywisty MBN116E lub HDR-60-24 oraz elementy dydaktyczne.",
+    "goals": [
+      "Sprawny obwód i poprawne stany",
+      "Ciągłość toru PE oraz identyfikacja żył",
+      "Pomiar z zapisanym wynikiem"
+    ],
+    "hints": [
+      "Sprawdź połączenia zacisków i prześledź tor roboczy od źródła do odbiornika.",
+      "Dobierz pomiar napięcia na odbiorniku, następnie porównaj obie strony elementu łączeniowego.",
+      "Przy odłączonych wszystkich źródłach zbadaj ciągłość toru powrotnego oraz osobno PE.",
+      "Napraw przyczynę potwierdzoną pomiarem i powtórz test. Świecenie lampy nie potwierdza ciągłości PE."
+    ]
+  },
+  {
+    "id": "crossover",
+    "description": "Wstaw krzyżowy pomiędzy dwa schodowe i zbadaj wszystkie osiem kombinacji.",
+    "fidelity": "Rzeczywisty MBN116E lub HDR-60-24 oraz elementy dydaktyczne.",
+    "goals": [
+      "Sprawny obwód i poprawne stany",
+      "Ciągłość toru PE oraz identyfikacja żył",
+      "Pomiar z zapisanym wynikiem"
+    ],
+    "hints": [
+      "Sprawdź połączenia zacisków i prześledź tor roboczy od źródła do odbiornika.",
+      "Dobierz pomiar napięcia na odbiorniku, następnie porównaj obie strony elementu łączeniowego.",
+      "Przy odłączonych wszystkich źródłach zbadaj ciągłość toru powrotnego oraz osobno PE.",
+      "Napraw przyczynę potwierdzoną pomiarem i powtórz test. Świecenie lampy nie potwierdza ciągłości PE."
+    ]
+  },
+  {
+    "id": "socket",
+    "description": "Rozdziel L, N i PE. Zbadaj napięcie w punktach użytkowych oraz ciągłość ochrony.",
+    "fidelity": "Rzeczywisty MBN116E lub HDR-60-24 oraz elementy dydaktyczne.",
+    "goals": [
+      "Sprawny obwód i poprawne stany",
+      "Ciągłość toru PE oraz identyfikacja żył",
+      "Pomiar z zapisanym wynikiem"
+    ],
+    "hints": [
+      "Sprawdź połączenia zacisków i prześledź tor roboczy od źródła do odbiornika.",
+      "Dobierz pomiar napięcia na odbiorniku, następnie porównaj obie strony elementu łączeniowego.",
+      "Przy odłączonych wszystkich źródłach zbadaj ciągłość toru powrotnego oraz osobno PE.",
+      "Napraw przyczynę potwierdzoną pomiarem i powtórz test. Świecenie lampy nie potwierdza ciągłości PE."
+    ]
+  },
+  {
+    "id": "distribution",
+    "description": "Rozłącznik, RCD, MCB i osobne listwy. Prześledź tor N oraz wykonaj test RCD.",
+    "fidelity": "Rzeczywisty MBN116E lub HDR-60-24 oraz elementy dydaktyczne.",
+    "goals": [
+      "Sprawny obwód i poprawne stany",
+      "Ciągłość toru PE oraz identyfikacja żył",
+      "Pomiar z zapisanym wynikiem"
+    ],
+    "hints": [
+      "Sprawdź połączenia zacisków i prześledź tor roboczy od źródła do odbiornika.",
+      "Dobierz pomiar napięcia na odbiorniku, następnie porównaj obie strony elementu łączeniowego.",
+      "Przy odłączonych wszystkich źródłach zbadaj ciągłość toru powrotnego oraz osobno PE.",
+      "Napraw przyczynę potwierdzoną pomiarem i powtórz test. Świecenie lampy nie potwierdza ciągłości PE."
+    ]
+  },
+  {
+    "id": "bistable",
+    "description": "Dwa przyciski równoległe i przekaźnik bez pamięci. Jedno zbocze ma wywołać jedną zmianę.",
+    "fidelity": "Wariant dydaktyczny: niezweryfikowane SKU zastąpione jawnymi elementami pracowni.",
+    "goals": [
+      "Sprawny obwód i poprawne stany",
+      "Ciągłość toru PE oraz identyfikacja żył",
+      "Pomiar z zapisanym wynikiem"
+    ],
+    "hints": [
+      "Sprawdź połączenia zacisków i prześledź tor roboczy od źródła do odbiornika.",
+      "Dobierz pomiar napięcia na odbiorniku, następnie porównaj obie strony elementu łączeniowego.",
+      "Przy odłączonych wszystkich źródłach zbadaj ciągłość toru powrotnego oraz osobno PE.",
+      "Napraw przyczynę potwierdzoną pomiarem i powtórz test. Świecenie lampy nie potwierdza ciągłości PE."
+    ]
+  },
+  {
+    "id": "staircase",
+    "description": "Załącz oświetlenie przyciskiem i zweryfikuj wyłączenie po nastawionym czasie.",
+    "fidelity": "Wariant dydaktyczny: niezweryfikowane SKU zastąpione jawnymi elementami pracowni.",
+    "goals": [
+      "Sprawny obwód i poprawne stany",
+      "Ciągłość toru PE oraz identyfikacja żył",
+      "Pomiar z zapisanym wynikiem"
+    ],
+    "hints": [
+      "Sprawdź połączenia zacisków i prześledź tor roboczy od źródła do odbiornika.",
+      "Dobierz pomiar napięcia na odbiorniku, następnie porównaj obie strony elementu łączeniowego.",
+      "Przy odłączonych wszystkich źródłach zbadaj ciągłość toru powrotnego oraz osobno PE.",
+      "Napraw przyczynę potwierdzoną pomiarem i powtórz test. Świecenie lampy nie potwierdza ciągłości PE."
+    ]
+  },
+  {
+    "id": "start-stop",
+    "description": "Cewka, styk pomocniczy NO, START i STOP. Sprawdź podtrzymanie oraz brak samoczynnego restartu.",
+    "fidelity": "Wariant dydaktyczny: niezweryfikowane SKU zastąpione jawnymi elementami pracowni.",
+    "goals": [
+      "Sprawny obwód i poprawne stany",
+      "Ciągłość toru PE oraz identyfikacja żył",
+      "Pomiar z zapisanym wynikiem"
+    ],
+    "hints": [
+      "Sprawdź połączenia zacisków i prześledź tor roboczy od źródła do odbiornika.",
+      "Dobierz pomiar napięcia na odbiorniku, następnie porównaj obie strony elementu łączeniowego.",
+      "Przy odłączonych wszystkich źródłach zbadaj ciągłość toru powrotnego oraz osobno PE.",
+      "Napraw przyczynę potwierdzoną pomiarem i powtórz test. Świecenie lampy nie potwierdza ciągłości PE."
+    ]
+  },
+  {
+    "id": "dc",
+    "description": "Zasilacz HDR-60-24 i stycznik DC. Wyjście pozostaje odizolowane od N/PE toru AC.",
+    "fidelity": "Rzeczywisty MBN116E lub HDR-60-24 oraz elementy dydaktyczne.",
+    "goals": [
+      "Sprawny obwód i poprawne stany",
+      "Ciągłość toru PE oraz identyfikacja żył",
+      "Pomiar z zapisanym wynikiem"
+    ],
+    "hints": [
+      "Sprawdź połączenia zacisków i prześledź tor roboczy od źródła do odbiornika.",
+      "Dobierz pomiar napięcia na odbiorniku, następnie porównaj obie strony elementu łączeniowego.",
+      "Przy odłączonych wszystkich źródłach zbadaj ciągłość toru powrotnego oraz osobno PE.",
+      "Napraw przyczynę potwierdzoną pomiarem i powtórz test. Świecenie lampy nie potwierdza ciągłości PE."
+    ]
+  },
+  {
+    "id": "timer",
+    "description": "Zbadaj cykl rozpoczynany zasilaniem. Wybierz funkcję i czas, a następnie porównaj oba zestyki.",
+    "fidelity": "Wariant dydaktyczny: niezweryfikowane SKU zastąpione jawnymi elementami pracowni.",
+    "goals": [
+      "Sprawny obwód i poprawne stany",
+      "Ciągłość toru PE oraz identyfikacja żył",
+      "Pomiar z zapisanym wynikiem"
+    ],
+    "hints": [
+      "Sprawdź połączenia zacisków i prześledź tor roboczy od źródła do odbiornika.",
+      "Dobierz pomiar napięcia na odbiorniku, następnie porównaj obie strony elementu łączeniowego.",
+      "Przy odłączonych wszystkich źródłach zbadaj ciągłość toru powrotnego oraz osobno PE.",
+      "Napraw przyczynę potwierdzoną pomiarem i powtórz test. Świecenie lampy nie potwierdza ciągłości PE."
+    ]
+  },
+  {
+    "id": "three-phase",
+    "description": "Uruchom silnik dydaktyczny. Przekaźnik przeciążeniowy ma przerwać tor cewki przez 95/96.",
+    "fidelity": "Wariant dydaktyczny: niezweryfikowane SKU zastąpione jawnymi elementami pracowni.",
+    "goals": [
+      "Sprawny obwód i poprawne stany",
+      "Ciągłość toru PE oraz identyfikacja żył",
+      "Pomiar z zapisanym wynikiem"
+    ],
+    "hints": [
+      "Sprawdź połączenia zacisków i prześledź tor roboczy od źródła do odbiornika.",
+      "Dobierz pomiar napięcia na odbiorniku, następnie porównaj obie strony elementu łączeniowego.",
+      "Przy odłączonych wszystkich źródłach zbadaj ciągłość toru powrotnego oraz osobno PE.",
+      "Napraw przyczynę potwierdzoną pomiarem i powtórz test. Świecenie lampy nie potwierdza ciągłości PE."
+    ]
+  },
+  {
+    "id": "diagnosis",
+    "description": "Odbiornik może działać mimo nieprawidłowego toru ochronnego. Zbierz dowód, postaw hipotezę i napraw układ.",
+    "fidelity": "Rzeczywisty MBN116E lub HDR-60-24 oraz elementy dydaktyczne.",
+    "goals": [
+      "Sprawny obwód i poprawne stany",
+      "Ciągłość toru PE oraz identyfikacja żył",
+      "Pomiar z zapisanym wynikiem"
+    ],
+    "hints": [
+      "Sprawdź połączenia zacisków i prześledź tor roboczy od źródła do odbiornika.",
+      "Dobierz pomiar napięcia na odbiorniku, następnie porównaj obie strony elementu łączeniowego.",
+      "Przy odłączonych wszystkich źródłach zbadaj ciągłość toru powrotnego oraz osobno PE.",
+      "Napraw przyczynę potwierdzoną pomiarem i powtórz test. Świecenie lampy nie potwierdza ciągłości PE."
+    ]
+  },
+  {
+    "id": "fan",
+    "description": "Załącz wentylator i obserwuj łopatki. Rozłącz obwód łącznikiem lub wyłącznikiem nadprądowym i sprawdź, czy wentylator się zatrzymał.",
+    "fidelity": "Rzeczywisty MBN116E lub HDR-60-24 oraz elementy dydaktyczne.",
+    "goals": [
+      "Sprawny obwód i poprawne stany",
+      "Ciągłość toru PE oraz identyfikacja żył",
+      "Pomiar z zapisanym wynikiem"
+    ],
+    "hints": [
+      "Sprawdź połączenia zacisków i prześledź tor roboczy od źródła do odbiornika.",
+      "Dobierz pomiar napięcia na odbiorniku, następnie porównaj obie strony elementu łączeniowego.",
+      "Przy odłączonych wszystkich źródłach zbadaj ciągłość toru powrotnego oraz osobno PE.",
+      "Napraw przyczynę potwierdzoną pomiarem i powtórz test. Świecenie lampy nie potwierdza ciągłości PE."
+    ]
+  },
+  {
+    "id": "exam-bistable",
+    "description": "Dwa miejsca sterowania światłem, niezależne gniazdo, RCD i trzy pomiary ciągłości PE.",
+    "fidelity": "Części funkcjonalne ELE.02-106; BIS i zabezpieczenia to jawne profile dydaktyczne. Zweryfikowany przycisk XB5AA35.",
+    "practice": true,
+    "goals": [
+      "FI1 zasila QF1 B6 i QF2 B10; neutralne za RCD, PE bezpośrednio z G1 przez XPE1.",
+      "QF1 → XC1 → K1: L=3, N=1, COM=11. S1 i S2 NO 13/14 równolegle do wejścia 6 przez XT1. K1 NO 12 → H1.",
+      "QF2 zasila X1 L; gniazdo nie zależy od przycisków lampy. Wciśnij i puść każdy przycisk, czekając ≥150 ms.",
+      "Odłącz zasilanie i zmierz PE: G1–XPE1 (zacisk 1), XPE1–H1, XPE1–X1. Uruchom TEST FI1."
+    ],
+    "hints": [
+      "Zbuduj osobne tory fazowe po RCD oraz wspólne N i PE.",
+      "Przyciski chwilowe łącz równolegle; 11 jest COM, 10 NC, 12 NO.",
+      "Zapisz trzy pomiary PE przy odłączonym zasilaniu, a następnie sprawdź TEST."
+    ]
+  },
+  {
+    "id": "exam-start-stop",
+    "description": "Cewka 230 V, podtrzymanie z osobnym blokiem, lampka pracy, termik i sześć zacisków silnika.",
+    "fidelity": "Autorskie ćwiczenie umiejętności. LC1D09P7 i XB5AA35 zweryfikowane; blok, silnik i termik dydaktyczne.",
+    "practice": true,
+    "goals": [
+      "M1: U1/V1/W1 przez QF1, stycznik i F1; mostki U2–V2–W2 (gwiazda, uzwojenia 230 V). Tor mocy 2,5 mm².",
+      "Sterowanie 230 V: QF2 B6 → STOP NC 21/22 → F1 NC 95/96 → START NO 13/14 równolegle z NO 53/54 przypisanego bloku KA. A2 do N.",
+      "Przypisz KA do stycznika w inspektorze. Sygnalizacja przez NO 13/14 stycznika. Po STOP i zaniku napięcia nie może wystąpić samorozruch.",
+      "Przy odłączonym zasilaniu zmierz PE: G1–XPE1 oraz XPE1–M1 i każda lampka. Pod napięciem sprawdź kolejność faz M1."
+    ],
+    "hints": [
+      "Najpierw połącz trzy tory mocy i gwiazdę silnika.",
+      "NO bloku pomocniczego ma zastąpić puszczony START; STOP i 95/96 pozostają szeregowo.",
+      "OL cewki może oznaczać przerwę. Sprawna cewka realnego SKU nie ma zmyślonej rezystancji DC."
+    ]
+  },
+  {
+    "id": "exam-reversing",
+    "description": "Zamiana dwóch faz, podtrzymanie obu kierunków, blokada elektryczna oraz osobna mechaniczna.",
+    "fidelity": "Rozwinięcie umiejętności 23.06: jedno stanowisko i podtrzymanie obu kierunków. Nie odtwarza wymaganego tam lewego jog.",
+    "practice": true,
+    "goals": [
+      "M1: U1/V1/W1 przez QF1, stycznik i F1; mostki U2–V2–W2 (gwiazda, uzwojenia 230 V). Tor mocy 2,5 mm².",
+      "Sterowanie 230 V: QF2 B6 → STOP NC 21/22 → F1 NC 95/96 → START NO 13/14 równolegle z NO 53/54 przypisanego bloku KA. A2 do N.",
+      "Przypisz KA do stycznika w inspektorze. Sygnalizacja przez NO 13/14 stycznika. Po STOP i zaniku napięcia nie może wystąpić samorozruch.",
+      "Przy odłączonym zasilaniu zmierz PE: G1–XPE1 oraz XPE1–M1 i każda lampka. Pod napięciem sprawdź kolejność faz M1.",
+      "K2 zamienia L1 i L3. NC 61/62 bloku KA2 w szeregu z A1 K1, NC KA1 w szeregu z A1 K2. Blokada musi działać elektrycznie także bez sprzężenia mechanicznego.",
+      "Przypisz oba bloki KA i dodaj blokadę mechaniczną K1–K2 w inspektorze. START S1/S2 podtrzymuje wybrany kierunek; STOP przed zmianą kierunku."
+    ],
+    "hints": [
+      "Zamień dokładnie dwa tory mocy na wyjściu K2.",
+      "Sprawdź NC przeciwnego stycznika, również w gałęzi podtrzymania.",
+      "Blokada mechaniczna nie zastępuje elektrycznej; sprawdź próbę drugiego START podczas pracy pierwszego."
+    ]
+  }
+]

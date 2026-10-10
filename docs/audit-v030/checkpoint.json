@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "auditBaseline": "c0b5ea49b370cfb5a681bfc5abf5d9d9dfd56e57",
+  "branch": "fix/audit-v0.3.0-learning",
+  "publicationAuthorized": false,
+  "currentStage": "5",
+  "stages": {
+    "0": {
+      "status": "tested",
+      "unitTests": 303,
+      "unitFiles": 22,
+      "checks": {
+        "typecheck": {
+          "exitCode": 0,
+          "seconds": 15.42
+        },
+        "lint": {
+          "exitCode": 0,
+          "seconds": 7.57
+        },
+        "catalog:validate": {
+          "exitCode": 0,
+          "seconds": 1.72
+        },
+        "knowledge:validate": {
+          "exitCode": 0,
+          "seconds": 1.6
+        },
+        "build": {
+          "exitCode": 0,
+          "seconds": 20.05
+        }
+      },
+      "reproducerExit": 1,
+      "finding": "QA-01 reproduced: welded K1/pole1 conducts, both SVGs open"
+    },
+    "1": {
+      "status": "tested",
+      "reproducerExit": 0,
+      "targetUnitTests": 35,
+      "browserTests": 3,
+      "checks": ["typecheck", "lint", "build"],
+      "evidence": [
+        "tests/contact-state.test.tsx",
+        "tests/e2e/audit-learning.spec.ts",
+        "tests/e2e/knowledge.spec.ts"
+      ],
+      "limitations": "Hidden faults use a uniform labelled mechanism view; measurement remains actual continuity."
+    },
+    "2": {
+      "status": "tested",
+      "unitTests": 21,
+      "browserScenarios": 18,
+      "checks": ["typecheck", "lint", "knowledge:validate", "build"],
+      "changes": [
+        "Canonical apparatus cards and legacy aliases",
+        "SKU/manufacturer/terminal search",
+        "Educational theory fallbacks for all published profiles",
+        "Three entry paths and learner statuses",
+        "108 source/model/purchase parameters separated"
+      ],
+      "limitations": [
+        "Remaining source parameters outside 108 retain source locators; generic purchase categories are labelled separately.",
+        "Catalog/theory coverage is not proof of all SKU accuracy."
+      ]
+    },
+    "3": {
+      "status": "tested",
+      "targetUnitTests": 25,
+      "browserScenarios": 8,
+      "checks": ["typecheck", "lint"],
+      "evidence": [
+        "tests/e2e/audit-learning.spec.ts",
+        "tests/e2e/reference-examples.spec.ts",
+        "tests/e2e/reference-108.spec.ts",
+        "tests/lesson-definitions.test.ts"
+      ],
+      "limitations": [
+        "Drawings keep horizontal/vertical panning on narrow screens so terminal labels remain readable.",
+        "Lesson progress is preserved within this tab; reload starts a fresh isolated lesson."
+      ]
+    },
+    "4": {
+      "status": "tested",
+      "completed": [
+        "Typed lesson declarations and validated device/terminal references",
+        "Demand-loaded knowledge, contextual help, projects and examples",
+        "Lightweight reference identity with exact topology/revision/binding coverage",
+        "Legacy training checks and descriptions separated from historical factories",
+        "Sources assigned to the claims they support; stale product context hides SKU map"
+      ],
+      "unitTests": 313,
+      "unitFiles": 25,
+      "checks": [
+        "typecheck",
+        "lint",
+        "catalog:validate",
+        "knowledge:validate",
+        "build",
+        "dist:validate"
+      ],
+      "reproducerExit": 0,
+      "browserAcceptance": {
+        "fullProductionBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd",
+        "fullPassed": 54,
+        "fullFailed": 1,
+        "fullSkipped": 1,
+        "failedSelector": "Aparaty tabs are mobile-only; fixed test viewport and separated remaining source/purchase note.",
+        "affectedFinalBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57",
+        "affectedFinalPassed": 27,
+        "distinctVerifiedScenarios": 56,
+        "report": "browser-results.json"
+      },
+      "bundleEvidence": "bundle-comparison.json",
+      "limitations": [
+        "Initial JS remains 1329.33 kB with a Vite warning; warning threshold unchanged.",
+        "Two accepted references only. Historical factories remain regression fixtures and do not load in the workbench."
+      ],
+      "unitSeconds": 43.59,
+      "bundleBytes": 1329337,
+      "bundleGzipBytes": 378183,
+      "evidence": [
+        "tests/e2e/audit-learning.spec.ts",
+        "tests/e2e/knowledge.spec.ts",
+        "tests/e2e/exam-knowledge.spec.ts",
+        "browser-results.json",
+        "bundle-comparison.json"
+      ]
+    },
+    "5": {
+      "status": "pending",
+      "nextUnit": "02a / ELE.02-105"
+    }
+  },
+  "openDecisions": [
+    "ELE.05 requires its own source materials; none supplied in this audit",
+    "ELE.02-114 has unresolved source contradictions; no automatic grading",
+    "Hidden diagnostic faults: all contact symbols show an explicitly labelled mechanism view, continuity requires measurement"
+  ],
+  "evidence": [
+    "tests/audit/reproduce-contact-state.mjs",
+    "tests/contact-state.test.tsx"
+  ],
+  "nextAction": "Stage 5: implement and independently verify only 02a / ELE.02-105 using docs/ele-exams/plan/etapy/02_schodowe_105.md; keep 114 source gate and ELE.05 limitations.",
+  "pullRequest": "https://github.com/Choniawko/ele/pull/8",
+  "verifiedBuild": {
+    "schemaVersion": 1,
+    "version": "0.3.0",
+    "tag": null,
+    "commit": "c0ad2ea104e11f27981b643c9942a36925a36e57",
+    "base": "/ele/",
+    "builtAt": "2026-10-09T17:52:39.823Z"
+  },
+  "ci": {
+    "runId": 37969409337,
+    "statusAtCheckpoint": "in-progress",
+    "url": "https://github.com/Choniawko/ele/actions/runs/37969409337",
+    "note": "Local results do not imply remote CI completion. Latest documentation commit may start a new run."
+  }
+}

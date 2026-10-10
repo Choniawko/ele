@@ -92,6 +92,7 @@ describe("source knowledge / stage 00a", () => {
       "L01",
     ]);
     expect(searchExamKnowledge("", "ELE.05")).toEqual({
+      models: [],
       tasks: [],
       articles: [],
       components: [],

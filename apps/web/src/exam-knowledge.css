@@ -124,3 +124,69 @@
     overflow-wrap: anywhere;
   }
 }
+/* Learning path on the knowledge home page. */
+.knowledge-path {
+  list-style: none;
+  padding: 0;
+  counter-reset: path;
+}
+.knowledge-path li {
+  counter-increment: path;
+  display: flex;
+}
+.knowledge-path .knowledge-card {
+  position: relative;
+  flex: 1;
+  padding-top: 52px;
+}
+.knowledge-path .knowledge-card::before {
+  content: counter(path);
+  position: absolute;
+  top: 16px;
+  left: 24px;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #1f5f4a;
+  color: #fff;
+  font-weight: 700;
+}
+.knowledge-aside-link {
+  margin: 4px 0 18px;
+}
+.exam-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin: 12px 0 18px;
+}
+.exam-cta-link {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: #1f5f4a;
+  color: #fff !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+.exam-cta span {
+  color: #4b6060;
+}
+.exam-author-notes {
+  margin-top: 24px;
+  padding: 8px 12px;
+  border: 1px solid #d5e0db;
+  border-radius: 8px;
+}
+.exam-lesson-card {
+  border-color: #1f5f4a;
+}
+.knowledge-page footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}

@@ -2,6 +2,7 @@ import { defineConfig } from "@playwright/test";
 import base from "./playwright.config";
 export default defineConfig(base, {
   testMatch: [
+    "audit-learning.spec.ts",
     "project-validation.spec.ts",
     "exam-practice.spec.ts",
     "pages.spec.ts",

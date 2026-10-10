@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
+import type { LessonControl } from "../../../packages/knowledge/lesson-definitions";
 import type { RuntimeAction, RuntimeSnapshot } from "@simulation/index";
 function Momentary({
   label,
@@ -6,21 +7,43 @@ function Momentary({
   actuator,
   act,
   active,
+  disabled,
 }: {
   label: string;
   deviceId: string;
   actuator?: "start" | "stop";
   act: (a: RuntimeAction) => void;
   active: boolean;
+  disabled: boolean;
 }) {
-  const pressed = useRef(false);
+  const pressed = useRef(false),
+    actionRef = useRef(act);
+  actionRef.current = act;
+  useEffect(() => {
+    const release = () => {
+      if (!pressed.current) return;
+      pressed.current = false;
+      actionRef.current({ type: "operate", deviceId, state: false, actuator });
+    };
+    const visibility = () => {
+      if (document.hidden) release();
+    };
+    window.addEventListener("blur", release);
+    document.addEventListener("visibilitychange", visibility);
+    return () => {
+      release();
+      window.removeEventListener("blur", release);
+      document.removeEventListener("visibilitychange", visibility);
+    };
+  }, [deviceId, actuator]);
   const set = (state: boolean) => {
     if (pressed.current === state) return;
     pressed.current = state;
-    act({ type: "operate", deviceId, state, actuator });
+    actionRef.current({ type: "operate", deviceId, state, actuator });
   };
   return (
     <button
+      disabled={disabled}
       aria-pressed={active}
       onPointerDown={(e) => {
         if (e.button !== 0) return;
@@ -49,69 +72,55 @@ function Momentary({
   );
 }
 export function ReferenceControls({
-  motor,
+  controls,
   runtime,
   act,
+  paused,
 }: {
-  motor: boolean;
+  controls: LessonControl[];
   runtime: RuntimeSnapshot;
   act: (a: RuntimeAction) => void;
+  paused: boolean;
 }) {
   return (
     <>
-      {(motor ? ["Q1", "Q2"] : ["Q1", "Q2", "B6", "B10", "RCD"]).map((id) => (
-        <button
-          key={id}
-          onClick={() =>
-            act({
-              type: "operate",
-              deviceId: id,
-              state: !runtime.devices[id].manual,
-            })
-          }
-        >
-          Przełącz {id} w lekcji
-        </button>
-      ))}
-      {motor ? (
-        <>
-          {["S1", "S3"].flatMap((id) =>
-            ["start", "stop"].map((actuator) => (
-              <Momentary
-                key={`${id}-${actuator}`}
-                label={`${id} ${actuator.toUpperCase()} — przytrzymaj`}
-                deviceId={id}
-                actuator={actuator as "start" | "stop"}
-                act={act}
-                active={
-                  actuator === "stop"
-                    ? !!runtime.devices[id].stopPressed
-                    : runtime.devices[id].manual
-                }
-              />
-            )),
-          )}
-          {["S2", "S4"].map((id) => (
-            <Momentary
-              key={id}
-              label={`${id} LEWY — przytrzymaj`}
-              deviceId={id}
-              act={act}
-              active={runtime.devices[id].manual}
-            />
-          ))}
+      {controls.map((c) =>
+        c.kind === "momentary" ? (
+          <Momentary
+            key={`${c.deviceId}-${c.actuator ?? "press"}`}
+            label={c.label}
+            deviceId={c.deviceId}
+            actuator={c.actuator}
+            act={act}
+            disabled={paused}
+            active={
+              c.actuator === "stop"
+                ? !!runtime.devices[c.deviceId].stopPressed
+                : runtime.devices[c.deviceId].manual
+            }
+          />
+        ) : (
           <button
+            key={`${c.deviceId}-${c.kind}`}
+            disabled={paused}
             onClick={() =>
-              act({ type: "operate", deviceId: "Q2", state: false })
+              act(
+                c.kind === "test-rcd"
+                  ? { type: "test-rcd", deviceId: c.deviceId }
+                  : {
+                      type: "operate",
+                      deviceId: c.deviceId,
+                      state:
+                        c.kind === "reset"
+                          ? false
+                          : !runtime.devices[c.deviceId].manual,
+                    },
+              )
             }
           >
-            RESET / OFF Q2 w lekcji
+            {c.label}
           </button>
-        </>
-      ) : (
-        <button onClick={() => act({ type: "test-rcd", deviceId: "RCD" })}>
-          TEST RCD w lekcji
-        </button>
+        ),
       )}
     </>
   );

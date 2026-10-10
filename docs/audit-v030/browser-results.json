@@ -1,0 +1,290 @@
+{
+  "productionScenarios": [
+    {
+      "file": "tests/e2e/audit-learning.spec.ts",
+      "name": "audit QA-01: selected welded contact, real SVG, compensated continuity and repair agree",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/audit-learning.spec.ts",
+      "name": "audit UX-01: reading-schematics entry and old address reach the active 101 lesson",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/audit-learning.spec.ts",
+      "name": "audit lesson 101: complete paths, common terminals and trial at 1366",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/audit-learning.spec.ts",
+      "name": "audit lesson 101: complete paths, common terminals and trial at 390",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/audit-learning.spec.ts",
+      "name": "audit lesson 108: complete paths, common terminals and trial at 1366",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/audit-learning.spec.ts",
+      "name": "audit lesson 108: complete paths, common terminals and trial at 390",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/audit-learning.spec.ts",
+      "name": "audit: 108 unknown nameplate stays separate from model and purchase",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/audit-learning.spec.ts",
+      "name": "audit: apparatus card shows its purpose, symbol, operation and named lesson on the first screen",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/audit-learning.spec.ts",
+      "name": "audit: one apparatus card from SKU search, catalog and legacy addresses",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/audit-learning.spec.ts",
+      "name": "audit: reading help and returning preserves the started lesson",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/audit-learning.spec.ts",
+      "name": "audit: remaining legacy lesson and circuit addresses resolve to appropriate material",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/audit-learning.spec.ts",
+      "name": "audit: workbench loads knowledge content only when opened",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/distribution-builder.spec.ts",
+      "name": "od pustego projektu: własny rząd, obwód z odbiornikiem, pomiar, praca, rozbudowa i odtworzenie",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/distribution-builder.spec.ts",
+      "name": "pełny rząd, przyłącza oraz niedozwolone zmniejszenie nie pozostawiają częściowej edycji",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/distribution-builder.spec.ts",
+      "name": "skupienie, undo i schemat pozwalają wrócić do edycji całej instalacji",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/ele02-108.spec.ts",
+      "name": "ELE.02-108: import, niezależne START/STOP, Q2, dwa kierunki i zapis",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/exam-knowledge.spec.ts",
+      "name": "00a: all cards, article/category links, search synonyms and honest availability",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/exam-knowledge.spec.ts",
+      "name": "00a: every source drawing decodes; direct task URL and refresh work under BASE_URL",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/exam-knowledge.spec.ts",
+      "name": "00a: layout 1366x768, reading tabs and source issues",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/exam-knowledge.spec.ts",
+      "name": "00a: layout 1920x1080, reading tabs and source issues",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/exam-knowledge.spec.ts",
+      "name": "00a: layout 390x844, reading tabs and source issues",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/exam-knowledge.spec.ts",
+      "name": "00a: layout 844x390, reading tabs and source issues",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/exam-knowledge.spec.ts",
+      "name": "00a: native image dialog, keyboard zoom, Escape and return preserve the workbench",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/exam-practice.spec.ts",
+      "name": "diagnoza PE: ukryta przyczyna, bezpieczny eksport, pomiar przed naprawą i retest",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/exam-practice.spec.ts",
+      "name": "prawo/lewo: blokada przeciwnego START, STOP i przeciwny kierunek wynikający z faz",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/exam-practice.spec.ts",
+      "name": "samodzielny montaż: brak połączeń, możliwość przypisania bloku i wstawienia mostków",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/exam-practice.spec.ts",
+      "name": "silnik: START/STOP, blok pomocniczy, widoczne mostki, autosave i odświeżenie",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/exam-practice.spec.ts",
+      "name": "zgodność starszego zapisu — bistabilny: dwa przyciski, RCD, pomiary PE i pełna ocena na produkcji",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/knowledge.spec.ts",
+      "name": "101: równoległe oprawy i tabela wskazują rzeczywistą żyłę w obu widokach",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/knowledge.spec.ts",
+      "name": "akcja katalogu wyjaśnia wybrany model 24 V DC bez dodania aparatu",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/knowledge.spec.ts",
+      "name": "dawny adres START/STOP prowadzi do aktywnej lekcji 108 bez zmiany własnych projektów",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/knowledge.spec.ts",
+      "name": "pomoc kontekstowa z osobnego bloku, powrót do zaznaczenia i kadru",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/knowledge.spec.ts",
+      "name": "porządek aplikacji: pusty start i wyłącznie 17 obecnych arkuszy we wszystkich wejściach",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/knowledge.spec.ts",
+      "name": "usunięcie aparatu w drugiej karcie unieważnia kontekst po odświeżeniu",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/knowledge.spec.ts",
+      "name": "wiedza: synonimy, progres, klawiatura i odświeżenie stałego adresu",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/knowledge.spec.ts",
+      "name": "wąski ekran i 1366×768: aktualna lekcja oraz teoria aparatu bez starej demonstracji",
+      "lastVerifiedBuild": "c0ad2ea104e11f27981b643c9942a36925a36e57"
+    },
+    {
+      "file": "tests/e2e/my-projects.spec.ts",
+      "name": "folder, kopia przykładu, podgląd bez zmiany, autosave i pomiary po odświeżeniu",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/my-projects.spec.ts",
+      "name": "import pliku i wklejonego JSON: konflikty ID, błędny import bez utraty danych i eksport/import całego folderu",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/my-projects.spec.ts",
+      "name": "nowy projekt, duplikat, przenoszenie, zmiana nazwy folderu, wyszukiwanie i bezpieczne usuwanie",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/my-projects.spec.ts",
+      "name": "produkcyjna migracja IndexedDB v4: dokument, pomiary i zdarzenia trafiają bez zmian do Bez folderu",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/pages.spec.ts",
+      "name": "Pages: /ele/, version.json, wszystkie zasoby i brak maskowania złych ścieżek",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/pages.spec.ts",
+      "name": "Pages: rzeczywisty Worker, edycja, autosave, odtworzenie i ponowna praca solvera",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/physical-installation.spec.ts",
+      "name": "ELE.02-101: pokrywy, przeniesienie, solver w obu widokach, pomiar, autosave i ponowny import",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/physical-installation.spec.ts",
+      "name": "obudowy: wkładanie, wyjmowanie i korytko z wieloma żyłami",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/project-validation.spec.ts",
+      "name": "błąd odczytu zachowuje oryginał i udostępnia kopię bez ukrytych odpowiedzi",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/project-validation.spec.ts",
+      "name": "błąd odczytu zachowuje oryginał i udostępnia kopię do odzyskania",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/project-validation.spec.ts",
+      "name": "formularz odrzuca nazwę 121 znaków; poprawna nazwa i długość przewodu przetrwają autosave i odświeżenie",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/reference-108.spec.ts",
+      "name": "01b: OFF copy, expanded native ports, real 37 routes, common mechanism, help and persisted geometry",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/reference-108.spec.ts",
+      "name": "01b: public launches preserve previous projects, source template and OFF energy",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/reference-108.spec.ts",
+      "name": "01b: source, isolated solver, independent START/STOP, NC block and return of power",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/reference-108.spec.ts",
+      "name": "01b: source/model distinction, expanded drawing zoom and context at four viewport sizes",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/reference-examples.spec.ts",
+      "name": "01a: OFF copy/import, context table routes in both views, camera/focus/started wire and reload",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/reference-examples.spec.ts",
+      "name": "01a: context/source reading suspends the clock and editor shortcuts, then resumes the session",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/reference-examples.spec.ts",
+      "name": "01a: responsive source/model distinction, native scrolling and gallery at four required viewports",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/reference-examples.spec.ts",
+      "name": "01a: source card, isolated solver lesson, real wire ends, profiles and unknown-reference failure",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    },
+    {
+      "file": "tests/e2e/reference-examples.spec.ts",
+      "name": "01a: two gallery launches preserve earlier projects and canonical template",
+      "lastVerifiedBuild": "844621df02d61f9513f6433cbe4a19ab4aa13ebd"
+    }
+  ],
+  "distinctPassed": 56,
+  "skipped": {
+    "count": 1,
+    "reason": "Optional local historical project fixture not supplied to the runner"
+  },
+  "note": "Full production run: 54 passed, 1 outdated desktop-tab selector failed, 1 skipped. Corrected mobile source test plus all affected knowledge/lesson scenarios: 27 passed on final c0ad2ea build. Untouched persistence, import, mechanical layouts and motor-control regressions retain the earlier full-run evidence."
+}

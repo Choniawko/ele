@@ -191,3 +191,98 @@ describe("01a / ELE.02-101 reference gates", () => {
     expect(reference.create()).toEqual(original);
   });
 });
+
+describe("rysunki lekcji nie pokazują nieistniejących połączeń", () => {
+  it("każdy rysunek 101 i 108 rysuje różne sieci rozłącznie", async () => {
+    const { referenceExamples } =
+      await import("../packages/knowledge/reference-examples");
+    const { diagramConflicts } =
+      await import("../packages/knowledge/diagram-geometry");
+    for (const r of referenceExamples)
+      for (const scope of r.diagrams)
+        expect(diagramConflicts(r.create(), scope), scope.title).toEqual([]);
+  });
+  it("wykrywa dawny błąd: H1 w szeregu z gniazdem i linia L na linii N", async () => {
+    const { diagramConflicts } =
+      await import("../packages/knowledge/diagram-geometry");
+    const p = reference.create();
+    // Layout used before the fix: H1 on the L row, N trunk at the left edge.
+    const old = {
+      title: "stary układ",
+      width: 1100,
+      height: 500,
+      symbols: [
+        { designation: "H1", fragmentId: "light", x: 520, y: 150, label: "" },
+      ],
+      ports: [
+        { designation: "B10", terminalId: "2", x: 80, y: 150, label: "" },
+        { designation: "GW", terminalId: "L", x: 800, y: 150, label: "" },
+        { designation: "GW", terminalId: "N", x: 800, y: 300, label: "" },
+        { designation: "R.N", terminalId: "1", x: 80, y: 300, label: "" },
+      ],
+    };
+    const conflicts = diagramConflicts(p, old);
+    expect(conflicts).toContain("B10:2 przechodzi przez symbol H1");
+    expect(conflicts.some((c) => c.includes("nakłada się"))).toBe(true);
+  });
+});
+
+describe("ćwiczenia czytania schematu zgadzają się z modelem", () => {
+  it("101: liczba żył na każdym odcinku odpowiada przewodom modelu", async () => {
+    const { drills } = await import("../packages/knowledge/schematic-course");
+    const drill = drills.find((d) => d.referenceId === "ele02-101")!;
+    const p = reference.create();
+    for (const q of drill.questions) {
+      expect(q.wires, q.id).toBeDefined();
+      expect(Number(q.options[q.correct]), q.id).toBe(q.wires!.length);
+      for (const id of q.wires!)
+        expect(
+          p.circuit.conductors.some((w) => w.id === id),
+          `${q.id}:${id}`,
+        ).toBe(true);
+      for (const spot of q.spots) {
+        expect(spot.x).toBeLessThan(drill.figure.width);
+        expect(spot.y).toBeLessThan(drill.figure.height);
+      }
+    }
+    const role = (id: string) =>
+      p.circuit.conductors.find((w) => w.id === id)!.declaredRole;
+    const q = (id: string) => drill.questions.find((q) => q.id === id)!.wires!;
+    // Five between the boxes: two travellers, switched line, N and PE.
+    expect(q("p1-p2").map(role).sort()).toEqual(
+      ["CONTROL", "CONTROL", "L1", "N", "PE"].sort(),
+    );
+    expect(q("h1").map(role).sort()).toEqual(["L1", "N"]);
+    expect(
+      q("q1")
+        .map(role)
+        .filter((r) => r === "N"),
+    ).toEqual([]);
+  });
+  it("108: odpowiedzi o połączeniach wynikają z sieci modelu", async () => {
+    const { referenceById: byId } =
+      await import("../packages/knowledge/reference-examples");
+    const r = byId("ele02-108")!,
+      p = r.create(),
+      net = permanentNets(p);
+    const same = (a: string, b: string) => net(pin(a)) === net(pin(b));
+    // STOPs in series: S1:2 feeds S3:1 and nothing else joins them.
+    expect(same("S1:2", "S3:1")).toBe(true);
+    expect(same("S1:1", "S3:1")).toBe(false);
+    // START S1, START S3 and K1 13–14 in parallel.
+    for (const t of ["S1:3", "S3:3", "K1:13"])
+      expect(same(t, "S1:3")).toBe(true);
+    for (const t of ["S1:4", "S3:4", "K1:14"])
+      expect(same(t, "S1:4")).toBe(true);
+    // K2 NC in series right before K1:A1; K2 has no self-holding contact used.
+    expect(same("K2:22", "K1:A1")).toBe(true);
+    expect(same("K2:13", "S2:3")).toBe(false);
+    // K2 swaps L1 and L3: K2 2T1 → W, 6T3 → U, 4T2 → V.
+    expect(same("K2:2T1", "M:W")).toBe(true);
+    expect(same("K2:6T3", "M:U")).toBe(true);
+    expect(same("K2:4T2", "M:V")).toBe(true);
+    // Control is fed through Q1 and Q2 auxiliary 13–14.
+    expect(same("Q1:2", "Q2.AUX:13")).toBe(true);
+    expect(same("Q2.AUX:14", "S1:1")).toBe(true);
+  });
+});

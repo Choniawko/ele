@@ -4,10 +4,7 @@
   "generatedAt": "2026-10-08",
   "repositoryCommit": "9c4895a817b5f5869d17b3cf23a3e9695d49f6cf",
   "scope": "17 dostarczonych zadań ELE.02; nie jest kompletnym zakresem ELE.02/ELE.05 ani paczką ele-folder.",
-  "missingTaskCodes": [
-    "102",
-    "111"
-  ],
+  "missingTaskCodes": ["102", "111"],
   "sources": [
     {
       "id": "pdf-ele02-110",
@@ -553,13 +550,7 @@
       "category": "Oświetlenie i rozdzielnice",
       "summary": "Wspólne sterowanie dwiema oprawami przez dwa łączniki schodowe; gniazdo ma oddzielny obwód B10. RCD 2P zasila oba obwody. Lampki DIN pokazują obecność zasilania odpowiednich gałęzi.",
       "sourceId": "pdf-ele02-101",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        5,
-        7
-      ],
+      "sourcePages": [1, 2, 3, 5, 7],
       "timeMinutes": 180,
       "referenceProjectStatus": "existing-repo-example-validated",
       "bom": [
@@ -697,12 +688,7 @@
           "png": "assets/schematy/ELE02_101_p1_ideowy.png",
           "svg": "assets/schematy/ELE02_101_p1_ideowy.svg",
           "sourcePage": 1,
-          "sourceCropPt": [
-            30,
-            355,
-            570,
-            610
-          ],
+          "sourceCropPt": [30, 355, 570, 610],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-101: ideowy; rysunek źródłowy."
@@ -713,12 +699,7 @@
           "png": "assets/schematy/ELE02_101_p2_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_101_p2_rozmieszczenie.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            28,
-            570,
-            508
-          ],
+          "sourceCropPt": [30, 28, 570, 508],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-101: rozmieszczenie; rysunek źródłowy."
@@ -852,15 +833,7 @@
       "category": "Oświetlenie i rozdzielnice",
       "summary": "RCD 4P zasila gałęzie gniazdowe, RCD 2P gałęzie oświetleniowe. Arkusz wymaga równomiernego obciążenia faz. B20 jest elementem przygotowania stanowiska, a nie pozycją w głównej tabeli aparatów.",
       "sourceId": "pdf-ele02-103",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        4,
-        6,
-        7,
-        8
-      ],
+      "sourcePages": [1, 2, 3, 4, 6, 7, 8],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -1010,12 +983,7 @@
           "png": "assets/schematy/ELE02_103_p3_ideowy.png",
           "svg": "assets/schematy/ELE02_103_p3_ideowy.svg",
           "sourcePage": 3,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            368
-          ],
+          "sourceCropPt": [30, 25, 570, 368],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-103: ideowy; rysunek źródłowy."
@@ -1026,12 +994,7 @@
           "png": "assets/schematy/ELE02_103_p2_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_103_p2_rozmieszczenie.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            531
-          ],
+          "sourceCropPt": [30, 25, 570, 531],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-103: rozmieszczenie; rysunek źródłowy."
@@ -1111,14 +1074,7 @@
       "category": "Automatyka oświetlenia",
       "summary": "Automat zmierzchowy AZ ze zewnętrzną sondą umożliwia zasilenie automatu schodowego AS po zasłonięciu czujki. AS po impulsie przycisku załącza oprawę na 1 minutę. Schemat montażowy należy uzupełnić z instrukcji dwóch konkretnych aparatów.",
       "sourceId": "pdf-ele02-104",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        4,
-        6,
-        7
-      ],
+      "sourcePages": [1, 2, 3, 4, 6, 7],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -1236,12 +1192,7 @@
           "png": "assets/schematy/ELE02_104_p1_ideowy.png",
           "svg": "assets/schematy/ELE02_104_p1_ideowy.svg",
           "sourcePage": 1,
-          "sourceCropPt": [
-            30,
-            380,
-            570,
-            760
-          ],
+          "sourceCropPt": [30, 380, 570, 760],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-104: ideowy; rysunek źródłowy."
@@ -1252,12 +1203,7 @@
           "png": "assets/schematy/ELE02_104_p3_montazowy.png",
           "svg": "assets/schematy/ELE02_104_p3_montazowy.svg",
           "sourcePage": 3,
-          "sourceCropPt": [
-            30,
-            20,
-            570,
-            527
-          ],
+          "sourceCropPt": [30, 20, 570, 527],
           "isIncompleteInSource": true,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-104: montazowy; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
@@ -1268,12 +1214,7 @@
           "png": "assets/schematy/ELE02_104_p2_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_104_p2_rozmieszczenie.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            387
-          ],
+          "sourceCropPt": [30, 25, 570, 387],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-104: rozmieszczenie; rysunek źródłowy."
@@ -1353,13 +1294,7 @@
       "category": "Oświetlenie i rozdzielnice",
       "summary": "Dwa łączniki schodowe na końcach oraz krzyżowy między nimi sterują dwiema oprawami równolegle. Zadanie obejmuje badanie styków łączników jeszcze przed montażem i ciągłość PE po montażu.",
       "sourceId": "pdf-ele02-105",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        5,
-        6
-      ],
+      "sourcePages": [1, 2, 3, 5, 6],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -1466,12 +1401,7 @@
           "png": "assets/schematy/ELE02_105_p1_ideowy.png",
           "svg": "assets/schematy/ELE02_105_p1_ideowy.svg",
           "sourcePage": 1,
-          "sourceCropPt": [
-            30,
-            337,
-            570,
-            585
-          ],
+          "sourceCropPt": [30, 337, 570, 585],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-105: ideowy; rysunek źródłowy."
@@ -1482,12 +1412,7 @@
           "png": "assets/schematy/ELE02_105_p2_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_105_p2_rozmieszczenie.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            20,
-            10,
-            570,
-            508
-          ],
+          "sourceCropPt": [20, 10, 570, 508],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-105: rozmieszczenie; rysunek źródłowy."
@@ -1558,15 +1483,7 @@
       "category": "Automatyka oświetlenia",
       "summary": "Dwa przyciski dzwonkowe sterują oświetleniem przez przekaźnik bistabilny; gniazdo ma oddzielny B10. Rysunek montażowy jest celowo niekompletny. W tabeli jako przykład podano BIS-413.",
       "sourceId": "pdf-ele02-106",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        4,
-        6,
-        7,
-        8
-      ],
+      "sourcePages": [1, 2, 3, 4, 6, 7, 8],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -1684,9 +1601,7 @@
       "catalogGaps": [
         "BIS-413: czas wyłączenia i obsługa długiego naciśnięcia"
       ],
-      "manufacturerSources": [
-        "ff-bis413"
-      ],
+      "manufacturerSources": ["ff-bis413"],
       "schematics": [
         {
           "id": "ELE02_106_p3_montazowy",
@@ -1694,12 +1609,7 @@
           "png": "assets/schematy/ELE02_106_p3_montazowy.png",
           "svg": "assets/schematy/ELE02_106_p3_montazowy.svg",
           "sourcePage": 3,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            782
-          ],
+          "sourceCropPt": [30, 25, 570, 782],
           "isIncompleteInSource": true,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-106: montazowy; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
@@ -1710,12 +1620,7 @@
           "png": "assets/schematy/ELE02_106_p2_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_106_p2_rozmieszczenie.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            473
-          ],
+          "sourceCropPt": [30, 25, 570, 473],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-106: rozmieszczenie; rysunek źródłowy."
@@ -1777,14 +1682,7 @@
       "category": "Automatyka oświetlenia",
       "summary": "Łącznik schodowy Ł wybiera, czy P1 jest aktywny. P2 pozostaje aktywny. L1 świeci razem z oprawą, a L2 i L3 wskazują tryb z wyłączonym P1. Tabela wymienia przekaźnik bistabilny z regulacją czasu; treść opisuje przełączanie krótkimi impulsami.",
       "sourceId": "pdf-ele02-107",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        5,
-        6,
-        7
-      ],
+      "sourcePages": [1, 2, 3, 5, 6, 7],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -1940,12 +1838,7 @@
           "png": "assets/schematy/ELE02_107_p2_ideowy.png",
           "svg": "assets/schematy/ELE02_107_p2_ideowy.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            417,
-            570,
-            747
-          ],
+          "sourceCropPt": [30, 417, 570, 747],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-107: ideowy; rysunek źródłowy."
@@ -1956,12 +1849,7 @@
           "png": "assets/schematy/ELE02_107_p2_rozdzielnice.png",
           "svg": "assets/schematy/ELE02_107_p2_rozdzielnice.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            412
-          ],
+          "sourceCropPt": [30, 25, 570, 412],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-107: rozdzielnice; rysunek źródłowy."
@@ -1972,12 +1860,7 @@
           "png": "assets/schematy/ELE02_107_p1_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_107_p1_rozmieszczenie.svg",
           "sourcePage": 1,
-          "sourceCropPt": [
-            30,
-            413,
-            570,
-            762
-          ],
+          "sourceCropPt": [30, 413, 570, 762],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-107: rozmieszczenie; rysunek źródłowy."
@@ -2066,10 +1949,7 @@
       "category": "Napędy",
       "summary": "Dwa stanowiska sterowania: prawe obroty z podtrzymaniem K1, lewe wyłącznie podczas naciskania S2/S4. Q2 jest wyłącznikiem silnikowym ze stykiem pomocniczym NO, a Q1 B6 zabezpiecza sterowanie.",
       "sourceId": "pdf-ele02-108",
-      "sourcePages": [
-        1,
-        2
-      ],
+      "sourcePages": [1, 2],
       "timeMinutes": 180,
       "referenceProjectStatus": "existing-repo-example-validated",
       "bom": [
@@ -2079,7 +1959,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "TH35, 6 A, charakterystyka B"
         },
         {
           "componentId": "motor-protection",
@@ -2087,7 +1969,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "Regulowany zakres obejmujący potrzebne prądy silników; TH35; co najmniej jeden styk pomocniczy"
         },
         {
           "componentId": "motor-aux",
@@ -2095,7 +1979,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "NO co najmniej 1; zgodny mechanicznie z wyłącznikiem"
         },
         {
           "componentId": "contactor",
@@ -2103,7 +1989,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": "Potrzebne NO 13–14 i NC 21–22; dobrać wyposażenie pomocnicze."
+          "note": "Potrzebne NO 13–14 i NC 21–22; dobrać wyposażenie pomocnicze.",
+          "sourceParameters": "Potrzebne NO 13–14 i NC 21–22; dobrać wyposażenie pomocnicze.",
+          "purchaseVariant": "3NO, co najmniej 8 A według arkuszy, cewka 230 V AC, TH35; właściwa kategoria pracy silnikowej"
         },
         {
           "componentId": "start-stop-din",
@@ -2111,7 +1999,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "DWA NIEZALEŻNE przyciski chwilowe: START NO i STOP NC; przykład źródłowy SVN391"
         },
         {
           "componentId": "start-stop-panel",
@@ -2119,7 +2009,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "DWA NIEZALEŻNE przyciski chwilowe NO i NC; odpowiednia obudowa / mocowanie"
         },
         {
           "componentId": "no-din",
@@ -2127,7 +2019,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "Jeden niezależny NO, powrót sprężynowy"
         },
         {
           "componentId": "no-panel",
@@ -2135,7 +2029,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "Jeden niezależny NO, powrót sprężynowy"
         },
         {
           "componentId": "case-r2",
@@ -2143,7 +2039,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 1, PDF 1",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "Na niezależny START/STOP i osobny NO z zadania 108"
         },
         {
           "componentId": "rail-n",
@@ -2151,7 +2049,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": "Minimalny tor N odczytany z rysunku; liczba złączek do innych rozgałęzień zależy od realizacji."
+          "note": "Minimalny tor N odczytany z rysunku; liczba złączek do innych rozgałęzień zależy od realizacji.",
+          "sourceParameters": "Minimalny tor N odczytany z rysunku; liczba złączek do innych rozgałęzień zależy od realizacji.",
+          "purchaseVariant": "Do 4 mm², dwie strony jednego toru, izolowana; TH35"
         },
         {
           "componentId": "rail-pe",
@@ -2159,7 +2059,9 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": ""
+          "note": "",
+          "sourceParameters": "Numeracja i połączenia: rysunki 1–2. Dokładny SKU nieustalony w źródle.",
+          "purchaseVariant": "Do 4 mm², właściwe mocowanie i oznaczenie PE; TH35"
         },
         {
           "componentId": "motor3-y",
@@ -2167,7 +2069,11 @@
           "unit": "szt.",
           "sourceLocator": "Rys. 2, PDF 2",
           "sourceKind": "diagram-inference",
-          "note": "W arkuszu nie ma tabliczki ani napięcia Y/Δ; 230/400 V w gwieździe to wariant zakupowy, nie wartość podana przez źródło."
+          "note": "W arkuszu nie ma tabliczki ani napięcia Y/Δ; 230/400 V w gwieździe to wariant zakupowy, nie wartość podana przez źródło.",
+          "sourceParameters": "Arkusz nie określa mocy ani tabliczki Y/Δ silnika.",
+          "purchaseVariant": "Do 1,5 kW; tabliczka Δ230/Y400; w 113 fabrycznie przygotowany w gwiazdę",
+          "modelAssumptions": "Wzorzec 108: rezystancyjny model silnika 3 kW z ukrytą gwiazdą; Q2 4,35 A. Założenia opisane w QA_01b i reference-108, a nie dane tabliczki.",
+          "sourceName": "Silnik trójfazowy — tabliczka niepodana w arkuszu"
         }
       ],
       "learningGoals": [
@@ -2246,12 +2152,7 @@
           "png": "assets/schematy/ELE02_108_p2_moc-i-sterowanie.png",
           "svg": "assets/schematy/ELE02_108_p2_moc-i-sterowanie.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            537
-          ],
+          "sourceCropPt": [30, 25, 570, 537],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-108: moc-i-sterowanie; rysunek źródłowy."
@@ -2262,12 +2163,7 @@
           "png": "assets/schematy/ELE02_108_p1_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_108_p1_rozmieszczenie.svg",
           "sourcePage": 1,
-          "sourceCropPt": [
-            30,
-            455,
-            570,
-            717
-          ],
+          "sourceCropPt": [30, 455, 570, 717],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-108: rozmieszczenie; rysunek źródłowy."
@@ -2356,15 +2252,7 @@
       "category": "Napędy",
       "summary": "Stycznik włącza jednofazowy silnik kondensatorowy; S1 utrzymuje pozycję. H1/H2 sygnalizują zasilanie gałęzi, nie oba stan obracania wału. Zmiana kierunku odbywa się przez przełączenie na tabliczce silnika zgodnie z jego instrukcją.",
       "sourceId": "pdf-ele02-109",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        5,
-        6,
-        7,
-        8
-      ],
+      "sourcePages": [1, 2, 3, 5, 6, 7, 8],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -2517,12 +2405,7 @@
           "png": "assets/schematy/ELE02_109_p2_moc-i-sterowanie.png",
           "svg": "assets/schematy/ELE02_109_p2_moc-i-sterowanie.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            25,
-            580,
-            424
-          ],
+          "sourceCropPt": [30, 25, 580, 424],
           "isIncompleteInSource": true,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-109: moc-i-sterowanie; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
@@ -2533,12 +2416,7 @@
           "png": "assets/schematy/ELE02_109_p2_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_109_p2_rozmieszczenie.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            435,
-            580,
-            790
-          ],
+          "sourceCropPt": [30, 435, 580, 790],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-109: rozmieszczenie; rysunek źródłowy."
@@ -2654,14 +2532,7 @@
       "category": "Oświetlenie i rozdzielnice",
       "summary": "Za RCD 4P są trzy niezależnie załączane gałęzie: B16 3P do gniazda CEE, B10 do gniazda jednofazowego i B6 z łącznikiem do oprawy. Pomiar rozróżnia napięcia fazowe i międzyfazowe.",
       "sourceId": "pdf-ele02-110",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        5,
-        6,
-        8
-      ],
+      "sourcePages": [1, 2, 3, 5, 6, 8],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -2829,12 +2700,7 @@
           "png": "assets/schematy/ELE02_110_p2_ideowy.png",
           "svg": "assets/schematy/ELE02_110_p2_ideowy.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            495
-          ],
+          "sourceCropPt": [30, 25, 570, 495],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-110: ideowy; rysunek źródłowy."
@@ -2845,12 +2711,7 @@
           "png": "assets/schematy/ELE02_110_p1_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_110_p1_rozmieszczenie.svg",
           "sourcePage": 1,
-          "sourceCropPt": [
-            30,
-            304,
-            570,
-            697
-          ],
+          "sourceCropPt": [30, 304, 570, 697],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-110: rozmieszczenie; rysunek źródłowy."
@@ -2957,14 +2818,7 @@
       "category": "Automatyka oświetlenia",
       "summary": "Trzy przyciski równoległe sterują oprawą przez dopuszkowy przekaźnik PB umieszczony w P3. Schemat wymaga uzupełnienia z instrukcji; tabela podaje BIS-402 jako przykład.",
       "sourceId": "pdf-ele02-112",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        4,
-        6,
-        7
-      ],
+      "sourcePages": [1, 2, 3, 4, 6, 7],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -3065,9 +2919,7 @@
         "BIS-402: dopuszkowy obrys i topologia",
         "Złączki 4-portowe / płytka niezależnych torów"
       ],
-      "manufacturerSources": [
-        "ff-bis402"
-      ],
+      "manufacturerSources": ["ff-bis402"],
       "schematics": [
         {
           "id": "ELE02_112_p1_ideowy",
@@ -3075,12 +2927,7 @@
           "png": "assets/schematy/ELE02_112_p1_ideowy.png",
           "svg": "assets/schematy/ELE02_112_p1_ideowy.svg",
           "sourcePage": 1,
-          "sourceCropPt": [
-            30,
-            280,
-            570,
-            603
-          ],
+          "sourceCropPt": [30, 280, 570, 603],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-112: ideowy; rysunek źródłowy."
@@ -3091,12 +2938,7 @@
           "png": "assets/schematy/ELE02_112_p2_montazowy.png",
           "svg": "assets/schematy/ELE02_112_p2_montazowy.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            413
-          ],
+          "sourceCropPt": [30, 25, 570, 413],
           "isIncompleteInSource": true,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-112: montazowy; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
@@ -3107,12 +2949,7 @@
           "png": "assets/schematy/ELE02_112_p3_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_112_p3_rozmieszczenie.svg",
           "sourcePage": 3,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            420
-          ],
+          "sourceCropPt": [30, 25, 570, 420],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-112: rozmieszczenie; rysunek źródłowy."
@@ -3201,15 +3038,7 @@
       "category": "Napędy",
       "summary": "K1 podtrzymuje gotowość po S2. K2 i K3 realizują dwa kierunki tylko podczas trzymania S3/S4. Każdy kierunek ma własną krańcówkę NC i blokadę NC przeciwnego stycznika. S3/S4 to pojedyncze przyciski ze wspólnym mechanizmem NO+NC.",
       "sourceId": "pdf-ele02-113",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        4,
-        6,
-        7,
-        8
-      ],
+      "sourcePages": [1, 2, 3, 4, 6, 7, 8],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -3393,12 +3222,7 @@
           "png": "assets/schematy/ELE02_113_p3_moc-i-sterowanie.png",
           "svg": "assets/schematy/ELE02_113_p3_moc-i-sterowanie.svg",
           "sourcePage": 3,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            481
-          ],
+          "sourceCropPt": [30, 25, 570, 481],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-113: moc-i-sterowanie; rysunek źródłowy."
@@ -3409,12 +3233,7 @@
           "png": "assets/schematy/ELE02_113_p2_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_113_p2_rozmieszczenie.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            648
-          ],
+          "sourceCropPt": [30, 25, 570, 648],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-113: rozmieszczenie; rysunek źródłowy."
@@ -3528,14 +3347,7 @@
       "category": "Automatyka i pomiary",
       "summary": "KP nadzoruje zasilanie L1; po jego zaniku tor NC dopuszcza zasilanie KT z L2. KT po 5 s przełącza tor oprawy na L2. Schemat, wymagany tryb czasowy i część kryteriów w karcie są niespójne — treść do publikacji z widocznym opisem, oceniane ćwiczenie zablokowane do rozstrzygnięcia.",
       "sourceId": "pdf-ele02-114",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        4,
-        6,
-        7
-      ],
+      "sourcePages": [1, 2, 3, 4, 6, 7],
       "timeMinutes": 180,
       "referenceProjectStatus": "source-review-required",
       "bom": [
@@ -3673,12 +3485,7 @@
           "png": "assets/schematy/ELE02_114_p2_ideowy.png",
           "svg": "assets/schematy/ELE02_114_p2_ideowy.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            342,
-            570,
-            778
-          ],
+          "sourceCropPt": [30, 342, 570, 778],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-114: ideowy; rysunek źródłowy."
@@ -3689,12 +3496,7 @@
           "png": "assets/schematy/ELE02_114_p2_rozdzielnica.png",
           "svg": "assets/schematy/ELE02_114_p2_rozdzielnica.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            335
-          ],
+          "sourceCropPt": [30, 25, 570, 335],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-114: rozdzielnica; rysunek źródłowy."
@@ -3774,14 +3576,7 @@
       "category": "Automatyka i pomiary",
       "summary": "Licznik przed RCD mierzy cały układ. B10 zasila gniazdo, B6 dwie oprawy sterowane schodowo. Trzy lampki wskazują zasilanie za RCD oraz obu MCB. Instrukcja licznika jest dostarczana na stanowisku.",
       "sourceId": "pdf-ele02-115",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        5,
-        6,
-        7
-      ],
+      "sourcePages": [1, 2, 3, 5, 6, 7],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -3962,12 +3757,7 @@
           "png": "assets/schematy/ELE02_115_p2_ideowy.png",
           "svg": "assets/schematy/ELE02_115_p2_ideowy.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            213,
-            570,
-            461
-          ],
+          "sourceCropPt": [30, 213, 570, 461],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-115: ideowy; rysunek źródłowy."
@@ -3978,12 +3768,7 @@
           "png": "assets/schematy/ELE02_115_p2_rozdzielnica.png",
           "svg": "assets/schematy/ELE02_115_p2_rozdzielnica.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            207
-          ],
+          "sourceCropPt": [30, 25, 570, 207],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-115: rozdzielnica; rysunek źródłowy."
@@ -3994,12 +3779,7 @@
           "png": "assets/schematy/ELE02_115_p1_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_115_p1_rozmieszczenie.svg",
           "sourcePage": 1,
-          "sourceCropPt": [
-            30,
-            470,
-            570,
-            758
-          ],
+          "sourceCropPt": [30, 470, 570, 758],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-115: rozmieszczenie; rysunek źródłowy."
@@ -4133,14 +3913,7 @@
       "category": "Napędy",
       "summary": "Silnik 400/690 V jest łączony w trójkąt i sterowany przez wyłącznik silnikowy, stycznik oraz niezależny START/STOP. Zadanie wymaga pomiarów trzech uzwojeń i izolacji, odczytu prądów z tabliczki oraz zapisania nastaw ochrony.",
       "sourceId": "pdf-ele02-116",
-      "sourcePages": [
-        1,
-        2,
-        4,
-        5,
-        6,
-        7
-      ],
+      "sourcePages": [1, 2, 4, 5, 6, 7],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -4299,12 +4072,7 @@
           "png": "assets/schematy/ELE02_116_p1_montazowy.png",
           "svg": "assets/schematy/ELE02_116_p1_montazowy.svg",
           "sourcePage": 1,
-          "sourceCropPt": [
-            30,
-            438,
-            570,
-            727
-          ],
+          "sourceCropPt": [30, 438, 570, 727],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-116: montazowy; rysunek źródłowy."
@@ -4315,12 +4083,7 @@
           "png": "assets/schematy/ELE02_116_p1_gniazdo.png",
           "svg": "assets/schematy/ELE02_116_p1_gniazdo.svg",
           "sourcePage": 1,
-          "sourceCropPt": [
-            30,
-            158,
-            570,
-            341
-          ],
+          "sourceCropPt": [30, 158, 570, 341],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-116: gniazdo; rysunek źródłowy."
@@ -4481,14 +4244,7 @@
       "category": "Automatyka oświetlenia",
       "summary": "B6 chroni gałąź regulatora SCO i oprawy; B10 zasila osobne gniazdo. Krótki impuls przycisku przełącza oświetlenie, długie naciśnięcie reguluje jasność według instrukcji SCO-815 lub innego wybranego modelu.",
       "sourceId": "pdf-ele02-117",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        5,
-        6,
-        7
-      ],
+      "sourcePages": [1, 2, 3, 5, 6, 7],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -4621,9 +4377,7 @@
         "Ściemniacz z krótkim/długim naciśnięciem",
         "Model jasności i obciążenia; odpowiedni zakres pomiarów"
       ],
-      "manufacturerSources": [
-        "ff-sco815"
-      ],
+      "manufacturerSources": ["ff-sco815"],
       "schematics": [
         {
           "id": "ELE02_117_p2_montazowy",
@@ -4631,12 +4385,7 @@
           "png": "assets/schematy/ELE02_117_p2_montazowy.png",
           "svg": "assets/schematy/ELE02_117_p2_montazowy.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            180,
-            570,
-            650
-          ],
+          "sourceCropPt": [30, 180, 570, 650],
           "isIncompleteInSource": true,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-117: montazowy; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
@@ -4647,12 +4396,7 @@
           "png": "assets/schematy/ELE02_117_p1_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_117_p1_rozmieszczenie.svg",
           "sourcePage": 1,
-          "sourceCropPt": [
-            30,
-            409,
-            570,
-            806
-          ],
+          "sourceCropPt": [30, 409, 570, 806],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-117: rozmieszczenie; rysunek źródłowy."
@@ -4759,15 +4503,7 @@
       "category": "Napędy",
       "summary": "Silnik 400/690 V połączony w trójkąt załącza się dla temperatury powyżej nastawy 28°C. Sterowanie przechodzi przez styk wyłącznika silnikowego, pozwolenie czujnika kolejności faz CKF i właściwy styk regulatora RT.",
       "sourceId": "pdf-ele02-L01",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        4,
-        6,
-        7,
-        8
-      ],
+      "sourcePages": [1, 2, 3, 4, 6, 7, 8],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -4904,9 +4640,7 @@
         "Czujnik kolejności faz ze stykiem pozwolenia",
         "Profil silnika 400Δ/690Y"
       ],
-      "manufacturerSources": [
-        "ff-rt820"
-      ],
+      "manufacturerSources": ["ff-rt820"],
       "schematics": [
         {
           "id": "ELE02_L01_p3_jednokreskowy",
@@ -4914,12 +4648,7 @@
           "png": "assets/schematy/ELE02_L01_p3_jednokreskowy.png",
           "svg": "assets/schematy/ELE02_L01_p3_jednokreskowy.svg",
           "sourcePage": 3,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            488
-          ],
+          "sourceCropPt": [30, 25, 570, 488],
           "isIncompleteInSource": true,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-L01: jednokreskowy; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
@@ -4930,12 +4659,7 @@
           "png": "assets/schematy/ELE02_L01_p2_rozdzielnica.png",
           "svg": "assets/schematy/ELE02_L01_p2_rozdzielnica.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            389,
-            570,
-            698
-          ],
+          "sourceCropPt": [30, 389, 570, 698],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-L01: rozdzielnica; rysunek źródłowy."
@@ -4946,12 +4670,7 @@
           "png": "assets/schematy/ELE02_L01_p2_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_L01_p2_rozmieszczenie.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            390
-          ],
+          "sourceCropPt": [30, 25, 570, 390],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-L01: rozmieszczenie; rysunek źródłowy."
@@ -5085,15 +4804,7 @@
       "category": "Automatyka i pomiary",
       "summary": "Licznik jednofazowy przed RCD mierzy energię obwodu gniazda B10 i oprawy B6 sterowanej jednym łącznikiem. Schemat montażowy należy uzupełnić o podłączenie i oznaczenia zacisków dobranego licznika.",
       "sourceId": "pdf-ele02-L02",
-      "sourcePages": [
-        1,
-        2,
-        3,
-        4,
-        6,
-        7,
-        8
-      ],
+      "sourcePages": [1, 2, 3, 4, 6, 7, 8],
       "timeMinutes": 180,
       "referenceProjectStatus": "requires-project-authoring",
       "bom": [
@@ -5215,9 +4926,7 @@
       "openQuestions": [
         "Model licznika nie jest wskazany w arkuszu. Pełna mapa zacisków wymaga wybranej instrukcji."
       ],
-      "catalogGaps": [
-        "Licznik energii jednofazowy"
-      ],
+      "catalogGaps": ["Licznik energii jednofazowy"],
       "manufacturerSources": [],
       "schematics": [
         {
@@ -5226,12 +4935,7 @@
           "png": "assets/schematy/ELE02_L02_p2_ideowy.png",
           "svg": "assets/schematy/ELE02_L02_p2_ideowy.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            495,
-            570,
-            770
-          ],
+          "sourceCropPt": [30, 495, 570, 770],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-L02: ideowy; rysunek źródłowy."
@@ -5242,12 +4946,7 @@
           "png": "assets/schematy/ELE02_L02_p3_montazowy.png",
           "svg": "assets/schematy/ELE02_L02_p3_montazowy.svg",
           "sourcePage": 3,
-          "sourceCropPt": [
-            30,
-            205,
-            570,
-            760
-          ],
+          "sourceCropPt": [30, 205, 570, 760],
           "isIncompleteInSource": true,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-L02: montazowy; rysunek źródłowy do uzupełnienia według instrukcji aparatu."
@@ -5258,12 +4957,7 @@
           "png": "assets/schematy/ELE02_L02_p2_rozmieszczenie.png",
           "svg": "assets/schematy/ELE02_L02_p2_rozmieszczenie.svg",
           "sourcePage": 2,
-          "sourceCropPt": [
-            30,
-            25,
-            570,
-            465
-          ],
+          "sourceCropPt": [30, 25, 570, 465],
           "isIncompleteInSource": false,
           "derivation": "Wycinek oryginalnego PDF; bez modyfikacji połączeń i numeracji.",
           "alt": "ELE.02-L02: rozmieszczenie; rysunek źródłowy."

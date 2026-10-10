@@ -30,12 +30,8 @@ const roles: Record<string, string> = {
   "ZS.RES2":
     "Drugi izolowany koniec rezerwy R2. Zakończenie tej żyły jest jawnym założeniem modelu.",
 };
-const texts: Record<
-  string,
-  [string, string, string, string[], string, string]
-> = {
+const texts: Record<string, [string, string, string[], string, string]> = {
   "edu-source-3ph": [
-    "Trzy fazory 230 V przesunięte o 120°; około 398 V między fazami.",
     "L1/L2/L3/N/PE; źródło nie jest stycznikiem.",
     "Energia OFF.",
     ["ON: napięcia trójfazowe.", "OFF: brak roboczego zasilania."],
@@ -43,7 +39,6 @@ const texts: Record<
     "n-pe-wezly",
   ],
   "edu-motor": [
-    "Trzy rezystancyjne uzwojenia z ukrytą gwiazdą. Kierunek wynika z kolejności faz.",
     "M 3~: U/V/W i osobny PE; bez dodatkowego urządzenia dla każdego uzwojenia.",
     "Silnik OFF.",
     [
@@ -55,7 +50,6 @@ const texts: Record<
     "silniki",
   ],
   "edu-rail-terminal": [
-    "Dwa zaciski jednego potencjału. Osobne złączki nie są zwarte przez TH35.",
     "Stały tor 1–2.",
     "Połączenie stałe.",
     [
@@ -67,7 +61,6 @@ const texts: Record<
     "zlaczki",
   ],
   "edu-mcb-adjustable": [
-    "Dydaktyczny B6 sterowania; Q1 pobiera L1 przed Q2.",
     "Styk 1–2 sprzężony z zabezpieczeniem.",
     "ON bez energii.",
     ["ON: 1–2 zamknięty.", "OFF/TRIPPED: obie cewki wyłączone."],
@@ -75,7 +68,6 @@ const texts: Record<
     "mcb",
   ],
   "edu-motor-protection": [
-    "Jeden mechanizm ON/OFF/TRIPPED dla trzech biegunów i przypisanego NO. Nastawa 4,35 A jest dydaktycznym założeniem.",
     "Trzy styki 1–2/3–4/5–6, wspólne oznaczenie Q2; NO pokazany osobno w sterowaniu.",
     "Q2 ON, energia OFF.",
     [
@@ -87,7 +79,6 @@ const texts: Record<
     "ochrona-silnika",
   ],
   "edu-motor-aux-no": [
-    "Mechaniczna zgoda Q2. Przynależność wynika z assembly, nie koloru ani przewodu.",
     "NO 13–14, odnośnik do wspólnego mechanizmu Q2.",
     "Podąża za nastawionym ON Q2.",
     ["Q2 ON: NO zamknięty.", "Q2 OFF/TRIPPED: NO otwarty."],
@@ -95,7 +86,6 @@ const texts: Record<
     "ochrona-silnika",
   ],
   "schneider-lc1d09p7": [
-    "Cewka 230 V AC A1–A2 uruchamia wspólny mechanizm trzech NO mocy, NO pomocniczego i NC pomocniczego.",
     "Oddzielne symbole cewki, 1L1–2T1/3L2–4T2/5L3–6T3, NO 13–14 i NC 21–22; jedno oznaczenie K1 albo K2.",
     "Cewka bez pobudzenia: mocy/NO otwarte, NC zamknięty.",
     [
@@ -113,7 +103,6 @@ for (const [id, mount] of [
   ["edu-start-stop-panel", "R2"],
 ])
   texts[id] = [
-    "Dwa niezależne przyciski: START NO i STOP NC, bez wspólnego przełączania NO+NC.",
     "STOP 1–2 oraz START 3–4: wspólne oznaczenie zespołu, odrębne operatory.",
     "START zwolniony (NO otwarty), STOP zwolniony (NC zamknięty).",
     [
@@ -126,7 +115,6 @@ for (const [id, mount] of [
   ];
 for (const id of ["edu-push-no-din", "edu-push-no-panel"])
   texts[id] = [
-    "Chwilowy NO; S2 i S4 są równoległymi żądaniami lewego kierunku.",
     "NO 3–4, bez NC i bez własnego podtrzymania.",
     "Zwolniony: otwarty.",
     [
@@ -143,13 +131,11 @@ const profiles: DeviceProfile[] = [
   ...new Set(p.circuit.devices.map((d) => d.productId)),
 ].map((id) => {
   const product = catalog[id];
-  const [principle, symbol, referenceState, states, test, articleId] =
-    texts[id];
+  const [symbol, referenceState, states, test, articleId] = texts[id];
   return {
     productId: id,
     productRevision: product.revision,
     topologyId: product.topology.id,
-    principle,
     symbol,
     referenceState,
     states,

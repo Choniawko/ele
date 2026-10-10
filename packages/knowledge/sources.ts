@@ -35,9 +35,9 @@ export const sources = {
   ),
   tesys: source(
     "tesys",
-    "Schneider — instrukcja TeSys D",
+    "Schneider — instrukcja osprzętu LAD z rysunkami TeSys D",
     "https://download.se.com/files?p_Doc_Ref=0381869_01A55&p_File_Name=0381869_01A55_04.pdf&p_enDocType=Instruction+sheet",
-    "Rysunek przyłączy: A1/A2, tory główne i pomocnicze; weryfikacja katalogowa 2026-10-05",
+    "Rysunki montażowe osprzętu LAD oraz przyłączy TeSys D; nie pełna karta konkretnego SKU; weryfikacja katalogowa 2026-10-05",
   ),
   coil: source(
     "coil",
@@ -115,6 +115,20 @@ export const sources = {
     "Pracownia — zakres modeli dydaktycznych",
     "https://github.com/Choniawko/ele/blob/main/docs/SIMULATION_SCOPE.md",
     "Profile edukacyjne, solver MNA i ograniczenia; stan repozytorium 2026-10-07",
+  ),
+  task101: source(
+    "task101",
+    "Pracownia — zweryfikowany wzorzec ELE.02-101",
+    "https://github.com/Choniawko/ele/blob/main/docs/PHYSICAL_ELE02_101.md",
+    "Mapa wzorca, gałęzie B6/B10, równoległe oprawy i gniazdo; adaptacja dydaktyczna odróżniona od arkusza",
+    "2026-10-09",
+  ),
+  task108: source(
+    "task108",
+    "Pracownia — zweryfikowany wzorzec ELE.02-108",
+    "https://github.com/Choniawko/ele/blob/main/docs/ELE02_108.md",
+    "Podtrzymanie własnym NO K1, oba STOP, lewy kierunek trzymany oraz jawne założenia modelu",
+    "2026-10-09",
   ),
   motor: source(
     "motor",

@@ -4,16 +4,10 @@
   "articles": [
     {
       "id": "rcd",
-      "title": "Wyłącznik różnicowoprądowy — RCD",
       "componentIds": [
         "rcd2",
         "rcd4"
       ],
-      "principle": "RCD porównuje prądy płynące przez swoje czynne tory. Różnica może spowodować wyłączenie. Prąd znamionowy aparatu i prąd różnicowy IΔn to różne parametry. Sam RCD nie zastępuje wyłącznika nadprądowego.",
-      "howToRead": "Zidentyfikuj wszystkie tory objęte jednym aparatem: L i N w 2P albo L1/L2/L3 i N w 4P. PE prowadź poza aparatem. Dwa RCD mogą mieć wspólny N przed nimi; za nimi tory N należą do własnych grup.",
-      "classicUse": "101: wspólna ochrona gniazda i oświetlenia. 103: osobne grupy RCD4 i RCD2.",
-      "practiceCheck": "Wskaż powrót N każdego odbiornika i wykonaj próbę TEST według instrukcji. TEST sprawdza funkcję testową aparatu; nie jest pełnym pomiarem ochrony instalacji.",
-      "commonMistake": "Łączenie N za dwoma RCD albo pomylenie 25 A z 30 mA. Typu A/AC nie dopisuj do nieokreślonego arkusza.",
       "taskCodes": [
         "101",
         "103",
@@ -30,7 +24,6 @@
     },
     {
       "id": "mcb",
-      "title": "Wyłącznik nadprądowy — MCB",
       "componentIds": [
         "b6",
         "b10",
@@ -38,11 +31,6 @@
         "b16-3",
         "c-motor"
       ],
-      "principle": "MCB rozłącza obwód ręcznie oraz przy określonym przeciążeniu lub zwarciu. B/C opisuje charakterystykę, liczba amperów prąd znamionowy; liczba biegunów określa sprzężone tory.",
-      "howToRead": "Odszukaj doprowadzenie fazy i gałąź za wyłącznikiem. 3P zasila trzy fazy; nie jest pięciotorowym osprzętem CEE.",
-      "classicUse": "101: B6 oświetlenie i B10 gniazdo. 110: B16 3P gniazdo CEE. 109: charakterystyka C z prądem dobranym do silnika.",
-      "practiceCheck": "Wyłącz jedną gałąź i ustal, które odbiorniki tracą zasilanie. Dobór rzeczywistego MCB wymaga danych przewodów, obciążenia i ochrony.",
-      "commonMistake": "Zamiana C16 na B16 przez etykietę lub uznanie B20 z arkusza za ogólne zalecenie domowe.",
       "taskCodes": [
         "101",
         "103",
@@ -66,16 +54,10 @@
     },
     {
       "id": "ochrona-silnika",
-      "title": "Wyłącznik silnikowy i jego styk pomocniczy",
       "componentIds": [
         "motor-protection",
         "motor-aux"
       ],
-      "principle": "Wyłącznik silnikowy jest aparatem w torze trzech faz. Jego nastawa wynika z danych silnika i warunków zastosowania. Pomocniczy styk śledzi stan mechanizmu; nie ma osobnej cewki.",
-      "howToRead": "Powiąż trzy tory mocy Q z jego stykiem pomocniczym w sterowaniu. W 108 NO Q2 13–14 jest warunkiem zasilenia obu kierunków.",
-      "classicUse": "108: OFF lub wyzwolenie Q2 odbiera moc i zgodę na pracę cewek. L01: szeregowa zgoda wraz z CKF i RT.",
-      "practiceCheck": "Sprawdź OFF i trip przy żądaniu pracy. Odczytaj prąd z tabliczki rzeczywistego motoru przed nastawą.",
-      "commonMistake": "Użycie 4,35 A z modelu jako danych kupionego silnika albo przypisanie pomocniczego styku do innego mechanizmu.",
       "taskCodes": [
         "108",
         "116",
@@ -86,17 +68,11 @@
     },
     {
       "id": "stycznik",
-      "title": "Stycznik, cewka i styki pomocnicze",
       "componentIds": [
         "contactor",
         "contactor-block",
         "aux-relay"
       ],
-      "principle": "Napięcie na cewce uruchamia mechanizm styków. Tory mocy zasilają odbiornik, a pomocnicze mogą podtrzymywać lub blokować sterowanie. Oddzielny blok musi pasować do konkretnego stycznika.",
-      "howToRead": "Cewka K1 i wiele styków oznaczonych K1 należą do tego samego mechanizmu. Linie połączeń są elektryczne; powiązanie mechaniczne nie jest przewodem.",
-      "classicUse": "108: NO K1 podtrzymuje prawy kierunek, NC przeciwnego stycznika blokuje drugi. 113: pomocniczy K1 podtrzymuje gotowość.",
-      "practiceCheck": "Odszukaj zasilanie cewki, jej N i wszystkie zależne styki. Zwolnij START i wskaż rzeczywistą drogę podtrzymania.",
-      "commonMistake": "Każdy NO nazwany podtrzymaniem; blok 1NO+1NC opisany jako 2NO+2NC; cewka 24 V DC potraktowana jak 230 V AC.",
       "taskCodes": [
         "108",
         "109",
@@ -197,17 +173,11 @@
     },
     {
       "id": "laczniki",
-      "title": "Łączniki jednobiegunowy, schodowy i krzyżowy",
       "componentIds": [
         "wall-switch",
         "changeover",
         "crossover"
       ],
-      "principle": "Jednobiegunowy utrzymuje przerwę lub połączenie. Schodowy wybiera jeden z dwóch torów z COM. Krzyżowy zmienia parowanie dwóch żył korespondencyjnych.",
-      "howToRead": "Najpierw ustal COM schodowych i pary krzyżowego; nie zakładaj numeru COM z innego produktu. N oraz PE opraw nie biorą udziału w przełączaniu fazy.",
-      "classicUse": "101/115: dwa schodowe. 105: schodowy–krzyżowy–schodowy. 107: schodowy wybiera funkcję obwodu, a nie steruje bezpośrednio oprawą.",
-      "practiceCheck": "Sprawdź wszystkie 4 lub 8 kombinacji położeń; każda zmiana jednego łącznika w 101/105 odwraca stan obu równoległych opraw.",
-      "commonMistake": "Oprawy połączone szeregowo albo traktowanie każdego schodowego jako układu oświetlenia z dwóch miejsc.",
       "taskCodes": [
         "101",
         "105",
@@ -221,16 +191,10 @@
     },
     {
       "id": "bistabilny",
-      "title": "Przekaźnik bistabilny DIN i dopuszkowy",
       "componentIds": [
         "bistable-din",
         "bistable-box"
       ],
-      "principle": "Impuls wejściowy zmienia zapamiętany stan wyjścia. Warianty różnią się zasilaniem, zaciskami, montażem i funkcjami czasu; wspólna nazwa nie gwarantuje wymienności.",
-      "howToRead": "Rozdziel stałe L/N elektroniki, wejście impulsowe i separowany COM/NO/NC. COM wyjścia potrzebuje doprowadzenia właściwej fazy.",
-      "classicUse": "106/107: wariant DIN z czasem. 112: dopuszkowy BIS-402 w P3. BIS-413 oraz BIS-402 mają różne mapy zacisków.",
-      "practiceCheck": "Wywołaj krótkie impulsy z każdego przycisku, a dla BIS-413 również czas i długie przytrzymanie według E220128.",
-      "commonMistake": "Przeniesienie numeracji BIS-411 na BIS-402 albo pominięcie czasu BIS-413.",
       "taskCodes": [
         "106",
         "107",
@@ -262,15 +226,9 @@
     },
     {
       "id": "czasowy",
-      "title": "Przekaźnik czasowy i tor przełączny",
       "componentIds": [
         "timer"
       ],
-      "principle": "Przekaźnik czasowy zmienia stan wyjścia według wybranego trybu oraz sygnału zasilania lub sterowania. Opóźnienie załączenia nie oznacza automatycznie opóźnienia powrotu.",
-      "howToRead": "Odszukaj COM i stan spoczynkowy styku, a następnie źródło wyzwolenia czasu. Nie łącz obu faz w jeden wspólny węzeł.",
-      "classicUse": "114: rezerwa L2 po 5 s, gdy KP straci zasilanie L1. Zachowanie powrotu wymaga instrukcji i rozstrzygnięcia źródła.",
-      "practiceCheck": "Sprawdź stan początkowy, po zaniku, po czasie i po powrocie. Każdy opisany wynik musi wynikać z konkretnego trybu.",
-      "commonMistake": "Wymuszenie 5 s w obie strony, żeby pasowało do wszystkich zdań karty TAK/NIE.",
       "taskCodes": [
         "114"
       ],
@@ -416,17 +374,11 @@
     },
     {
       "id": "silniki",
-      "title": "Silnik: tabliczka, uzwojenia i kierunek",
       "componentIds": [
         "motor1",
         "motor3-y",
         "motor3-d"
       ],
-      "principle": "Napięcie tabliczki odnosi się do uzwojeń i sposobu połączenia. Δ230/Y400 pracuje w gwieździe przy 400 V; Δ400/Y690 w trójkącie przy 400 V. Silnik jednofazowy kondensatorowy ma inne uzwojenia i procedurę zmiany kierunku.",
-      "howToRead": "Rozróżnij symbol 3~ lub 1~, tory mocy, PE i tablicę zaciskową. Numeracja i fizyczny układ śrub wymagają instrukcji, nie podobieństwa obrazka.",
-      "classicUse": "113: Δ230/Y400. 116/L01: Δ400/Y690. 109: U1/U2 i Z1/Z2 oraz kondensator; 108 nie podaje tabliczki.",
-      "practiceCheck": "Odczytaj tabliczkę, rozpoznaj końce uzwojeń i zapisz pomiary z jednostką. Prąd solvera rezystancyjnego nie jest pomiarem motoru.",
-      "commonMistake": "Trójkąt przy 400 V na motorze Δ230/Y400 albo zmiana kierunku 1-fazowego przez zamianę L/N.",
       "taskCodes": [
         "108",
         "109",
@@ -473,7 +425,6 @@
     },
     {
       "id": "zlaczki",
-      "title": "Złączki, listwy i niezależne potencjały",
       "componentIds": [
         "junction-plate",
         "bus-n",
@@ -482,11 +433,6 @@
         "rail-pe",
         "rail-end"
       ],
-      "principle": "Typowa złączka wielowejściowa tworzy jeden wspólny potencjał. Płytka z pięcioma niezależnymi torami tworzy pięć różnych węzłów. Listwa N i listwa PE mają odrębne funkcje.",
-      "howToRead": "Dla każdego toru nazwij potencjał i odbiorniki. W 103 osobne N za RCD nie mogą zostać zmostkowane. Szyna TH35 służy montażowi; połączenie ochronne zależy od konstrukcji osprzętu.",
-      "classicUse": "112: płytka 5 torów lub dopuszczone dodatkowe złączki. 108: tor N cewek i PE motoru przez oddzielne elementy.",
-      "practiceCheck": "Sprawdź ciągłość w obrębie węzła oraz przerwę między niezależnymi torami. Dobierz złączkę do drutu/linki, przekroju i liczby przewodów.",
-      "commonMistake": "Wszystkie śruby na płytce zwarte jednym mostkiem albo dowolna liczba żył pod zaciskiem, bo solver pozwala.",
       "taskCodes": [
         "103",
         "108",

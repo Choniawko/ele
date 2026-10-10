@@ -51,3 +51,23 @@
     animation: none;
   }
 }
+
+/* Current flow: moving dashes over a conductor that carries current. */
+.wire-flow {
+  stroke-dasharray: 2 10;
+  stroke-linecap: round;
+  animation: wire-flow 0.9s linear infinite;
+}
+.wire-flow.reverse {
+  animation-direction: reverse;
+}
+@keyframes wire-flow {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wire-flow {
+    animation: none;
+  }
+}

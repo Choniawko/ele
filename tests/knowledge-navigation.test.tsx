@@ -53,7 +53,7 @@ it("czytanie i powrót zachowują tożsamość projektu, undo/redo, runtime i ka
   boardCameras.schematic = { x: 25, y: -50, scale: 1.3 };
   useApp.setState({ selection: [d.id] });
   await openKnowledge(d.productId, d.id, "A1");
-  expect(location.hash).toBe("#knowledge/article/stycznik");
+  expect(location.hash).toBe("#/wiedza/aparaty/stycznik");
   expect(readContext()).toMatchObject({
     deviceId: d.id,
     revision: before.project.circuit.revision,

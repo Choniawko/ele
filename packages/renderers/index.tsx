@@ -3,7 +3,22 @@ import { LoadVisual } from "./loads";
 import type { Product, InternalConnection } from "@catalog/index";
 import type { DeviceInstance, TerminalRef } from "@model/index";
 import type { DeviceRuntime } from "@simulation/index";
+import { connectionDisplay } from "@simulation/connections";
 export const MM = 2.2;
+// Visible terminal ring (mm). Tight 18 mm modules have a 6 mm pitch; a
+// smaller ring leaves a gap through which a wire to the inner row can pass
+// without appearing to touch the outer terminal.
+export const TERMINAL_RING_STROKE_MM = 0.35;
+export function terminalRingMm(product: Product, terminalId: string) {
+  const t = product.topology.terminals.find((t) => t.id === terminalId)!;
+  const nearest = Math.min(
+    Infinity,
+    ...product.topology.terminals
+      .filter((o) => o.id !== t.id)
+      .map((o) => Math.hypot(o.x - t.x, o.y - t.y)),
+  );
+  return Math.min(2.3, nearest * 0.3);
+}
 export interface DeviceProps {
   product: Product;
   device: DeviceInstance;
@@ -1410,7 +1425,7 @@ function Physical({
               <circle
                 cx={t.x}
                 cy={t.y}
-                r={2.3}
+                r={terminalRingMm(p, t.id)}
                 fill={
                   red === key || black === key || wireStart === key
                     ? color
@@ -1565,7 +1580,17 @@ export function DeviceSchematic({
           cn.condition === "stop-inverse" ||
           cn.condition === "healthy";
         return (
-          <g key={cn.id}>
+          <g
+            key={cn.id}
+            data-symbol-fragment={cn.id}
+            data-closed={connectionDisplay(cn, s).displayClosed}
+            data-state-view={connectionDisplay(cn, s).displayMode}
+          >
+            <title>
+              {connectionDisplay(cn, s).displayMode === "mechanism"
+                ? "Położenie mechanizmu — ciągłość sprawdź pomiarem"
+                : "Rzeczywista ciągłość"}
+            </title>
             {onExplainSymbol && (
               <g
                 role="button"
@@ -1613,7 +1638,7 @@ export function DeviceSchematic({
                 <circle cx={64} cy={y} r={2.5} fill="#fff" stroke="#536254" />
                 <circle cx={97} cy={y} r={2.5} fill="#fff" stroke="#536254" />
                 <path
-                  d={`M64 ${y}L97 ${nc ? y : y - 14}`}
+                  d={`M64 ${y}L97 ${connectionDisplay(cn, s).displayClosed ? y : y - 14}`}
                   stroke="#536254"
                   strokeWidth={1.5}
                 />

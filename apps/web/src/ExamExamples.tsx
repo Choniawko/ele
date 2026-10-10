@@ -6,7 +6,7 @@ import {
   taskHref,
 } from "../../../packages/knowledge/exams";
 import { referenceByTask } from "../../../packages/knowledge/reference-examples";
-import { openReferenceCopy } from "./ReferenceLesson";
+import { openReferenceCopy } from "./reference-copy";
 
 export function ExamExamples({
   training,

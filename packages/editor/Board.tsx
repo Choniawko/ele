@@ -1,7 +1,7 @@
 import { schematicProjection } from "./schematic-projection";
 import { DeviceFragment } from "@renderers/fragment";
 import { auxiliaryMechanism, mechanismOwner } from "@simulation/mechanisms";
-import { boundReference } from "../knowledge/reference-examples";
+import { boundReferenceIdentity as boundReference } from "../knowledge/reference-identity";
 import {
   boardCameras,
   openKnowledge,
@@ -63,6 +63,7 @@ import {
   type DeviceProps,
 } from "@renderers/index";
 import type { DeviceRuntime } from "@simulation/index";
+import { conductorFlow, flowSignature } from "@simulation/flow";
 import "@joint/react/styles.css";
 import type { dia } from "@joint/core";
 interface ElementData {
@@ -92,6 +93,8 @@ interface WireData {
   reveals?: PhysicalEnclosure[];
   covers?: PhysicalEnclosure[];
   trunks?: PhysicalTrunk[];
+  /** Conventional current direction when the conductor carries current. */
+  flow?: 1 | -1;
 }
 function WireOverlay({
   bridge,
@@ -105,6 +108,7 @@ function WireOverlay({
   reveals,
   covers,
   trunks,
+  flow,
 }: WireData) {
   const layout = useLinkLayout();
   if (!layout) return null;
@@ -216,6 +220,16 @@ function WireOverlay({
             stroke="#f4d44c"
             strokeWidth={3.2}
             strokeDasharray="8 8"
+          />
+        )}
+        {flow && !dimmed && (
+          <path
+            data-flow-wire={wireId}
+            className={`wire-flow${flow < 0 ? " reverse" : ""}`}
+            d={layout.d}
+            fill="none"
+            stroke="#ffd34d"
+            strokeWidth={3}
           />
         )}
         {selected &&
@@ -333,6 +347,11 @@ function BoardDevice(
 function BoardView({ view }: { view: "physical" | "schematic" }) {
   const project = useApp((s) => s.project),
     runtimeDevices = useApp((s) => s.runtime.devices),
+    flowKey = useApp((s) =>
+      view === "physical"
+        ? flowSignature(conductorFlow(s.project, s.runtime))
+        : "",
+    ),
     selection = useApp((s) => s.selection),
     knowledgeHighlight = useApp((s) => s.knowledgeHighlight),
     wireStart = useApp((s) => s.wireStart),
@@ -683,6 +702,12 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
         },
       };
     });
+    const flowing = new Map(
+      flowKey
+        .split(",")
+        .filter(Boolean)
+        .map((f) => [f.slice(0, -1), f.endsWith("+") ? 1 : -1] as const),
+    );
     const wires: LinkRecord[] = project.circuit.conductors.map((w) => ({
       id: w.id,
       type: "link",
@@ -738,6 +763,7 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
             : undefined,
         description: `${w.marking} · ${project.circuit.devices.find((d) => d.id === w.from.deviceId)!.designation}:${w.from.terminalId} → ${project.circuit.devices.find((d) => d.id === w.to.deviceId)!.designation}:${w.to.terminalId}`,
         wireId: w.id,
+        flow: flowing.get(w.id),
       },
       labelMap: selection.includes(w.id)
         ? {
@@ -844,6 +870,7 @@ function BoardView({ view }: { view: "physical" | "schematic" }) {
     knowledgeHighlight,
     wireRouters,
     measuredPath,
+    flowKey,
   ]);
   const zoom = (factor: number, point?: Point) =>
     setTransform((t) => {

@@ -5,6 +5,8 @@ import { useApp } from "./store";
 import { useReferenceHelp, closeReferenceHelp } from "./reference-navigation";
 import { openKnowledge } from "./knowledge-navigation";
 import { resolveKnowledge } from "../../../packages/knowledge/bindings";
+import { apparatusCard, cardSection } from "../../../packages/knowledge/cards";
+import { cardHref } from "../../../packages/knowledge/card-routes";
 import "./reference.css";
 
 export function ReferenceHelp() {
@@ -38,6 +40,10 @@ export function ReferenceHelp() {
     (p) => p.productId === binding?.productId,
   );
   const device = project.circuit.devices.find((d) => d.id === context.deviceId);
+  const cardId = device
+    ? resolveKnowledge(device.productId)?.articleId
+    : profile?.articleId;
+  const card = cardId ? apparatusCard(cardId) : undefined;
   const wire = project.circuit.conductors.find((w) => w.id === context.wireId);
   const fragments =
     reference?.fragments.filter((f) =>
@@ -124,7 +130,11 @@ export function ReferenceHelp() {
           {profile && (
             <>
               <p>{profile.modelLabel}</p>
-              <p>{profile.principle}</p>
+              {card && (
+                <p data-card-principle={card.id}>
+                  {cardSection(card.id, "operation")}
+                </p>
+              )}
               <p>{profile.measurements}</p>
               <p>
                 <strong>Symbol:</strong> {profile.symbol}
@@ -182,20 +192,16 @@ export function ReferenceHelp() {
               </details>
               <button
                 onClick={() =>
-                  void navigate(
-                    resolveKnowledge(profile.productId)
-                      ? undefined
-                      : `/wiedza/aparaty/${profile.articleId}`,
-                  )
+                  void navigate(cardHref(cardId ?? profile.articleId).slice(1))
                 }
               >
                 Pełny artykuł aparatu
               </button>
               <a
-                href={`#/wiedza/aparaty/${profile.articleId}`}
+                href={cardHref(cardId ?? profile.articleId)}
                 onClick={(e) => {
                   e.preventDefault();
-                  void navigate(`/wiedza/aparaty/${profile.articleId}`);
+                  void navigate(cardHref(cardId ?? profile.articleId).slice(1));
                 }}
               >
                 Artykuł i materiały źródłowe

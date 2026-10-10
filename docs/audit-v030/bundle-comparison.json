@@ -1,0 +1,34 @@
+{
+  "baseline": {
+    "bytes": 1662609,
+    "gzipBytes": 469867,
+    "sha256": "3904945f8d679b041e4f333077d6fa3f647b013ffadef37d02a21ef99fe086a8",
+    "source": "SHA-verified v0.3.0 archive; same Node gzip compression as after"
+  },
+  "initial": [
+    {
+      "path": "assets/index-B8yJwYdt.js",
+      "bytes": 877378,
+      "gzipBytes": 263358
+    },
+    {
+      "path": "assets/reference-identity-C42Q9CXc.js",
+      "bytes": 236797,
+      "gzipBytes": 54367
+    },
+    {
+      "path": "assets/card-routes-N2yLFCq-.js",
+      "bytes": 46442,
+      "gzipBytes": 4642
+    },
+    {
+      "path": "assets/jsx-runtime-oVNwKGSB.js",
+      "bytes": 168720,
+      "gzipBytes": 55816
+    }
+  ],
+  "bytes": 1329337,
+  "gzipBytes": 378183,
+  "leakedTaskTitles": [],
+  "historicalFixtures": []
+}

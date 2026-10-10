@@ -36,14 +36,14 @@ test("wiedza: synonimy, progres, klawiatura i odświeżenie stałego adresu", as
 }) => {
   await page.getByRole("button", { name: "Baza wiedzy", exact: true }).click();
   await expect(
-    k(page).getByRole("heading", { name: "Zadania ELE.02", exact: true }),
+    k(page).getByRole("heading", { name: "Baza wiedzy", exact: true }),
   ).toBeFocused();
   await k(page)
     .getByLabel("Szukaj w materiałach źródłowych")
     .fill("roznicowka");
   await expect(k(page).locator(".exam-article-card").first()).toBeVisible();
   await k(page)
-    .getByRole("link", { name: /Wyłącznik różnicowoprądowy — RCD/ })
+    .getByRole("link", { name: /RCD i RCBO/ })
     .click();
   await expect(page).toHaveURL(/#\/wiedza\/aparaty\/rcd$/);
   // Existing product article URLs and reading progress remain compatible.
@@ -66,30 +66,28 @@ test("wiedza: synonimy, progres, klawiatura i odświeżenie stałego adresu", as
     page.getByRole("button", { name: "Baza wiedzy", exact: true }),
   ).toBeFocused();
 });
-test("wycofany adres układu nie uruchamia dawnego modelu ani zastępczego wzorca", async ({
+test("dawny adres START/STOP prowadzi do aktywnej lekcji 108 bez zmiany własnych projektów", async ({
   page,
 }) => {
   const before = await documents(page);
   await page.goto("./#knowledge/circuit/start-stop");
+  await expect(page).toHaveURL(/#\/wiedza\/uklady\/ele02-108$/);
   await expect(
-    k(page).getByRole("heading", { name: "Ten dawny układ został wycofany" }),
+    k(page)
+      .getByRole("heading", { name: /ELE.02-108/ })
+      .first(),
   ).toBeVisible();
   await expect(
-    k(page).getByRole("button", { name: "Otwórz kopię w pracowni" }),
-  ).toHaveCount(0);
+    k(page).getByRole("button", { name: "Załącz energię lekcji", exact: true }),
+  ).toBeVisible();
   expect(await documents(page)).toEqual(before);
-  await k(page)
-    .getByRole("link", { name: "Przejdź do aktualnych układów" })
-    .click();
-  await expect(
-    k(page).locator('[aria-label="Gotowe wzorce"] .knowledge-card'),
-  ).toHaveCount(2);
 });
 test("101: równoległe oprawy i tabela wskazują rzeczywistą żyłę w obu widokach", async ({
   page,
 }) => {
   const before = await documents(page);
   await page.goto("./#/wiedza/uklady/ele02-101");
+  await k(page).locator(".reference-wire-table > summary").click();
   await k(page).getByRole("button", { name: "Śledź W27", exact: true }).click();
   await expect(
     k(page).locator('.reference-connections tr[aria-selected="true"]'),
@@ -269,6 +267,7 @@ test("porządek aplikacji: pusty start i wyłącznie 17 obecnych arkuszy we wszy
   for (const entry of ["Przykłady", "Ćwiczenia"]) {
     await page.getByRole("button", { name: entry, exact: true }).click();
     const dialog = page.getByRole("dialog");
+    await expect(dialog.locator("[data-exam-task]")).toHaveCount(scope.length);
     expect(
       await dialog
         .locator("[data-exam-task]")
@@ -299,6 +298,7 @@ test("porządek aplikacji: pusty start i wyłącznie 17 obecnych arkuszy we wszy
   await page.getByRole("button", { name: "Anuluj", exact: true }).click();
   await page.getByRole("button", { name: "Zamknij", exact: true }).click();
   await page.getByRole("button", { name: "Baza wiedzy", exact: true }).click();
+  await k(page).getByRole("link", { name: "Zadania", exact: true }).click();
   await expect(k(page).locator(".exam-task-card")).toHaveCount(17);
   await expect(k(page).locator(".knowledge-demo")).toHaveCount(0);
 });
