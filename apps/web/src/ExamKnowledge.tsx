@@ -4,7 +4,7 @@ import {
   referenceByTask,
   referenceExamples,
 } from "../../../packages/knowledge/reference-examples";
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import {
   examTasks,
   examArticles,
@@ -29,6 +29,7 @@ import {
 import { returnToWorkbench } from "./knowledge-navigation";
 import "./knowledge.css";
 import "./exam-knowledge.css";
+const SchematicCourse = lazy(() => import("./SchematicCourse"));
 
 const sections = ["Rysunek", "Działanie", "Aparaty", "Próby"];
 const asset = (path: string) =>
@@ -196,35 +197,19 @@ function Task({ task }: { task: ExamTask }) {
         {task.id} — {task.title}
       </h1>
       <p className="knowledge-lead">{task.summary}</p>
-      <p className="exam-status">
-        {referenceIsReady(ref) ? "Możesz uruchomić" : "Schemat i teoria"}
-      </p>
-      <details>
-        <summary>Szczegóły odbioru modelu</summary>
-        <p>
-          {ref.status} · rewizja {ref.referenceRevision ?? "nieustalona"}
-        </p>
-        <ul>
-          {Object.entries(ref.gates).map(([id, status]) => (
-            <li key={id}>
-              {id}: {status}
-            </li>
-          ))}
-        </ul>
-      </details>
       {reference ? (
-        <p>
-          <a href={`#/wiedza/uklady/${reference.id}`}>
+        <p className="exam-cta">
+          <a className="exam-cta-link" href={`#/wiedza/uklady/${reference.id}`}>
             {referenceIsReady(ref)
               ? "Gotowy układ i lekcja torów"
               : "Obejrzyj opracowanie modelu"}
-          </a>{" "}
-          · Model dydaktyczny; geometria nie jest odwzorowaniem 1:1.
+          </a>
+          <span>Schemat, tablica montażowa i działanie w jednej lekcji.</span>
         </p>
       ) : (
-        <p>
-          Schemat i teoria są dostępne; sprawdzony wzorzec do uruchomienia jest
-          przygotowywany.
+        <p className="exam-status">
+          Na razie: rysunki z arkusza i opis. Lekcja interaktywna jest w
+          przygotowaniu.
         </p>
       )}
       <div
@@ -268,26 +253,8 @@ function Task({ task }: { task: ExamTask }) {
           <h2>Oryginał arkusza</h2>
           <Figures key={task.id} task={task} />
           <p className="small-help">
-            Wycinki źródłowe zachowują połączenia i oznaczenia. Nie są klikalnym
-            grafem zacisków.
+            Jak czytać ten rysunek, opisuje zakładka „Działanie”.
           </p>
-          <div className="exam-levels">
-            <p>
-              <strong>Objaśnienie:</strong> autorska ścieżka czytania w części
-              „Działanie”.
-            </p>
-            <p>
-              <strong>Schemat z projektu:</strong>{" "}
-              {reference ? (
-                <a href={`#/wiedza/uklady/${reference.id}`}>
-                  opracowanie i tabela połączeń z modelu
-                </a>
-              ) : (
-                "integracja wzorca w kolejnych etapach"
-              )}
-              . Rysunek źródłowy nie uruchamia solvera.
-            </p>
-          </div>
           <details>
             <summary>Identyfikacja źródła i zakres</summary>
             <p>{source.fileName}</p>
@@ -333,18 +300,14 @@ function Task({ task }: { task: ExamTask }) {
           id="exam-panel-2"
           aria-labelledby="exam-tab-2"
         >
-          <h2>Aparaty i osprzęt — Lista elementów — dane arkusza</h2>
-          <p>
-            Lista pochodzi z arkusza; wyposażenie modelu będzie przedstawione
-            osobno przy odbiorze wzorca.
-          </p>
+          <h2>Aparaty i osprzęt z arkusza</h2>
           <div className="knowledge-table-wrap">
             <table>
               <thead>
                 <tr>
-                  <th>Element i wyjaśnienie</th>
+                  <th>Element</th>
                   <th>Ilość</th>
-                  <th>Parametry / źródło</th>
+                  <th>Parametry z arkusza</th>
                 </tr>
               </thead>
               <tbody>
@@ -360,37 +323,31 @@ function Task({ task }: { task: ExamTask }) {
                       <td>
                         {b.quantity} {b.unit}
                       </td>
-                      <td>
-                        {b.sourceParameters ??
-                          (b.note ||
-                            "Parametry: sprawdź wskazane źródło; opis kategorii zakupowej jest osobno.")}
-                        <small>
-                          {b.sourceLocator}
-                          {!b.sourceParameters && b.note && ` · ${b.note}`}
-                        </small>
-                        <details>
-                          <summary>
-                            Założenia modelu i propozycja zakupu
-                          </summary>
-                          <p>
-                            {b.modelAssumptions ??
-                              "Brak przyjętego wariantu modelu dla tej pozycji."}
-                          </p>
-                          <p>
-                            Wariant zakupowy / kategoria:{" "}
-                            {b.purchaseVariant ?? c.parameters}
-                          </p>
-                          {b.sourceParameters && b.note && (
-                            <p>Uwaga opracowania: {b.note}</p>
-                          )}
-                        </details>
-                      </td>
+                      <td>{b.sourceParameters ?? b.note ?? "—"}</td>
                     </tr>
                   );
                 })}
               </tbody>
             </table>
           </div>
+          <details>
+            <summary>Założenia modelu i warianty zakupu</summary>
+            <ul>
+              {task.bom.map((b, i) => {
+                const c = examComponents.find((c) => c.id === b.componentId)!;
+                return (
+                  <li key={`${b.componentId}-${i}`}>
+                    <strong>{b.sourceName ?? c.name}</strong> ({b.sourceLocator}
+                    ).{" "}
+                    {b.modelAssumptions ??
+                      "Brak przyjętego wariantu modelu dla tej pozycji."}{" "}
+                    Wariant zakupowy: {b.purchaseVariant ?? c.parameters}.
+                    {b.sourceParameters && b.note && ` Uwaga: ${b.note}`}
+                  </li>
+                );
+              })}
+            </ul>
+          </details>
           <details>
             <summary>Przewody i materiały — dane źródła</summary>
             <div className="knowledge-table-wrap">
@@ -434,43 +391,56 @@ function Task({ task }: { task: ExamTask }) {
         >
           <h2>Próby do wykonania</h2>
           <p>
-            Opracowane wnioski ze źródła; nie są oficjalnym kluczem CKE ani
-            wynikami wykonanych testów. Rzeczywiste pomiary stanowiska wymagają
-            osobnego odbioru.
+            Co sprawdzić po zmontowaniu. To opracowanie arkusza, nie oficjalny
+            klucz CKE.
           </p>
           {task.acceptanceChecks.map((c) => (
             <div className="exam-check" key={c.id}>
-              <strong>{c.id} · specyfikacja próby</strong>
+              <strong>{c.id}</strong>
               <p>{c.action}</p>
               <p>Oczekiwanie: {c.expected}</p>
               <small>{c.basis}</small>
             </div>
           ))}
-          <h2>Weryfikacja przed pełnym ćwiczeniem</h2>
-          <ul>
-            {task.openQuestions.map((q) => (
-              <li key={q}>{q}</li>
-            ))}
-          </ul>
-          {task.catalogGaps.length > 0 && (
-            <>
-              <h3>Braki modeli</h3>
-              <ul>
-                {task.catalogGaps.map((g) => (
-                  <li key={g}>{g}</li>
-                ))}
-              </ul>
-            </>
-          )}
-          <h2>Kwestie źródłowe</h2>
-          {issues.map((i) => (
-            <p key={i.id}>
-              <strong>{i.id} · otwarte</strong>
-              <br />
-              {i.description}
+          <details className="exam-author-notes">
+            <summary>Otwarte kwestie źródła i stan opracowania</summary>
+            <p>
+              Stan wzorca: {ref.status} · rewizja{" "}
+              {ref.referenceRevision ?? "nieustalona"}
             </p>
-          ))}
-          <Manuals ids={task.manufacturerSources} />
+            <ul>
+              {Object.entries(ref.gates).map(([id, status]) => (
+                <li key={id}>
+                  {id}: {status}
+                </li>
+              ))}
+            </ul>
+            <h2>Weryfikacja przed pełnym ćwiczeniem</h2>
+            <ul>
+              {task.openQuestions.map((q) => (
+                <li key={q}>{q}</li>
+              ))}
+            </ul>
+            {task.catalogGaps.length > 0 && (
+              <>
+                <h3>Braki modeli</h3>
+                <ul>
+                  {task.catalogGaps.map((g) => (
+                    <li key={g}>{g}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+            <h2>Kwestie źródłowe</h2>
+            {issues.map((i) => (
+              <p key={i.id}>
+                <strong>{i.id} · otwarte</strong>
+                <br />
+                {i.description}
+              </p>
+            ))}
+            <Manuals ids={task.manufacturerSources} />
+          </details>
         </section>
       </div>
     </>
@@ -514,8 +484,7 @@ function Component({ id }: { id: string }) {
 }
 export default function ExamKnowledge({ route }: { route: string }) {
   const [, , category = "home", slug] = route.split("/");
-  const [query, setQuery] = useState(""),
-    [qualification, setQualification] = useState("ELE.02");
+  const [query, setQuery] = useState("");
   const task = category === "zadania" ? examTaskBySlug(slug ?? "") : undefined;
   const article =
     category === "aparaty"
@@ -537,7 +506,7 @@ export default function ExamKnowledge({ route }: { route: string }) {
   ].includes(category);
   const missing =
     (!!slug && !task && !article && !component && !reference) || !known;
-  const result = searchExamKnowledge(query, qualification);
+  const result = searchExamKnowledge(query, "ELE.02");
   const page = useRef<HTMLDivElement>(null);
   useEffect(() => {
     page.current?.scrollTo(0, 0);
@@ -565,17 +534,22 @@ export default function ExamKnowledge({ route }: { route: string }) {
       <main className="knowledge-main">
         <nav className="knowledge-departments" aria-label="Materiały ELE.02">
           {[
-            ["zadania", "Zadania"],
-            ["uklady", "Gotowe układy"],
-            ["aparaty", "Aparaty"],
-            ["czytanie", "Czytanie schematów"],
-            ["zestaw", "Zestaw stanowiska"],
-          ].map(([id, label]) => (
+            ["home", "Start", "#knowledge"],
+            ["czytanie", "Nauka schematów", "#/wiedza/czytanie"],
+            ["zadania", "Zadania", "#/wiedza/zadania"],
+            ["aparaty", "Aparaty", "#/wiedza/aparaty"],
+          ].map(([id, label, href]) => (
             <a
               className="exam-nav"
-              aria-current={category === id ? "page" : undefined}
+              aria-current={
+                category === id ||
+                (id === "zadania" && (category === "uklady" || !!task)) ||
+                (id === "aparaty" && category === "zestaw")
+                  ? "page"
+                  : undefined
+              }
               key={id}
-              href={`#/wiedza/${id}`}
+              href={href}
             >
               {label}
             </a>
@@ -606,29 +580,77 @@ export default function ExamKnowledge({ route }: { route: string }) {
                     : category === "aparaty"
                       ? "Aparaty i osprzęt"
                       : category === "czytanie"
-                        ? "Czytanie schematów"
+                        ? "Nauka schematów"
                         : "Zadania ELE.02"}
             </h1>
             {category === "home" && (
-              <div className="knowledge-cards knowledge-start">
-                <a className="knowledge-card" href="#/wiedza/czytanie">
-                  <h2>Zacznij od podstaw</h2>
-                  <p>Znajdź tor i przejdź od symbolu do zacisków.</p>
-                </a>
-                <a className="knowledge-card" href="#/wiedza/aparaty">
-                  <h2>Poznaj aparat</h2>
-                  <p>Wyszukaj nazwę, producenta lub model/SKU.</p>
-                </a>
-                <a className="knowledge-card" href="#/wiedza/uklady">
-                  <h2>Ćwicz zadanie</h2>
-                  <p>Uruchom sprawdzony wzorzec 101 lub 108.</p>
-                </a>
-              </div>
+              <>
+                <p className="knowledge-lead">
+                  Ucz się w tej kolejności: najpierw symbole i czytanie rysunku,
+                  potem śledzenie torów na gotowym układzie, na końcu
+                  samodzielny montaż w pracowni.
+                </p>
+                <ol className="knowledge-cards knowledge-start knowledge-path">
+                  <li>
+                    <a className="knowledge-card" href="#/wiedza/czytanie">
+                      <h2>Zacznij od podstaw: symbole i czytanie arkusza</h2>
+                      <p>
+                        Słownik symboli i ćwiczenia na oryginalnych rysunkach
+                        101 i 108.
+                      </p>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="knowledge-card"
+                      href="#/wiedza/uklady/ele02-101"
+                    >
+                      <h2>Prześledź tory: oświetlenie schodowe 101</h2>
+                      <p>
+                        Schemat, tablica i prąd w jednej lekcji. Przełączaj
+                        łączniki i patrz, którędy płynie prąd.
+                      </p>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="knowledge-card"
+                      href="#/wiedza/uklady/ele02-108"
+                    >
+                      <h2>Sterowanie stycznikami: silnik 108</h2>
+                      <p>
+                        START, STOP, podtrzymanie i blokada kierunków na
+                        działającym układzie.
+                      </p>
+                    </a>
+                  </li>
+                  <li>
+                    <a className="knowledge-card" href="#/wiedza/zadania">
+                      <h2>Ćwicz zadanie: wszystkie arkusze</h2>
+                      <p>
+                        17 arkuszy ELE.02 z rysunkami, listą aparatów i próbami.
+                      </p>
+                    </a>
+                  </li>
+                </ol>
+                <p className="knowledge-aside-link">
+                  <a href="#/wiedza/aparaty">
+                    Poznaj aparat: wyszukaj nazwę, producenta lub model/SKU →
+                  </a>
+                </p>
+              </>
             )}
-            <p className="exam-status">
-              {readyTaskCount()}/17 układów możesz uruchomić. Pozostałe: schemat
-              i teoria.
-            </p>
+            {(category === "zadania" || category === "uklady") && (
+              <p className="exam-status">
+                {readyTaskCount()}/17 układów możesz uruchomić. Pozostałe:
+                schemat i teoria.
+              </p>
+            )}
+            {category === "czytanie" && !query.trim() && (
+              <Suspense fallback={<p role="status">Ładowanie…</p>}>
+                <SchematicCourse />
+              </Suspense>
+            )}
             <div className="knowledge-filters exam-filters">
               <label>
                 Szukaj w materiałach źródłowych
@@ -639,22 +661,8 @@ export default function ExamKnowledge({ route }: { route: string }) {
                   placeholder="np. RCD, BIS-402, podtrzymanie, L01"
                 />
               </label>
-              <label>
-                Kwalifikacja
-                <select
-                  value={qualification}
-                  onChange={(e) => setQualification(e.target.value)}
-                >
-                  <option>ELE.02</option>
-                  <option>ELE.05</option>
-                </select>
-              </label>
             </div>
-            {qualification === "ELE.05" ? (
-              <p className="knowledge-limit">
-                W tej paczce nie przekazano arkuszy ELE.05.
-              </p>
-            ) : (
+            {
               <>
                 {category === "home"
                   ? "Baza wiedzy"
@@ -692,6 +700,32 @@ export default function ExamKnowledge({ route }: { route: string }) {
                         )}
                       </section>
                     )}
+                {category === "zadania" && !showAll && (
+                  <section aria-label="Lekcje interaktywne">
+                    <h2>Lekcje interaktywne</h2>
+                    <div className="knowledge-cards">
+                      {referenceExamples
+                        .filter((r) =>
+                          referenceIsReady(
+                            examAvailability.find((a) => a.taskId === r.taskId),
+                          ),
+                        )
+                        .map((r) => (
+                          <a
+                            className="knowledge-card exam-lesson-card"
+                            key={r.id}
+                            href={`#/wiedza/uklady/${r.id}`}
+                          >
+                            <span className="knowledge-eyebrow">
+                              {r.taskId}
+                            </span>
+                            <h2>{r.title}</h2>
+                            <span>Otwórz lekcję →</span>
+                          </a>
+                        ))}
+                    </div>
+                  </section>
+                )}
                 {(category === "zadania" || showAll) && (
                   <section aria-label="Karty zadań">
                     <h2>Zadania ({result.tasks.length})</h2>
@@ -724,7 +758,11 @@ export default function ExamKnowledge({ route }: { route: string }) {
                   category === "czytanie" ||
                   showAll) && (
                   <section aria-label="Artykuły źródłowe">
-                    <h2>Aparaty</h2>
+                    <h2>
+                      {category === "czytanie" && !showAll
+                        ? "Do poczytania"
+                        : "Aparaty"}
+                    </h2>
                     <div className="knowledge-cards">
                       {result.articles
                         .filter(
@@ -750,13 +788,6 @@ export default function ExamKnowledge({ route }: { route: string }) {
                           </a>
                         ))}
                     </div>
-                    {category === "czytanie" && (
-                      <p>
-                        <a href="#/wiedza/uklady/ele02-101">
-                          Czytaj schemat i śledź rzeczywiste żyły w ELE.02-101 →
-                        </a>
-                      </p>
-                    )}
                   </section>
                 )}
                 {(category === "zestaw" || showAll) && (
@@ -862,13 +893,14 @@ export default function ExamKnowledge({ route }: { route: string }) {
                     <p role="status">Brak wyników. Zmień szukane hasło.</p>
                   )}
               </>
-            )}
+            }
           </>
         )}
         <footer>
-          Materiał źródłowy ELE.02 · opracowanie dydaktyczne. Przekazane próby
-          są specyfikacją; karty i rysunki nie potwierdzają wykonania modeli ani
-          bezpieczeństwa stanowiska.
+          <a href="#/wiedza/zestaw">Wyposażenie i lista zakupów stanowiska →</a>
+          <span>
+            Opracowanie dydaktyczne arkuszy ELE.02, nie oficjalny klucz CKE.
+          </span>
         </footer>
       </main>
     </div>

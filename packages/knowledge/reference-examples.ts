@@ -5,6 +5,7 @@ import { validateProjectDocument } from "@catalog/project-validation";
 import { clone, newId, type ProjectDocument } from "@model/index";
 import type { DiagramScope } from "./types";
 import { reference108 } from "./reference-108";
+import { diagramConflicts } from "./diagram-geometry";
 
 export interface LessonFragment {
   id: string;
@@ -217,7 +218,13 @@ const symbols = (names: string[], x: number, y: number) =>
         fragmentId: c.id,
         x: x + i * 220,
         y: y + row * 130,
-        label: c.kind === "load" ? "odbiornik" : c.id,
+        // Readable names; internal fragment ids (pole1, b2…) stay in data only.
+        label:
+          c.kind === "load"
+            ? "odbiornik"
+            : (({ pole1: "styk L", poleN: "styk N" } as Record<string, string>)[
+                c.id
+              ] ?? `styk ${c.from}–${c.to}`),
       }));
   });
 export const referenceExamples: ReferenceExample[] = [
@@ -388,34 +395,64 @@ export const referenceExamples: ReferenceExample[] = [
         ],
       },
       {
+        // L above, N below, H1 between them: the lamp is in parallel with
+        // the socket, never in series with it. PE is a separate bottom rail.
         title: "101 — gniazdo, kontrolka H1 i niezależny PE",
         width: 1100,
-        height: 500,
-        symbols: symbols(["H1"], 520, 150),
+        height: 520,
+        symbols: [
+          {
+            designation: "H1",
+            fragmentId: "light",
+            x: 420,
+            y: 235,
+            label: "kontrolka B10",
+          },
+        ],
         ports: [
           {
             designation: "B10",
             terminalId: "2",
             x: 80,
-            y: 150,
-            label: "B10:2",
+            y: 140,
+            label: "B10:2 (L)",
           },
-          { designation: "GW", terminalId: "L", x: 800, y: 150, label: "GW:L" },
-          { designation: "GW", terminalId: "N", x: 800, y: 300, label: "GW:N" },
+          { designation: "GW", terminalId: "L", x: 960, y: 140, label: "GW:L" },
           {
             designation: "R.N",
             terminalId: "1",
             x: 80,
-            y: 300,
+            y: 330,
             label: "N za RCD",
           },
+          { designation: "GW", terminalId: "N", x: 960, y: 330, label: "GW:N" },
           ...["PZ", "GW", "OP1", "OP2"].map((designation, i) => ({
             designation,
             terminalId: "PE",
-            x: 80 + i * 290,
-            y: 420,
+            x: 80 + i * 293,
+            y: 450,
             label: `${designation}:PE`,
           })),
+        ],
+        netAnchors: [
+          {
+            designation: "B10",
+            terminalId: "2",
+            point: { x: 80, y: 140 },
+            trunk: [
+              { x: 80, y: 140 },
+              { x: 960, y: 140 },
+            ],
+          },
+          {
+            designation: "R.N",
+            terminalId: "1",
+            point: { x: 80, y: 330 },
+            trunk: [
+              { x: 80, y: 330 },
+              { x: 960, y: 330 },
+            ],
+          },
         ],
       },
     ],
@@ -521,6 +558,10 @@ export function validateReference(r: ReferenceExample) {
     )
       errors.push(`net-trunk:${a.designation}`);
   }
+  // A drawing must never show a connection the circuit does not have.
+  for (const scope of r.diagrams)
+    for (const conflict of diagramConflicts(p, scope))
+      errors.push(`diagram:${scope.title}: ${conflict}`);
   for (const b of r.bindings)
     if (
       !r.profiles.some(

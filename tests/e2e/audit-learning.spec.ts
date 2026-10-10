@@ -268,12 +268,7 @@ test("audit UX-01: reading-schematics entry and old address reach the active 101
   page,
 }) => {
   await page.goto("./#/wiedza/czytanie");
-  await page
-    .getByRole("link", {
-      name: "Czytaj schemat i śledź rzeczywiste żyły w ELE.02-101 →",
-      exact: true,
-    })
-    .click();
+  await page.getByRole("link", { name: /Prześledź tory/ }).click();
   await expect(page).toHaveURL(/#\/wiedza\/uklady\/ele02-101$/);
   await expect(
     page.getByRole("button", { name: "Załącz energię lekcji", exact: true }),
@@ -330,9 +325,16 @@ test("audit: 108 unknown nameplate stays separate from model and purchase", asyn
   const visibleText = await motor.innerText();
   expect(visibleText).toContain("nie określa");
   expect(visibleText).not.toMatch(/1,5|113|230\/400|3 kW/);
-  await motor.locator("details > summary").click();
-  await expect(motor).toContainText("3 kW");
-  await expect(motor).toContainText("1,5");
+  // Model assumptions and purchase variants live in one collapsed list.
+  const assumptions = page
+    .locator("details")
+    .filter({ hasText: "Założenia modelu i warianty zakupu" });
+  await assumptions.locator("summary").click();
+  const motorNote = assumptions
+    .getByRole("listitem")
+    .filter({ hasText: "Silnik trójfazowy — tabliczka niepodana w arkuszu" });
+  await expect(motorNote).toContainText("3 kW");
+  await expect(motorNote).toContainText("1,5");
 });
 
 test("audit: remaining legacy lesson and circuit addresses resolve to appropriate material", async ({

@@ -90,6 +90,7 @@ import {
 } from "@measurements/index";
 import { useApp, measurementSelect, type Mode, type View } from "./store";
 import { importResearch, getResearch } from "./persistence";
+import { openReferenceCopy } from "./reference-copy";
 import "./styles.css";
 import "@renderers/effects.css";
 
@@ -1636,7 +1637,10 @@ function App() {
     wireRole = useApp((s) => s.role),
     section = useApp((s) => s.section),
     wireLength = useApp((s) => s.length),
-    wireStart = useApp((s) => s.wireStart);
+    wireStart = useApp((s) => s.wireStart),
+    adding = useApp((s) => s.adding);
+  const [welcomeClosed, setWelcomeClosed] = useState(false),
+    [welcomeError, setWelcomeError] = useState("");
   const [modal, setModal] = useState<Modal>(null),
     [info, setInfo] = useState<Product | null>(null),
     [hideCatalog, setHideCatalog] = useState(() =>
@@ -2170,6 +2174,62 @@ function App() {
             {(view === "schematic" || view === "split") && (
               <Board view="schematic" />
             )}
+            {project.circuit.devices.length === 0 &&
+              !adding &&
+              !welcomeClosed &&
+              !focusBoard && (
+                <section
+                  className="board-welcome"
+                  aria-labelledby="board-welcome-title"
+                >
+                  <button
+                    className="board-welcome-close"
+                    aria-label="Zamknij powitanie"
+                    onClick={() => setWelcomeClosed(true)}
+                  >
+                    <X size={14} />
+                  </button>
+                  <h2 id="board-welcome-title">Od czego zacząć?</h2>
+                  <ol>
+                    <li>
+                      <a href="#/wiedza/czytanie">Naucz się czytać schemat</a>
+                      <span>Symbole i ćwiczenia na arkuszach 101 i 108.</span>
+                    </li>
+                    <li>
+                      <a href="#/wiedza/uklady/ele02-101">
+                        Prześledź działający układ
+                      </a>
+                      <span>Schemat, tablica i prąd w jednej lekcji.</span>
+                    </li>
+                    <li>
+                      <span className="board-welcome-actions">
+                        {(["ele02-101", "ele02-108"] as const).map((id) => (
+                          <button
+                            key={id}
+                            onClick={() => {
+                              setWelcomeError("");
+                              openReferenceCopy(id).catch((e: unknown) =>
+                                setWelcomeError(
+                                  e instanceof Error
+                                    ? e.message
+                                    : "Nie udało się otworzyć układu.",
+                                ),
+                              );
+                            }}
+                          >
+                            Otwórz gotowy układ {id.slice(-3)}
+                          </button>
+                        ))}
+                      </span>
+                      <span>
+                        Albo buduj od zera: wybierz aparat w katalogu i kliknij
+                        miejsce na tablicy.
+                      </span>
+                    </li>
+                  </ol>
+                  {welcomeError && <p role="alert">{welcomeError}</p>}
+                </section>
+              )}
           </div>
           {(notice || rt.status !== "valid") && !focusBoard && (
             <div

@@ -14,6 +14,7 @@ import {
 import { type ReferenceExample } from "../../../packages/knowledge/reference-examples";
 import {
   examAvailability,
+  examTasks,
   referenceIsReady,
 } from "../../../packages/knowledge/exams";
 import type { Highlight } from "../../../packages/knowledge/types";
@@ -175,40 +176,78 @@ export function ReferenceLesson({
     compensateLeads: true,
     rcdMultiplier: 1,
   });
+  const indicators = lesson.indicators.map((indicator) => {
+    const state = runtime.devices[indicator.deviceId];
+    const text =
+      indicator.kind === "powered"
+        ? state.powered
+          ? "świeci"
+          : "zgaszona"
+        : indicator.kind === "mechanism"
+          ? state.mechanism
+            ? "załączony"
+            : "wyłączony"
+          : indicator.kind === "direction"
+            ? !state.powered
+              ? "stoi"
+              : state.direction === "123"
+                ? "prawy"
+                : "lewy"
+            : indicator.kind === "protection"
+              ? state.tripped
+                ? "TRIPPED"
+                : state.manual
+                  ? "ON"
+                  : "OFF"
+              : indicator.kind === "auxiliary"
+                ? auxiliaryMechanism(project, runtime, indicator.deviceId)
+                  ? "zamknięty"
+                  : "otwarty"
+                : state.tripped
+                  ? "wyzwolony"
+                  : "niewyzwolony";
+    const on = [
+      "świeci",
+      "załączony",
+      "prawy",
+      "lewy",
+      "ON",
+      "zamknięty",
+    ].includes(text);
+    const alarm = ["TRIPPED", "wyzwolony"].includes(text);
+    return { id: indicator.deviceId, text, on, alarm };
+  });
+  const task = examTasks.find((t) => t.id === r.taskId);
   return (
     <section
       className="reference-lesson"
       aria-label={`Lekcja układu ${r.taskId}`}
       style={{ "--diagram-scale": diagramScale } as CSSProperties}
     >
-      <h1 tabIndex={-1}>{r.taskId} — od schematu do zacisków</h1>
-      <details>
-        <summary>Źródło i ograniczenia wzorca</summary>
-        <p>{r.title}</p>
-        <p>
-          Opracowanie modelu dydaktycznego · wersja {r.referenceRevision}.{" "}
-          <a href={`#/wiedza/zadania/${r.id}`}>
-            Porównaj z oryginałem arkusza i listą elementów arkusza
-          </a>
-          .
-        </p>
-        {r.limitations.map((l) => (
-          <p className="knowledge-limit" key={l}>
-            {l}
+      <header className="lesson-head">
+        <div>
+          <span className="knowledge-eyebrow">
+            {r.taskId} · lekcja interaktywna
+          </span>
+          <h1 tabIndex={-1}>{r.taskId} — od schematu do zacisków</h1>
+          <p className="knowledge-lead">{r.title}</p>
+        </div>
+        {ready ? (
+          <button
+            className="lesson-primary"
+            disabled={opening}
+            onClick={() => void copy()}
+          >
+            Otwórz gotowy układ jako nową kopię
+          </button>
+        ) : (
+          <p role="status">
+            Podgląd lekcji. Udostępnienie kopii czeka na pełny odbiór R1–R10.
           </p>
-        ))}
-      </details>
+        )}
+      </header>
       {errors.length > 0 && (
         <p role="alert">Nieprawidłowe odwołania lekcji: {errors.join(", ")}</p>
-      )}
-      {ready ? (
-        <button disabled={opening} onClick={() => void copy()}>
-          Otwórz gotowy układ jako nową kopię
-        </button>
-      ) : (
-        <p role="status">
-          Podgląd lekcji. Udostępnienie kopii czeka na pełny odbiór R1–R10.
-        </p>
       )}
       {error && <p role="alert">{error}</p>}
       <nav className="reference-steps" aria-label="Kroki lekcji">
@@ -218,181 +257,221 @@ export function ReferenceLesson({
             aria-current={step === i ? "step" : undefined}
             onClick={() => setStep(i)}
           >
+            <span aria-hidden="true" className="lesson-step-number">
+              {i + 1}
+            </span>
             {s.title}
           </button>
         ))}
       </nav>
       <p className="reference-instruction">{lesson.steps[step].instruction}</p>
       <div className="reference-workspace">
-        <div className="reference-console">
-          <h2 className="sr-only">Tor, sterowanie i wynik</h2>
-          <div className="reference-fragments">
-            {r.fragments.map((f) => (
+        <div className="lesson-stage">
+          <div className="lesson-stage-bar reference-view-controls">
+            <div role="group" aria-label="Widok rysunku">
+              {task && task.schematics.length > 0 && (
+                <button
+                  aria-pressed={view === "sheet"}
+                  onClick={() => setView("sheet")}
+                >
+                  Arkusz egzaminacyjny
+                </button>
+              )}
               <button
-                key={f.id}
-                aria-pressed={fragmentId === f.id}
-                onClick={() => {
-                  chooseFragment(f.id);
-                }}
+                aria-pressed={view === "schematic"}
+                onClick={() => setView("schematic")}
               >
-                {f.title}
+                Schemat lekcji
               </button>
+              <button
+                aria-pressed={view === "physical"}
+                onClick={() => setView("physical")}
+              >
+                Tablica lekcji
+              </button>
+            </div>
+            <label>
+              Powiększenie rysunków modelu{" "}
+              <select
+                value={diagramScale}
+                onChange={(e) => setDiagramScale(Number(e.target.value))}
+              >
+                {[1, 1.5, 2, 3].map((n) => (
+                  <option key={n} value={n}>
+                    {n * 100}%
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <p className="lesson-legend" aria-hidden="true">
+            <span className="legend-live">faza</span>
+            <span className="legend-return">N z prądem</span>
+            <span className="legend-flow">kierunek prądu</span>
+            <span className="legend-node">● węzeł</span>
+          </p>
+          {task && (
+            <div
+              className="reference-diagrams lesson-sheet"
+              data-view="sheet"
+              hidden={view !== "sheet"}
+            >
+              {task.schematics.map((f) => (
+                <figure key={f.id}>
+                  <img
+                    src={`${import.meta.env.BASE_URL}knowledge/ele02/${f.png}`}
+                    alt={f.alt}
+                    loading="lazy"
+                    style={{ width: `${100 * diagramScale}%` }}
+                  />
+                  <figcaption>
+                    {f.kind} · oryginał arkusza, strona PDF {f.sourcePage}.
+                    Porównaj go ze schematem lekcji i tablicą.
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
+          <div
+            className="reference-diagrams"
+            data-view="schematic"
+            hidden={view !== "schematic"}
+          >
+            {r.diagrams.map((scope) => (
+              <section key={scope.title}>
+                <h3>{scope.title}</h3>
+                <div className="reference-scroll">
+                  <FunctionalDiagram
+                    project={project}
+                    runtime={runtime}
+                    scope={scope}
+                    live={runtime.sequence > 0}
+                    highlight={highlight}
+                    onHighlight={setHighlight}
+                  />
+                </div>
+              </section>
             ))}
           </div>
-          <p>{fragment.explanation}</p>
-          <p className="small-help">
-            Cały tor: {fragment.conductorIds.length} żył /{" "}
-            {fragment.bridgeIds.length} mostków. Pomarańczowa grubsza linia:
-            połączenie; fioletowe przerywane obramowanie: wspólny mechanizm.
-          </p>
           <div
-            className="reference-controls reference-fragments"
-            tabIndex={0}
-            aria-label="Sterowanie lekcji"
+            className="reference-diagrams"
+            data-view="physical"
+            hidden={view !== "physical"}
           >
-            <button
-              disabled={paused}
-              onClick={() => act({ type: "power", on: !runtime.energized })}
-            >
-              {runtime.energized
-                ? "Wyłącz energię lekcji"
-                : "Załącz energię lekcji"}
-            </button>
-            <ReferenceControls
-              controls={lesson.controls}
-              runtime={runtime}
-              act={act}
-              paused={paused}
-            />
-            <button
-              onClick={() => {
-                setRuntime(initialRuntime(project));
-                setHighlight({ deviceIds: [], terminals: [] });
-              }}
-            >
-              Reset lekcji
-            </button>
+            <h2 className="sr-only">Tablica połączeń — trasy z projektu</h2>
+            <div className="reference-scroll">
+              <PhysicalDiagram
+                project={project}
+                runtime={runtime}
+                highlight={highlight}
+                onHighlight={setHighlight}
+              />
+            </div>
           </div>
-          <p role="status" className="reference-result">
-            {lesson.indicators
-              .map((indicator) => {
-                const state = runtime.devices[indicator.deviceId];
-                const text =
-                  indicator.kind === "powered"
-                    ? state.powered
-                      ? "świeci"
-                      : "zgaszona"
-                    : indicator.kind === "mechanism"
-                      ? state.mechanism
-                        ? "załączony"
-                        : "wyłączony"
-                      : indicator.kind === "direction"
-                        ? !state.powered
-                          ? "stoi"
-                          : state.direction === "123"
-                            ? "prawy"
-                            : "lewy"
-                        : indicator.kind === "protection"
-                          ? state.tripped
-                            ? "TRIPPED"
-                            : state.manual
-                              ? "ON"
-                              : "OFF"
-                          : indicator.kind === "auxiliary"
-                            ? auxiliaryMechanism(
-                                project,
-                                runtime,
-                                indicator.deviceId,
-                              )
-                              ? "zamknięty"
-                              : "otwarty"
-                            : state.tripped
-                              ? "wyzwolony"
-                              : "niewyzwolony";
-                return `${indicator.deviceId}: ${text}`;
-              })
-              .join(" · ")}{" "}
-            · {lesson.probe.label}:{" "}
-            {voltage.value?.toFixed(1) ?? "brak odczytu"} V.
-          </p>
-          <div className="reference-view-controls">
-            <button
-              aria-pressed={view === "schematic"}
-              onClick={() => setView("schematic")}
+        </div>
+        <aside className="reference-console lesson-panel">
+          <h2 className="sr-only">Tor, sterowanie i wynik</h2>
+          <section aria-labelledby="lesson-controls-title">
+            <h3 id="lesson-controls-title">Sterowanie</h3>
+            <div
+              className="reference-controls reference-fragments"
+              tabIndex={0}
+              aria-label="Sterowanie lekcji"
             >
-              Schemat lekcji
-            </button>
-            <button
-              aria-pressed={view === "physical"}
-              onClick={() => setView("physical")}
-            >
-              Tablica lekcji
-            </button>
-            <button aria-pressed={paused} onClick={() => setPaused((p) => !p)}>
-              {paused ? "Wznów lekcję" : "Pauza lekcji"}
-            </button>
-          </div>
-          {highlight.terminals.length > 0 && (
-            <p className="small-help" data-lesson-selection>
-              Zaciski:{" "}
-              {highlight.terminals
-                .map(terminalKey)
-                .filter((v, i, a) => a.indexOf(v) === i)
-                .slice(0, 4)
-                .join(", ")}
-            </p>
-          )}
-          <label>
-            Powiększenie rysunków modelu{" "}
-            <select
-              value={diagramScale}
-              onChange={(e) => setDiagramScale(Number(e.target.value))}
-            >
-              {[1, 1.5, 2, 3].map((n) => (
-                <option key={n} value={n}>
-                  {n * 100}%
-                </option>
+              <button
+                className={`lesson-power${runtime.energized ? " on" : ""}`}
+                disabled={paused}
+                onClick={() => act({ type: "power", on: !runtime.energized })}
+              >
+                {runtime.energized
+                  ? "Wyłącz energię lekcji"
+                  : "Załącz energię lekcji"}
+              </button>
+              <ReferenceControls
+                controls={lesson.controls}
+                runtime={runtime}
+                act={act}
+                paused={paused}
+              />
+            </div>
+            <div className="lesson-secondary">
+              <button
+                onClick={() => {
+                  setRuntime(initialRuntime(project));
+                  setHighlight({ deviceIds: [], terminals: [] });
+                }}
+              >
+                Reset lekcji
+              </button>
+              <button
+                aria-pressed={paused}
+                onClick={() => setPaused((p) => !p)}
+              >
+                {paused ? "Wznów lekcję" : "Pauza lekcji"}
+              </button>
+            </div>
+          </section>
+          <section aria-labelledby="lesson-state-title">
+            <h3 id="lesson-state-title">Stan układu</h3>
+            <p role="status" className="reference-result">
+              {indicators.map((i) => (
+                <span
+                  key={i.id}
+                  className={`lesson-chip${i.on ? " on" : ""}${i.alarm ? " alarm" : ""}`}
+                >
+                  {i.id}: {i.text}
+                  <span className="sr-only"> · </span>
+                </span>
               ))}
-            </select>
-          </label>
-        </div>
-        <div
-          className="reference-diagrams"
-          data-view="schematic"
-          hidden={view !== "schematic"}
-        >
-          {r.diagrams.map((scope) => (
-            <section key={scope.title}>
-              <h3>{scope.title}</h3>
-              <div className="reference-scroll">
-                <FunctionalDiagram
-                  project={project}
-                  runtime={runtime}
-                  scope={scope}
-                  live={runtime.sequence > 0}
-                  highlight={highlight}
-                  onHighlight={setHighlight}
-                />
-              </div>
-            </section>
-          ))}
-        </div>
-        <div
-          className="reference-diagrams"
-          data-view="physical"
-          hidden={view !== "physical"}
-        >
-          <h2 className="sr-only">Tablica połączeń — trasy z projektu</h2>
-          <div className="reference-scroll">
-            <PhysicalDiagram
-              project={project}
-              runtime={runtime}
-              highlight={highlight}
-              onHighlight={setHighlight}
-            />
-          </div>
-        </div>
+              <span className="lesson-chip meter">
+                {lesson.probe.label}:{" "}
+                {voltage.value?.toFixed(1) ?? "brak odczytu"} V.
+              </span>
+            </p>
+          </section>
+          <section aria-labelledby="lesson-path-title">
+            <h3 id="lesson-path-title">Prześledź tor</h3>
+            <div className="reference-fragments lesson-paths">
+              {r.fragments.map((f) => (
+                <button
+                  key={f.id}
+                  aria-pressed={fragmentId === f.id}
+                  onClick={() => {
+                    chooseFragment(f.id);
+                  }}
+                >
+                  {f.title}
+                </button>
+              ))}
+            </div>
+            <p>{fragment.explanation}</p>
+            <p className="small-help">
+              Tor: {fragment.conductorIds.length} żył. Pomarańczowa linia
+              pokazuje wybrany tor na schemacie i na tablicy.
+            </p>
+            {highlight.terminals.length > 0 && (
+              <p className="small-help" data-lesson-selection>
+                Zaciski:{" "}
+                {highlight.terminals
+                  .map(terminalKey)
+                  .filter((v, i, a) => a.indexOf(v) === i)
+                  .slice(0, 4)
+                  .join(", ")}
+              </p>
+            )}
+          </section>
+        </aside>
       </div>
+      {step === 0 && task && task.readingSteps.length > 0 && (
+        <section className="lesson-reading">
+          <h2>Jak czytać ten schemat</h2>
+          <ol>
+            {task.readingSteps.map((s) => (
+              <li key={s}>{s}</li>
+            ))}
+          </ol>
+        </section>
+      )}
       {step === 2 && (
         <section className="reference-trial">
           <h2>Przewidź i sprawdź</h2>
@@ -450,6 +529,22 @@ export function ReferenceLesson({
           <p role="status">{trialResult}</p>
         </section>
       )}
+      <h2 className="lesson-more">Szczegóły dla dociekliwych</h2>
+      <details>
+        <summary>Źródło i ograniczenia wzorca</summary>
+        <p>
+          Opracowanie modelu dydaktycznego · wersja {r.referenceRevision}.{" "}
+          <a href={`#/wiedza/zadania/${r.id}`}>
+            Porównaj z oryginałem arkusza i listą elementów arkusza
+          </a>
+          .
+        </p>
+        {r.limitations.map((l) => (
+          <p className="knowledge-limit" key={l}>
+            {l}
+          </p>
+        ))}
+      </details>
       <details className="reference-wire-table">
         <summary>Tabela połączeń z obwodu</summary>
         <p>

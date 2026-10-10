@@ -3420,3 +3420,55 @@ h3 {
   padding: 5px 9px;
   cursor: pointer;
 }
+/* First-run guidance on an empty board; hidden while placing an apparatus. */
+.board-welcome {
+  position: absolute;
+  top: 64px;
+  left: 16px;
+  z-index: 6;
+  width: min(380px, calc(100% - 32px));
+  padding: 16px 18px;
+  background: #fffefa;
+  border: 1px solid #b8c9b4;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px #1d2e2722;
+}
+.board-welcome h2 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+.board-welcome ol {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 10px;
+}
+.board-welcome li > a {
+  font-weight: 600;
+}
+.board-welcome li > span {
+  display: block;
+  font-size: 12px;
+  color: #5b6e5a;
+}
+.board-welcome-actions {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.board-welcome-actions button {
+  font-size: 12px;
+  padding: 5px 9px;
+  border-radius: 7px;
+  border: 1px solid #1f5f4a;
+  background: #1f5f4a;
+  color: #fff;
+}
+.board-welcome-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: 0;
+  background: none;
+}

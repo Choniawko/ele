@@ -3,10 +3,16 @@ import { dia, g } from "@joint/core";
 import { catalog } from "@catalog/index";
 import type { Conductor, ProjectDocument, TerminalRef } from "@model/index";
 import { scenarios, scenarioProject } from "@training/index";
-import { physicalWireRouters, physicalWirePaths } from "@editor/wire-routing";
+import {
+  physicalWireRouters,
+  physicalWirePaths,
+  terminalExitPath,
+  usedTerminalIds,
+} from "@editor/wire-routing";
 import example101 from "../examples/physical/ELE02_101_stanowisko.json";
 import example108 from "../examples/physical/ELE02_108_stanowisko.json";
 import { validateProjectDocument } from "@catalog/project-validation";
+import { terminalRingMm, TERMINAL_RING_STROKE_MM } from "@renderers/index";
 
 function fixture(project: ProjectDocument) {
   const graph = new dia.Graph();
@@ -97,16 +103,20 @@ function verify(project: ProjectDocument, wire: Conductor, points: g.Point[]) {
           point.y >= at.y + dim.height * 2.2 - 0.3
         )
           continue;
+        // Inside its own case a wire may only follow the exit corridor from
+        // its terminal to the edge (straight, or stepped around a neighbour).
         const accessible = [wire.from, wire.to].some((ref) => {
           if (ref.deviceId !== device.id) return false;
-          const terminal = product.topology.terminals.find(
-            (t) => t.id === ref.terminalId,
-          )!;
-          return (
-            Math.abs(point.x - at.x - terminal.x * 2.2) < 1 &&
-            (terminal.y > dim.height / 2
-              ? point.y >= at.y + terminal.y * 2.2 - 0.2
-              : point.y <= at.y + terminal.y * 2.2 + 0.2)
+          const path = terminalExitPath(
+            device.productId,
+            ref.terminalId,
+            usedTerminalIds(project.circuit.conductors, device.id),
+          ).map((q) => new g.Point(at.x + q.x * 2.2, at.y + q.y * 2.2));
+          return path.some(
+            (q, i) =>
+              i > 0 &&
+              new g.Line(path[i - 1], q).closestPoint(point).distance(point) <
+                1,
           );
         });
         expect(
@@ -199,5 +209,73 @@ describe("prowadzenie przewodów poza obudowami", () => {
     const after = f.route(wire);
     expect(after).not.toEqual(before);
     verify(project, wire, after);
+  });
+});
+
+// A wire drawn across another terminal reads as a connection to it. The board
+// draws the ring (radius + stroke, mm) and a 3.2 px wide wire.
+const terminalTouchPx = (productId: string, terminalId: string) =>
+  (terminalRingMm(catalog[productId], terminalId) + TERMINAL_RING_STROKE_MM) *
+    2.2 +
+  1.6;
+function foreignTerminalContacts(
+  project: ProjectDocument,
+  paths: Record<string, { x: number; y: number }[]>,
+) {
+  const terminals = project.circuit.devices.flatMap((d) =>
+    catalog[d.productId].topology.terminals.map((t) => ({
+      deviceId: d.id,
+      terminalId: t.id,
+      label: `${d.designation}:${t.id}`,
+      touch: terminalTouchPx(d.productId, t.id),
+      x: project.physical.devices[d.id].x + t.x * 2.2,
+      y: project.physical.devices[d.id].y + t.y * 2.2,
+    })),
+  );
+  const hits: string[] = [];
+  for (const wire of project.circuit.conductors) {
+    const points = paths[wire.id];
+    for (const t of terminals) {
+      if (
+        [wire.from, wire.to].some(
+          (r) => r.deviceId === t.deviceId && r.terminalId === t.terminalId,
+        )
+      )
+        continue;
+      const touched = points.some((b, i) => {
+        if (!i) return false;
+        const a = points[i - 1],
+          dx = b.x - a.x,
+          dy = b.y - a.y,
+          len = dx * dx + dy * dy,
+          s = len
+            ? Math.max(
+                0,
+                Math.min(1, ((t.x - a.x) * dx + (t.y - a.y) * dy) / len),
+              )
+            : 0;
+        return Math.hypot(a.x + s * dx - t.x, a.y + s * dy - t.y) < t.touch;
+      });
+      if (touched) hits.push(`${wire.marking} → ${t.label}`);
+    }
+  }
+  return hits;
+}
+
+describe("przewód nie przechodzi przez cudzy zacisk", () => {
+  it.each([
+    ["101", example101],
+    ["108", example108],
+  ])("%s: każda żyła dotyka wyłącznie własnych zacisków", (_code, raw) => {
+    const p = validateProjectDocument(raw);
+    expect(foreignTerminalContacts(p, physicalWirePaths(p))).toEqual([]);
+  });
+  it.each(scenarios)("$title: trasy omijają cudze zaciski", (scenario) => {
+    const project = scenario.create(),
+      f = fixture(project),
+      paths = Object.fromEntries(
+        project.circuit.conductors.map((w) => [w.id, f.route(w)]),
+      );
+    expect(foreignTerminalContacts(project, paths)).toEqual([]);
   });
 });

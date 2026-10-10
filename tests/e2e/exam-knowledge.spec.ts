@@ -45,10 +45,8 @@ test("00a: all cards, article/category links, search synonyms and honest availab
     ).toBeVisible();
   }
   await search.fill("");
-  await page.getByLabel("Kwalifikacja").selectOption("ELE.05");
-  await expect(page.getByText(/nie przekazano arkuszy ELE.05/)).toBeVisible();
-  await expect(page.locator(".exam-task-card")).toHaveCount(0);
-  await page.getByLabel("Kwalifikacja").selectOption("ELE.02");
+  // Only ELE.02 sheets exist, so the page offers no qualification switch.
+  await expect(page.getByLabel("Kwalifikacja")).toHaveCount(0);
   for (const a of examArticles) {
     await page.goto(`./${examArticleHref(a.id)}`);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
@@ -216,9 +214,13 @@ for (const [width, height] of [
       ).toBeVisible();
       await page.getByRole("tab", { name: "Próby", exact: true }).click();
     }
+    await expect(page.locator(".exam-check").first()).toBeVisible();
+    // Source issues are author notes, collapsed below the learner's checks.
+    await page
+      .getByText("Otwarte kwestie źródła i stan opracowania", { exact: true })
+      .click();
     await expect(
       page.getByText("114-ISSUE-04 · otwarte", { exact: true }),
     ).toBeVisible();
-    await expect(page.getByText(/specyfikacja próby/).first()).toBeVisible();
   });
 }

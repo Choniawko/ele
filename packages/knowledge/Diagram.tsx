@@ -16,14 +16,19 @@ import {
 import { auxiliaryMechanism, mechanismOwner } from "@simulation/mechanisms";
 import type { RuntimeSnapshot } from "@simulation/index";
 import {
+  conductorFlow,
+  terminalPotential,
+  LIVE_THRESHOLD_V,
+} from "@simulation/flow";
+import {
   documentaryConnectionClosed,
   resolveConnectionState,
 } from "@simulation/connections";
-import { deviceByName, permanentNets } from "./diagram-model";
+import { deviceByName } from "./diagram-model";
+import { functionalDiagramGeometry } from "./diagram-geometry";
 import type { DiagramScope, Highlight } from "./types";
 import { physicalWirePaths } from "@editor/wire-routing";
 import { ElectricalSymbol } from "@renderers/electrical-symbol";
-import { routedNet } from "./diagram-routing";
 export { ElectricalSymbol } from "@renderers/electrical-symbol";
 const ink = "#253f43";
 const keyAction = (e: React.KeyboardEvent, action: () => void) => {
@@ -59,71 +64,35 @@ export function FunctionalDiagram({
   highlight: Highlight;
   onHighlight: (h: Highlight) => void;
 }) {
-  const net = useMemo(() => permanentNets(p), [p]);
-  const symbols = scope.symbols.map((s) => {
-    const d = deviceByName(p, s.designation),
-      c = catalog[d.productId].topology.connections.find(
-        (c) => c.id === s.fragmentId,
-      )!;
-    return { ...s, d, c };
-  });
-  const ports = [
-    ...scope.ports.map((pt) => ({
-      ...pt,
-      ref: {
-        deviceId: deviceByName(p, pt.designation).id,
-        terminalId: pt.terminalId,
-      },
-    })),
-    ...symbols.flatMap((s) => [
-      {
-        x: s.x + (s.reverse ? 120 : 0),
-        y: s.y,
-        ref: { deviceId: s.d.id, terminalId: s.c.from },
-      },
-      {
-        x: s.x + (s.reverse ? 0 : 120),
-        y: s.y,
-        ref: { deviceId: s.d.id, terminalId: s.c.to },
-      },
-    ]),
-  ];
-  const groups = new Map<string, typeof ports>();
-  for (const port of ports) {
-    const k = net(port.ref);
-    groups.set(k, [...(groups.get(k) ?? []), port]);
-  }
-  const lines = [...groups.entries()].map(([k, pts]) => {
-    const anchor = scope.netAnchors?.find(
-      (a) =>
-        net({
-          deviceId: deviceByName(p, a.designation).id,
-          terminalId: a.terminalId,
-        }) === k,
-    );
-    const minX = Math.min(...pts.map((pt) => pt.x)),
-      maxX = Math.max(...pts.map((pt) => pt.x)),
-      minY = Math.min(...pts.map((pt) => pt.y)),
-      maxY = Math.max(...pts.map((pt) => pt.y));
-    const x =
-      anchor?.point.x ??
-      (pts.some((pt) => pt.x > scope.width - 180) ? maxX : minX);
-    const path =
-      minY === maxY
-        ? `M${minX} ${minY}H${maxX}`
-        : `M${x} ${minY}V${maxY} ${pts.map((pt) => `M${pt.x} ${pt.y}H${x}`).join(" ")}`;
-    const routed = anchor?.trunk
-      ? routedNet(pts, anchor.trunk)
-      : {
-          path,
-          junctions:
-            pts.length > 2 && minY !== maxY
-              ? [...new Set(pts.map((pt) => pt.y))].map((y) => ({ x, y }))
-              : [],
-        };
-    return { k, ...routed };
-  });
+  const { net, symbols, lines } = useMemo(
+    () => functionalDiagramGeometry(p, scope),
+    [p, scope],
+  );
   const selectedNets = new Set(highlight.terminals.map(net));
+  // Live picture: which nets sit at phase potential and which carry current.
+  const flow = useMemo(() => conductorFlow(p, rt), [p, rt]);
+  const netState = (line: (typeof lines)[number]) => {
+    if (!live || !rt.energized) return "idle";
+    const carrying = p.circuit.conductors.some(
+      (w) => flow[w.id] && (net(w.from) === line.k || net(w.to) === line.k),
+    );
+    const potential = Math.max(
+      ...line.ports.map((pt) => terminalPotential(p, rt, terminalKey(pt.ref))),
+    );
+    return potential >= LIVE_THRESHOLD_V
+      ? carrying
+        ? "live-current"
+        : "live"
+      : carrying
+        ? "return-current"
+        : "idle";
+  };
+  const netColor = {
+    idle: ink,
+    live: "#c2410c",
+    "live-current": "#c2410c",
+    "return-current": "#1d5fb0",
+  };
   return (
     <svg
       className="knowledge-diagram"
@@ -144,26 +113,39 @@ export function FunctionalDiagram({
             : "WIDOK DZIAŁANIA — rzeczywista ciągłość"
           : "WIDOK DOKUMENTACYJNY — stan odniesienia, bez pobudzenia"}
       </text>
-      {lines.map((l) => (
-        <g key={l.k} data-functional-net={l.k}>
-          <path d={l.path} stroke="white" strokeWidth="8" fill="none" />
-          <path
-            d={l.path}
-            stroke={selectedNets.has(l.k) ? "#b05a10" : ink}
-            strokeWidth={selectedNets.has(l.k) ? 3 : 2}
-            fill="none"
-          />
-          {l.junctions.map((pt) => (
-            <circle
-              key={`${pt.x}:${pt.y}`}
-              cx={pt.x}
-              cy={pt.y}
-              r="4"
-              fill={ink}
+      {lines.map((l) => {
+        const state = netState(l);
+        return (
+          <g key={l.k} data-functional-net={l.k} data-net-state={state}>
+            <path d={l.path} stroke="white" strokeWidth="8" fill="none" />
+            {state.endsWith("current") && (
+              <path
+                className="net-current"
+                d={l.path}
+                stroke={netColor[state]}
+                strokeOpacity={0.22}
+                strokeWidth={11}
+                fill="none"
+              />
+            )}
+            <path
+              d={l.path}
+              stroke={selectedNets.has(l.k) ? "#b05a10" : netColor[state]}
+              strokeWidth={selectedNets.has(l.k) ? 3 : state === "idle" ? 2 : 3}
+              fill="none"
             />
-          ))}
-        </g>
-      ))}
+            {l.junctions.map((pt) => (
+              <circle
+                key={`${pt.x}:${pt.y}`}
+                cx={pt.x}
+                cy={pt.y}
+                r="4"
+                fill={netColor[state]}
+              />
+            ))}
+          </g>
+        );
+      })}
       {scope.ports.map((pt) => (
         <g
           key={`${pt.designation}:${pt.terminalId}`}
@@ -377,6 +359,7 @@ export function PhysicalDiagram({
   onHighlight: (h: Highlight) => void;
 }) {
   const routes = useMemo(() => physicalWirePaths(p), [p]);
+  const flow = useMemo(() => conductorFlow(p, rt), [p, rt]);
   const bounds = {
     width: Math.max(
       1100,
@@ -476,8 +459,8 @@ export function PhysicalDiagram({
                   ? w.insulationColor
                   : ink
             }
-            opacity={selected ? 1 : 0.55}
-            strokeWidth={selected ? 5 : 2}
+            opacity={selected ? 1 : 0.8}
+            strokeWidth={selected ? 5 : 2.5}
             onClick={() =>
               onHighlight({
                 wireId: w.id,
@@ -488,6 +471,22 @@ export function PhysicalDiagram({
           />
         );
       })}
+      {Object.entries(flow).map(([id, direction]) =>
+        routes[id]?.length ? (
+          <path
+            key={`flow-${id}`}
+            data-flow-wire={id}
+            className={`wire-flow${direction < 0 ? " reverse" : ""}`}
+            d={routes[id]
+              .map((pt, i) => `${i ? "L" : "M"}${pt.x} ${pt.y}`)
+              .join(" ")}
+            fill="none"
+            stroke="#ffd34d"
+            strokeWidth={4}
+            pointerEvents="none"
+          />
+        ) : null,
+      )}
       {p.circuit.devices.map((d) => (
         <g
           key={d.id}

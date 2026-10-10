@@ -28,6 +28,8 @@ W Budowie kliknij aparat z katalogu i miejsce na tablicy. Dwa kliknięcia zacisk
 
 W nagłówku wybierz **Baza wiedzy**: 17 kart arkuszy, 25 artykułów, 60 kategorii BOM i 40 oryginalnych rysunków. Wyszukaj kod, aparat lub synonim. Wzorzec 101 ma schemat funkcjonalny, tablicę z rzeczywistymi trasami i tabelę wszystkich 33 żył, wyprowadzone z jednego CircuitModel. Stały adres: `/ele/#/wiedza/uklady/ele02-101`.
 
+**Nauka schematów** prowadzi od symboli przez ćwiczenia na oryginalnych arkuszach 101 i 108 do lekcji, w której schemat, tablica i przepływ prądu są zsynchronizowane. Wyniki audytu UX, kontroli połączeń i plan dalszych zmian: [docs/UX_AUDYT_NAUKA.md](docs/UX_AUDYT_NAUKA.md).
+
 „Poznaj aparat” i osobne wyjaśnienie zacisku otwierają pomoc z rolą w tym układzie. Zwykły gest zacisku nadal rozpoczyna łączenie. Powrót zachowuje kadr, zaznaczenie i rozpoczętą pracę; czytanie zawiesza automatyczny zegar. Pełne artykuły katalogowe zachowują istniejące adresy i lokalny progres. Dawne demonstracje oraz układy bazowe wycofano. [Zakres i dopisywanie materiałów](docs/KNOWLEDGE.md), [odbiór etapu 01](docs/ele-exams/QA_01.md) i [odbiór 108](docs/ele-exams/QA_01b.md).
 
 ## Moje projekty

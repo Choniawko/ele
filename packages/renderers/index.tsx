@@ -5,6 +5,20 @@ import type { DeviceInstance, TerminalRef } from "@model/index";
 import type { DeviceRuntime } from "@simulation/index";
 import { connectionDisplay } from "@simulation/connections";
 export const MM = 2.2;
+// Visible terminal ring (mm). Tight 18 mm modules have a 6 mm pitch; a
+// smaller ring leaves a gap through which a wire to the inner row can pass
+// without appearing to touch the outer terminal.
+export const TERMINAL_RING_STROKE_MM = 0.35;
+export function terminalRingMm(product: Product, terminalId: string) {
+  const t = product.topology.terminals.find((t) => t.id === terminalId)!;
+  const nearest = Math.min(
+    Infinity,
+    ...product.topology.terminals
+      .filter((o) => o.id !== t.id)
+      .map((o) => Math.hypot(o.x - t.x, o.y - t.y)),
+  );
+  return Math.min(2.3, nearest * 0.3);
+}
 export interface DeviceProps {
   product: Product;
   device: DeviceInstance;
@@ -1411,7 +1425,7 @@ function Physical({
               <circle
                 cx={t.x}
                 cy={t.y}
-                r={2.3}
+                r={terminalRingMm(p, t.id)}
                 fill={
                   red === key || black === key || wireStart === key
                     ? color

@@ -1,6 +1,6 @@
 import { g, routers, dia } from "@joint/core";
 import { catalog } from "@catalog/index";
-import { MM } from "@renderers/index";
+import { MM, terminalRingMm, TERMINAL_RING_STROKE_MM } from "@renderers/index";
 import type {
   Conductor,
   DeviceInstance,
@@ -23,12 +23,169 @@ function terminalSide(
     terminal = product.topology.terminals.find((t) => t.id === ref.terminalId)!;
   return terminal.y > product.dimensions.value!.height / 2 ? "bottom" : "top";
 }
+function terminalExit(
+  ref: TerminalRef,
+  devices: Map<string, DeviceInstance>,
+  wires: Conductor[],
+): TerminalExit {
+  return terminalExits(
+    devices.get(ref.deviceId)!.productId,
+    usedTerminalIds(wires, ref.deviceId),
+  ).get(ref.terminalId)!;
+}
 
 function exit(anchor: g.Point, box: g.Rect, side: Side, gap: number): g.Point {
   return new g.Point(
     anchor.x,
     side === "bottom" ? box.y + box.height + gap : box.y - gap,
   );
+}
+
+// A terminal ring is 2.3 mm; keep a wire at least this far from any terminal
+// it does not connect to, otherwise the drawing reads as a connection there.
+export const TERMINAL_KEEP_OUT_MM = 3.6;
+export interface TerminalExit {
+  side: Side;
+  /** Device-local x (mm) where the wire leaves the case edge. */
+  lane: number;
+  /** Device-local y (mm) of the sideways jog, or null for a straight exit. */
+  jogY: number | null;
+}
+const exitCache = new Map<string, Map<string, TerminalExit>>();
+const segmentDistance = (
+  px: number,
+  py: number,
+  ax: number,
+  ay: number,
+  bx: number,
+  by: number,
+) => {
+  const dx = bx - ax,
+    dy = by - ay,
+    len = dx * dx + dy * dy,
+    s = len
+      ? Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / len))
+      : 0;
+  return Math.hypot(ax + s * dx - px, ay + s * dy - py);
+};
+// Terminals stacked in one column (contactor 13 under 3/L2, motor U1 above W2)
+// must not leave straight through their neighbour. The wire first steps
+// sideways into the nearest free gap between terminals, like a real conductor
+// bent between the screws, then leaves the case. Computed once per product, so
+// every instance of an apparatus is wired the same way.
+export function terminalExits(
+  productId: string,
+  used?: Iterable<string>,
+): Map<string, TerminalExit> {
+  // Only terminals that actually carry a wire compete for the free gaps.
+  const usedIds = used ? new Set(used) : null,
+    cacheKey = `${productId}|${usedIds ? [...usedIds].sort().join(",") : "*"}`;
+  const cached = exitCache.get(cacheKey);
+  if (cached) return cached;
+  const product = catalog[productId],
+    { width, height } = product.dimensions.value!,
+    terminals = product.topology.terminals,
+    result = new Map<string, TerminalExit>();
+  for (const side of ["top", "bottom"] as Side[]) {
+    const own = terminals
+      .filter((t) => (t.y > height / 2 ? "bottom" : "top") === side)
+      .sort((a, b) =>
+        side === "top" ? a.y - b.y || a.x - b.x : b.y - a.y || a.x - b.x,
+      );
+    const lanes: number[] = [];
+    const edge = side === "top" ? 0 : height;
+    // Preferred clearance first; on a tight module accept the smallest gap
+    // that still keeps the wire (half width ~0.75 mm) off the visible ring.
+    const tight = (o: (typeof terminals)[number]) =>
+      terminalRingMm(product, o.id) + TERMINAL_RING_STROKE_MM + 0.8;
+    const clear = (
+      id: string,
+      ax: number,
+      ay: number,
+      bx: number,
+      by: number,
+      keep: (o: (typeof terminals)[number]) => number = () =>
+        TERMINAL_KEEP_OUT_MM,
+    ) =>
+      terminals.every(
+        (o) =>
+          o.id === id || segmentDistance(o.x, o.y, ax, ay, bx, by) >= keep(o),
+      );
+    for (const t of own) {
+      if (usedIds && !usedIds.has(t.id)) {
+        result.set(t.id, { side, lane: t.x, jogY: null });
+        continue;
+      }
+      if (clear(t.id, t.x, t.y, t.x, edge)) {
+        result.set(t.id, { side, lane: t.x, jogY: null });
+        lanes.push(t.x);
+        continue;
+      }
+      const jogY =
+        side === "top"
+          ? Math.max(0, t.y - TERMINAL_KEEP_OUT_MM)
+          : Math.min(height, t.y + TERMINAL_KEEP_OUT_MM);
+      const between = terminals
+        .filter((o) =>
+          side === "top" ? o.y <= jogY + 0.01 : o.y >= jogY - 0.01,
+        )
+        .map((o) => o.x)
+        .concat([0, width])
+        .sort((a, b) => a - b);
+      const gaps = between.slice(1).map((x, i) => (between[i] + x) / 2);
+      const pick = (keep?: (o: (typeof terminals)[number]) => number) =>
+        gaps
+          .filter(
+            (x) =>
+              x > 0.5 &&
+              x < width - 0.5 &&
+              lanes.every((l) => Math.abs(l - x) >= 1.5) &&
+              clear(t.id, t.x, jogY, x, jogY, keep) &&
+              clear(t.id, x, jogY, x, edge, keep),
+          )
+          .sort((a, b) => Math.abs(a - t.x) - Math.abs(b - t.x) || a - b)[0];
+      const lane = pick() ?? pick(tight);
+      if (lane === undefined) {
+        // No free gap on this apparatus: keep the historical straight exit.
+        result.set(t.id, { side, lane: t.x, jogY: null });
+        continue;
+      }
+      result.set(t.id, { side, lane, jogY });
+      lanes.push(lane);
+    }
+  }
+  exitCache.set(cacheKey, result);
+  return result;
+}
+/** Terminals of one device that carry at least one conductor. */
+export function usedTerminalIds(wires: Conductor[], deviceId: string) {
+  return wires.flatMap((w) =>
+    [w.from, w.to]
+      .filter((r) => r.deviceId === deviceId)
+      .map((r) => r.terminalId),
+  );
+}
+/** In-case part of a wire, device-local mm, from the terminal to the case edge. */
+export function terminalExitPath(
+  productId: string,
+  terminalId: string,
+  used?: Iterable<string>,
+) {
+  const product = catalog[productId],
+    t = product.topology.terminals.find((t) => t.id === terminalId)!,
+    e = terminalExits(productId, used).get(terminalId)!,
+    edge = e.side === "top" ? 0 : product.dimensions.value!.height;
+  return e.jogY === null
+    ? [
+        { x: t.x, y: t.y },
+        { x: t.x, y: edge },
+      ]
+    : [
+        { x: t.x, y: t.y },
+        { x: t.x, y: e.jogY },
+        { x: e.lane, y: e.jogY },
+        { x: e.lane, y: edge },
+      ];
 }
 
 function simplify(points: g.Point[]): g.Point[] {
@@ -58,10 +215,19 @@ function obstacleTest(
   sourceSide: Side,
   targetSide: Side,
   obstacles: Obstacle[],
+  laneX: [number, number],
 ) {
   const ends = [
-    { id: view.model.source().id, anchor: view.sourceAnchor, side: sourceSide },
-    { id: view.model.target().id, anchor: view.targetAnchor, side: targetSide },
+    {
+      id: view.model.source().id,
+      anchor: { x: laneX[0], y: view.sourceAnchor.y },
+      side: sourceSide,
+    },
+    {
+      id: view.model.target().id,
+      anchor: { x: laneX[1], y: view.targetAnchor.y },
+      side: targetSide,
+    },
   ];
   const buckets = new Map<string, Obstacle[]>();
   for (const item of obstacles) {
@@ -197,7 +363,11 @@ export function physicalWireRouters(
     key: string;
   };
   const groups = new Map<string, End[]>(),
-    endpoints = new Map<string, { side: Side; gap: number }>();
+    endpoints = new Map<
+      string,
+      { side: Side; gap: number; exit: TerminalExit; terminal: Point }
+    >(),
+    exits = new Map<string, { exit: TerminalExit; terminal: Point }>();
   for (const wire of wires) {
     for (const end of ["from", "to"] as const) {
       const ref = wire[end],
@@ -206,23 +376,43 @@ export function physicalWireRouters(
         terminal = product.topology.terminals.find(
           (t) => t.id === ref.terminalId,
         )!,
+        laneExit = terminalExit(ref, deviceMap, wires),
         key = `${ref.deviceId}|${side}`,
         list = groups.get(key) ?? [];
-      list.push({ wire, end, side, x: terminal.x, key: `${wire.id}|${end}` });
+      exits.set(`${wire.id}|${end}`, {
+        exit: laneExit,
+        terminal: { x: terminal.x, y: terminal.y },
+      });
+      list.push({
+        wire,
+        end,
+        side,
+        x: laneExit.lane,
+        key: `${wire.id}|${end}`,
+      });
       groups.set(key, list);
     }
   }
   for (const group of groups.values()) {
     // Reserve separate exits along each edge, including wires to different
-    // devices. The physical order of terminals determines the lane order.
+    // devices. The order of the wires leaving the edge determines the lane order.
     group.sort((a, b) => a.x - b.x || a.key.localeCompare(b.key));
     group.forEach((end, lane) =>
       endpoints.set(end.key, {
         side: end.side,
         gap: CLEARANCE + 6 + Math.min(lane, 5) * 8,
+        ...exits.get(end.key)!,
       }),
     );
   }
+  // Device-local exit corridor in board units, relative to the terminal anchor.
+  const corridor = (end: { exit: TerminalExit; terminal: Point }) =>
+    end.exit.jogY === null
+      ? { dx: 0, jog: null }
+      : {
+          dx: (end.exit.lane - end.terminal.x) * MM,
+          jog: (end.exit.jogY - end.terminal.y) * MM,
+        };
   const result = new Map<string, routers.Router>();
   for (const wire of wires) {
     const sourceEnd = endpoints.get(`${wire.id}|from`)!,
@@ -235,18 +425,27 @@ export function physicalWireRouters(
       const source = view.model.getSourceElement(),
         target = view.model.getTargetElement();
       if (!source || !target) return vertices;
+      const sourceLane = corridor(sourceEnd),
+        targetLane = corridor(targetEnd);
       const sourceExit = exit(
-          view.sourceAnchor,
+          new g.Point(view.sourceAnchor.x + sourceLane.dx, view.sourceAnchor.y),
           source.getBBox(),
           sourceSide,
           sourceEnd.gap,
         ),
         targetExit = exit(
-          view.targetAnchor,
+          new g.Point(view.targetAnchor.x + targetLane.dx, view.targetAnchor.y),
           target.getBBox(),
           targetSide,
           targetEnd.gap,
         );
+      const jogPoints = (anchor: g.Point, lane: typeof sourceLane) =>
+        lane.jog === null
+          ? []
+          : [
+              new g.Point(anchor.x, anchor.y + lane.jog),
+              new g.Point(anchor.x + lane.dx, anchor.y + lane.jog),
+            ];
       const clampExit = (point: g.Point, deviceId: string) => {
         const e = enclosures.find((e) => e.deviceIds.includes(deviceId));
         if (e) {
@@ -328,6 +527,7 @@ export function physicalWireRouters(
               sourceSide,
               targetSide,
               obstacles,
+              [sourceExit.x, targetExit.x],
             ),
             // Overlapping cases during dragging, or a manual point placed inside
             // a case, may have no clear path. Keep those user points editable.
@@ -338,9 +538,11 @@ export function physicalWireRouters(
         );
       const rawPoints = [
         view.sourceAnchor,
+        ...jogPoints(view.sourceAnchor, sourceLane),
         sourceExit,
         ...route.map((p) => new g.Point(p)),
         targetExit,
+        ...jogPoints(view.targetAnchor, targetLane).reverse(),
         view.targetAnchor,
       ];
       // Manhattan snaps fractional port coordinates to its grid. Keep the
