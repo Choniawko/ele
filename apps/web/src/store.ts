@@ -51,6 +51,7 @@ import {
 } from "@model/index";
 import {
   initialRuntime,
+  type DeviceRuntime,
   type RuntimeSnapshot,
   type RuntimeAction,
 } from "@simulation/index";
@@ -294,9 +295,11 @@ function request(action?: RuntimeAction, measurement?: MeasurementRequest) {
           return [
             id,
             old &&
-            Object.keys(next).every(
-              (key) =>
-                next[key as keyof typeof next] === old[key as keyof typeof old],
+            Object.keys(next).every((key) =>
+              key === "connections"
+                ? sameConnections(next.connections, old.connections)
+                : next[key as keyof typeof next] ===
+                  old[key as keyof typeof old],
             )
               ? old
               : next,
@@ -497,6 +500,27 @@ function connectionTerminal(project: ProjectDocument, ref: TerminalRef) {
       (t) => t.id === ref.terminalId,
     );
   return device && terminal ? { device, terminal } : null;
+}
+// The worker sends fresh objects every tick. Keeping the old reference when
+// nothing changed stops the board from rebuilding (and cancelling a drag).
+function sameConnections(
+  a: DeviceRuntime["connections"],
+  b: DeviceRuntime["connections"],
+) {
+  if (a === b) return true;
+  if (!a || !b) return false;
+  const keys = Object.keys(a);
+  return (
+    keys.length === Object.keys(b).length &&
+    keys.every(
+      (id) =>
+        b[id] &&
+        a[id].mechanicalClosed === b[id].mechanicalClosed &&
+        a[id].conducting === b[id].conducting &&
+        a[id].displayClosed === b[id].displayClosed &&
+        a[id].displayMode === b[id].displayMode,
+    )
+  );
 }
 export const useApp = create<AppState>((set, get) => ({
   project: startProject,

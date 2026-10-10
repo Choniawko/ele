@@ -31,3 +31,15 @@ Dodaj następny kanoniczny ReferenceExample i jego profile/lekcję, zachowując 
 `pnpm knowledge:validate` sprawdza treści, referencje, bramki i sumy źródłowe. `tests/reference-examples.test.ts`, `reference-copy.test.ts`, `reference-navigation.test.tsx` i `wire-routing.test.ts` sprawdzają obwód, niezależne węzły, próby i geometrię. `tests/e2e/reference-examples.spec.ts` i `knowledge.spec.ts` sprawdzają realną przeglądarkę, także produkcyjny `/ele/`, cztery rozmiary okna i kopiowanie. Starsze obwody w `tests/fixtures/legacy-projects.json` służą wyłącznie kontroli importu istniejących zapisów; nie są pozycjami aplikacji.
 
 Bieżące wyniki i ograniczenia: [QA_01](ele-exams/QA_01.md), [QA_01b](ele-exams/QA_01b.md), [checkpoint](ele-exams/implementation-state.json). Dowody wcześniejszej jednostki 00a zachowuje [QA_00](ele-exams/QA_00.md). Etap 01 (01a/01b) ma status tested. Następna jednostka: **02a — ELE.02-105**, trzy miejsca sterowania, krzyżowy i lekcja korespondencji.
+
+## Układy sterowania stykowego (osobny temat)
+
+`#/wiedza/sterowanie` to dział niezależny od zadań ELE.02. Zawiera 36 układów z książki W. Kriesera *Stykowe elektryczne układy sterowania* (wyd. II, Helion 2023), przykłady z s. 39–40, kilka układów wprowadzających oraz 8 artykułów teorii (czytanie schematu, logika styków, samopodtrzymanie, blokady, kolejność, przekaźniki czasowe, generatory, pomiary). Rysunki są narysowane od nowa z topologii, opisy są własne.
+
+- `packages/knowledge/control/model.ts` — układ to jedno wyrażenie szeregowo-równoległe między +24 V a 0 V (`ser`, `par`, `no`, `nc`, `coil`, `lamp`…). Z niego powstają rysunek, symulacja i tabela pomiarowa.
+- `layout.ts` — automatyczny rysunek drabinkowy: numery gałęzi i tabela styków (NC/NO) pod każdą cewką liczone z rysunku.
+- `simulator.ts` — logika stykowa (styczniki, TON, TOF, czujnik PNP), iteracja do stanu ustalonego z zapisem klatek do zwolnionego tempa, dokładne odliczanie czasu oraz rozwiązanie sieci rezystancyjnej do animacji prądu.
+- `circuits.ts` — dane układów: zasada działania, wskazówki czytania, uwagi do rysunków w książce i scenariusz krok po kroku. `theory.ts` — artykuły z wbudowanymi symulacjami.
+- `apps/web/src/ControlCircuits.tsx` — strony działu, schemat z klikanymi przyciskami, prowadzenie, dziennik „Co się stało”, obwód mocy dla układów 30–31.
+
+Nowy układ dodaje się wpisem w `circuits.ts`. `tests/control-circuits.test.ts` odtwarza scenariusz każdego układu na symulatorze i sprawdza stany z `on`/`off`, więc opis nie może rozjechać się z działaniem.

@@ -1,7 +1,11 @@
 import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   testDir: "tests/e2e",
-  testIgnore: "pages.spec.ts",
+  // zz-diag-* only log measurements while investigating; they assert nothing
+  // and are run on demand with `pnpm test:e2e:diag`.
+  testIgnore: process.env.ELE_DIAG
+    ? ["pages.spec.ts"]
+    : ["pages.spec.ts", "zz-diag-*.spec.ts"],
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   workers: 1,

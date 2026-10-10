@@ -30,6 +30,7 @@ import { returnToWorkbench } from "./knowledge-navigation";
 import "./knowledge.css";
 import "./exam-knowledge.css";
 const SchematicCourse = lazy(() => import("./SchematicCourse"));
+const ControlCircuits = lazy(() => import("./ControlCircuits"));
 
 const sections = ["Rysunek", "Działanie", "Aparaty", "Próby"];
 const asset = (path: string) =>
@@ -503,9 +504,16 @@ export default function ExamKnowledge({ route }: { route: string }) {
     "czytanie",
     "zestaw",
     "uklady",
+    "sterowanie",
   ].includes(category);
   const missing =
-    (!!slug && !task && !article && !component && !reference) || !known;
+    (!!slug &&
+      category !== "sterowanie" &&
+      !task &&
+      !article &&
+      !component &&
+      !reference) ||
+    !known;
   const result = searchExamKnowledge(query, "ELE.02");
   const page = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -538,6 +546,7 @@ export default function ExamKnowledge({ route }: { route: string }) {
             ["czytanie", "Nauka schematów", "#/wiedza/czytanie"],
             ["zadania", "Zadania", "#/wiedza/zadania"],
             ["aparaty", "Aparaty", "#/wiedza/aparaty"],
+            ["sterowanie", "Układy sterowania", "#/wiedza/sterowanie"],
           ].map(([id, label, href]) => (
             <a
               className="exam-nav"
@@ -560,6 +569,10 @@ export default function ExamKnowledge({ route }: { route: string }) {
             <h1 tabIndex={-1}>Nie znaleziono materiału</h1>
             <a href="#/wiedza/zadania">Wróć do zadań</a>
           </>
+        ) : category === "sterowanie" ? (
+          <Suspense fallback={<p role="status">Ładowanie układów…</p>}>
+            <ControlCircuits slug={slug} />
+          </Suspense>
         ) : reference ? (
           <ReferenceLesson key={reference.id} reference={reference} />
         ) : task ? (
@@ -633,6 +646,19 @@ export default function ExamKnowledge({ route }: { route: string }) {
                     </a>
                   </li>
                 </ol>
+                <section className="knowledge-next" aria-label="Osobny temat">
+                  <h2>Osobny temat: układy sterowania stykowego</h2>
+                  <a className="knowledge-card" href="#/wiedza/sterowanie">
+                    <h2>Jak działają i jak czytać schematy sterowania</h2>
+                    <p>
+                      36 układów z książki „Stykowe elektryczne układy
+                      sterowania” jako działające symulacje: samopodtrzymanie,
+                      blokady, kolejność, przekaźniki czasowe i generatory —
+                      z teorią, prowadzeniem krok po kroku i tabelami
+                      pomiarowymi.
+                    </p>
+                  </a>
+                </section>
                 <p className="knowledge-aside-link">
                   <a href="#/wiedza/aparaty">
                     Poznaj aparat: wyszukaj nazwę, producenta lub model/SKU →

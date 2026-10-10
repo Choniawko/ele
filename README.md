@@ -30,6 +30,8 @@ W nagłówku wybierz **Baza wiedzy**: 17 kart arkuszy, 25 artykułów, 60 katego
 
 **Nauka schematów** prowadzi od symboli przez ćwiczenia na oryginalnych arkuszach 101 i 108 do lekcji, w której schemat, tablica i przepływ prądu są zsynchronizowane. Wyniki audytu UX, kontroli połączeń i plan dalszych zmian: [docs/UX_AUDYT_NAUKA.md](docs/UX_AUDYT_NAUKA.md).
 
+**Układy sterowania** to osobny temat (`/ele/#/wiedza/sterowanie`): 36 układów stykowych z książki *Stykowe elektryczne układy sterowania* jako działające symulacje 24 V DC z animacją prądu i styków, prowadzeniem krok po kroku, zwolnionym tempem zmian, tabelą pomiarową oraz teorią samopodtrzymania, blokad i przekaźników czasowych. [Opis budowy](docs/KNOWLEDGE.md#układy-sterowania-stykowego-osobny-temat).
+
 „Poznaj aparat” i osobne wyjaśnienie zacisku otwierają pomoc z rolą w tym układzie. Zwykły gest zacisku nadal rozpoczyna łączenie. Powrót zachowuje kadr, zaznaczenie i rozpoczętą pracę; czytanie zawiesza automatyczny zegar. Pełne artykuły katalogowe zachowują istniejące adresy i lokalny progres. Dawne demonstracje oraz układy bazowe wycofano. [Zakres i dopisywanie materiałów](docs/KNOWLEDGE.md), [odbiór etapu 01](docs/ele-exams/QA_01.md) i [odbiór 108](docs/ele-exams/QA_01b.md).
 
 ## Moje projekty
@@ -90,4 +92,4 @@ W diagnostyce zapisz pomiar właściwego uszkodzonego toru, hipotezę i napraw z
 
 ## CI i pierwsze wydanie
 
-PR-y i push do main uruchamiają `ELE CI`: frozen lockfile, typecheck, Oxlint/ESLint, testy, katalog, pełne E2E developerskie, build i E2E gotowego dist pod `/ele/`. Zestawy przeglądarkowe działają kolejno. Publikacja następuje wyłącznie dla zweryfikowanego tagu wersji, przez environment `github-pages`, z archiwum do rollbacku i `version.json`. Konieczne ustawienia ochrony main/tagów/środowiska i procedura: [RELEASING.md](docs/RELEASING.md). Dodanie workflowów nie jest potwierdzeniem deploymentu.
+PR-y i push do main uruchamiają `ELE CI`: frozen lockfile, typecheck, Oxlint/ESLint, testy, katalog, pełne E2E developerskie, build i E2E gotowego dist pod `/ele/`. Zestawy przeglądarkowe działają kolejno. Po merge do `main` i zielonej weryfikacji ten sam dist jest wdrażany na Pages (environment `github-pages`). Tag wersji dodatkowo zapisuje archiwum w GitHub Releases do rollbacku. Diagnostyczne specy `zz-diag-*` nie wchodzą do CI; uruchamia je `pnpm test:e2e:diag`. Konieczne ustawienia ochrony main/tagów/środowiska i procedura: [RELEASING.md](docs/RELEASING.md). Dodanie workflowów nie jest potwierdzeniem deploymentu.
